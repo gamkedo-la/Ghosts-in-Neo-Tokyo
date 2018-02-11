@@ -71,6 +71,7 @@ function playerClass() {
 	this.keyHeld_South = false;
 	this.keyHeld_West = false;
 	this.keyHeld_East = false;
+	this.keyHeld_Jump = false;
 	this.keyHeld_Attack = false;
 	this.keyHeld_Dash = false;
 	this.lastDashTime = 0;
@@ -87,6 +88,7 @@ function playerClass() {
 	this.controlKeyAttack;
 	this.controlKeyDash;
 	this.controlKeyRangeAttack;
+	this.controlKeyJump;
 
 	var tileColliderWidth = 4;
 	var tileColliderHeight = 2;
@@ -109,7 +111,7 @@ function playerClass() {
     	return isFacing;
     }
 
-	this.setupInput = function(upKey, rightKey, downKey, leftKey, attackKey, dashKey, rangedAttackKey) {
+	this.setupInput = function(upKey, rightKey, downKey, leftKey, attackKey, dashKey, rangedAttackKey, jumpKey) {
 		this.controlKeyUp = upKey;
 		this.controlKeyRight = rightKey;
 		this.controlKeyDown = downKey;
@@ -120,6 +122,7 @@ function playerClass() {
 		this.controlKeyDownALT = KEY_S;
 		this.controlKeyLeftALT = KEY_A;
 
+		this.controlKeyJump = jumpKey;
 		this.controlKeyAttack = attackKey;
 		this.controlKeyDash = dashKey;
 		this.controlKeyRangeAttack = rangedAttackKey;
