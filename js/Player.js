@@ -270,6 +270,9 @@ function playerClass() {
 			isFacing = SOUTH;
 			//target.y += _PLAYER_MOVE_SPEED;
 		}
+		if (this.keyHeld_Jump) {
+			this.startJump();
+		}
 
 		//pass target to jumplogic to modify
 		target = this.jumpLogic(target);
@@ -318,8 +321,6 @@ function playerClass() {
 		{
 			this.lastAnchorAttack = performance.now()
 			//anchorMagic(this.x, this.y, isFacing);
-			//TODO: put this jump stuff inway better place
-			this.startJump()
 		}
 
 		isUsingRangedAttack = this.keyHeld_Ranged_Attack;
