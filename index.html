@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<style>
+		body {
+			background:black;
+			height:100%;
+			width:100%;
+			margin:0;
+			padding:0;
+			overflow:hidden;
+		}
+
+		#gameCanvas {
+			height:100vh;
+			max-width:100%;
+			max-height:100%;
+			padding:0;
+			outline:0;
+			image-rendering: pixelated;
+			-ms-interpolation-mode: nearest-neighbor;
+			image-rendering: -webkit-optimize-contrast;
+			image-rendering: -webkit-crisp-edges;
+			image-rendering: -moz-crisp-edges;
+			image-rendering: -o-crisp-edges;
+			image-rendering: pixelated;
+		    margin: 0 auto;
+    		display: block;
+		}
+
+		#debugText {
+			float:right;
+			display:none;
+		}
+	</style>
+
+</head>
+
+<body>
+
+<canvas id="gameCanvas" width="320" height="180"></canvas>
+<p id="debugText">Key count will be displayed here</p>
+
+<script>
+	  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	  ga('create', 'UA-28162659-11', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	
+	<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="js/DebugPanel.js"></script>
+<script src="js/Particles.js"></script>
+<script src="js/Items.js"></script>
+<script src="js/Colliders.js"></script>
+<script src="js/Sprites.js"></script>
+<script src="js/GraphicsCommon.js"></script>
+<script src="js/ImageLoading.js"></script>
+<script src="js/Enemy.js"></script>
+<script src="js/TileEditor.js"></script>
+<script src="js/Rooms.js"></script>
+<script src="js/Magic.js"></script>
+<script src="js/Player.js"></script>
+<script src="js/World.js"></script>
+<script src="js/Input.js"></script>
+<script src="js/GamepadSupport.js"></script>
+<script src="js/Screenshake.js"></script>
+<script src="js/howler.core.min.js"></script>
+<script src="js/Sound.js"></script>
+<script src="js/Main.js"></script>
+
+<script src="js/AStarPathfinding.js"></script>
+<p id="levelEditorOutputText"></p>
+
+
+</body>
+</html>
