@@ -59,7 +59,7 @@ function setupInput() {
 	document.addEventListener('keydown', keyPressed);
 	document.addEventListener('keyup', keyReleased);
 
-	player.setupInput(KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_DOWN_ARROW, KEY_LEFT_ARROW, KEY_SPACE, KEY_Z, KEY_X);
+	player.setupInput(KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_DOWN_ARROW, KEY_LEFT_ARROW, KEY_X, KEY_Z, KEY_C, KEY_SPACE);
 }
 
 function updateMousePos(evt) {
@@ -112,6 +112,8 @@ function keySet(keyEvent, setTo) {
 	}else if(keyEvent.keyCode == player.controlKeyDown || keyEvent.keyCode == player.controlKeyDownALT) {
 		if (!setTo) checkDoubleTap(SOUTH);
 		player.keyHeld_South = setTo;
+	}else if(keyEvent.keyCode == player.controlKeyJump){
+		player.keyHeld_Jump = setTo;
 	}else if(keyEvent.keyCode == player.controlKeyAttack) {
 		if (!setTo) checkDoubleTap(ATTACK);
 		player.keyHeld_Attack = setTo;
