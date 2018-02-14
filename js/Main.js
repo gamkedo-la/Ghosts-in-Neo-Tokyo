@@ -40,6 +40,7 @@ function runThatGame(){
 
 function loadLevel() {
 	console.log("loading level");
+
 	var nextRoom = roomCoordToVar();
 	if(nextRoom==undefined) {
 		console.log("NO SUCH ROOM IS DEFINED, undoing room change");
@@ -99,7 +100,7 @@ function drawAll() {
 	drawWorld();
 	currentRoom.drawTraps();
 	drawItems();
-	canvasContext.drawImage(sprites.Concept.background1, 0,0);
+	//canvasContext.drawImage(sprites.Concept.background1, 0,0);
 	currentRoom.drawDynamic();
 	drawParticles();
 	
