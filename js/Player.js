@@ -30,9 +30,11 @@ const ATTACK = 5; // used in input.js for future double tap logic
 const RANGED_ATTACK = 6;
 const ANCHOR_ATTACK_COOLDOWN = 650
 const FIRE_ATTACK_COOLDOWN = 300;
-const STARTING_POSITION_X = 160;
-const STARTING_POSITION_Y = 136;
+const STARTING_POSITION_X = 240;
+const STARTING_POSITION_Y = 60;
 
+const GRAVITY = -0.5;
+const JUMP_POWER = -7;
 
 function playerClass() {
 	var isMoving = false;
@@ -46,6 +48,7 @@ function playerClass() {
 	var playerAtStartingPosition = true;
 	this.x = STARTING_POSITION_X;
 	this.y = STARTING_POSITION_Y;
+	this.vy = 0;
 
 	this.name = "Untitled Player";
 	this.maxHealth = startHealth;
@@ -214,34 +217,24 @@ function playerClass() {
 	this.startJump = function(){
 		if(this.motionState == "Grounded"){
 			this.motionState = "Jumping"
-			this.jumpTime = JUMP_TIME
+			//this.jumpTime = JUMP_TIME
+			this.vy = JUMP_POWER;
 		}
 	}
 
 	this.jumpLogic = function(target){
-		if(this.jumpTime <= 0 && this.motionState == "Jumping"){
-			this.motionState = "Falling"
-		}
 
-		//TODO: actually write logic to see if char is grounded
-		if(this.y > STARTING_POSITION_Y){
-			this.motionState = "Grounded"
-			this.jumpTime = 0;
-			target.y = STARTING_POSITION_Y;
-		}
+		this.vy -= GRAVITY;
+		target.y += this.vy;
 
-		if (this.motionState == "Jumping" && this.jumpTime > 0){
-			target.y -= _PLAYER_MOVE_SPEED;
-			this.jumpTime--;
-		}
-
-		if (this.motionState == "Falling"){
-			target.y += _PLAYER_MOVE_SPEED;
-			
+		if (this.vy > 0)
+		{
+			this.motionState = "Falling";
 		}
 
 		return target;
 	}
+	
 	this.move = function() {
 
 		// don't do anything during the death anim
@@ -283,9 +276,8 @@ function playerClass() {
 
 		if (isMoving) {
 			
-			var angle = calculateAngleFrom(this, target);
-			var velX = Math.cos(angle) * _PLAYER_MOVE_SPEED * playerFriction;
-			var velY = Math.sin(angle) * _PLAYER_MOVE_SPEED * playerFriction;
+			var xDir = Math.sign(target.x - this.x);
+			var velX = xDir * _PLAYER_MOVE_SPEED * playerFriction;
 
 			// "footsteps" = very faint dust particles while we are walking
 			particleFX(this.x, this.y+10, 2, 'rgba(200,200,200,0.2)', 0.01, 0.02, 1.0, 0.0, 0.2);
@@ -310,7 +302,16 @@ function playerClass() {
 			}
 
 			this.tileCollider.moveOnAxis(this, velX, X_AXIS);
-			this.tileCollider.moveOnAxis(this, velY, Y_AXIS);
+			var collisionY = this.tileCollider.moveOnAxis(this, this.vy, Y_AXIS);
+			if (collisionY && this.motionState == "Falling")
+			{
+				this.motionState = "Grounded";
+				this.vy = 0.5;
+			}
+			else if (collisionY && this.motionState == "Jumping")
+			{
+				this.vy = 0;
+			}
 		}
 
 		pickUpItems(this.hitbox);
