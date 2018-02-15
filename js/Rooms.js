@@ -14,8 +14,8 @@ function roomCoordToString(c, r,f) {
 
 function Room(roomLayout) {
 	
-	this.originalLayout = roomLayout.slice();
-	this.layout = this.originalLayout.slice();
+	this.originalLayout = JSON.parse(JSON.stringify(roomLayout))
+	this.layout = JSON.parse(JSON.stringify(this.originalLayout))
 	this.enemyList = [];
 	this.magic = [];
 	this.itemOnGround = [];
@@ -24,7 +24,7 @@ function Room(roomLayout) {
 	this.tempPathFindingData = []; // copy of 2d array of ints. 
 	
 	this.reset = function(){
-		this.layout = this.originalLayout.slice();
+		this.layout = JSON.parse(JSON.stringify(this.originalLayout))
 		this.enemyList = [];
 		this.itemOnGround = [];
 		this.pathfindingdata = []; // a-star pathfinding grid
@@ -299,7 +299,7 @@ function Room(roomLayout) {
 // 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,
 // 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00];
 
-var room0a1 = StartingArea.layers[0].data
+var room0a1 = StartingArea
 
 var allRooms = [
 	room0a1, ];

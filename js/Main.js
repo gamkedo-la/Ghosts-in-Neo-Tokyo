@@ -53,7 +53,14 @@ function loadLevel() {
 	lastValidCurrentRoomRow = currentRoomRow;
 	lastValidCurrentFloor = currentFloor;
 	currentRoom = nextRoom;
-	worldGrid = currentRoom.layout;
+	worldGrid = currentRoom.layout.layers[0].data
+	// if(currentRoom.layers && currentRoom.layers.length && currentRoom.layers.data){
+		
+	// } else {
+	// 	worldGrid = []
+	// }
+
+	
 	if (!noDamageForFloor[currentFloor - 1]) {
 		removeAllItemsOfTypeInRoom(ITEM_ARTIFACT); 
 	}
