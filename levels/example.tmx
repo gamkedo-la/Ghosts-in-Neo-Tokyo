@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="10" tilewidth="20" tileheight="20" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="10" tilewidth="20" tileheight="20" nextobjectid="4">
  <tileset firstgid="1" name="tileset" tilewidth="20" tileheight="20">
   <image source="tileset.png" width="200" height="200"/>
+ </tileset>
+ <tileset firstgid="101" name="Char" tilewidth="32" tileheight="32">
+  <tile id="0">
+   <image width="32" height="32" source="../img/mainChar/Char_0.png"/>
+  </tile>
+  <tile id="1">
+   <image width="32" height="32" source="../img/Ghast/Ghast_0.png"/>
+  </tile>
  </tileset>
  <layer name="Tile Layer 1" width="16" height="10">
   <data encoding="csv">
@@ -14,7 +22,11 @@
 1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,
 1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,
 1,0,1,1,1,1,1,1,1,0,1,1,1,0,1,1,
-1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="Characters">
+  <object id="1" gid="101" x="215.333" y="102" width="32" height="32"/>
+  <object id="3" gid="102" x="50.3333" y="151.667" width="32" height="32"/>
+ </objectgroup>
 </map>
