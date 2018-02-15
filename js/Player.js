@@ -307,11 +307,14 @@ function playerClass() {
 			{
 				this.motionState = "Grounded";
 				this.vy = 0.5;
+
 			}
 			else if (collisionY && this.motionState == "Jumping")
 			{
 				this.vy = 0;
+
 			}
+			
 		}
 
 		pickUpItems(this.hitbox);
