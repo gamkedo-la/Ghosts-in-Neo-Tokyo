@@ -24,7 +24,7 @@ function ghast(x, y) {
 	this.spriteFrames = 6;
 	this.spriteSpeed = 9;
 	
-	this.deathSpriteSheet = sprites.Slime.deathAnimation;
+	//this.deathSpriteSheet = sprites.Slime.deathAnimation;
 	this.deathSpriteFrames = 10;
 	this.deathSpriteSpeed = 4;
 	var directionTimer = 0;
@@ -118,3 +118,4 @@ function ghast(x, y) {
 	
 	return new enemyClass(this, staates);
 }
+enemyDictionary["Ghast"] = ghast

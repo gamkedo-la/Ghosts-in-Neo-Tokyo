@@ -33,11 +33,13 @@ function runThatGame(){
 
 	setupInput();
 	backupRoomData(); // should do before any numbers are replaced and load level etc.
+	initRoomData()
 	loadLevel();
 	resetAllRooms();
 	createTileArray();
 }
 
+//this should prob be in Room.js
 function loadLevel() {
 	console.log("loading level");
 
@@ -54,6 +56,13 @@ function loadLevel() {
 	lastValidCurrentFloor = currentFloor;
 	currentRoom = nextRoom;
 	worldGrid = currentRoom.layout.layers[0].data
+	for(var i in currentRoom.layout.tilesets){		
+		if(currentRoom.layout.tilesets[i].tileproperties){
+			for(var j in currentRoom.layout.tilesets[i].tileproperties){
+				objectDictionary[parseInt(currentRoom.layout.tilesets[i].firstgid) + parseInt(j)] = currentRoom.layout.tilesets[i].tileproperties[j]
+			}
+		}
+	}
 	// if(currentRoom.layers && currentRoom.layers.length && currentRoom.layers.data){
 		
 	// } else {

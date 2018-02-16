@@ -13,13 +13,13 @@
         }, 
         {
          "draworder":"topdown",
-         "height":10,
+         "height":0,
          "name":"Characters",
          "objects":[
                 {
-                 "gid":101,
+                 "gid":102,
                  "height":32,
-                 "id":1,
+                 "id":4,
                  "name":"",
                  "properties":
                     {
@@ -29,13 +29,13 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":215.333333333333,
-                 "y":102
+                 "x":93,
+                 "y":139.5
                 }, 
                 {
                  "gid":102,
                  "height":32,
-                 "id":3,
+                 "id":5,
                  "name":"",
                  "properties":
                     {
@@ -45,17 +45,17 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":50.3333333333333,
-                 "y":151.666666666667
+                 "x":192,
+                 "y":104.5
                 }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
-         "width":16,
+         "width":0,
          "x":0,
          "y":0
         }],
- "nextobjectid":4,
+ "nextobjectid":10,
  "orientation":"orthogonal",
  "properties":
     {
@@ -89,6 +89,13 @@
             },
          "spacing":0,
          "tileheight":32,
+         "tileproperties":
+            {
+             "1":
+                {
+                 "entityType":"Ghast"
+                }
+            },
          "tiles":
             {
              "0":

@@ -1,5 +1,8 @@
 var currentRoomCol = 0,currentRoomRow = 0, currentFloor = 1;
 var lastValidCurrentRoomCol = 0,lastValidCurrentRoomRow = 0, lastValidCurrentFloor = 1;
+var objectDictionary = {
+
+}
 
 function roomCoordToVar()
 {
@@ -32,11 +35,36 @@ function Room(roomLayout) {
 		if (!_DEBUG_ENABLE_TILE_EDITOR) {
 			this.spawnItems();
 			this.spawnTraps();
+			this.spawnCharacters();
 			this.spawnMyEnemies();
 			
 			if (_TEST_AI_PATHFINDING)
 				this.generatePathfindingData();
 				
+		}
+	}
+
+	this.spawnCharacters = function(){
+		var item;
+
+		for(var i in this.layout.layers){
+			if(this.layout.layers[i].type == "objectgroup" && this.layout.layers[i].visible){
+				for(var j in this.layout.layers[i].objects){
+					item = this.layout.layers[i].objects[j]
+					if(objectDictionary[item.gid]){
+						if(!objectDictionary[item.gid].entityType){
+							throw "Entity type for object " + item.gid + " not set!!"
+						}
+						var enemyConstructor = enemyDictionary[objectDictionary[item.gid].entityType]
+						if(!enemyConstructor){
+							throw "Entity constructor for object " + objectDictionary[item.gid].entityType + " not set!!"
+						}
+						this.enemyList.push(new enemyConstructor(item.x, item.y));
+					} else {
+						throw "could not find object in tileset: " + item.gid
+					}
+				}
+			}
 		}
 	}
 
@@ -321,7 +349,20 @@ function restoreRoomDataBackup() {
 	resetAllRooms();
 	console.log("room reset");
 }
-
+function initRoomData(){
+	for (var c = 0; c<roomCols; c++) {
+		for ( var r =0; r<roomRows; r++) {
+			for (var f=0; f<roomFloors; f++) {
+				var eachRoom = roomCoordToString(c,r,f);
+				if (window[eachRoom] != undefined) {
+					console.log("room found");
+					var tempRoom = new Room (window[eachRoom]);					
+					allRoomsData[eachRoom] = tempRoom;
+				}
+			}
+		}
+	}
+}
 function resetAllRooms(){
 	allRoomsData = {};
 	for (var c = 0; c<roomCols; c++) {

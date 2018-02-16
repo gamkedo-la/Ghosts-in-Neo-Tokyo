@@ -1,6 +1,7 @@
 var INITIAL_AI_STATE = "derpAround";
 var _TEST_AI_PATHFINDING = false;  // a-star pathfinding at all times
 var _DEBUG_DRAW_AI_PATHS = false; // so handy
+var enemyDictionary = {}
 
 function enemyClass(newEnemy, states){
 	//states is just an object of fuuuunctions
