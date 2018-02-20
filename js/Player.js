@@ -219,6 +219,8 @@ function playerClass() {
 			this.motionState = "Jumping"
 			//this.jumpTime = JUMP_TIME
 			this.vy = JUMP_POWER;
+
+			Sound.play("player_jump");
 		}
 	}
 
