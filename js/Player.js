@@ -140,9 +140,9 @@ function playerClass() {
 		  eventAction: 'Death',
 		  eventLabel: 'Unknown',
 		});
-		Sound.stop("boss_bgm");
-		Sound.stop("MageHookThemeSong");
-		Sound.play("player_die");
+		//Sound.stop("boss_bgm");
+		//Sound.stop("MageHookThemeSong");
+		//Sound.play("player_die");
 		console.log("Starting player death animation!");
 		sprite.setSprite(sprites.Player.deathAnimation, 32, 32, 16, 8, false);
 		setTimeout(player.respawn,DEATH_RESPAWN_DELAY_MS);
@@ -163,7 +163,7 @@ function playerClass() {
 		fireballLvl2Upgrade = fireballLvl3Upgrade = false;
 		player.currentlyDying = false;
 		player.reset("Untitled Player");
-		Sound.play("MageHookThemeSong",true,MUSIC_VOLUME);
+		//Sound.play("MageHookThemeSong",true,MUSIC_VOLUME);
 	}
 
 	this.reset = function(playerName) {
@@ -220,7 +220,7 @@ function playerClass() {
 			//this.jumpTime = JUMP_TIME
 			this.vy = JUMP_POWER;
 
-			Sound.play("player_jump");
+			player_jump_SFX.play();
 		}
 	}
 
@@ -341,7 +341,7 @@ function playerClass() {
 				isPoisoned = false;
 				this.die();
 			} else {
-				Sound.play("player_hit");
+				player_hit_SFX.play();
 				this.isStunned = true;
 				this.isInvincible = true;
 				stunTimer = _STUN_DURATION;
@@ -454,7 +454,7 @@ function playerClass() {
 				console.log("noDamageForFloor[currentFloor] = " + noDamageForFloor[currentFloor]);
 				this.isInvincible = true;
 				invincibleTimer = INVINCIBLE_DURATION;
-				Sound.play("player_hit");
+				player_hit_SFX.play();
 				console.log("Health lost to poison");
 			} else if(poisonTime > poisonDuration) {
 				poisonTime = 0;
@@ -503,7 +503,7 @@ function playerClass() {
 		console.log("noDamageForFloor[currentFloor] = " + noDamageForFloor[currentFloor]);
 
 		screenShake(5);
-		Sound.play("player_hit");
+		player_hit_SFX.play();
 		if(this.currentHealth < 1 ){
 			this.die()
 		}
@@ -545,7 +545,7 @@ function playerClass() {
 		    switch (types[i]) {
 				case TILE_OOZE:
 
-					Sound.playUnlessAlreadyPlaying('hit_poison',false,0.5);
+					//Sound.playUnlessAlreadyPlaying('hit_poison',false,0.5);
 
 					if (!this.isInvincible) {
 						isPoisoned = true;
@@ -567,7 +567,7 @@ function playerClass() {
 						this.currentHealth--;
 						noDamageForFloor[currentFloor] = false;
 						console.log("noDamageForFloor[currentFloor] = " + noDamageForFloor[currentFloor]);
-						Sound.play("player_hit");
+						player_hit_SFX.play();
 						this.isInvincible = true;
 						invincibleTimer = 0.5;
 					}
@@ -578,7 +578,7 @@ function playerClass() {
 					playerFriction = _WEB_FRICTION;
 					sprite.setSpeed(6)
 					if (isMoving) {
-						Sound.playUnlessAlreadyPlaying('hit_web',false,0.2);
+						//Sound.playUnlessAlreadyPlaying('hit_web',false,0.2);
 						for (var i = 0; i < PARTICLES_PER_TICK; i++) {
 							var tempParticle = new particleClass(this.hitbox.x, this.hitbox.y, 'lightGrey');
 							particle.push(tempParticle);
@@ -610,7 +610,7 @@ function playerClass() {
 			case TILE_BOX:
 				if(this.inventory.keysEpic > 0 && !this.isStunned) {
 					this.inventory.keysEpic--; // one less key
-					Sound.play("enemy_die");
+					//Sound.play("enemy_die");
 					this.updateKeyReadout();
 					worldGrid[tileIndex] = TILE_GROUND;
 					var result = calculateCenterCoordOfTileIndex(tileIndex);
@@ -651,7 +651,7 @@ function playerClass() {
 				break;
 			case TILE_DOOR_COMMON:
 				if(this.inventory.keysCommon > 0 && !this.isStunned) {
-					Sound.play("door_open");
+					//Sound.play("door_open");
 					this.inventory.keysCommon--; // one less key
 					this.updateKeyReadout();
 					worldGrid[tileIndex] = TILE_GROUND;
@@ -660,7 +660,7 @@ function playerClass() {
 				break;
 			case TILE_DOOR_RARE:
 				if(this.inventory.keysRare > 0 && !this.isStunned) {
-					Sound.play("door_open");
+					//Sound.play("door_open");
 					this.inventory.keysRare--; // one less key
 					this.updateKeyReadout();
 					worldGrid[tileIndex] = TILE_GROUND;
@@ -669,7 +669,7 @@ function playerClass() {
 				break;
 			case TILE_DOOR_EPIC:
 				if(this.inventory.keysEpic > 0 && !this.isStunned) {
-					Sound.play("door_open");
+					//Sound.play("door_open");
 					this.inventory.keysEpic--; // one less key
 					this.updateKeyReadout();
 					worldGrid[tileIndex] = TILE_GROUND;

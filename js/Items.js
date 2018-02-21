@@ -249,53 +249,53 @@ function pickUpItems(collider) {
                 case ITEM_KEY_COMMON:
                 	player.inventory.keysCommon++; // one more key
                     // this.updateKeyReadout();
-                    Sound.play('key_pickup', false, 0.1); // 0.1 means 10% volume
+                    //Sound.play('key_pickup', false, 0.1); // 0.1 means 10% volume
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, '#c65e31');
 					break;
 				case ITEM_KEY_RARE:
                 	player.inventory.keysRare++; // one more key
                     // this.updateKeyReadout();
-                    Sound.play('key_pickup', false, 0.1); // 0.1 means 10% volume
+                    //Sound.play('key_pickup', false, 0.1); // 0.1 means 10% volume
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, '#949494');
 					break;
 				case ITEM_KEY_EPIC:
                 	player.inventory.keysEpic++; // one more key
                     // this.updateKeyReadout();
-                    Sound.play('key_pickup', false, 0.1); // 0.1 means 10% volume
+                    //Sound.play('key_pickup', false, 0.1); // 0.1 means 10% volume
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, '#d8b800');
 					break;
 				case ITEM_POTION:
 					if (player.currentHealth < player.maxHealth)
 						player.currentHealth++;
-                    Sound.play('key_pickup', false, 0.1);
+                    //Sound.play('key_pickup', false, 0.1);
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'red');
 					break;
 				case ITEM_CRYSTAL:
 					player.enemyHitCount++;
-					Sound.play('key_pickup', false, 0.1);
+					//Sound.play('key_pickup', false, 0.1);
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'blue');
 					break;
 				case ITEM_HEART_CONTAINER:
 					player.maxHealth +=2;
 					player.currentHealth += 2;
-					Sound.play('key_pickup', false, 0.1);
+					//Sound.play('key_pickup', false, 0.1);
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'yellow');
                     break;
                 case ITEM_ARTIFACT:
                     attackBuff += 0.25;
-                    Sound.play('key_pickup', false, 0.1);
+                    //Sound.play('key_pickup', false, 0.1);
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, '#4682B4'); // SteelBlue
                     break;
                 case ITEM_FIREBALL_LVL2: //TODO: add booleans to bulletSpell
                     fireballLvl1Upgrade = false;
                     fireballLvl2Upgrade = true;
-                    Sound.play('key_pickup', false, 0.1);
+                    //Sound.play('key_pickup', false, 0.1);
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, '#40bf77'); // SeaGreen Modified
                     break;
                 case ITEM_FIREBALL_LVL3: //TODO: add booleans to bulletSpell
                     foreballLvl2Upgrade = false;
                     fireballLvl3Upgrade = true;
-                    Sound.play('key_pickup', false, 0.1);
+                    //Sound.play('key_pickup', false, 0.1);
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'lightblue');
                     break;
             }

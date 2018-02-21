@@ -28,8 +28,8 @@ function runThatGame(){
 	setInterval(updateAll, 1000/FRAMES_PER_SECOND);
 	
 	if (MUSIC_VOLUME>0) // should we loop some music quietly?
-		Sound.stop("mage_hook_chiptune_menu_melody");
-		Sound.play("MageHookThemeSong",true,MUSIC_VOLUME);
+		//Sound.stop("mage_hook_chiptune_menu_melody");
+		//Sound.play("MageHookThemeSong",true,MUSIC_VOLUME);
 
 	setupInput();
 	backupRoomData(); // should do before any numbers are replaced and load level etc.

@@ -277,25 +277,25 @@ function Room(roomLayout) {
 
 		if (player.x < 8) {
 			currentRoomCol--;
-			Sound.play("room_change",false,0.05);
+			//Sound.play("room_change",false,0.05);
 			loadLevel();
 			player.x += (canvas.width-40);
 		}
 		else if (player.x > canvas.width - 8){
 			currentRoomCol++;
-			Sound.play("room_change",false,0.05);
+			//Sound.play("room_change",false,0.05);
 			loadLevel();
 			player.x -= (canvas.width-40);
 		}
 		if (player.y < 8){
 			currentRoomRow--;
-			Sound.play("room_change",false,0.05);
+			//Sound.play("room_change",false,0.05);
 			loadLevel();
 			player.y += (canvas.height-40);
 		}
 		else if (player.y > canvas.height - 8){
 			currentRoomRow++;
-			Sound.play("room_change",false,0.05);
+			//Sound.play("room_change",false,0.05);
 			loadLevel();
 			player.y -= (canvas.height-40);
 		}
@@ -310,7 +310,7 @@ function Room(roomLayout) {
 				{ //Going down
 				player.x -= 30; //Offset for stairs
 			}
-			Sound.play("room_change",false,0.1);
+			//Sound.play("room_change",false,0.1);
 			loadLevel();
 		}
 	}
