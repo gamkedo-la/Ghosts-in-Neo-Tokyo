@@ -27,7 +27,7 @@ function scrollCamera() {
     // first update ever? move instantly
     if (cameraX==null)
     {
-        console.log('Warping camera to player!');
+        //console.log('Warping camera to player!');
         cameraX = playerX - halfW;
         cameraY = playerY - halfH;
         cameraLastFloorY = cameraY;
@@ -40,10 +40,23 @@ function scrollCamera() {
     var bottomEdge = cameraY + halfH + cameraCenterTolerance;
     
     // keep player inside a region, but don't scroll on tiny moves
-    if (playerX>rightEdge) { cameraX=rightEdge; console.log('camera right!'); }
-    if (playerX<leftEdge) { cameraX=leftEdge; console.log('camera left!'); }
-    if (playerY>bottomEdge) { cameraY=bottomEdge; console.log('camera down!'); }
-    if (playerY<topEdge) { cameraY=topEdge; console.log('camera up!'); }
+    // fixme: subtract distance, only adjust minimally, not all the way
+    if (playerX>rightEdge) { 
+        cameraX=rightEdge;
+        //console.log('camera right!'); 
+    }
+    if (playerX<leftEdge) {
+        cameraX=leftEdge;
+        //console.log('camera left!'); 
+    }
+    if (playerY>bottomEdge) {
+        cameraY=bottomEdge;
+        //console.log('camera down!'); 
+    }
+    if (playerY<topEdge) {
+        cameraY=topEdge;
+        //console.log('camera up!'); 
+    }
 
     // smoothly scroll vertically only if we are not in mid air
     if (onGround)
@@ -54,10 +67,10 @@ function scrollCamera() {
     }
 
 
-    // debug only
-    console.log('CAMERA DEBUG: rltb: '+rightEdge+','+leftEdge+','+topEdge+','+bottomEdge
-        +' plr:'+playerX+','+playerY+' '+(onGround ? '[on ground]' : '[in air]')
-        +' cam:'+cameraX+','+cameraY);
+    // debug only - too spammy
+    //console.log('CAMERA DEBUG: rltb: '+rightEdge+','+leftEdge+','+topEdge+','+bottomEdge
+    //    +' plr:'+playerX+','+playerY+' '+(onGround ? '[on ground]' : '[in air]')
+    //    +' cam:'+cameraX+','+cameraY);
 
 }
 
