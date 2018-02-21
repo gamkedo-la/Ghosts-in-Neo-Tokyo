@@ -5,6 +5,9 @@ isMuted = false;
 var player_jump_SFX = new sfxClipSingle("./audio/player_jump");
 var player_hit_SFX = new sfxClipSingle("./audio/player_hit");
 
+player_jump_SFX.setVolume(0.5);
+player_hit_SFX.setVolume(0.5);
+
 
 //general audio finctions
 function setFormat() {
