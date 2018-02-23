@@ -61,6 +61,7 @@ function playerClass() {
 	this.isStunned = false;
 	this.isInvincible = false;
 	this.motionState = "Grounded";
+	this.willHitTheGround = false;
 	this.jumpTime = 0;
 	var stunTimer;
 	var invincibleTimer;
@@ -231,6 +232,11 @@ function playerClass() {
 
 		if (this.vy > 0)
 		{
+			if(this.motionState != "Grounded")
+			{
+				this.willHitTheGround = true;
+			}
+
 			this.motionState = "Falling";
 		}
 
@@ -305,18 +311,26 @@ function playerClass() {
 
 			this.tileCollider.moveOnAxis(this, velX, X_AXIS);
 			var collisionY = this.tileCollider.moveOnAxis(this, this.vy, Y_AXIS);
-			if (collisionY && this.motionState == "Falling")
-			{
-				this.motionState = "Grounded";
-				this.vy = 0.5;
 
-			}
-			else if (collisionY && this.motionState == "Jumping")
+			if(collisionY)
 			{
-				this.vy = 0;
+				if (this.motionState == "Falling")
+				{
+					this.motionState = "Grounded";
+					this.vy = 0.5;
 
+					if(this.willHitTheGround == true)
+					{ // Only happen for one frame.
+						this.willHitTheGround = false;
+						player_hit_ground_SFX.play();
+					}
+				}
+				else if (this.motionState == "Jumping")
+				{
+					this.vy = 0;
+				}
 			}
-			
+
 		}
 
 		pickUpItems(this.hitbox);

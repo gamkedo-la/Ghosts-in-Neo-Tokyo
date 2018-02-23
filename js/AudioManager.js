@@ -4,9 +4,11 @@ isMuted = false;
 //declare sound assets
 var player_jump_SFX = new sfxClipSingle("./audio/player_jump");
 var player_hit_SFX = new sfxClipSingle("./audio/player_hit");
+var player_hit_ground_SFX = new sfxClipSingle("./audio/player_hit_ground", ".wav");
 
 player_jump_SFX.setVolume(0.5);
 player_hit_SFX.setVolume(0.5);
+player_hit_ground_SFX.setVolume(0.5);
 
 
 //general audio functions
