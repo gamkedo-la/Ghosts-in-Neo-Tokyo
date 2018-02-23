@@ -25,7 +25,7 @@ function getRandomRate(){
 	return randomVolume.toFixed(2);
 }
 
-function sfxClipSingle(filenameWithPath) {
+function sfxClipSingle(filenameWithPath, audioFormat = defaultAudioFormat) {
 	var soundFile = new Audio(filenameWithPath+audioFormat);
 	var clipVolume = 1;
 	var randVolume = true;
@@ -115,7 +115,7 @@ function sfxClipOverlap(filenameWithPath, voices) {
 	var maxVoices = soundfile.length;
 
 	for (var i in soundFile) {
-		soundFile[i] = new Audio(filenameWithPath+audioFormat);
+		soundFile[i] = new Audio(filenameWithPath+defaultAudioFormat);
 		soundFile[i].pause();
 	}
 
@@ -226,7 +226,7 @@ function getMusicVolume() {
 }
 
 function musicTrackLooping(filenameWithPath) {
-	var musicFile = new Audio(filenameWithPath+audioFormat);
+	var musicFile = new Audio(filenameWithPath+defaultAudioFormat);
 	var duration = musicFile.duration;
 	var trackName = filenameWithPath;
 	var trackVolume = 1;
@@ -305,7 +305,7 @@ function musicTrackLooping(filenameWithPath) {
 	this.getPlaybackRate = function() {
 		return musicFile.playbackRate;
 	}
-	
+
 	this.setTrackName = function(name) {
 		trackName = name;
 	}
@@ -313,7 +313,7 @@ function musicTrackLooping(filenameWithPath) {
 	this.getTrackName = function() {
 		return trackName;
 	}
-	
+
 	this.getDuration = function() {
 		return duration;
 	}
@@ -324,7 +324,7 @@ function musicTrackLooping(filenameWithPath) {
 }
 
 function musicTrackLoopingWTail(filenameWithPath, playLength) {
-	var musicFile = new Array(new Audio(filenameWithPath+audioFormat), new Audio(filenameWithPath+audioFormat));
+	var musicFile = new Array(new Audio(filenameWithPath+defaultAudioFormat), new Audio(filenameWithPath+defaultAudioFormat));
 	var currentTrack = 0;
 	var duration = playLength;
 	var trackName = filenameWithPath;
@@ -418,7 +418,7 @@ function musicTrackLoopingWTail(filenameWithPath, playLength) {
 	this.getPlaybackRate = function() {
 		return musicFile[currentTrack].playbackRate;
 	}
-	
+
 	this.setTrackName = function(name) {
 		trackName = name;
 	}
@@ -426,7 +426,7 @@ function musicTrackLoopingWTail(filenameWithPath, playLength) {
 	this.getTrackName = function() {
 		return trackName;
 	}
-	
+
 	this.getDuration = function() {
 		return duration;
 	}
@@ -437,7 +437,7 @@ function musicTrackLoopingWTail(filenameWithPath, playLength) {
 }
 
 function musicTrackStinger(filenameWithPath) {
-	var musicFile = new Audio(filenameWithPath+audioFormat);
+	var musicFile = new Audio(filenameWithPath+defaultAudioFormat);
 	var duration = musicFile.duration;
 	var trackName = filenameWithPath;
 	var trackVolume = 1;

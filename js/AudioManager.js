@@ -9,13 +9,13 @@ player_jump_SFX.setVolume(0.5);
 player_hit_SFX.setVolume(0.5);
 
 
-//general audio finctions
+//general audio functions
 function setFormat() {
 	var audio = new Audio();
 	if (audio.canPlayType("audio/ogg")) {
-		audioFormat = ".ogg";
+		defaultAudioFormat = ".ogg";
 	} else {
-		audioFormat = ".mp3";
+		defaultAudioFormat = ".mp3";
 	}
 }
 
