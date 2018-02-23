@@ -4,6 +4,21 @@
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
 	<style>
+		@font-face {
+		    font-family: "KenPixel High Square";
+		    src: url("font/KenPixel High Square.ttf") format('truetype'),
+		    	url("font/KenPixel-High-Square.woff") format("woff");
+		    font-weight: normal;
+  			font-style: normal;
+		}
+		@font-face {
+		    font-family: "KenPixel Nova";
+		    src: url("font/KenPixel Nova.ttf") format('truetype'),
+		    	url("font/KenPixel-Nova.woff") format("woff");
+		    font-weight: normal;
+  			font-style: normal;
+		}
+
 		body {
 			background:black;
 			height:100%;
@@ -11,8 +26,16 @@
 			margin:0;
 			padding:0;
 			overflow:hidden;
+			font-family: "KenPixel Nova";
+		}
+		@font-face {
+		    font-family: myFirstFont;
+		    src: url(sansation_light.woff);
 		}
 
+		div {
+		    font-family: myFirstFont;
+		}
 		#gameCanvas {
 			height:100vh;
 			max-width:100%;
@@ -31,9 +54,13 @@
 		}
 
 		#debugText {
-			float:right;
-			display:none;
+			float: right;
+		    /* display: none; */
+		    position: absolute;
+		    left: 90px;
+		    top: 0;
 		}
+		
 	</style>
 
 </head>

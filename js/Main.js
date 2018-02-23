@@ -121,7 +121,11 @@ function drawAll() {
 	currentRoom.drawDynamic();
 	drawParticles();
 	
-	drawPanelWithButtons(debugPanel);
+	drawPanelWithButtons(debugPanel);	
+
+	//TODO: abstract this into dialogue system
+  	canvasContext.font = '16px Kenpixel nova';
+  	canvasContext.fillText('Text is weird. Why is it kinda transparent?', 75, 34);
 }
 
 function raycastingForPlayer() {
