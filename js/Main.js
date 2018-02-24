@@ -10,6 +10,9 @@ var particleList = [];
 
 var paused = false;
 
+var cameraOffsetX = 0;
+var cameraOffsetY = 0;
+
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
@@ -117,25 +120,28 @@ var totalYTranslation = 0;
 function drawAll() {
 	if(player.x > ((2 * deadXZone) + totalXTranslation + (canvas.width / 2))) {
 		totalXTranslation += 3;
-		canvasContext.translate(-3, 0);
+		cameraOffsetX -= 3;
 	} else if(player.x > (deadXZone + totalXTranslation + (canvas.width / 2))) {
 		totalXTranslation++;
-		canvasContext.translate(-1, 0);
+		cameraOffsetX -= 1;
 	} else if(player.x < ((-2 * deadXZone) + totalXTranslation + (canvas.width / 2))) {
-		totalXTranslation  -= 3;
-		canvasContext.translate(3, 0);		
+		totalXTranslation  -= 3;		
+		cameraOffsetX += 3;
 	} else if(player.x < (-deadXZone + totalXTranslation + (canvas.width / 2))) {
-		totalXTranslation--;
-		canvasContext.translate(1, 0);		
+		totalXTranslation--;		
+		cameraOffsetX += 1;
 	}
 	
 	if(player.y > (totalYTranslation + canvas.height - 32)) {
 		totalYTranslation++;
-		canvasContext.translate(0, -1);
+		cameraOffsetY -= 1;
 	} else if(player.y < (totalYTranslation + 32)) {
 		totalYTranslation--;
-		canvasContext.translate(0, 1);
+		cameraOffsetY += 1;
 	}
+
+	canvasContext.save();
+	canvasContext.translate(cameraOffsetX, cameraOffsetY);
 	
 	
 	//TODO: remove
@@ -153,6 +159,8 @@ function drawAll() {
 	//TODO: abstract this into dialogue system
   	canvasContext.font = '16px Kenpixel nova';
   	canvasContext.fillText('Text is weird. Why is it kinda transparent?', 75, 34);
+
+	canvasContext.restore();
 }
 
 function raycastingForPlayer() {
