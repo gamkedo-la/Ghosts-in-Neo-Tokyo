@@ -111,13 +111,19 @@ function moveAll() {
 }
 
 var totalXTranslation = 0;
-const deadXZone = 50;
+const deadXZone = 25;
 var totalYTranslation = 0;
 //const deadYZone = 50;
 function drawAll() {
-	if(player.x > (deadXZone + totalXTranslation + (canvas.width / 2))) {
+	if(player.x > ((2 * deadXZone) + totalXTranslation + (canvas.width / 2))) {
+		totalXTranslation += 3;
+		canvasContext.translate(-3, 0);
+	} else if(player.x > (deadXZone + totalXTranslation + (canvas.width / 2))) {
 		totalXTranslation++;
 		canvasContext.translate(-1, 0);
+	} else if(player.x < ((-2 * deadXZone) + totalXTranslation + (canvas.width / 2))) {
+		totalXTranslation  -= 3;
+		canvasContext.translate(3, 0);		
 	} else if(player.x < (-deadXZone + totalXTranslation + (canvas.width / 2))) {
 		totalXTranslation--;
 		canvasContext.translate(1, 0);		
