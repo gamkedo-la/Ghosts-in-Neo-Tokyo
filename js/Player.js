@@ -746,7 +746,9 @@ function playerClass() {
 				break;
 			default:
 				collisionDetected = false;
-				this.motionState = "Falling"
+				if(this.motionState == "Grounded") {
+					this.motionState = "Falling";
+				}
 				break;
 		}
 		return collisionDetected;
