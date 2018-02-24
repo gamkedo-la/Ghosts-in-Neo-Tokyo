@@ -60,7 +60,7 @@ function playerClass() {
 	this.inventory.keysEpic = 0;
 	this.isStunned = false;
 	this.isInvincible = false;
-	this.motionState = "Grounded";
+	this.motionState = "Falling";
 	this.willHitTheGround = false;
 	this.jumpTime = 0;
 	var stunTimer;
@@ -227,6 +227,8 @@ function playerClass() {
 
 	this.jumpLogic = function(target){
 
+		if(this.motionState == "Grounded") {return target;}
+
 		this.vy -= GRAVITY;
 		target.y += this.vy;
 
@@ -244,7 +246,7 @@ function playerClass() {
 	}
 	
 	this.move = function() {
-
+		
 		// don't do anything during the death anim
 		if (this.currentlyDying) 
 		{
@@ -421,7 +423,7 @@ function playerClass() {
 			wasFacing != isFacing)
 		{
 			var playerPic;
-
+			
 			if (isMoving) {
 				if (isFacing == SOUTH) {
 					playerPic = sprites.Player.walkSouth;
@@ -452,7 +454,7 @@ function playerClass() {
 					playerPic = sprites.Player.stand;
 				}
 
-				sprite.setSprite(playerPic, 32, 32, 1, 0, true);
+				sprite.setSprite(playerPic, 32, 32, 1, 0, false);
 			}
 		}
 	}
@@ -744,6 +746,7 @@ function playerClass() {
 				break;
 			default:
 				collisionDetected = false;
+				this.motionState = "Falling"
 				break;
 		}
 		return collisionDetected;
