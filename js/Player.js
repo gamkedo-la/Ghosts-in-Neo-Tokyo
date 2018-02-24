@@ -61,7 +61,6 @@ function playerClass() {
 	this.isStunned = false;
 	this.isInvincible = false;
 	this.motionState = "Falling";
-	this.willHitTheGround = false;
 	this.jumpTime = 0;
 	var stunTimer;
 	var invincibleTimer;
@@ -216,7 +215,7 @@ function playerClass() {
 	}
 
 	this.startJump = function(){
-		if(this.motionState == "Grounded"){
+		if(this.motionState == "Grounded" ||this.motionState == "Walking" ){
 			this.motionState = "Jumping"
 			//this.jumpTime = JUMP_TIME
 			this.vy = JUMP_POWER;
@@ -225,22 +224,9 @@ function playerClass() {
 		}
 	}
 
-	this.jumpLogic = function(target){
-
-		if(this.motionState == "Grounded") {return target;}
-
+	this.applyGravity = function(target){
 		this.vy -= GRAVITY;
 		target.y += this.vy;
-
-		if (this.vy > 0)
-		{
-			if(this.motionState != "Grounded")
-			{
-				this.willHitTheGround = true;
-			}
-
-			this.motionState = "Falling";
-		}
 
 		return target;
 	}
@@ -277,18 +263,21 @@ function playerClass() {
 			this.startJump();
 		}
 
-		//pass target to jumplogic to modify
-		target = this.jumpLogic(target);
+		//apply gravity to modify
+		target = this.applyGravity(target);
 
-		if (target.x != this.x || target.y != this.y) {
+		if ((target.x != this.x || target.y != this.y)
+		&& this.motionState != "Grounded"
+		)
+		{
 			isMoving = true;
 		}
 
-		if (isMoving) {
-			
-			var xDir = Math.sign(target.x - this.x);
-			var velX = xDir * _PLAYER_MOVE_SPEED * playerFriction;
 
+		var xDir = Math.sign(target.x - this.x);
+		var velX = xDir * _PLAYER_MOVE_SPEED * playerFriction;
+
+		if (isMoving) {
 			// "footsteps" = very faint dust particles while we are walking
 			particleFX(this.x, this.y+10, 2, 'rgba(200,200,200,0.2)', 0.01, 0.02, 1.0, 0.0, 0.2);
 
@@ -310,35 +299,79 @@ function playerClass() {
 				velX *= _PLAYER_DASH_SPEED_SCALE;
 				velY *= _PLAYER_DASH_SPEED_SCALE;
 			}
+		}
 
-			this.tileCollider.moveOnAxis(this, velX, X_AXIS);
-			var collisionY = this.tileCollider.moveOnAxis(this, this.vy, Y_AXIS);
-
-			if(collisionY)
+		this.tileCollider.moveOnAxis(this, velX, X_AXIS);
+		var collisionY = this.tileCollider.moveOnAxis(this, this.vy, Y_AXIS);
+		// State maching switch: so that we know when to change from a state to another:
+		// (also avoids confusions dues to switching state all the time)
+		switch(this.motionState){
+			case "Falling":
 			{
-				if (this.motionState == "Falling")
-				{
-					this.motionState = "Grounded";
-					this.vy = 0.5;
+				if (collisionY) { // We hit the ground
 
-					if(this.willHitTheGround == true)
-					{ // Only happen for one frame.
-						this.willHitTheGround = false;
-						player_hit_ground_SFX.play();
+					player_hit_ground_SFX.play();
+
+					if(velX != 0) {
+						this.motionState = "Walking";
+					} else {
+						this.motionState = "Grounded";
+					}
+
+				}
+				break;
+			}
+			case "Walking":
+			{
+				this.vy = 0.5;
+				if(collisionY) {
+					if(velX == 0) {
+						this.motionState = "Grounded";
 					}
 				}
-				else if (this.motionState == "Jumping")
-				{
+				else {
+					this.motionState = "Falling";
 					this.vy = 0;
 				}
+				break;
 			}
+			case "Grounded":
+			{
+				this.vy = 0.5;
+				if(collisionY) {
+					if(velX != 0)
+					{
+						this.motionState = "Walking";
+					}
+				}
+				else {
+					this.motionState = "Falling";
+				}
 
+				break;
+			}
+			case "Jumping":
+			{
+				if (this.vy > 0) {
+					this.motionState = "Falling";
+				}
+				break;
+			}
+			default:
+			{
+				console.log("UNKNOWN STATE! " + this.motionState);
+			}
 		}
+
+		// Useful to debug the state switching.
+		// console.log("PLAYER STATE MOVINGSTATE: " + this.motionState
+		// 	+ "VY = "+ this.vy + ",  CollisionY: " + collisionY
+		// 	);
 
 		pickUpItems(this.hitbox);
 
 		isAttacking = this.keyHeld_Attack;
-		
+
 		if(this.lastAnchorAttack + ANCHOR_ATTACK_COOLDOWN < performance.now() && isAttacking && !wasAttacking) // only trigger once
 		{
 			this.lastAnchorAttack = performance.now()
@@ -734,9 +767,6 @@ function playerClass() {
 				break;
 			default:
 				collisionDetected = false;
-				if(this.motionState == "Grounded") {
-					this.motionState = "Falling";
-				}
 				break;
 		}
 		return collisionDetected;
