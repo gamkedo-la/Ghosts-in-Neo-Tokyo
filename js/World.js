@@ -84,7 +84,9 @@ const TILE_ARMSBRO = 67;
 const TILE_GOBO = 68;
 const TILE_POTION = 69;
 
-const HIGHEST_TILE_NUMBER = 69;
+const TILE_DOOR_SWITCH = 70;
+
+const HIGHEST_TILE_NUMBER = 70;
 
 var tileArray = [];
 
