@@ -87,7 +87,6 @@ function updateAll() {
 	}
 
 	moveAll();
-	scrollCamera();
 	drawAll();
 	if (_DEBUG_ENABLE_TILE_EDITOR == true) {
     roomTileCoordinate();
