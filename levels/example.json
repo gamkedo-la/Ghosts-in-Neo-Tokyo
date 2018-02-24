@@ -47,6 +47,38 @@
                  "width":32,
                  "x":192,
                  "y":104.5
+                }, 
+                {
+                 "gid":103,
+                 "height":44,
+                 "id":12,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":44,
+                 "x":309,
+                 "y":160
+                }, 
+                {
+                 "gid":103,
+                 "height":44,
+                 "id":13,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":44,
+                 "x":43,
+                 "y":160
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -55,7 +87,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":10,
+ "nextobjectid":15,
  "orientation":"orthogonal",
  "properties":
     {
@@ -88,12 +120,16 @@
 
             },
          "spacing":0,
-         "tileheight":32,
+         "tileheight":44,
          "tileproperties":
             {
              "1":
                 {
                  "entityType":"Ghast"
+                },
+             "2":
+                {
+                 "entityType":"Door"
                 }
             },
          "tiles":
@@ -105,9 +141,13 @@
              "1":
                 {
                  "image":"..\/img\/Ghast\/Ghast_0.png"
+                },
+             "2":
+                {
+                 "image":"..\/img\/Tiles\/world_door.png"
                 }
             },
-         "tilewidth":32
+         "tilewidth":44
         }],
  "tilewidth":20,
  "version":1,
