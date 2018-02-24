@@ -83,6 +83,7 @@ function updateAll() {
 		currentRoom.updatePathfindingData()
 	
 	if(paused){
+		drawInventory();
 		return;
 	}
 
