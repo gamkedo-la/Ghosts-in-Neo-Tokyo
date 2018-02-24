@@ -30,3 +30,11 @@ function colorLine(startX, startY, endX, endY, color) {
 	canvasContext.lineTo(endX, endY);
 	canvasContext.stroke();
 }
+
+function clearCanvas() {
+	canvasContext.save();
+	canvasContext.fillStyle = "#000";
+	canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+	canvasContext.restore();
+}
+
