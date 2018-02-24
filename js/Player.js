@@ -441,19 +441,7 @@ function playerClass() {
 				sprite.setSprite(playerPic, 32, 32, 7, 12, true);
 
 			} else {
- 				if (isFacing == SOUTH) {
-					playerPic = sprites.Player.stand;
-
-				} else if (isFacing == EAST) {
-					playerPic = sprites.Player.stand;
-
-				} else if (isFacing == NORTH) {
-					playerPic = sprites.Player.stand;
-
-				} else if (isFacing == WEST) {
-					playerPic = sprites.Player.stand;
-				}
-
+				playerPic = sprites.Player.stand;
 				sprite.setSprite(playerPic, 32, 32, 1, 0, false);
 			}
 		}
