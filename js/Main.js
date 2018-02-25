@@ -118,8 +118,7 @@ const deadXZone = 25;
 var totalYTranslation = 0;
 //const deadYZone = 50;
 function drawAll() {
-	clearCanvas();
-
+	
 	if(player.x > ((2 * deadXZone) + totalXTranslation + (canvas.width / 2))) {
 		totalXTranslation += 3;
 		cameraOffsetX -= 3;
@@ -143,6 +142,8 @@ function drawAll() {
 	}
 
 	canvasContext.save();
+	clearCanvas();
+
 	canvasContext.translate(cameraOffsetX, cameraOffsetY);
 	
 	

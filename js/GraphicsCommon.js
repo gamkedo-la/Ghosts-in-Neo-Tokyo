@@ -33,8 +33,7 @@ function colorLine(startX, startY, endX, endY, color) {
 
 function clearCanvas() {
 	canvasContext.save();
-	canvasContext.fillStyle = "#000";
-	canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+	canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 	canvasContext.restore();
 }
 
