@@ -406,7 +406,10 @@ function musicTrackLooping(filenameWithPath) {
 	}
 
 	this.setTime = function(time) {
-		musicFile.currentTime = time;
+		var newTime = time;
+		if(newTime < 0) {newTime = 0;}
+		while (newTime >= duration) {newTime -= duration;}
+		musicFile.currentTime = newTime;
 	}
 
 	this.getTime = function() {
@@ -516,7 +519,10 @@ function musicTrackLoopingWTail(filenameWithPath, playLength) {
 	}
 
 	this.setTime = function(time) {
-		musicFile[currentTrack].currentTime = time;
+		var newTime = time;
+		if(newTime < 0) {newTime = 0;}
+		while (newTime >= duration) {newTime -= duration;}
+		musicFile[currentTrack].currentTime = newTime;
 	}
 
 	this.getTime = function() {
