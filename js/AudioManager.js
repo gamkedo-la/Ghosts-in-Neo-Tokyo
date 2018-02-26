@@ -174,17 +174,20 @@ function audioEventManager() {
 	}
 }
 
-function interpolateFade(startTime, endTime, startVolume, endVolume, now) {
-	var finish = endTime - startTime;
-	var currentTime = endTime - now;
-	var offset = Math.min(startVolume, endVolume);
-	var scale = Math.max(startVolume, endVolume) - offset;
-	var output = startVolume;
+function interpolateFade(startTime, endTime, startVolume, endVolume, currentTime) {
+	/*
+	x1 = startTime
+	x2 = endTime
 
-	if (startVolume >= endVolume) {
-		output = (startVolume - offset - (1 -currentTime/finish)) * scale + offset;
-	} else {
-		output = Math.abs(startVolume - offset - (1 -currentTime/finish)) * scale + offset;
-	}
+	y1 = startVolume
+	y2 = endVolume
+
+	x = now
+	y = y1 + (x - x1)((y2 - y1)/(x2 - x1))
+    output = startVolume + (now - startTime) * ((endVolume - startVolume) / (endTime - startTime))
+	*/
+	if (currentTime > endTime) {currentTime = endTime;}
+	var output = startVolume + (currentTime - startTime) * ((endVolume - startVolume) / (endTime - startTime));
+
 	return output;
 }
