@@ -168,6 +168,7 @@ function playerClass() {
 		//player.currentlyDying = false;
 		//player.reset("Untitled Player");
 		this.currentlyDying = false;
+		this.currentHealth = -999; // FIXME: hack to force player respawn back at starting position - is this wrong? can we respawn NOT after dying but for another reason?
 		this.reset("Untitled Player");
 		//Sound.play("MageHookThemeSong",true,MUSIC_VOLUME);
 	}
@@ -191,8 +192,13 @@ function playerClass() {
 			loadLevel();
 			this.x = STARTING_POSITION_X;
 			this.y = STARTING_POSITION_Y;
+			this.vx = 0;
+			this.vy = 0;
 			playerAtStartingPosition = true;
+			// instantly snap the camera which may be extremely far away from the respawn area
+			cameraOffsetX = cameraOffsetY = totalXTranslation = totalYTranslation = 0; // these globals are from Main.js
 		}
+
 
 		this.isFacing = SOUTH; // FIXME possible bug? this.?
 		this.isMoving = false;
@@ -455,7 +461,7 @@ function playerClass() {
 		// have we fallen outside the world?
 		if (!this.currentlyDying && this.y > WORLD_MAX_Y)
 		{
-			console.log("Player fell out of the world.");
+			console.log("Player fell out of the world. this.y="+this.y);
 			this.die(); // FIXME: buggy routine
 		}
 
