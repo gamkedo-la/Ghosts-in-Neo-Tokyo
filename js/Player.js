@@ -145,7 +145,7 @@ function playerClass() {
 		//Sound.play("player_die");
 		console.log("Starting player death animation!");
 		sprite.setSprite(sprites.Player.deathAnimation, 32, 32, 16, 8, false);
-		setTimeout(player.respawn,DEATH_RESPAWN_DELAY_MS);
+		setTimeout(player.respawn,DEATH_RESPAWN_DELAY_MS); // bug: thrashes "this"
 		isPoisoned = false;
 		this.isInvincible = false;
 		poisonTime = 0;
@@ -157,7 +157,8 @@ function playerClass() {
 		// TODO: save the high score?
 		this.enemyHitCount = 0; 
 		this.currentlyDying = false
-		// "this" seems to be a problem here, use .apply() or .call()??
+		// FIXME: "this" seems to be a problem here, use .apply() or .call()??
+		// reason: function calls during a setTimeout lose the this reference
 		player.enemyHitCount = 0; 
 		fireballLvl1Upgrade = true;
 		fireballLvl2Upgrade = fireballLvl3Upgrade = false;
@@ -167,6 +168,7 @@ function playerClass() {
 	}
 
 	this.reset = function(playerName) {
+		console.log("Player reset: " + playerName);
 		this.name = playerName;
 		if (this.currentHealth <= 0)
 		{
@@ -436,6 +438,15 @@ function playerClass() {
 
 		this.updateColliders();
 		this.tileBehaviorHandler();
+
+		// have we fallen outside the world?
+		if (!this.currentlyDying && this.y > WORLD_MAX_Y)
+		{
+			console.log("Player fell out of the world.");
+			this.die(); // FIXME: buggy routine
+		}
+
+
 		isMoving = false;
 	}  // end of this.update()
 

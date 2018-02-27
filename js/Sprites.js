@@ -27,7 +27,8 @@ function spriteClass() {
 						newTotal, newSpeed,
 						loop) {
 		if(!newSpriteSheet){
-			throw "YO, what are you doing. Missing spriiiiiiite"
+			console.log("YO, what are you doing. Missing spriiiiiiite");
+			return;
 		}
 		hasFinishedLoop = false;
 		spriteSheet = newSpriteSheet;

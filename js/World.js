@@ -3,6 +3,8 @@ const WORLD_H = 20;
 const WORLD_GAP = 0;
 const WORLD_COLS = 60;
 const WORLD_ROWS = 34;
+const WORLD_MAX_Y = WORLD_ROWS * WORLD_H; // player.die if we fall too far
+
 //rooms are defined now in rooms.js
 var worldGrid = [];
 
