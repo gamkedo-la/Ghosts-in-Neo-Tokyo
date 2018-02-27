@@ -145,7 +145,9 @@ function playerClass() {
 		//Sound.play("player_die");
 		console.log("Starting player death animation!");
 		sprite.setSprite(sprites.Player.deathAnimation, 32, 32, 16, 8, false);
-		setTimeout(player.respawn,DEATH_RESPAWN_DELAY_MS); // bug: thrashes "this"
+		//setTimeout(player.respawn,DEATH_RESPAWN_DELAY_MS); // bug: thrashes "this"
+		this.pendingRespawnTimestamp = performance.now() + DEATH_RESPAWN_DELAY_MS;
+		console.log("pendingRespawnTimestamp="+this.pendingRespawnTimestamp);
 		isPoisoned = false;
 		this.isInvincible = false;
 		poisonTime = 0;
@@ -159,11 +161,14 @@ function playerClass() {
 		this.currentlyDying = false
 		// FIXME: "this" seems to be a problem here, use .apply() or .call()??
 		// reason: function calls during a setTimeout lose the this reference
-		player.enemyHitCount = 0; 
+		//player.enemyHitCount = 0; 
+		this.enemyHitCount = 0; 
 		fireballLvl1Upgrade = true;
 		fireballLvl2Upgrade = fireballLvl3Upgrade = false;
-		player.currentlyDying = false;
-		player.reset("Untitled Player");
+		//player.currentlyDying = false;
+		//player.reset("Untitled Player");
+		this.currentlyDying = false;
+		this.reset("Untitled Player");
 		//Sound.play("MageHookThemeSong",true,MUSIC_VOLUME);
 	}
 
@@ -235,6 +240,14 @@ function playerClass() {
 	
 	this.move = function() {
 		
+		if (this.pendingRespawnTimestamp && this.pendingRespawnTimestamp <= performance.now())
+		{
+			console.log("Pending respawn timestamp reached!");
+			this.pendingRespawnTimestamp = 0;
+			this.respawn();
+			return;
+		}
+
 		// don't do anything during the death anim
 		if (this.currentlyDying) 
 		{
