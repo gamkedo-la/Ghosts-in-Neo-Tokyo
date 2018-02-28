@@ -5,11 +5,10 @@ var imgPayload = [
 		{set: "Player", name: "walkEast", fileName: "MainChar/Char_Animation 4.png"},
 		{set: "Player", name: "attackDown", fileName: "MainChar/Char_Animation 5.png"},
 		{set: "Concept", name: "background1", fileName: "Concept.png"},
-		{set: "UI", name: "karaageFull", fileName: "UI/Karaage_Full.png"},
-		{set: "UI", name: "karaageEmpty", fileName: "UI/Karaage_Empty.png"},
 		{set: "Ghast", name: "move", fileName: "Ghast/Ghast.png"},
 		{set: "Door", name: "idle", fileName: "Doors/world_door.png"},
 		{set: "UI", name: "pixelFont", fileName: "UI/pixelFont.png"},
+		{set: "UI", name: "healthBarEmpty", fileName: "UI/Health_Bar_Empty.png"},
 		
 		// {set: "Player", name: "walkSouth", fileName: "MainChar/playerchar_Walk South.png"},
 		// {set: "Player", name: "walkEast", fileName: "MainChar/playerchar_Walk East.png"},

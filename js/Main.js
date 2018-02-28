@@ -175,24 +175,17 @@ function drawAll() {
 }
 
 function drawHealth() {
-    karaageFullSprite.setSprite(sprites.UI.karaageFull, 10, 10, 1, 0, false);
-    karaageEmptySprite.setSprite(sprites.UI.karaageEmpty, 10, 10, 1, 0, false);
-	var gapBetweenHealthIcons = 5;
-    var cornerX = 10;
-    var cornerY = canvas.height - cornerX;
-    var maxHeartsToShow = player.maxHealth;
+	var posX = 10;
+	var posY = canvas.height - posX;
+    var cornerX = posX + totalXTranslation;
+    var cornerY = posY + totalYTranslation;
+    var playerMaxHealth = player.maxHealth;
     var playerHP = player.currentHealth;
-    var picWidth = 10;
-    for(var i = 0; i < maxHeartsToShow; i++) {
-        i < playerHP ? 
-		karaageFullSprite.draw(cornerX + i * (picWidth + gapBetweenHealthIcons) + totalXTranslation, 
-							   cornerY + totalYTranslation)
-		: 
-		karaageEmptySprite.draw(cornerX + i * (picWidth + gapBetweenHealthIcons) + totalXTranslation, 
-								cornerY + totalYTranslation); 	
-    }
+    var healthBarWidth = (playerHP/playerMaxHealth) * sprites.UI.healthBarEmpty.width;
+    canvasContext.drawImage(sprites.UI.healthBarEmpty, cornerX,cornerY);
+    colorRect(cornerX,cornerY,healthBarWidth,
+    		  sprites.UI.healthBarEmpty.height, 'red');
 }
-
 
 function raycastingForPlayer() {
 	var nextTileX = player.x;
