@@ -16,6 +16,14 @@ var cameraOffsetY = 0;
 var karaageFullSprite = new spriteClass();
 var karaageEmptySprite = new spriteClass();
 
+// temp vars for testing NPC text pixelFont animation in drawAll() function
+var npcTextAnimationExample = "Animated NPC text\nfinally works! Cool.";
+var npcTextAnimationStart = 0; // timestamp in ms like performance.now() would return
+var npcTextAnimationEnd = 0; // how long the text should animate for in ms (1000=1sec)
+// strings can be measured in pixels for centering etc
+var npcTextXOffset = -1 * Math.round(pixelfont_measure(npcTextAnimationExample)/2) + 10;
+var npcTextYOffset = -36; // pixels above npc
+
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
@@ -120,6 +128,7 @@ var totalXTranslation = 0;
 const deadXZone = 25;
 var totalYTranslation = 0;
 //const deadYZone = 50;
+
 function drawAll() {
 	
 	if(player.x > ((2 * deadXZone) + totalXTranslation + (canvas.width / 2))) {
@@ -163,13 +172,18 @@ function drawAll() {
 	
 	drawPanelWithButtons(debugPanel);	
 
-	//TODO: abstract this into dialogue system
-	//canvasContext.font = '16px Kenpixel nova';
-	//canvasContext.fillStyle = "#FFFFFF"; // bugfix: ensure text rendered with a solid fillStyle
-  	//canvasContext.fillText('Text is weird. Why is it kinda transparent?', 75, 34);
-
 	// pixelart spritesheet text rendering using img/UI/pixelFont.png woo hoo
 	pixelfont_draw("pixelFont.js is finally working! Yay!",75,34)
+
+	// test NPC dialog animation every three seconds
+	if (npcTextAnimationEnd + 3000 < performance.now()) {
+		npcTextAnimationStart = performance.now();
+		npcTextAnimationEnd = npcTextAnimationStart + 3000;
+	}
+	
+	npc_text(npcTextAnimationExample, // animate this string
+		player.x+npcTextXOffset,player.y+npcTextYOffset, // here
+		npcTextAnimationStart,npcTextAnimationEnd); // over this timespan
 
 	canvasContext.restore();
 }

@@ -34,11 +34,14 @@ function pixelfont_measure(str)
 {
     var w = 0;
     var index = 0;
+    var max = 0; // multiple lines count from 0
     for (var c=0,len=str.length; c<len; c++)
     {
         index = str.charCodeAt(c)-32-1;
         if (pixelfont_w[index]==undefined) index = 0;
         w += pixelfont_w[index];
+        if (str[c]=="\n") w = 0; // new line
+        if (max<w) max = w;
     }
     return w;
 }
@@ -105,26 +108,82 @@ function pixelfont_draw(str,x,y)
     return sw; // returns pixel width of string
 }
 
-            /*
-                // calculate pixel locations of sprites based on width - buggy a bit maybe +1?
-                console.log('var pixelfont_dx = [');
-                var sum = 0;
-                for (var x=0; x<32; x++)
-                {
-                    sum += pixelfont_w[x];
-                    console.log(sum+',');
-                }
-                var sum = 0;
-                for (var x=35; x<64; x++)
-                {
-                    sum += pixelfont_w[x];
-                    console.log(sum+',');
-                }
-                var sum = 0;
-                for (var x=65; x<96; x++)
-                {
-                    sum += pixelfont_w[x];
-                    console.log(sum+',');
-                }
-                console.log('];');
-            */
+// animate the letters of a string if now is within range
+function npc_text(message,x,y,starttime,endtime) {
+
+    if (!message || !message.length) return; // sanity
+    x = Math.round(x);
+    y = Math.round(y);
+    var now = performance.now(); // timestamp
+    var count = 0; // how many characters to draw this frame
+    var percent = 1; // where are we in the animation
+    
+    if (now<starttime) {
+        count = 0; // draw nothing and wait to start
+    } 
+    else if (now>endtime) {
+        count = message.length; // done animating, draw it all
+    }
+    else if (now>=starttime && now<=endtime) // partway done
+    {
+        percent = (now-starttime) / (endtime-starttime);
+        count = Math.floor(message.length * percent);
+    }
+    
+    // now render however many chars we want
+    message = message.substring(0, count);
+    //console.log("npc_text:["+message+"] pos:"+x+","+y+" "+~~starttime+" to "+~~endtime+" now="+~~now+" percent:"+~~percent*100);
+    pixelfont_draw(message,x,y);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    // untested WIP code to calculate pixel locations of sprites based on width - buggy a bit maybe +1?
+    console.log('var pixelfont_dx = [');
+    var sum = 0;
+    for (var x=0; x<32; x++)
+    {
+        sum += pixelfont_w[x];
+        console.log(sum+',');
+    }
+    var sum = 0;
+    for (var x=35; x<64; x++)
+    {
+        sum += pixelfont_w[x];
+        console.log(sum+',');
+    }
+    var sum = 0;
+    for (var x=65; x<96; x++)
+    {
+        sum += pixelfont_w[x];
+        console.log(sum+',');
+    }
+    console.log('];');
+*/
