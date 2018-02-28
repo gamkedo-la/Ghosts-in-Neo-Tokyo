@@ -28,4 +28,6 @@ function drawInventory() {
   }
 
   canvasContext.restore();
+
+  pixelfont_draw("ITEMS", 150, 25);
 }
