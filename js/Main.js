@@ -13,6 +13,9 @@ var paused = false;
 var cameraOffsetX = 0;
 var cameraOffsetY = 0;
 
+var karaageFullSprite = new spriteClass();
+var karaageEmptySprite = new spriteClass();
+
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
@@ -155,6 +158,7 @@ function drawAll() {
 	drawItems();
 	//canvasContext.drawImage(sprites.Concept.background1, 0,0);
 	currentRoom.drawDynamic();
+	drawHealth();
 	drawParticles();
 	
 	drawPanelWithButtons(debugPanel);	
@@ -166,6 +170,26 @@ function drawAll() {
 
 	canvasContext.restore();
 }
+
+function drawHealth() {
+    karaageFullSprite.setSprite(sprites.UI.karaageFull, 10, 10, 1, 0, false);
+    karaageEmptySprite.setSprite(sprites.UI.karaageEmpty, 10, 10, 1, 0, false);
+	var gapBetweenHealthIcons = 5;
+    var cornerX = 10;
+    var cornerY = canvas.height - cornerX;
+    var maxHeartsToShow = player.maxHealth;
+    var playerHP = player.currentHealth;
+    var picWidth = 10;
+    for(var i = 0; i < maxHeartsToShow; i++) {
+        i < playerHP ? 
+		karaageFullSprite.draw(cornerX + i * (picWidth + gapBetweenHealthIcons) + totalXTranslation, 
+							   cornerY + totalYTranslation)
+		: 
+		karaageEmptySprite.draw(cornerX + i * (picWidth + gapBetweenHealthIcons) + totalXTranslation, 
+								cornerY + totalYTranslation); 	
+    }
+}
+
 
 function raycastingForPlayer() {
 	var nextTileX = player.x;
