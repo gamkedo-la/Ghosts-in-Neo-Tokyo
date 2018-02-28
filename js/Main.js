@@ -13,8 +13,8 @@ var paused = false;
 var cameraOffsetX = 0;
 var cameraOffsetY = 0;
 
-var karaageFullSprite = new spriteClass();
-var karaageEmptySprite = new spriteClass();
+var healthBarFlashing = false;
+var barColorRed = true;
 
 // temp vars for testing NPC text pixelFont animation in drawAll() function
 var npcTextAnimationExample = "Animated NPC text\nfinally works! Cool.";
@@ -189,16 +189,33 @@ function drawAll() {
 }
 
 function drawHealth() {
+	var healthBarFlashTimer = 0;
 	var posX = 10;
 	var posY = canvas.height - posX;
     var cornerX = posX + totalXTranslation;
     var cornerY = posY + totalYTranslation;
     var playerMaxHealth = player.maxHealth;
     var playerHP = player.currentHealth;
+    var barColor;
     var healthBarWidth = (playerHP/playerMaxHealth) * sprites.UI.healthBarEmpty.width;
+    if (player.isInvincible) {
+			if (healthBarFlashTimer <= 0 || healthBarFlashTimer == undefined) {
+				healthBarFlashTimer = FLASH_DURATION;
+				barColorRed = !barColorRed;
+			}
+			healthBarFlashTimer -= TIME_PER_TICK;
+			if (player.invincibleTimer <= 0) {
+				barColorRed = true;
+			}
+		}
     canvasContext.drawImage(sprites.UI.healthBarEmpty, cornerX,cornerY);
+    if (barColorRed) {
+    	barColor = 'red';
+    } else {
+    	barColor = 'white';
+    }
     colorRect(cornerX,cornerY,healthBarWidth,
-    		  sprites.UI.healthBarEmpty.height, 'red');
+    		  sprites.UI.healthBarEmpty.height, barColor);
 }
 
 function raycastingForPlayer() {

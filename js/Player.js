@@ -443,6 +443,7 @@ function playerClass() {
 
 		// Prevents player from colliding with enemeies
 		if (this.isInvincible) {
+			var healthBarFlashing = true;
 			if (flashTimer <= 0 || flashTimer == undefined) {
 				flashTimer = FLASH_DURATION;
 				drawPlayer = !drawPlayer;
