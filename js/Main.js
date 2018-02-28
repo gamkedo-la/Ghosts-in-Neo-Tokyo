@@ -164,9 +164,12 @@ function drawAll() {
 	drawPanelWithButtons(debugPanel);	
 
 	//TODO: abstract this into dialogue system
-	canvasContext.font = '16px Kenpixel nova';
-	canvasContext.fillStyle = "#FFFFFF"; // bugfix: ensure text rendered with a solid fillStyle
-  	canvasContext.fillText('Text is weird. Why is it kinda transparent?', 75, 34);
+	//canvasContext.font = '16px Kenpixel nova';
+	//canvasContext.fillStyle = "#FFFFFF"; // bugfix: ensure text rendered with a solid fillStyle
+  	//canvasContext.fillText('Text is weird. Why is it kinda transparent?', 75, 34);
+
+	// pixelart spritesheet text rendering using img/UI/pixelFont.png woo hoo
+	pixelfont_draw("pixelFont.js is finally working! Yay!",75,34)
 
 	canvasContext.restore();
 }

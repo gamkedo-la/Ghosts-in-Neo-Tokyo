@@ -9,6 +9,7 @@ var imgPayload = [
 		{set: "UI", name: "karaageEmpty", fileName: "UI/Karaage_Empty.png"},
 		{set: "Ghast", name: "move", fileName: "Ghast/Ghast.png"},
 		{set: "Door", name: "idle", fileName: "Doors/world_door.png"},
+		{set: "UI", name: "pixelFont", fileName: "UI/pixelFont.png"},
 		
 		// {set: "Player", name: "walkSouth", fileName: "MainChar/playerchar_Walk South.png"},
 		// {set: "Player", name: "walkEast", fileName: "MainChar/playerchar_Walk East.png"},
