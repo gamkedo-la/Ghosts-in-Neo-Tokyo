@@ -4,6 +4,7 @@ var imgPayload = [
 		{set: "Player", name: "walkWest", fileName: "MainChar/Char_Animation 3.png"},
 		{set: "Player", name: "walkEast", fileName: "MainChar/Char_Animation 4.png"},
 		{set: "Player", name: "attackDown", fileName: "MainChar/Char_Animation 5.png"},
+		{set: "Player", name: "attack", fileName: "MainChar/TempAttack.png"},
 		{set: "Concept", name: "background1", fileName: "Concept.png"},
 		{set: "Ghast", name: "move", fileName: "Ghast/Ghast.png"},
 		{set: "Door", name: "idle", fileName: "Doors/world_door.png"},

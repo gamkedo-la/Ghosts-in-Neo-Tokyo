@@ -61,16 +61,16 @@ function ghast(x, y) {
 
 		},
 		normal : function(){
-			if(this.maxHealth != this.currentHealth){
-				if( Math.abs(this.y - player.y) < 20 ){
-					this.setState("munch")
-					return;
-				}
-				if( Math.abs(this.x - player.x) < 20){
-					this.setState("munch")
-					return;
-				}
-			}
+			// if(this.maxHealth != this.currentHealth){
+			// 	if( Math.abs(this.y - player.y) < 20 ){
+			// 		this.setState("munch")
+			// 		return;
+			// 	}
+			// 	if( Math.abs(this.x - player.x) < 20){
+			// 		this.setState("munch")
+			// 		return;
+			// 	}
+			// }
 
 			if(!this.ticksInState){
 				directionTimer = minMoveTime + Math.random() * maxMoveTime;
@@ -100,12 +100,12 @@ function ghast(x, y) {
 		},
 		dying: function(){
 			if(!this.ticksInState){
-				this.sprite.setSprite(sprites.Slime.death,
-					this.enemyData.spriteWidth, this.enemyData.spriteHeight,
-					10, 15, false);	
+				// this.sprite.setSprite(sprites.Slime.death,
+				// 	this.enemyData.spriteWidth, this.enemyData.spriteHeight,
+				// 	10, 15, false);	
 			}
-
-			if(this.sprite.isDone()){
+			
+			// if(this.sprite.isDone()){
 				
 				// remove from enemy list
 				var foundHere = currentRoom.enemyList.indexOf(this);
@@ -113,7 +113,7 @@ function ghast(x, y) {
 					currentRoom.enemyList.splice(foundHere, 1);
 				}
 				
-			}
+			// }
 			this.sprite.update();
 		}
 	}

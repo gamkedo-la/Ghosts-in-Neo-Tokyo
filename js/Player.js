@@ -396,7 +396,7 @@ function playerClass() {
 		if(this.lastAnchorAttack + ANCHOR_ATTACK_COOLDOWN < performance.now() && isAttacking && !wasAttacking) // only trigger once
 		{
 			this.lastAnchorAttack = performance.now()
-			//anchorMagic(this.x, this.y, isFacing);
+			anchorMagic(this.x, this.y, isFacing);
 		}
 
 		isUsingRangedAttack = this.keyHeld_Ranged_Attack;

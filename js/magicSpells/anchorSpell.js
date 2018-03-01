@@ -1,19 +1,19 @@
 function anchorMagic(x, y, isFacing) {
-	Sound.play("player_attack");
+	//Sound.play("player_attack");
 	
 	this.x = x;
 	this.y = y;
 	this.isFacing = isFacing;
 	
 	this.attackFrames = {
-		4: {x1: 5, y1: 8, x2: 20, y2:10 },
-		5: {x1: 5, y1: 8, x2: 20, y2:10 },
-		6: {x1: 5, y1: 8, x2: 20, y2:10 }};
+		1: {x1: 5, y1: 8, x2: 20, y2:10 },
+		2: {x1: 5, y1: 8, x2: 20, y2:10 },
+		3: {x1: 5, y1: 8, x2: 20, y2:10 }};
 		
-	this.spriteSheet = sprites.Player.anchorAttack;
+	this.spriteSheet = sprites.Player.attack;
 	this.spriteWidth = 32;
 	this.spriteHeight = 32;
-	this.spriteFrames = 7;
+	this.spriteFrames = 4;
 	this.spriteSpeed = 18;
 	
 	this.attackDir = [0,0];
@@ -54,7 +54,7 @@ function anchorMagic(x, y, isFacing) {
 		console.log('WE HIT AN ENEMY!!!!');
 		player.enemyHitCount++;
 		enemy.getHit(1);
-		Sound.play("enemy_hit"); // TODO: after a delay?
+		//Sound.play("enemy_hit"); // TODO: after a delay?
 		// directional hit splatter particles
 		var angle = Math.atan2(enemy.y-this.y,enemy.x-this.x);					
 		var vx = Math.cos(angle) * BLOOD_SPLATTER_SPEED;

@@ -2,7 +2,7 @@ function door(x, y) {
 
 	this.x = x + 22;
 	this.y = y - 22; //y offset
-
+	this.initialState = "normalDoorLikeBehavior";
 	this.maxHealth = 3; // how many hits till it dies
 	this.currentHealth = this.maxHealth;
 	this.lootModifier = 1.0;
@@ -58,6 +58,8 @@ function door(x, y) {
 			}
 
 		},
+		normalDoorLikeBehavior : function(){
+		},
 		normal : function(){
 			
 			this.sprite.update();
@@ -65,12 +67,12 @@ function door(x, y) {
 		},
 		dying: function(){
 			if(!this.ticksInState){
-				this.sprite.setSprite(sprites.Slime.death,
-					this.enemyData.spriteWidth, this.enemyData.spriteHeight,
-					10, 15, false);	
+				// this.sprite.setSprite(sprites.Slime.death,
+				// 	this.enemyData.spriteWidth, this.enemyData.spriteHeight,
+				// 	10, 15, false);	
 			}
-
-			if(this.sprite.isDone()){
+			
+			// if(this.sprite.isDone()){
 				
 				// remove from enemy list
 				var foundHere = currentRoom.enemyList.indexOf(this);
@@ -78,7 +80,7 @@ function door(x, y) {
 					currentRoom.enemyList.splice(foundHere, 1);
 				}
 				
-			}
+			// }
 			this.sprite.update();
 		}
 	}

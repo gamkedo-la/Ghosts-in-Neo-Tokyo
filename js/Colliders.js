@@ -1,8 +1,8 @@
 const X_AXIS = "x";
 const Y_AXIS = "y";
 const COLLISION_CHECKS_PER_TICK = 5;
-var _DEBUG_DRAW_TILE_COLLIDERS = false;
-var _DEBUG_DRAW_HITBOX_COLLIDERS = false;
+var _DEBUG_DRAW_TILE_COLLIDERS = true;
+var _DEBUG_DRAW_HITBOX_COLLIDERS = true;
 
 function boxColliderClass(x, y, width, height, offsetX, offsetY) {
     this.offsetX = offsetX;
