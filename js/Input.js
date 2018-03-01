@@ -227,6 +227,18 @@ function keyPressed(evt) {
 		case KEY_P: 
 			paused = !paused;
 			break;
+		case KEY_LEFT_ARROW:
+			moveInventory('left');
+			break;
+		case KEY_UP_ARROW:
+			moveInventory('up');
+			break;
+		case KEY_RIGHT_ARROW:
+			moveInventory('right');
+			break;
+		case KEY_DOWN_ARROW:
+			moveInventory('down');
+			break;
 		default:
 			otherKeyPressed=false;
 			break;
