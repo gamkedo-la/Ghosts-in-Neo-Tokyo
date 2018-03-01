@@ -117,6 +117,7 @@ function npc_text(message,x,y,starttime,endtime) {
     var now = performance.now(); // timestamp
     var count = 0; // how many characters to draw this frame
     var percent = 1; // where are we in the animation
+    var bubbleWidth = pixelfont_measure(message);
     
     if (now<starttime) {
         count = 0; // draw nothing and wait to start
@@ -132,6 +133,29 @@ function npc_text(message,x,y,starttime,endtime) {
     
     // now render however many chars we want
     message = message.substring(0, count);
+    
+    // draw the word bubble left side
+    canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
+        0, // sx
+        0, // sy
+        bubbleWidth, // sw
+        32, // sh
+        x-6, // dx
+        y-6, // dy
+        bubbleWidth, // dw
+        32); // dh
+    
+    // draw the word bubble right side (for liquid layout to fit text)
+    canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
+        252, // sx
+        0, // sy
+        4, // sw
+        32, // sh
+        x-6+bubbleWidth, // dx
+        y-6, // dy
+        4, // dw
+        32); // dh
+
     //console.log("npc_text:["+message+"] pos:"+x+","+y+" "+~~starttime+" to "+~~endtime+" now="+~~now+" percent:"+~~percent*100);
     pixelfont_draw(message,x,y);
 }
