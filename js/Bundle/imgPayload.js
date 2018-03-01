@@ -8,6 +8,10 @@ var imgPayload = [
 		{set: "Concept", name: "background1", fileName: "Concept.png"},
 		{set: "Ghast", name: "move", fileName: "Ghast/Ghast.png"},
 		{set: "Door", name: "idle", fileName: "Doors/world_door.png"},
+		{set: "FloorButton", name: "idle", fileName: "Switches/floor switch_Animation 1.png"},
+		{set: "FloorButton", name: "pressing", fileName: "Switches/floor switch_Animation 1.png"},
+		{set: "FloorButton", name: "pressed", fileName: "Switches/floor switch_Animation 1.png"},
+		
 		{set: "UI", name: "pixelFont", fileName: "UI/pixelFont.png"},
 		{set: "UI", name: "healthBarEmpty", fileName: "UI/Health_Bar_Empty.png"},
 		
