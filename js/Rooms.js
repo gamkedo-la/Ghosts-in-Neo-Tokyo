@@ -327,7 +327,7 @@ function Room(roomLayout) {
 // 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,
 // 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00];
 
-var room0a1 = StartingArea;
+var room0a1 = TileMaps['example']
 
 var allRooms = [
 	room0a1, ];
