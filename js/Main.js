@@ -103,6 +103,7 @@ function updateAll() {
 
 	moveAll();
 	drawAll();
+	AudioEventManager.updateEvents();
 	if (_DEBUG_ENABLE_TILE_EDITOR == true) {
     roomTileCoordinate();
   	}

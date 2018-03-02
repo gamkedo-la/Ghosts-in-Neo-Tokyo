@@ -86,12 +86,7 @@ function ghast(x, y) {
 			this.getRandomNumber = Math.ceil(Math.random() * 100);
 			if (this.getRandomNumber > 99) {
 				console.log(this.getRandomNumber);
-				this.getRandomNumber = Math.ceil(Math.random() * 100);
-				if (this.getRandomNumber > 51) {
-					ghast_laugh_crackly_SFX.play();
-				} else {
-					ghast_laugh_SFX.play();
-				}
+				ghast_laugh_SFX.play();
 			}
 
 			directionTimer -= TIME_PER_TICK;
