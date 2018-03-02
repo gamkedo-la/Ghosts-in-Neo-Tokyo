@@ -35,6 +35,10 @@ function pixelfont_measure(str)
     var w = 0;
     var index = 0;
     var max = 0; // multiple lines count from 0
+
+    // delete any "$emotes "
+    str = stringWithoutEmotes(str);
+
     for (var c=0,len=str.length; c<len; c++)
     {
         index = str.charCodeAt(c)-32-1;
@@ -44,6 +48,11 @@ function pixelfont_measure(str)
         if (max<w) max = w;
     }
     return w;
+}
+
+// warning, gets called every frame that a npc chat text has an emote code in it
+function handleEmote(emoteCode) {
+    //console.log("handleEmote: "+emoteCode); // FIXME implement!
 }
 
 function pixelfont_draw(str,x,y)
@@ -65,46 +74,70 @@ function pixelfont_draw(str,x,y)
     var sx = 0;
     var sy = 0;
     var index = 0;
+
+    var insideEmote = false;
+    var skipThisChar = false;
+    var emoteCode = "";
+
     for (var c=0,len=str.length; c<len; c++)
     {
         index = str.charCodeAt(c)-32-1; 
 
-        // linefeed?
-        if (str[c]=="\n")
-        {
-            //console.log('TXT newline!');
-            pixelfont_x = pixelfont_x_margin;
-            pixelfont_y += pixelfont_line_height;
+        skipThisChar = false;
+        if (insideEmote) {
+            if (str[c]==" ") {
+                insideEmote = false;
+                skipThisChar = true; // avoid double space from where we delete the $code
+                handleEmote(emoteCode);
+            } else {
+                emoteCode = emoteCode + str[c];
+            }
         }
-        // missing character or space
-        else if (pixelfont_w[index]==undefined)
+        else if (str[c]=="$")
         {
-            pixelfont_x += pixelfont_space_width; // space
+            insideEmote = true;
+            emoteCode = "";
         }
-        else // normal letter
-        {
-            sw = pixelfont_w[index];
-            sx = pixelfont_dx[index];
-            sy = pixelfont_dy[index];
 
-            // debug! (ps the game starts at frame 1)
-            // if (frame_count==1) console.log('txt: index:'+index+'=['+str[c]+'] '+sx+','+sy+' width='+sw)
+        if (!insideEmote && !skipThisChar) {
 
-            // draw it
-            canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
-                sx,
-                sy,
-                sw,
-                pixelfont_h,
-                pixelfont_x,
-                pixelfont_y,
-                sw,
-                pixelfont_h);
-                
-            // move to next position
-            pixelfont_x = pixelfont_x + sw + pixelfont_overlap_x;
-        }
-    }
+            // linefeed?
+            if (str[c]=="\n")
+            {
+                //console.log('TXT newline!');
+                pixelfont_x = pixelfont_x_margin;
+                pixelfont_y += pixelfont_line_height;
+            }
+            // missing character or space
+            else if (pixelfont_w[index]==undefined)
+            {
+                pixelfont_x += pixelfont_space_width; // space
+            }
+            else // normal letter
+            {
+                sw = pixelfont_w[index];
+                sx = pixelfont_dx[index];
+                sy = pixelfont_dy[index];
+
+                // debug! (ps the game starts at frame 1)
+                // if (frame_count==1) console.log('txt: index:'+index+'=['+str[c]+'] '+sx+','+sy+' width='+sw)
+
+                // draw it
+                canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
+                    sx,
+                    sy,
+                    sw,
+                    pixelfont_h,
+                    pixelfont_x,
+                    pixelfont_y,
+                    sw,
+                    pixelfont_h);
+                    
+                // move to next position
+                pixelfont_x = pixelfont_x + sw + pixelfont_overlap_x;
+            } // draw
+        } // in not in an emote code
+    } // char loop
     return sw; // returns pixel width of string
 }
 
@@ -116,15 +149,33 @@ function stringLengthWithoutEmotes(str) {
 // strip out anything like "$code " from a string
 function stringWithoutEmotes(str) {
     var insideEmote = false;
-    var out = "";
-    for (var i=0; i<str.length; i++) {
-        if (str[i]=="$") insideEmote = true;
-        if (str[i]==" ") insideEmote = false; // FIXME: also could be punctuation
-        if (!insideEmote) 
+    var output = "";
+    var insideEmote = false;
+    var skipThisChar = false;
+    var emoteCode = "";
+
+    for (var c=0; c<str.length; c++) {
+
+        skipThisChar = false;
+        if (insideEmote) {
+            if ((str[c]==" ")) {
+                insideEmote = false;
+                skipThisChar = true;
+            }
+        }
+        else if (str[c]=="$")
         {
-            output = output + str[i];
+            insideEmote = true;
+            emoteCode = "";
+        }
+        
+        if (!insideEmote && !skipThisChar) 
+        {
+            output = output + str[c];
         }
     }
+
+    //console.log('stringWithoutEmotes='+output);
     return output;
 }
 
@@ -148,11 +199,11 @@ function npc_text(message,x,y,starttime,endtime) {
     else if (now>=starttime && now<=endtime) // partway done
     {
         percent = (now-starttime) / (endtime-starttime);
-        count = Math.floor(message.length * percent);
+        count = Math.floor(message.length * percent); 
     }
     
     // now render however many chars we want
-    message = message.substring(0, count);
+    message = message.substring(0, count); // FIXME: we need to SKIP (include all the) $emote chars
     
     // draw the word bubble left side
     canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js

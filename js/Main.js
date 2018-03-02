@@ -17,7 +17,7 @@ var healthBarFlashing = false;
 var barColorRed = true;
 
 // temp vars for testing NPC text pixelFont animation in drawAll() function
-var npcTextAnimationExample = "Animated NPC text\nfinally works! Cool.";
+var npcTextAnimationExample = "Animated NPC text\nfinally $blue works! Cool.";
 var npcTextAnimationStart = 0; // timestamp in ms like performance.now() would return
 var npcTextAnimationEnd = 0; // how long the text should animate for in ms (1000=1sec)
 // strings can be measured in pixels for centering etc
