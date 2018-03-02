@@ -85,7 +85,6 @@ function ghast(x, y) {
 
 			this.getRandomNumber = Math.ceil(Math.random() * 100);
 			if (this.getRandomNumber > 99) {
-				console.log(this.getRandomNumber);
 				ghast_laugh_SFX.play();
 			}
 

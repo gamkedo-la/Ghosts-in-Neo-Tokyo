@@ -6,7 +6,8 @@ const UNTANGLE_TIME_LIMIT = 1.5;
 const ITEM_FRICTION = .94;
 const ITEM_WEB_FRICTION = .40;
 
-const ITEM_KEY_COMMON = 1;
+
+const ITEM_AVACADO = 1;
 const ITEM_POTION = 2;
 const ITEM_KEY_RARE = 3;
 const ITEM_KEY_EPIC = 4;
@@ -48,8 +49,8 @@ function itemClass(posX, posY, speed, type, angle) {
 
     this.sprite = new spriteClass();
 	switch (type){
-		case(ITEM_KEY_COMMON):
-            this.sprite.setSprite(worldPics[TILE_KEY_COMMON], 20, 20, 1, 0, true);
+		case(ITEM_AVACADO):
+            this.sprite.setSprite(worldPics[TILE_AVACADO], 20, 20, 1, 0, true);
             var colliderWidth = 10;
             var colliderHeight = 14;
             var colliderOffsetX = 0;
@@ -203,10 +204,10 @@ function dropItem(x, y, type, angle) {
     currentRoom.itemOnGround.push(tempItem);
 }
 
-function placeItem(x, y, room, type) {
+function placeItem(x, y, type) {
     var speed = 0;
     var tempItem = new itemClass(x, y, speed, type);
-    room.itemOnGround.push(tempItem);
+    currentRoom.itemOnGround.push(tempItem);
 }
 
 function removeAllItemsOfTypeInRoom(item_type)
@@ -246,11 +247,11 @@ function pickUpItems(collider) {
             item.remove = true;
 
             switch(item.type) {
-                case ITEM_KEY_COMMON:
-                	player.inventory.keysCommon++; // one more key
+                case ITEM_AVACADO:
+                	player.currentHealth--;
                     // this.updateKeyReadout();
                     //Sound.play('key_pickup', false, 0.1); // 0.1 means 10% volume
-                    particleFX(item.x, item.y, PARTICLES_PER_PICKUP, '#c65e31');
+                    particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'green');
 					break;
 				case ITEM_KEY_RARE:
                 	player.inventory.keysRare++; // one more key

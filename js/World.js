@@ -10,7 +10,8 @@ var worldGrid = [];
 
 const TILE_EMPTY = 0;
 const TILE_WALL = 1;
-const TILE_PLAYERSTART = 2;
+const TILE_AVACADO = 2;
+/*const TILE_PLAYERSTART = 2;*/
 const TILE_SKULL = 3;
 const TILE_KEY_COMMON = 4;
 const TILE_DOOR_COMMON = 5;
@@ -147,9 +148,9 @@ function canWalk(tileType){
 		case TILE_FIREBALL_LVL2:
 		case TILE_FIREBALL_LVL3:
 		case TILE_GROUND:
-		case TILE_KEY_COMMON:
 		case TILE_POTION:
 		case TILE_SKULL:
+		case TILE_AVACADO:
 			returnValue = 0;
 			break
 		default: 
@@ -204,7 +205,8 @@ function tileTypeHasTransparency(checkTileType) {
 			checkTileType == TILE_SLUGBRO ||
 			checkTileType == TILE_PLANTBABY ||
 			checkTileType == TILE_ARMSBRO ||
-			checkTileType == TILE_GOBO
+			checkTileType == TILE_GOBO ||
+			checkTileType == TILE_AVACADO
 					);
 }
 
@@ -221,7 +223,7 @@ function drawWorld() {
 			var useImg = worldPics[tileKindHere];
 
 			if( tileTypeHasTransparency(tileKindHere) ) {
-				canvasContext.drawImage(worldPics[TILE_GROUND],drawTileX,drawTileY);
+				canvasContext.drawImage(worldPics[TILE_EMPTY],drawTileX,drawTileY);
 			}
 
 			canvasContext.drawImage(useImg,drawTileX,drawTileY);

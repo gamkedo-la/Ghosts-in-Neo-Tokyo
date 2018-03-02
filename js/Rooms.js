@@ -73,11 +73,11 @@ function Room(roomLayout) {
 		for(var eachRow=0;eachRow<WORLD_ROWS;eachRow++) {
 			for(var eachCol=0;eachCol<WORLD_COLS;eachCol++) {
 				var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
-				if(this.layout[arrayIndex] == TILE_KEY_COMMON) {
-					this.layout[arrayIndex] = TILE_GROUND;
+				if(this.layout[arrayIndex] == TILE_AVACADO) {
+					this.layout[arrayIndex] = TILE_EMPTY;
 					var x = eachCol * WORLD_W + WORLD_W/2;
 					var y = eachRow * WORLD_H + WORLD_H/2;
-					placeItem(x, y, this, ITEM_KEY_COMMON);
+					placeItem(x, y, this, ITEM_AVACADO);
 				} else if(this.layout[arrayIndex] == TILE_KEY_RARE) {
 					this.layout[arrayIndex] = TILE_GROUND;
 					var x = eachCol * WORLD_W + WORLD_W/2;
@@ -327,7 +327,7 @@ function Room(roomLayout) {
 // 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,
 // 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00];
 
-var room0a1 = StartingArea
+var room0a1 = StartingArea;
 
 var allRooms = [
 	room0a1, ];

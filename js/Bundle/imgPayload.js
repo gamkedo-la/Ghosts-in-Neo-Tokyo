@@ -35,7 +35,7 @@ var imgPayload = [
 		// {set: "Credits", name: "page4", fileName: "Credits/Page4.png"},
 
 		{worldType: TILE_EMPTY, theFile: "Tiles/world_nothingness.png"},
-		{worldType: TILE_WALL, theFile: "Tiles/world_ground.png"}
-
+		{worldType: TILE_WALL, theFile: "Tiles/world_ground.png"},
+		{worldType: TILE_AVACADO, theFile: "Items/Avacado.png"}
 		
 	];

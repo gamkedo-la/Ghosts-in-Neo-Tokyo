@@ -210,7 +210,7 @@ function playerClass() {
 		}
 		this.updateKeyReadout();
 
-		for(var eachRow=0;eachRow<WORLD_ROWS;eachRow++) {
+		/*for(var eachRow=0;eachRow<WORLD_ROWS;eachRow++) {
 			for(var eachCol=0;eachCol<WORLD_COLS;eachCol++) {
 				var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 				if(worldGrid[arrayIndex] == TILE_PLAYERSTART) {
@@ -220,11 +220,11 @@ function playerClass() {
 					return;
 				} // end of player start if
 			} // end of col for
-		} // end of row for
+		} // end of row for*/
 	} // end of playerReset func
 
 	this.updateKeyReadout = function() {
-		document.getElementById("debugText").innerHTML = "Keys: " + this.keysInInventory;
+		document.getElementById("debugText").innerHTML = "Keys: " + player.inventory.keysCommon;
 	}
 
 	this.startJump = function(){
