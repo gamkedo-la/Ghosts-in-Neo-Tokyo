@@ -1,5 +1,5 @@
 function anchorMagic(x, y, isFacing) {
-	//Sound.play("player_attack");
+	sword_attack_SFX.play();
 	
 	this.x = x;
 	this.y = y;

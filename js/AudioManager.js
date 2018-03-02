@@ -7,12 +7,14 @@ var player_hit_SFX = new sfxClipSingle("./audio/player_hit");
 var player_hit_ground_SFX = new sfxClipSingle("./audio/player_hit_ground");
 var ghast_laugh_crackly_SFX = new sfxClipSingle("./audio/ghost_laugh_crackly");
 var ghast_laugh_SFX = new sfxClipSingle("./audio/ghost_laugh");
+var sword_attack_SFX = new sfxClipSingle("./audio/sword_attack");
 
 player_jump_SFX.setVolume(0.5);
 player_hit_SFX.setVolume(0.5);
 player_hit_ground_SFX.setVolume(0.5);
 ghast_laugh_crackly_SFX.setVolume(0.5);
 ghast_laugh_SFX.setVolume(0.5);
+sword_attack_SFX.setVolume(0.5);
 
 //general audio functions
 function setFormat() {
