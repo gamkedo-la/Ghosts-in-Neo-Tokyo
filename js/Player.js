@@ -237,6 +237,7 @@ function playerClass() {
 		}
 	}
 
+
 	this.applyGravity = function(target){
 		this.vy -= GRAVITY;
 		target.y += this.vy;
@@ -767,7 +768,17 @@ function playerClass() {
 			case TILE_WALL_NORTH:
 			case TILE_WALL_SOUTH:
 			case TILE_WALL_WEST:
+                if(this.motionState !== "Grounded") {
+                    wallJumpTime = WALL_JUMP_MAX_TIME;
+                    this.vx = WALL_JUMP_VERTICAL_REVERSE_SPEED;
+                }
+                break;
 			case TILE_WALL_EAST:
+                if(this.motionState !== "Grounded") {
+                    wallJumpTime = WALL_JUMP_MAX_TIME;
+                    this.vx = -WALL_JUMP_VERTICAL_REVERSE_SPEED;
+                }
+                break;
 			case TILE_WALL_CORNER_NE:
 			case TILE_WALL_CORNER_NW:
 			case TILE_WALL_CORNER_SE:
