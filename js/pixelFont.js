@@ -108,6 +108,26 @@ function pixelfont_draw(str,x,y)
     return sw; // returns pixel width of string
 }
 
+// count the chars in a string but ignore any word starting with $
+function stringLengthWithoutEmotes(str) {
+    return stringWithoutEmotes(str).length;
+}
+
+// strip out anything like "$code " from a string
+function stringWithoutEmotes(str) {
+    var insideEmote = false;
+    var out = "";
+    for (var i=0; i<str.length; i++) {
+        if (str[i]=="$") insideEmote = true;
+        if (str[i]==" ") insideEmote = false; // FIXME: also could be punctuation
+        if (!insideEmote) 
+        {
+            output = output + str[i];
+        }
+    }
+    return output;
+}
+
 // animate the letters of a string if now is within range
 function npc_text(message,x,y,starttime,endtime) {
 
