@@ -143,6 +143,12 @@ function drawAll() {
 		cameraOffsetX += 1;
 	}
 	
+	if (totalXTranslation < 0) {
+		cameraOffsetX = 0;
+	} else if (totalXTranslation > ((WORLD_COLS * WORLD_W) - canvas.width)) {
+		cameraOffsetX = -((WORLD_COLS * WORLD_W) - canvas.width);
+	}
+	
 	if(player.y > (totalYTranslation + canvas.height - 32)) {
 		totalYTranslation++;
 		cameraOffsetY -= 1;
@@ -150,11 +156,10 @@ function drawAll() {
 		totalYTranslation--;
 		cameraOffsetY += 1;
 	}
-	
-	if (totalXTranslation < 0) {
-		cameraOffsetX = 0;
-	} else if (totalXTranslation > ((WORLD_COLS * WORLD_W) - canvas.width)) {
-		cameraOffsetX = -((WORLD_COLS * WORLD_W) - canvas.width);
+	if (totalYTranslation < 0) {
+		cameraOffsetY = 0;
+	} else if (totalYTranslation > ((WORLD_ROWS * WORLD_H) - canvas.height)) {
+		cameraOffsetY = -((WORLD_ROWS * WORLD_H) - canvas.height);
 	}
 
 	canvasContext.save();
