@@ -54,7 +54,6 @@ function setupInput() {
 	});
 	canvas.addEventListener('mouseup',function() {
 		mouseReleased();
-		editTileOnMouseClick();
 	});
 	document.addEventListener('keydown', keyPressed);
 	document.addEventListener('keyup', keyReleased);

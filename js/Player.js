@@ -132,8 +132,8 @@ function playerClass() {
 	}
 
 	this.die = function() { // called immediately if we die
-		this.reset();
-		/*if (this.currentlyDying) return; // debounce multiple frames
+		//this.reset();
+		if (this.currentlyDying) return; // debounce multiple frames
 		this.currentlyDying = true;
 		ga('send', {
 		  hitType: 'event',
@@ -151,7 +151,7 @@ function playerClass() {
 		console.log("pendingRespawnTimestamp="+this.pendingRespawnTimestamp);
 		isPoisoned = false;
 		this.isInvincible = false;
-		poisonTime = 0;*/
+		poisonTime = 0;
 	}
 
 	this.respawn = function() { // called after a delay when you die
