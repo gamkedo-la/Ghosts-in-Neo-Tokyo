@@ -201,8 +201,8 @@ function drawHealth() {
 	var healthBarFlashTimer = 0;
 	var posX = 10;
 	var posY = canvas.height - posX;
-    var cornerX = posX + totalXTranslation;
-    var cornerY = posY + totalYTranslation;
+	var cornerX = posX - cameraOffsetX;
+	var cornerY = posY - cameraOffsetY;
     var playerMaxHealth = player.maxHealth;
     var playerHP = player.currentHealth;
     var barColor;
