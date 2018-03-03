@@ -71,53 +71,54 @@ function Room(roomLayout) {
 		for(var eachRow=0;eachRow<WORLD_ROWS;eachRow++) {
 			for(var eachCol=0;eachCol<WORLD_COLS;eachCol++) {
 				var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
-				if(this.layout[arrayIndex] == TILE_AVACADO) {
+				var anItem = this.layout.layers[0].data[arrayIndex];//layer[0] has the data element in it
+				if(anItem == TILE_AVACADO) {
 					this.layout[arrayIndex] = TILE_EMPTY;
 					var x = eachCol * WORLD_W + WORLD_W/2;
 					var y = eachRow * WORLD_H + WORLD_H/2;
 					placeItem(x, y, this, ITEM_AVACADO);
-				} else if(this.layout[arrayIndex] == TILE_KEY_RARE) {
+				} /*else if(anItem == TILE_KEY_RARE) {
 					this.layout[arrayIndex] = TILE_GROUND;
 					var x = eachCol * WORLD_W + WORLD_W/2;
 					var y = eachRow * WORLD_H + WORLD_H/2;
 					placeItem(x, y, this, ITEM_KEY_RARE);
-				} else if(this.layout[arrayIndex] == TILE_KEY_EPIC) {
+				} else if(anItem == TILE_KEY_EPIC) {
 					this.layout[arrayIndex] = TILE_GROUND;
 					var x = eachCol * WORLD_W + WORLD_W/2;
 					var y = eachRow * WORLD_H + WORLD_H/2;
 					placeItem(x, y, this, ITEM_KEY_EPIC);
-				} else if(this.layout[arrayIndex] == TILE_CRYSTAL) {
+				} else if(anItem == TILE_CRYSTAL) {
 					this.layout[arrayIndex] = TILE_GROUND;
 					var x = eachCol * WORLD_W + WORLD_W/2;
 					var y = eachRow * WORLD_H + WORLD_H/2;
 					placeItem(x, y, this, ITEM_CRYSTAL);
-				} else if(this.layout[arrayIndex] == TILE_HEART_CONTAINER) {
+				} else if(anItem == TILE_HEART_CONTAINER) {
 					this.layout[arrayIndex] = TILE_GROUND;
 					var x = eachCol * WORLD_W + WORLD_W/2;
 					var y = eachRow * WORLD_H + WORLD_H/2;
 					placeItem(x, y, this, ITEM_HEART_CONTAINER);
-				} else if(this.layout[arrayIndex] == TILE_ARTIFACT) {
+				} else if(anItem == TILE_ARTIFACT) {
 					console.log("Adding an artifact in room()");
 					this.layout[arrayIndex] = TILE_GROUND;
 					var x = eachCol * WORLD_W + WORLD_W/2;
 					var y = eachRow * WORLD_H + WORLD_H/2;
 					placeItem(x, y, this, ITEM_ARTIFACT);
-				} else if(this.layout[arrayIndex] == TILE_FIREBALL_LVL2) {
+				} else if(anItem == TILE_FIREBALL_LVL2) {
 					this.layout[arrayIndex] = TILE_GROUND;
 					var x = eachCol * WORLD_W + WORLD_W/2;
 					var y = eachRow * WORLD_H + WORLD_H/2;
 					placeItem(x, y, this, ITEM_FIREBALL_LVL2);
-				} else if(this.layout[arrayIndex] == TILE_FIREBALL_LVL3) {
+				} else if(anItem == TILE_FIREBALL_LVL3) {
 					this.layout[arrayIndex] = TILE_GROUND;
 					var x = eachCol * WORLD_W + WORLD_W/2;
 					var y = eachRow * WORLD_H + WORLD_H/2;
 					placeItem(x, y, this, ITEM_FIREBALL_LVL3);
-				} else if(this.layout[arrayIndex] == TILE_POTION) {
+				} else if(anItem == TILE_POTION) {
  					this.layout[arrayIndex] = TILE_GROUND;
  					var x = eachCol * WORLD_W + WORLD_W/2;
  					var y = eachRow * WORLD_H + WORLD_H/2;
 					placeItem(x, y, this, ITEM_POTION);
-				} // end of place item on tile
+				} // end of place item on tile*/
 			} // end of col for
 		} // end of row for
 	} //end of spawn items
