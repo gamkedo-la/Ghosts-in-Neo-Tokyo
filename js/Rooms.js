@@ -32,16 +32,14 @@ function Room(roomLayout) {
 		this.itemOnGround = [];
 		this.pathfindingdata = []; // a-star pathfinding grid
 		this.tempPathFindingData = []; //a-star pathfinding grid with dynamic things like the player
-		if (!_DEBUG_ENABLE_TILE_EDITOR) {
-			this.spawnItems();
-			this.spawnTraps();
-			this.spawnCharacters();
-			this.spawnMyEnemies();
+		this.spawnItems();
+		this.spawnTraps();
+		this.spawnCharacters();
+		this.spawnMyEnemies();
 			
-			if (_TEST_AI_PATHFINDING)
-				this.generatePathfindingData();
+		if (_TEST_AI_PATHFINDING)
+			this.generatePathfindingData();
 				
-		}
 	}
 
 	this.spawnCharacters = function(){
@@ -142,9 +140,6 @@ function Room(roomLayout) {
 	}
 
 	this.updatePathfindingData = function(){
-		if(_DEBUG_ENABLE_TILE_EDITOR){
-			return;
-		}
 		var _rows = Math.max(WORLD_ROWS,WORLD_COLS);
 		var _cols = Math.max(WORLD_ROWS,WORLD_COLS);
 		for(var eachRow=0;eachRow<_rows;eachRow++) {			
@@ -316,18 +311,7 @@ function Room(roomLayout) {
 	}
 };
 
-// var room0a1= [
-// 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,
-// 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,
-// 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,
-// 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,
-// 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,
-// 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,
-// 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,
-// 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,
-// 	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00];
-
-var room0a1 = TileMaps['example']
+var room0a1 = TileMaps['example'];
 
 var allRooms = [
 	room0a1, ];

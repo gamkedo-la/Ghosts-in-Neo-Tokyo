@@ -104,16 +104,12 @@ function updateAll() {
 	moveAll();
 	drawAll();
 	AudioEventManager.updateEvents();
-	if (_DEBUG_ENABLE_TILE_EDITOR == true) {
-    roomTileCoordinate();
-  	}
 	updateScreenshake();
 	currentRoom.considerRoomChange();
 }
 
 function moveAll() {
 	
-
 	player.move();
 	player.poisoned();
 	currentRoom.moveMyEnemies();

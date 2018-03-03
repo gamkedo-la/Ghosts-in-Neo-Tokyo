@@ -158,46 +158,30 @@ function keyPressed(evt) {
 				_DEBUG_DRAW_TILE_COLLIDERS = !_DEBUG_DRAW_TILE_COLLIDERS;
 			break;
 		case KEY_TAB:
-			_DEBUG_ENABLE_TILE_EDITOR = !_DEBUG_ENABLE_TILE_EDITOR;
-			if (_DEBUG_ENABLE_TILE_EDITOR == false) {
-				backupRoomData();
-			}
-			else {
-				restoreRoomDataBackup();
-			}
-			console.log("Tile Editor is" + " " +_DEBUG_ENABLE_TILE_EDITOR)
 			break;
 		case KEY_W:
-			//if (_DEBUG_ENABLE_TILE_EDITOR) {
 			if(!_DEBUG_MODE)
 				break
 			console.log("Room change North");
 			currentRoomRow--;
 			loadLevel(roomCoordToVar);
-			//}
 			break;
 		case KEY_A:
 			if(!_DEBUG_MODE)
 				break
-			//if (_DEBUG_ENABLE_TILE_EDITOR) {
 			console.log("Room change West");
 			currentRoomCol--;
 			loadLevel(roomCoordToVar);
-			//}
 			break;
 		case KEY_M:
-			//if (_DEBUG_ENABLE_TILE_EDITOR) {
 			console.log("arrayIndex: " + raycastingForPlayer() + " tileType: " + worldGrid[raycastingForPlayer()]);
-			//}
 			break;
 		case KEY_S:
 			if(!_DEBUG_MODE)
 				break
-			//if (_DEBUG_ENABLE_TILE_EDITOR) {
 			console.log("Room change South");
 			currentRoomRow++;
 			loadLevel(roomCoordToVar);
-			//}
 			break;
 		case KEY_D:
 			if(!_DEBUG_MODE)
@@ -209,20 +193,18 @@ function keyPressed(evt) {
 		case KEY_Q:
 			if(!_DEBUG_MODE)
 				break
-			//if (_DEBUG_ENABLE_TILE_EDITOR) {
+
 			console.log("Floor change Up");
 			currentFloor++;
 			loadLevel(roomCoordToVar);
-			//}
+
 			break;
 		case KEY_E:
 			if(!_DEBUG_MODE)
 				break
-			//if (_DEBUG_ENABLE_TILE_EDITOR) {
 			console.log("Floor change Down");
 			currentFloor--;
 			loadLevel(roomCoordToVar);
-			//}
 			break;
 		case KEY_P: 
 			paused = !paused;

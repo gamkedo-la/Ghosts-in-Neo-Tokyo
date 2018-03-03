@@ -204,10 +204,10 @@ function dropItem(x, y, type, angle) {
     currentRoom.itemOnGround.push(tempItem);
 }
 
-function placeItem(x, y, type) {
+function placeItem(x, y, room, type) {
     var speed = 0;
     var tempItem = new itemClass(x, y, speed, type);
-    currentRoom.itemOnGround.push(tempItem);
+    room.itemOnGround.push(tempItem);
 }
 
 function removeAllItemsOfTypeInRoom(item_type)
