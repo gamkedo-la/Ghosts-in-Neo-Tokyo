@@ -150,6 +150,12 @@ function drawAll() {
 		totalYTranslation--;
 		cameraOffsetY += 1;
 	}
+	
+	if (totalXTranslation < 0) {
+		cameraOffsetX = 0;
+	} else if (totalXTranslation > ((WORLD_COLS * WORLD_W) - canvas.width)) {
+		cameraOffsetX = -((WORLD_COLS * WORLD_W) - canvas.width);
+	}
 
 	canvasContext.save();
 	clearCanvas();
