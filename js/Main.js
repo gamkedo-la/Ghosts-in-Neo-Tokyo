@@ -112,6 +112,7 @@ function moveAll() {
 	
 	player.move();
 	player.poisoned();
+    player.handleWallJump();
 	currentRoom.moveMyEnemies();
 	currentRoom.moveMagic();
 	updateItems();

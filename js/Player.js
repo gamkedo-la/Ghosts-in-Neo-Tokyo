@@ -36,6 +36,8 @@ const STARTING_POSITION_Y = 60;
 const GRAVITY = -0.5;
 const JUMP_POWER = -7;
 
+const WALL_JUMP_MAX_TIME = 25;
+
 function playerClass() {
 	var isMoving = false;
 	var wasMoving = false;
@@ -245,7 +247,25 @@ function playerClass() {
 
 		return target;
 	}
-	
+    
+    this.wallJumpTime = 5;
+    
+  this.handleWallJump = function () {
+    if(this.wallJumpTime > 0) {
+        if(this.keyHeld_East || this.keyHeld_West) { // still holding on
+            this.wallJumpTime--; // but losing grip
+        } else { // released the wall
+            this.wallJumpTime = 0;
+        }
+        if (this.keyHeld_Jump) { // jumps off wall
+            this.wallJumpTime = 0;
+            this.motionState = "Jumping";
+            this.vy = JUMP_POWER;
+        }
+    }
+}
+
+    
 	this.move = function() {
 		
 		if (this.pendingRespawnTimestamp && this.pendingRespawnTimestamp <= performance.now())
@@ -269,10 +289,12 @@ function playerClass() {
 		if (this.keyHeld_West) {
 			isFacing = WEST;
 			target.x -= _PLAYER_MOVE_SPEED;
+            this.handleWallJump();
 		}
 		if (this.keyHeld_East) {
 			isFacing = EAST;
 			target.x += _PLAYER_MOVE_SPEED;
+            this.handleWallJump();
 		}
 		if (this.keyHeld_North) {
 			isFacing = NORTH;
@@ -284,6 +306,7 @@ function playerClass() {
 		}
 		if (this.keyHeld_Jump) {
 			this.startJump();
+            this.handleWallJump();
 		}
 
 		//apply gravity to modify
@@ -769,15 +792,10 @@ function playerClass() {
 			case TILE_WALL_NORTH:
 			case TILE_WALL_SOUTH:
 			case TILE_WALL_WEST:
-                if(this.motionState !== "Grounded") {
-                    wallJumpTime = WALL_JUMP_MAX_TIME;
-                    this.vx = WALL_JUMP_VERTICAL_REVERSE_SPEED;
-                }
-                break;
 			case TILE_WALL_EAST:
-                if(this.motionState !== "Grounded") {
-                    wallJumpTime = WALL_JUMP_MAX_TIME;
-                    this.vx = -WALL_JUMP_VERTICAL_REVERSE_SPEED;
+                 if(this.motionState == "Jumping" ||
+                    this.motionState == "Falling") {
+                        this.wallJumpTime = WALL_JUMP_MAX_TIME;
                 }
                 break;
 			case TILE_WALL_CORNER_NE:
