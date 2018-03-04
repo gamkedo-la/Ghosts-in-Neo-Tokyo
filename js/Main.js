@@ -16,6 +16,7 @@ var cameraOffsetY = 0;
 var healthBarFlashing = false;
 var barColorRed = true;
 
+
 // test only: the NPC dialogue fottoer bar at bottom of screen:
 var testNPCFooterStartTime = 0;
 
