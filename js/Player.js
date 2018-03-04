@@ -256,23 +256,20 @@ function playerClass() {
         if(this.wallJumpTime > 0) {
             if(this.keyHeld_East || this.keyHeld_West) { // still holding on
                 this.wallJumpTime--; // but losing grip
-                console.log("wall jump:" + this.wallJumpTime);  
             } else { // released the wall
                 this.wallJumpTime = 0;
-                console.log("b: " + this.wallJumped);
             }
-            if(this.keyHeld_Jump && this.motionState == "Falling" || this.keyHeld_Jump && this.motionState == "Jumping") { // jumps off wall
+            if(this.keyHeld_Jump && (this.motionState == "Falling" || this.keyHeld_Jump && this.motionState == "Jumping")) { // jumps off wall
                 this.wallJumpTime = 0;
                 this.motionState = "Jumping";
                 this.vy = JUMP_POWER;
                 this.wallJumped = true;
             }
-            if(this.walljumped == true && this.motionState == "Grounded") {
-                this.walljumped = false;
-                console.log("d: " + this.wallJumped);
-            }
         }
-    }
+        if(this.motionState == "Grounded" || this.motionState == "Walking") {
+                this.wallJumped = false;
+     }
+}
 
     
 	this.move = function() {
@@ -802,10 +799,10 @@ function playerClass() {
 			case TILE_WALL_SOUTH:
 			case TILE_WALL_WEST:
 			case TILE_WALL_EAST:
-                 if(this.motionState == "Jumping" ||
-                    this.motionState == "Falling" && this.wallJumped == false) {
+                 if((this.motionState == "Jumping" ||
+                    this.motionState == "Falling") && this.wallJumped == false) {
                         this.wallJumpTime = WALL_JUMP_MAX_TIME;
-                        this.wallJumped == true;
+                        this.wallJumped = true;
                 } 
                 break;
 			case TILE_WALL_CORNER_NE:
