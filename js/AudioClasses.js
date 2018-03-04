@@ -523,6 +523,7 @@ function musicTrackLoopingWTail(filenameWithPath, playLength) {
 		if(newTime < 0) {newTime = 0;}
 		while (newTime >= duration) {newTime -= duration;}
 		musicFile[currentTrack].currentTime = newTime;
+		AudioEventManager.addTimerEvent(this, "loop");
 	}
 
 	this.getTime = function() {

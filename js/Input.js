@@ -223,10 +223,10 @@ function keyPressed(evt) {
 			break;
 		case KEY_N: // TEMPORARY: play test Background music - TODO: REMOVE ME
 		{
-			if(bgm_witch_level.getTime() > 0)
-				bgm_witch_level.stop();
+			if(!witchstage_bgm.getPaused())
+				witchstage_bgm.pause();
 			else
-				bgm_witch_level.play();
+				witchstage_bgm.resume();
 			break;
 		}
 		default:
