@@ -248,19 +248,33 @@ function playerClass() {
 		return target;
 	}
     
-    this.wallJumpTime = 5;
+    this.wallJumpTime = 0;
+    this.wallJumped = false;
+    
     
   this.handleWallJump = function () {
-    if(this.wallJumpTime > 0) {
-        if(this.keyHeld_East || this.keyHeld_West) { // still holding on
-            this.wallJumpTime--; // but losing grip
-        } else { // released the wall
-            this.wallJumpTime = 0;
-        }
-        if (this.keyHeld_Jump) { // jumps off wall
-            this.wallJumpTime = 0;
-            this.motionState = "Jumping";
-            this.vy = JUMP_POWER;
+        if(this.wallJumpTime > 0) {
+            if(this.keyHeld_East || this.keyHeld_West) { // still holding on
+                this.wallJumped = false;
+                this.wallJumpTime--; // but losing grip
+                console.log("wall jump:" + this.wallJumpTime);
+                console.log("a: " + this.wallJumped);
+            } else { // released the wall
+                this.wallJumpTime = 0;
+                this.wallJumped = false;
+                console.log("b: " + this.wallJumped);
+                
+            if(this.keyHeld_Jump && this.motionState == "Falling" || this.keyHeld_Jump && this.motionState == "Jumping") { // jumps off wall
+                this.wallJumped = true;
+                this.wallJumpTime = 0;
+                this.motionState = "Jumping";
+                this.vy = JUMP_POWER;
+                console.log("c: " + this.wallJumped);
+            }
+            if(this.walljumped == true && this.motionState == "Grounded") {
+                this.walljumped = false;
+                console.log("d: " + this.wallJumped);
+            }
         }
     }
 }
@@ -794,9 +808,9 @@ function playerClass() {
 			case TILE_WALL_WEST:
 			case TILE_WALL_EAST:
                  if(this.motionState == "Jumping" ||
-                    this.motionState == "Falling") {
+                    this.motionState == "Falling" && this.walljumped == false) {
                         this.wallJumpTime = WALL_JUMP_MAX_TIME;
-                }
+                } 
                 break;
 			case TILE_WALL_CORNER_NE:
 			case TILE_WALL_CORNER_NW:
