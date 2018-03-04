@@ -222,7 +222,6 @@ function removeAllItemsOfTypeInRoom(item_type)
 
 function updateItems() {
     for (var i = currentRoom.itemOnGround.length -1; i >= 0; i--) {
-        console.log("updating ground items second");
         if (currentRoom.itemOnGround[i].remove) {
             currentRoom.itemOnGround.splice(i, 1);
         } else {
