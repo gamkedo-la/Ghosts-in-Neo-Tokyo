@@ -56,7 +56,7 @@ function getMute() {
 
 //Time Manager
 const REMOVE = 0; // Arrayformat [REMOVE]
-const FADE = 1; // Arrayformat [FADE, track, startTime, endTime, startVolume, endVolume]
+const FADE = 1; // Arrayformat [FADE, track, startTime, endTime, startVolume, endVolume, crossfade]
 const TIMER = 2; // Arrayformat [TIMER, track, endTime, callSign]
 const STOP = 3; // Arrayformat [STOP, track, endTime]
 
@@ -83,9 +83,22 @@ function audioEventManager() {
 		//console.log("Adding Fade Event for " + track.getTrackName());
 
 		if (check == "none") {
-			eventList.push([FADE, track, now, endTime, startVolume, endVol]);
+			eventList.push([FADE, track, now, endTime, startVolume, endVol, false]);
 		} else {
-			eventList[check] = [FADE, track, now, endTime, startVolume, endVol];
+			eventList[check] = [FADE, track, now, endTime, startVolume, endVol, false];
+		}
+	}
+
+	this.addCrossfadeEvent = function(track, duration, endVol) {
+		var check = checkListFor(FADE, track);
+		var endTime = duration * 1000 + now;
+		var startVolume = track.getVolume();
+		//console.log("Adding Fade Event for " + track.getTrackName());
+
+		if (check == "none") {
+			eventList.push([FADE, track, now, endTime, startVolume, endVol, true]);
+		} else {
+			eventList[check] = [FADE, track, now, endTime, startVolume, endVol, true];
 		}
 	}
 
@@ -130,9 +143,20 @@ function audioEventManager() {
 	function runList(){
 		for (var i = 0; i < eventList.length; i++) {
 			if (eventList[i][0] == FADE) {
+				// Arrayformat [FADE, track, startTime, endTime, startVolume, endVolume, crossfade]
 				thisTrack = eventList[i][1];
 				if (thisTrack.getPaused() == false) {
-						thisTrack.setVolume(interpolateFade(eventList[i][2], eventList[i][3], eventList[i][4], eventList[i][5], now));
+						if(eventList[i][6]) {
+							if(eventList[i][4] < eventList[i][5]){
+								thisTrack.setVolume(scaleRange(0, 1, eventList[i][4], eventList[i][5], 
+									Math.pow(interpolateFade(eventList[i][2], eventList[i][3], 0, 1, now), 0.5)));
+							} else {
+								thisTrack.setVolume(scaleRange(1, 0, eventList[i][4], eventList[i][5], 
+									Math.pow(interpolateFade(eventList[i][2], eventList[i][3], 1, 0, now), 0.5)));
+							}
+						} else {
+							thisTrack.setVolume(interpolateFade(eventList[i][2], eventList[i][3], eventList[i][4], eventList[i][5], now));
+						}
 					if (eventList[i][3] < now) {
 						//console.log("Ending Fade Event for " + thisTrack.getTrackName());
 						eventList[i] = [REMOVE];
@@ -196,17 +220,22 @@ function audioEventManager() {
 function interpolateFade(startTime, endTime, startVolume, endVolume, currentTime) {
 	/*
 	x1 = startTime
-	x2 = endTime
-
 	y1 = startVolume
+
+	x2 = endTime
 	y2 = endVolume
 
-	x = now
+	x = currentTime
 	y = y1 + (x - x1)((y2 - y1)/(x2 - x1))
-    output = startVolume + (now - startTime) * ((endVolume - startVolume) / (endTime - startTime))
+    currentVolume = startVolume + (now - startTime) * ((endVolume - startVolume) / (endTime - startTime))
 	*/
 	if (currentTime > endTime) {currentTime = endTime;}
-	var output = startVolume + (currentTime - startTime) * ((endVolume - startVolume) / (endTime - startTime));
+	var currentVolume = startVolume + (currentTime - startTime) * ((endVolume - startVolume) / (endTime - startTime));
 
-	return output;
+	return currentVolume;
+}
+
+function scaleRange(inputStart, inputEnd, outputStart, outputEnd, value) {
+	var scale = (outputEnd - outputStart) / (inputEnd - inputStart);
+	return outputStart + ((value - inputStart) * scale);
 }

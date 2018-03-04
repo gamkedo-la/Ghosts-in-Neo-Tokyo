@@ -20,6 +20,12 @@ function sfxVolumeManager() {
 		return sfxVolume;
 	}
 
+	this.updateVolume = function() {
+		for(var i in clipList) {
+			clipList[i].updateVolume();
+		}
+	}
+
 	this.addToList = function(sfxClip) {
 		clipList.push(sfxClip);
 	}
@@ -68,10 +74,6 @@ function sfxClipSingle(filenameWithPath) {
 
 	this.pause = function() {
 		soundFile.pause();
-	}
-
-	function setRandomRate() {
-		this.setPlaybackRate(getRandomRate());
 	}
 
 	this.updateVolume = function() {
@@ -171,10 +173,6 @@ function sfxClipOverlap(filenameWithPath, voices) {
 		}
 	}
 
-	function setRandomRate() {
-		this.setPlaybackRate(getRandomRate());
-	}
-
 	this.updateVolume = function() {
 		if (randVolume) {
 			for (var i in soundFile) {
@@ -233,6 +231,100 @@ function sfxClipOverlap(filenameWithPath, voices) {
 	}
 }
 
+function sfxContainer(clipList) {
+	var soundFile = [];
+	currentClip = 0;
+
+	for (var i in clipList) {
+		soundFile[i] = clipList[i];
+		soundFile[i].pause();
+	}
+
+	var clipVolume = 1;
+
+	this.play = function() {
+		soundFile[currentClip].play();
+	}
+
+	this.stop = function() {
+		for (var i in trackList) {
+			soundFile[i].stop();
+		}
+	}
+
+	this.resume = function() {
+		soundFile[currentClip].resume();
+	}
+
+	this.pause = function() {
+		for (var i in trackList) {
+			soundFile[i].pause();
+		}
+	}
+
+	this.loadClip = function(newClip, slot) {
+		soundFile[slot] = newClip;
+	}
+
+	this.updateVolume = function() {
+		for (var i in trackList) {
+			soundFile[i].updateVolume();
+		}
+	}
+
+	this.setVolume = function(newVolume) {
+		soundFile[currentClip].setVolume(newVolume);
+	}
+
+	this.getVolume = function() {
+		return soundFile[currentClip].getVolume();
+	}
+
+	this.setCurrentClip = function(clipNumber) {
+		currentClip = clipNumber;
+	}
+
+	this.getCurrentClip = function() {
+		 return currentClip;
+	}
+
+	this.getListLength = function() {
+		 return soundFile.length;
+	}
+
+	this.setTime = function(time) {
+		soundFile[currentClip].setTime(time);
+	}
+
+	this.getTime = function() {
+		return soundFile[currentClip].getTime();
+	}
+
+	this.setPlaybackRate = function(rate) {
+		soundFile[currentClip].setPlaybackRate(rate);
+	}
+
+	this.getPlaybackRate = function() {
+		return soundFile[currentClip].getPlaybackRate();
+	}
+	
+	this.setClipName = function(name) {
+		soundFile[currentClip].setClipName(name);
+	}
+
+	this.getClipName = function() {
+		return soundFile[currentClip].getClipName();
+	}
+	
+	this.getDuration = function() {
+		return soundFile[currentClip].getDuration();
+	}
+
+	this.getPaused = function() {
+		return soundFile[currentClip].getPaused();
+	}
+}
+
 function sfxContainerRandom(clipList) {
 	var soundFile = [];
 	currentClip = 0;
@@ -265,8 +357,8 @@ function sfxContainerRandom(clipList) {
 		}
 	}
 
-	function setRandomRate() {
-		soundFile[currentClip].setRandomRate();
+	this.loadClip = function(newClip, slot) {
+		soundFile[slot] = newClip;
 	}
 
 	this.updateVolume = function() {
@@ -281,6 +373,18 @@ function sfxContainerRandom(clipList) {
 
 	this.getVolume = function() {
 		return soundFile[currentClip].getVolume();
+	}
+
+	this.setCurrentClip = function(clipNumber) {
+		currentClip = clipNumber;
+	}
+
+	this.getCurrentClip = function() {
+		 return currentClip;
+	}
+
+	this.getListLength = function() {
+		 return soundFile.length;
 	}
 
 	this.setTime = function(time) {
@@ -318,7 +422,6 @@ function sfxContainerRandom(clipList) {
 
 
 //Music Classes
-
 var musicVolume = 1;
 MusicVolumeManager = new musicVolumeManager();
 function musicVolumeManager() {
@@ -337,8 +440,110 @@ function musicVolumeManager() {
 		return musicVolume;
 	}
 
+	this.updateVolume = function() {
+		for(var i in trackList) {
+			trackList[i].updateVolume();
+		}
+	}
+
 	this.addToList = function(musicTrack) {
 		trackList.push(musicTrack);
+	}
+}
+
+function musicTrackStinger(filenameWithPath) {
+	var musicFile = new Audio(filenameWithPath+audioFormat);
+	var duration = musicFile.duration;
+	var trackName = filenameWithPath;
+	var trackVolume = 1;
+	var mixVolume = 1;
+
+	musicFile.pause();
+	musicFile.loop = false;
+	MusicVolumeManager.addToList(this);
+
+	this.play = function() {
+		musicFile.currentTime = 0;
+		this.updateVolume();
+		musicFile.play();
+	}
+
+	this.stop = function() {
+		musicFile.pause();
+		musicFile.currentTime = 0;
+	}
+
+	this.resume = function() {
+		musicFile.play();
+	}
+
+	this.pause = function() {
+		musicFile.pause();
+	}
+
+	this.playFrom = function(time) {
+		musicFile.currentTime = time;
+		musicFile.play();
+	}
+
+	this.startOrStop = function() {
+		if(musicFile.paused) {
+			this.resume();
+		} else {
+			this.pause();
+		}
+	}
+
+	this.updateVolume = function() {
+		musicFile.volume = Math.pow(mixVolume * musicVolume  * trackVolume * !isMuted, 2);
+	}
+
+	this.setVolume = function(newVolume) {
+		if(newVolume > 1) {newVolume = 1;}
+		if(newVolume < 0) {newVolume = 0;}
+		musicFile.volume = Math.pow(mixVolume * newVolume * musicVolume * !isMuted, 2);
+		trackVolume = newVolume;
+		if (trackVolume <= 0) { this.stop();}
+	}
+
+	this.getVolume = function() {
+		return trackVolume * !isMuted;
+	}
+
+	this.setMixVolume = function(volume) {
+		mixVolume = volume;
+	}
+
+	this.setTime = function(time) {
+		musicFile.currentTime = time;
+	}
+
+	this.getTime = function() {
+		return musicFile.currentTime;
+	}
+
+	this.setPlaybackRate = function(rate) {
+		musicFile.playbackRate = rate;
+	}
+
+	this.getPlaybackRate = function() {
+		return musicFile.playbackRate;
+	}
+	
+	this.setTrackName = function(name) {
+		trackName = name;
+	}
+
+	this.getTrackName = function() {
+		return trackName;
+	}
+	
+	this.getDuration = function() {
+		return duration;
+	}
+
+	this.getPaused = function() {
+		return musicFile.paused;
 	}
 }
 
@@ -556,102 +761,6 @@ function musicTrackLoopingWTail(filenameWithPath, playLength) {
 	}
 }
 
-function musicTrackStinger(filenameWithPath) {
-	var musicFile = new Audio(filenameWithPath+audioFormat);
-	var duration = musicFile.duration;
-	var trackName = filenameWithPath;
-	var trackVolume = 1;
-	var mixVolume = 1;
-
-	musicFile.pause();
-	musicFile.loop = false;
-	MusicVolumeManager.addToList(this);
-
-	this.play = function() {
-		musicFile.currentTime = 0;
-		this.updateVolume();
-		musicFile.play();
-	}
-
-	this.stop = function() {
-		musicFile.pause();
-		musicFile.currentTime = 0;
-	}
-
-	this.resume = function() {
-		musicFile.play();
-	}
-
-	this.pause = function() {
-		musicFile.pause();
-	}
-
-	this.playFrom = function(time) {
-		musicFile.currentTime = time;
-		musicFile.play();
-	}
-
-	this.startOrStop = function() {
-		if(musicFile.paused) {
-			this.resume();
-		} else {
-			this.pause();
-		}
-	}
-
-	this.updateVolume = function() {
-		musicFile.volume = Math.pow(mixVolume * musicVolume  * trackVolume * !isMuted, 2);
-	}
-
-	this.setVolume = function(newVolume) {
-		if(newVolume > 1) {newVolume = 1;}
-		if(newVolume < 0) {newVolume = 0;}
-		musicFile.volume = Math.pow(mixVolume * newVolume * musicVolume * !isMuted, 2);
-		trackVolume = newVolume;
-		if (trackVolume <= 0) { this.stop();}
-	}
-
-	this.getVolume = function() {
-		return trackVolume * !isMuted;
-	}
-
-	this.setMixVolume = function(volume) {
-		mixVolume = volume;
-	}
-
-	this.setTime = function(time) {
-		musicFile.currentTime = time;
-	}
-
-	this.getTime = function() {
-		return musicFile.currentTime;
-	}
-
-	this.setPlaybackRate = function(rate) {
-		musicFile.playbackRate = rate;
-	}
-
-	this.getPlaybackRate = function() {
-		return musicFile.playbackRate;
-	}
-	
-	this.setTrackName = function(name) {
-		trackName = name;
-	}
-
-	this.getTrackName = function() {
-		return trackName;
-	}
-	
-	this.getDuration = function() {
-		return duration;
-	}
-
-	this.getPaused = function() {
-		return musicFile.paused;
-	}
-}
-
 function musicContainer(trackList) {
 	var musicTrack = [];
 	var currentTrack = 0;
@@ -691,8 +800,8 @@ function musicContainer(trackList) {
 		musicTrack[currentTrack].startOrStop();
 	}
 
-	this.loadTrack = function(newTrack, slot) { //need
-		var timeNow = musicTrack.getTime();
+	this.loadTrack = function(newTrack, slot) {
+		var timeNow = musicTrack[currentTrack].getTime();
 		if(!musicTrack[slot].getPaused()) {
 			musicTrack[slot].pause();
 			musicTrack[slot].setTime(0);
@@ -712,6 +821,15 @@ function musicContainer(trackList) {
 		}
 	}
 
+	this.setVolume = function(newVolume) {
+		trackVolume = newVolume;
+		musicTrack[currentTrack].setVolume(newVolume);
+	}
+
+	this.getVolume = function() {
+		return musicTrack[currentTrack].getVolume();
+	}
+
 	this.setCurrentTrack = function(trackNumber) {
 		currentTrack = trackNumber;
 	}
@@ -722,15 +840,6 @@ function musicContainer(trackList) {
 
 	this.getListLength = function() {
 		 return musicTrack.length;
-	}
-
-	this.setVolume = function(newVolume) {
-		trackVolume = newVolume;
-		musicTrack[currentTrack].setVolume(newVolume);
-	}
-
-	this.getVolume = function() {
-		return musicTrack[currentTrack].getVolume();
 	}
 
 	this.setTime = function(time) {
@@ -805,8 +914,8 @@ function musicContainerCrossfade(trackList) {
 		musicTrack[currentTrack].startOrStop();
 	}
 
-	this.loadTrack = function(newTrack, slot) { //need
-		var timeNow = musicTrack.getTime();
+	this.loadTrack = function(newTrack, slot) {
+		var timeNow = musicTrack[currentTrack].getTime();
 		if(!musicTrack[slot].getPaused()) {
 			musicTrack[slot].pause();
 			musicTrack[slot].setTime(0);
@@ -824,8 +933,8 @@ function musicContainerCrossfade(trackList) {
 		var timeNow = musicTrack[currentTrack].getTime();
 		if(currentTrack != slot && !musicTrack[currentTrack].getPaused()) {
 			musicTrack[slot].playFrom(timeNow);
-			AudioEventManager.addFadeEvent(musicTrack[currentTrack], fadeTime, 0);
-			AudioEventManager.addFadeEvent(musicTrack[slot], fadeTime, trackVolume);
+			AudioEventManager.addCrossfadeEvent(musicTrack[currentTrack], fadeTime, 0);
+			AudioEventManager.addCrossfadeEvent(musicTrack[slot], fadeTime, trackVolume);
 			currentTrack = slot;
 		} else if (currentTrack != slot) {
 			musicTrack[slot].setTime(timeNow);
@@ -841,6 +950,15 @@ function musicContainerCrossfade(trackList) {
 		}
 	}
 
+	this.setVolume = function(newVolume) {
+		trackVolume = newVolume;
+		musicTrack[currentTrack].setVolume(newVolume);
+	}
+
+	this.getVolume = function() {
+		return musicTrack[currentTrack].getVolume();
+	}
+
 	this.setCurrentTrack = function(trackNumber) {
 		currentTrack = trackNumber;
 	}
@@ -851,15 +969,6 @@ function musicContainerCrossfade(trackList) {
 
 	this.getListLength = function() {
 		 return musicTrack.length;
-	}
-
-	this.setVolume = function(newVolume) {
-		trackVolume = newVolume;
-		musicTrack[currentTrack].setVolume(newVolume);
-	}
-
-	this.getVolume = function() {
-		return musicTrack[currentTrack].getVolume();
 	}
 
 	this.setTime = function(time) {
