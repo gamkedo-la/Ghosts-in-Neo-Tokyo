@@ -10,12 +10,16 @@ var ghast_laugh_crackly_clip = new sfxClipSingle("./audio/ghost_laugh_crackly");
 var ghast_laugh_clip = new sfxClipSingle("./audio/ghost_laugh");
 var ghast_laugh_SFX = new sfxContainerRandom([ghast_laugh_crackly_clip, ghast_laugh_clip]);
 
+var bgm_witch_level = new musicTrackLoopingWTail("./audio/bg_track_witch_level", 112.0); // Complete loop, feel free to reduce
+
 player_jump_SFX.setVolume(0.5);
 player_hit_SFX.setVolume(0.5);
 player_hit_ground_SFX.setVolume(0.5);
 sword_attack_SFX.setVolume(0.5);
 ghast_laugh_crackly_clip.setVolume(0.6);
 ghast_laugh_clip.setVolume(0.6);
+
+bgm_witch_level.setVolume(0.8);
 
 //general audio functions
 function setFormat() {

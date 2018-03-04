@@ -39,6 +39,7 @@ const KEY_TAB = 9; // tile editor
 const KEY_Z = 90; // dash
 const KEY_X = 88; // range attack
 const KEY_M = 77; // testing raycasting
+const KEY_N = 78; // testing background music - TODO: REMOVE ME
 const KEY_P = 80; // pause update
 
 var mouseX = 0;
@@ -220,6 +221,14 @@ function keyPressed(evt) {
 		case KEY_DOWN_ARROW:
 			moveInventory('down');
 			break;
+		case KEY_N: // TEMPORARY: play test Background music - TODO: REMOVE ME
+		{
+			if(bgm_witch_level.getTime() > 0)
+				bgm_witch_level.stop();
+			else
+				bgm_witch_level.play();
+			break;
+		}
 		default:
 			otherKeyPressed=false;
 			break;
