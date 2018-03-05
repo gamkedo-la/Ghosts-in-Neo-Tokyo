@@ -1,39 +1,63 @@
 var inventoryItems = [
   {
-    displayName: 'Karaage 1'
+    displayName: 'Karaage 1',
+    image: null,
+    itemObtained: false
   },
   {
-    displayName: 'Karaage 2'
+    displayName: 'Karaage 2',
+    image: null,
+    itemObtained: false
   },
   {
-    displayName: 'Karaage 3'
+    displayName: 'Karaage 3',
+    image: null,
+    itemObtained: false
   },
   {
-    displayName: 'Karaage 4'
+    displayName: 'Karaage 4',
+    image: null,
+    itemObtained: false
   },
   {
-    displayName: 'Avocado'
+    displayName: 'Avocado',
+    image: sprites.Item.avocado,
+    itemObtained: false
   },
   {
-    displayName: 'Toast'
+    displayName: 'Toast',
+    image: null,
+    itemObtained: false
   },
   {
-    displayName: 'Soil'
+    displayName: 'Soil',
+    image: null,
+    itemObtained: false
   },
   {
-    displayName: 'Plant Seed'
+    displayName: 'Plant Seed',
+    image: null,
+    itemObtained: false
   },
   {
-    displayName: 'Waterbucket'
+    displayName: 'Waterbucket',
+    image: null,
+    itemObtained: false
   },
   {
-    displayName: '[undefined10]'
+    displayName: '[undefined10]',
+    image: null,
+    itemObtained: false
   },
   {
-    displayName: '[undefined11]'
+    displayName: '[undefined11]',
+    image: null,
+    itemObtained: false
   },
   {
-    displayName: '[undefined12]'
+    displayName: '[undefined12]',
+    image: null,
+    itemObtained: false
   },
 ];
 
@@ -67,7 +91,7 @@ function drawInventory() {
   var menuWidth = 240;
   var menuHeight = 140;
 
-  canvasContext.save();
+  //canvasContext.save();
   canvasContext.fillStyle = 'black';
   canvasContext.strokeStyle = 'white';
   canvasContext.strokeRect(menuX, menuY, menuWidth, menuHeight);
@@ -100,4 +124,14 @@ function drawInventory() {
 
   pixelfont_draw("ITEMS", 150, 25);
   pixelfont_draw(inventoryItems[currentInventoryIndex].displayName, 135, 150);
+}
+
+function drawInventoryItems(){
+  for (var i = 0; i < inventoryItems.length; i++) {
+    var itemX = menuX + itemCellMarginX + ((itemCellWidth + itemCellBetweenX) * (i % numCols));
+    var itemY = menuY + itemCellMarginY + ((itemCellHeight + itemCellBetweenY) * Math.floor(i / numCols));
+    if (inventoryItems[i].itemObtained) {
+      drawImage(inventoryItems[i].image, itemX, itemY) 
+    }
+  }
 }

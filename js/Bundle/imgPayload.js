@@ -8,34 +8,15 @@ var imgPayload = [
 		{set: "Concept", name: "background1", fileName: "Concept.png"},
 		{set: "Ghast", name: "move", fileName: "Ghast/Ghast.png"},
 		{set: "Door", name: "idle", fileName: "Doors/world_door.png"},
+		{set: "Item", name: "avocado", fileName: "Items/Avocado.png"},
 		{set: "FloorButton", name: "idle", fileName: "Switches/floor switch_Animation 1.png"},
 		{set: "FloorButton", name: "pressing", fileName: "Switches/floor switch_Animation 1.png"},
 		{set: "FloorButton", name: "pressed", fileName: "Switches/floor switch_Animation 1.png"},
 		
 		{set: "UI", name: "pixelFont", fileName: "UI/pixelFont.png"},
 		{set: "UI", name: "healthBarEmpty", fileName: "UI/Health_Bar_Empty.png"},
-		
-		// {set: "Player", name: "walkSouth", fileName: "MainChar/playerchar_Walk South.png"},
-		// {set: "Player", name: "walkEast", fileName: "MainChar/playerchar_Walk East.png"},
-		// {set: "Player", name: "walkNorth", fileName: "MainChar/playerchar_Walk North.png"},
-		// {set: "Player", name: "walkWest", fileName: "MainChar/playerchar_Walk West.png"},
-		// {set: "Player", name: "anchorAttack", fileName: "MainChar/Anchor Attack.png"},
-
-		// {set: "HeroBoss", name: "Stand", fileName: "HeroBoss/Boss_stand.png"},
-		
-
-		// {set: "Ending", name: "tempEndScreen", fileName: "temp-endscreen.png"},
-		// {set: "OPENING", name: "tempOpening", fileName: "playtest splash.png"},
-		// {set: "OPENING", name: "controls", fileName: "Controls Screen.png"},
-		// {set: "OPENING", name: "cursor", fileName: "cursor.png"},
-		
-		// {set: "Credits", name: "page1", fileName: "Credits/Page1.png"},
-		// {set: "Credits", name: "page2", fileName: "Credits/Page2.png"},
-		// {set: "Credits", name: "page3", fileName: "Credits/Page3.png"},
-		// {set: "Credits", name: "page4", fileName: "Credits/Page4.png"},
 
 		{worldType: TILE_EMPTY, theFile: "Tiles/world_nothingness.png"},
 		{worldType: TILE_WALL, theFile: "Tiles/world_ground.png"},
-		{worldType: TILE_AVACADO, theFile: "Items/Avacado.png"}
-		
+		{worldType: TILE_AVOCADO, theFile: "Tiles/world_avocado.png"}	
 	];

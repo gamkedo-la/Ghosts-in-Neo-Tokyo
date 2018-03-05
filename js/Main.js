@@ -98,6 +98,7 @@ function updateAll() {
 	
 	if(paused){
 		drawInventory();
+		drawInventoryItems();
 		return;
 	}
 

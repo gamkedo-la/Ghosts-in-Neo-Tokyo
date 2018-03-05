@@ -10,7 +10,7 @@ var worldGrid = [];
 
 const TILE_EMPTY = 0;
 const TILE_WALL = 1;
-const TILE_AVACADO = 2;
+const TILE_AVOCADO = 2;
 /*const TILE_PLAYERSTART = 2;*/
 const TILE_SKULL = 3;
 const TILE_KEY_COMMON = 4;
@@ -150,7 +150,7 @@ function canWalk(tileType){
 		case TILE_GROUND:
 		case TILE_POTION:
 		case TILE_SKULL:
-		case TILE_AVACADO:
+		case TILE_AVOCADO:
 			returnValue = 0;
 			break
 		default: 
@@ -206,7 +206,7 @@ function tileTypeHasTransparency(checkTileType) {
 			checkTileType == TILE_PLANTBABY ||
 			checkTileType == TILE_ARMSBRO ||
 			checkTileType == TILE_GOBO ||
-			checkTileType == TILE_AVACADO
+			checkTileType == TILE_AVOCADO
 					);
 }
 

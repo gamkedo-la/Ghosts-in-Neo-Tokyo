@@ -7,7 +7,7 @@ const ITEM_FRICTION = .94;
 const ITEM_WEB_FRICTION = .40;
 
 
-const ITEM_AVACADO = 1;
+const ITEM_AVOCADO = 1;
 const ITEM_POTION = 2;
 const ITEM_KEY_RARE = 3;
 const ITEM_KEY_EPIC = 4;
@@ -49,10 +49,10 @@ function itemClass(posX, posY, speed, type, angle) {
 
     this.sprite = new spriteClass();
 	switch (type){
-		case(ITEM_AVACADO):
-            this.sprite.setSprite(worldPics[TILE_AVACADO], 20, 20, 1, 0, true);
-            var colliderWidth = 10;
-            var colliderHeight = 14;
+		case(ITEM_AVOCADO):
+            this.sprite.setSprite(worldPics[TILE_AVOCADO], 20, 20, 1, 0, true);
+            var colliderWidth = 20;
+            var colliderHeight = 20;
             var colliderOffsetX = 0;
             var colliderOffsetY = 0;
 			break;
@@ -245,8 +245,8 @@ function pickUpItems(collider) {
             item.remove = true;
 
             switch(item.type) {
-                case ITEM_AVACADO:
-                	player.currentHealth--;
+                case ITEM_AVOCADO:
+                	inventoryItems[4].itemObtained = true;
                     // this.updateKeyReadout();
                     //Sound.play('key_pickup', false, 0.1); // 0.1 means 10% volume
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'green');

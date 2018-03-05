@@ -72,11 +72,11 @@ function Room(roomLayout) {
 			for(var eachCol=0;eachCol<WORLD_COLS;eachCol++) {
 				var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 				var anItem = this.layout.layers[0].data[arrayIndex];//layer[0] has the data element in it
-				if(anItem == TILE_AVACADO) {
+				if(anItem == TILE_AVOCADO) {
 					this.layout.layers[0].data[arrayIndex] = TILE_EMPTY;
 					var x = eachCol * WORLD_W + WORLD_W/2;
 					var y = eachRow * WORLD_H + WORLD_H/2;
-					placeItem(x, y, this, ITEM_AVACADO);
+					placeItem(x, y, this, ITEM_AVOCADO);
 				} /*else if(anItem == TILE_KEY_RARE) {
 					this.layout[arrayIndex] = TILE_GROUND;
 					var x = eachCol * WORLD_W + WORLD_W/2;
