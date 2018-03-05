@@ -138,13 +138,10 @@ function keyPressed(evt) {
 			_DEBUG_CHEAT_CONSOLE = !_DEBUG_CHEAT_CONSOLE;
 			break;
 		case KEY_9:
-			copyToClipboard();
 			break;
 		case KEY_PLUS:
-			editTileOnMouseClick();
 			break
 		case KEY_MINUS:
-			editTileReverse();
 			break
 		case KEY_R:
 			resetAllRooms();
@@ -210,16 +207,24 @@ function keyPressed(evt) {
 			paused = !paused;
 			break;
 		case KEY_LEFT_ARROW:
-			moveInventory('left');
+			if (paused) {
+				moveInventory('left');
+			}
 			break;
 		case KEY_UP_ARROW:
-			moveInventory('up');
+			if (paused) {
+				moveInventory('up');
+			}
 			break;
 		case KEY_RIGHT_ARROW:
-			moveInventory('right');
+			if (paused) {
+				moveInventory('right');
+			}
 			break;
 		case KEY_DOWN_ARROW:
-			moveInventory('down');
+			if (paused) {
+				moveInventory('down');
+			}
 			break;
 		case KEY_N: // TEMPORARY: play test Background music - TODO: REMOVE ME
 		{
