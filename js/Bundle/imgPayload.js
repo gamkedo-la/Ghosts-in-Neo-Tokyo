@@ -16,6 +16,7 @@ var imgPayload = [
 		{set: "UI", name: "pixelFont", fileName: "UI/pixelFont.png"},
 		{set: "UI", name: "healthBarEmpty", fileName: "UI/Health_Bar_Empty.png"},
 
+		{worldType: TILE_TRANSPARENT, theFile: "Tiles/world_transparent.png"},
 		{worldType: TILE_EMPTY, theFile: "Tiles/world_nothingness.png"},
 		{worldType: TILE_WALL, theFile: "Tiles/world_ground.png"},
 		{worldType: TILE_AVOCADO, theFile: "Tiles/world_avocado.png"}	

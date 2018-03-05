@@ -171,11 +171,10 @@ function drawAll() {
 	
 	//TODO: remove
 	
-
+	canvasContext.drawImage(sprites.Concept.background1, 0,0);
 	drawWorld();
 	currentRoom.drawTraps();
 	drawItems();
-	//canvasContext.drawImage(sprites.Concept.background1, 0,0);
 	currentRoom.drawDynamic();
 	drawHealth();
 	drawParticles();

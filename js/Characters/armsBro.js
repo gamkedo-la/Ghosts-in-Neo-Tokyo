@@ -6,7 +6,7 @@ function armsBro(x, y) {
 	this.maxHealth = 5; // how many hits till it dies
 	this.currentHealth = this.maxHealth;
 	this.lootModifier = 1.0;
-	this.droppedTile = TILE_SKULL;
+	this.droppedTile = TILE_TRANSPARENT;
 
 	this.tileColliderWidth = 18;
 	this.tileColliderHeight = 4;

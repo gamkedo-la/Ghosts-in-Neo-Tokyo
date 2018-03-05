@@ -73,7 +73,7 @@ function Room(roomLayout) {
 				var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 				var anItem = this.layout.layers[0].data[arrayIndex];//layer[0] has the data element in it
 				if(anItem == TILE_AVOCADO) {
-					this.layout.layers[0].data[arrayIndex] = TILE_EMPTY;
+					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
 					var x = eachCol * WORLD_W + WORLD_W/2;
 					var y = eachRow * WORLD_H + WORLD_H/2;
 					placeItem(x, y, this, ITEM_AVOCADO);
@@ -157,7 +157,8 @@ function Room(roomLayout) {
 	
 
 	this.spawnTraps = function() {
-		var nextTrap = null;
+		return;
+	/*	var nextTrap = null;
 		var x, y;
 
 		for(var eachRow=0;eachRow<WORLD_ROWS;eachRow++) {
@@ -171,7 +172,7 @@ function Room(roomLayout) {
 					this.floorTraps.push(nextTrap);
 				} // end of player start if
 			} // end of col for
-		} // end of row for
+		} // end of row for*/
 	}
 
 	this.spawnMyEnemies = function(){

@@ -8,11 +8,12 @@ const WORLD_MAX_Y = WORLD_ROWS * WORLD_H; // player.die if we fall too far
 //rooms are defined now in rooms.js
 var worldGrid = [];
 
-const TILE_EMPTY = 0;
-const TILE_WALL = 1;
-const TILE_AVOCADO = 2;
-/*const TILE_PLAYERSTART = 2;*/
-const TILE_SKULL = 3;
+const TILE_TRANSPARENT = 0;
+const TILE_EMPTY = 1;
+const TILE_WALL = 2;
+const TILE_AVOCADO = 3;
+/*const TILE_PLAYERSTART = 2;
+const TILE_SKULL = 3;*/
 const TILE_KEY_COMMON = 4;
 const TILE_DOOR_COMMON = 5;
 const TILE_ENEMYSTART = 6;
@@ -89,7 +90,7 @@ const TILE_POTION = 69;
 
 const TILE_DOOR_SWITCH = 70;
 
-const HIGHEST_TILE_NUMBER = 70;
+const HIGHEST_TILE_NUMBER = 3;
 
 var tileArray = [];
 
@@ -162,7 +163,7 @@ function canWalk(tileType){
 	return returnValue;
 }
 function tileTypeHasTransparency(checkTileType) {
-	return (checkTileType == TILE_SKULL ||
+	return (
 			checkTileType == TILE_KEY_COMMON ||
 			checkTileType == TILE_DOOR_COMMON ||
 			checkTileType == TILE_ENEMYSTART ||
