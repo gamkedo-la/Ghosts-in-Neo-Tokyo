@@ -17,12 +17,10 @@ var healthBarFlashing = false;
 var barColorRed = true;
 
 // temp vars for testing NPC text pixelFont animation in drawAll() function
-var npcTextAnimationExample = ["I think the kitchen\nis haunted!","Yikes! These ghosts\nare dangerous!","That's it,\nI'm getting out of here!"];
+var npcTextAnimationExample = ["I think I saw\nsomething!","Oh no, the kitchen\nis haunted!","Yikes! These ghosts\nare dangerous!","That's it, I'm\ngetting out of here!"];
 var npcTextAnimationPage = 0; // multipage NPC dialog with skip/continue button
 var npcTextAnimationStart = 0; // timestamp in ms like performance.now() would return
 var npcTextAnimationEnd = 0; // how long the text should animate for in ms (1000=1sec)
-// strings can be measured in pixels for centering etc
-var npcTextXOffset = -1 * Math.round(pixelfont_measure(npcTextAnimationExample[0])/2) + 10;
 var npcTextYOffset = -36; // pixels above npc
 
 window.onload = function() {
@@ -188,22 +186,20 @@ function drawPlayerChat() { // NPC dialog by the player
 	
 	// pixelart spritesheet text rendering anywhere in the world using img/UI/pixelFont.png woo hoo
 	// can be used for door labels, wall grafitti, street signs, etc.
-	pixelfont_draw("<-- Trap Door",355,128);
-	pixelfont_draw("Do Not\nPress!",108,128);
-	pixelfont_draw("Edge of the world -->",508,167);
+	drawPixelfont("<-- Trap Door",355,128);
+	drawPixelfont("Do Not\nPress!",108,128);
+	drawPixelfont("Edge of the world -->",508,167);
 
-	// test NPC dialog animation every three seconds
-	if (npcTextAnimationEnd + 3000 < performance.now()) {
+	// test NPC dialog animation every six seconds
+	if (npcTextAnimationEnd + 3000 < performance.now()) { // wait for 3 seconds
 		npcTextAnimationStart = performance.now();
-		npcTextAnimationEnd = npcTextAnimationStart + 3000;
+		npcTextAnimationEnd = npcTextAnimationStart + 3000; // animate for 3 seconds
 		npcTextAnimationPage++;
 		if (npcTextAnimationPage > npcTextAnimationExample.length-1) npcTextAnimationPage = 0; // loop?
 	}
 	
-	npcTextXOffset = -1 * Math.round(pixelfont_measure(npcTextAnimationExample[npcTextAnimationPage])/2) + 10;
-
-	npc_text(npcTextAnimationExample[npcTextAnimationPage], // animate this string
-		player.x+npcTextXOffset,player.y+npcTextYOffset, // here
+	npcTextCentered(npcTextAnimationExample[npcTextAnimationPage], // animate this string
+		player.x,player.y+npcTextYOffset, // here
 		npcTextAnimationStart,npcTextAnimationEnd); // over this timespan
 
 }

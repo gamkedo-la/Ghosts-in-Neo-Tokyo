@@ -30,7 +30,7 @@ var pixelfont_dy = [
 // TODO: sprite coords could be calculated using pixelfont_h and w
 // see untested commented-out code at bottom of file, TODO
 
-function pixelfont_measure(str)
+function measurePixelfont(str)
 {
     var w = 0;
     var index = 0;
@@ -55,7 +55,7 @@ function handleEmote(emoteCode) {
     //console.log("handleEmote: "+emoteCode); // FIXME implement!
 }
 
-function pixelfont_draw(str,x,y)
+function drawPixelfont(str,x,y)
 {
     // sanity checks for globals init by the game engine
     if (!window.canvasContext) {
@@ -180,7 +180,7 @@ function stringWithoutEmotes(str) {
 }
 
 // animate the letters of a string if now is within range
-function npc_text(message,x,y,starttime,endtime) {
+function npcText(message,x,y,starttime,endtime) {
 
     if (!message || !message.length) return; // sanity
     x = Math.round(x);
@@ -188,7 +188,7 @@ function npc_text(message,x,y,starttime,endtime) {
     var now = performance.now(); // timestamp
     var count = 0; // how many characters to draw this frame
     var percent = 1; // where are we in the animation
-    var bubbleWidth = pixelfont_measure(message);
+    var bubbleWidth = measurePixelfont(message);
     
     if (now<starttime) {
         count = 0; // draw nothing and wait to start
@@ -228,7 +228,11 @@ function npc_text(message,x,y,starttime,endtime) {
         32); // dh
 
     //console.log("npc_text:["+message+"] pos:"+x+","+y+" "+~~starttime+" to "+~~endtime+" now="+~~now+" percent:"+~~percent*100);
-    pixelfont_draw(message,x,y);
+    drawPixelfont(message,x,y);
+}
+
+function npcTextCentered(message,x,y,starttime,endtime) {
+    npcText(message, x + (-1 * Math.round(measurePixelfont(message)/2)),y,starttime,endtime) + 10; // the +10 is for the bubble padding
 }
 
 
