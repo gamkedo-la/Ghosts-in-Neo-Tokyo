@@ -19,7 +19,7 @@ const KEY_ENTER = 13;
 const KEY_ESCAPE = 27;
 const KEY_SPACE = 32; // attack
 
-const KEY_0 = 48; // ???
+const KEY_0 = 48; // save game
 const KEY_9 = 57; // print room array when in editor mode
 const KEY_PLUS = 187; // +1 to current tile id # when in editor mode
 const KEY_MINUS = 189; // -1 to current tile id # when in editor mode
@@ -137,7 +137,38 @@ function keyPressed(evt) {
 		case KEY_TILDE:
 			_DEBUG_CHEAT_CONSOLE = !_DEBUG_CHEAT_CONSOLE;
 			break;
+		case KEY_0:
+			gameFile = {
+		        playerPositionX: player.x,
+		        playerPositionY: player.y,
+		        cameraOffsetX: cameraOffsetX,
+			    cameraOffsetY: cameraOffsetY,
+			    totalXTranslation: totalXTranslation,
+			    totalYTranslation: totalYTranslation,
+		        playerCurrentHealth: player.currentHealth,
+		        itemsInInventory: [],
+    		};
+
+   			for (var i = 0; i < inventoryItems.length; i++) {
+            	gameFile.itemsInInventory.push(inventoryItems[i].itemObtained);
+        	};
+
+			saveGame(gameFile);
+			break;			
 		case KEY_9:
+			loadGame();
+			player.x = gameFile.playerPositionX;
+			player.y = gameFile.playerPositionY;
+			totalXTranslation = gameFile.totalXTranslation;
+			totalYTranslation = gameFile.totalYTranslation;
+			cameraOffsetX = gameFile.cameraOffsetX;
+			cameraOffsetY = gameFile.cameraOffsetY;
+			player.currentHealth = gameFile.playerCurrentHealth;
+
+			for (var i = 0; i < gameFile.itemsInInventory.length; i++) {
+            	inventoryItems[i].itemObtained = gameFile.itemsInInventory[i];
+        	};
+        	loadLevel();
 			break;
 		case KEY_PLUS:
 			break
