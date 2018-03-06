@@ -131,7 +131,7 @@ function drawInventoryItems() {
     var itemX = menuX + itemCellMarginX + ((itemCellWidth + itemCellBetweenX) * (i % numCols));
     var itemY = menuY + itemCellMarginY + ((itemCellHeight + itemCellBetweenY) * Math.floor(i / numCols));
     if (inventoryItems[i].itemObtained) {
-      colorRect(itemX + itemCellWidth/6, itemY + itemCellHeight/5, 20,20, 'green');
+      colorRect(itemX + itemCellWidth/6, itemY + itemCellHeight/6, 20,20, 'green');
     }
   };
 };

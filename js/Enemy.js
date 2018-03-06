@@ -228,9 +228,9 @@ function enemyClass(newEnemy, states){
 			// TODO: pass attack to this function so we know angle of the HIT, then pass itemAngle to dropItem
 			var dropType = Math.random() * 100;
 			//in order of most common to least common
-			if (dropType <= ITEM_CRYSTAL_DROP_PERCENT)
+			/*if (dropType <= ITEM_CRYSTAL_DROP_PERCENT)
 				dropItem(coord.x, coord.y, ITEM_CRYSTAL,itemAngle);
-			else
+			else*/
 				dropType -= ITEM_CRYSTAL_DROP_PERCENT;
 
 			if (dropType <= ITEM_POTION_DROP_PERCENT)
@@ -238,7 +238,7 @@ function enemyClass(newEnemy, states){
 			else
 				dropType -= ITEM_POTION_DROP_PERCENT;
 
-			if (dropType <= ITEM_KEY_COMMON_DROP_PERCENT)
+			/*if (dropType <= ITEM_KEY_COMMON_DROP_PERCENT)
 				dropItem(coord.x, coord.y, ITEM_KEY_COMMON,itemAngle);
 			else
 				dropType -= ITEM_KEY_COMMON_DROP_PERCENT;
@@ -251,7 +251,7 @@ function enemyClass(newEnemy, states){
 			if (dropType <= ITEM_KEY_EPIC_DROP_PERCENT)
 				dropItem(coord.x, coord.y, ITEM_KEY_EPIC,itemAngle);
 			else
-				dropType -= ITEM_KEY_EPIC_DROP_PERCENT;
+				dropType -= ITEM_KEY_EPIC_DROP_PERCENT;*/
 		} // end of total items to drop
 		// drop tile on death
 		if (newEnemy.droppedTile == undefined) {

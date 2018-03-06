@@ -83,10 +83,10 @@ function loadLevel() {
 	// 	worldGrid = []
 	// }
 
-	
-	if (!noDamageForFloor[currentFloor - 1]) {
+	/*if (!noDamageForFloor[currentFloor - 1]) {
 		removeAllItemsOfTypeInRoom(ITEM_ARTIFACT); 
-	}
+	}*/
+	
 	player.reset("Untitled Player");
 	
 }

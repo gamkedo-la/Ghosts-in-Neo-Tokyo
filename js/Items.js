@@ -6,16 +6,23 @@ const UNTANGLE_TIME_LIMIT = 1.5;
 const ITEM_FRICTION = .94;
 const ITEM_WEB_FRICTION = .40;
 
-
-const ITEM_AVOCADO = 1;
-const ITEM_POTION = 2;
-const ITEM_KEY_RARE = 3;
-const ITEM_KEY_EPIC = 4;
-const ITEM_CRYSTAL = 5;
-const ITEM_HEART_CONTAINER = 6;
+const ITEM_KARAAGE_ONE = 0;
+const ITEM_KARAAGE_TWO = 1;
+const ITEM_KARAAGE_THREE = 2;
+const ITEM_KARAAGE_FOUR = 3;
+const ITEM_AVOCADO = 4;
+const ITEM_TOAST = 5;
+const ITEM_SOIL = 6;
+const ITEM_PLANT_SEED = 7;
+const ITEM_WATERBUCKET = 8;
+const ITEM_UNDEFINED_10 = 9;
+const ITEM_UNDEFINED_11 = 10;
+const ITEM_UNDEFINED_12 = 11;
+const ITEM_POTION = 12;
+/*const ITEM_HEART_CONTAINER = 6;
 const ITEM_ARTIFACT = 7;
 const ITEM_FIREBALL_LVL2 = 8;
-const ITEM_FIREBALL_LVL3 = 9;
+const ITEM_FIREBALL_LVL3 = 9;*/
 
 const ITEM_SUCCESS_CHANCE = .70; // affects item drop rate
 const ITEM_CRYSTAL_DROP_PERCENT = 80; //all item drop rates should add up to 100
@@ -251,29 +258,29 @@ function pickUpItems(collider) {
                     //Sound.play('key_pickup', false, 0.1); // 0.1 means 10% volume
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'green');
 					break;
-				case ITEM_KEY_RARE:
+				/*case ITEM_KEY_RARE:
                 	player.inventory.keysRare++; // one more key
                     // this.updateKeyReadout();
                     //Sound.play('key_pickup', false, 0.1); // 0.1 means 10% volume
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, '#949494');
-					break;
-				case ITEM_KEY_EPIC:
+					break;*/
+				/*case ITEM_KEY_EPIC:
                 	player.inventory.keysEpic++; // one more key
                     // this.updateKeyReadout();
                     //Sound.play('key_pickup', false, 0.1); // 0.1 means 10% volume
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, '#d8b800');
-					break;
+					break;*/
 				case ITEM_POTION:
 					if (player.currentHealth < player.maxHealth)
 						player.currentHealth++;
                     //Sound.play('key_pickup', false, 0.1);
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'red');
 					break;
-				case ITEM_CRYSTAL:
+				/*case ITEM_CRYSTAL:
 					player.enemyHitCount++;
 					//Sound.play('key_pickup', false, 0.1);
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'blue');
-					break;
+					break;*/
 				case ITEM_HEART_CONTAINER:
 					player.maxHealth +=2;
 					player.currentHealth += 2;

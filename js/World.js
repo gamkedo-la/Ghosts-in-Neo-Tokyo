@@ -14,7 +14,7 @@ const TILE_WALL = 2;
 const TILE_AVOCADO = 3;
 /*const TILE_PLAYERSTART = 2;
 const TILE_SKULL = 3;*/
-const TILE_KEY_COMMON = 4;
+//const TILE_KEY_COMMON = 4;
 const TILE_DOOR_COMMON = 5;
 const TILE_ENEMYSTART = 6;
 const TILE_TRAP = 7;
@@ -164,7 +164,6 @@ function canWalk(tileType){
 }
 function tileTypeHasTransparency(checkTileType) {
 	return (
-			checkTileType == TILE_KEY_COMMON ||
 			checkTileType == TILE_DOOR_COMMON ||
 			checkTileType == TILE_ENEMYSTART ||
 			checkTileType == TILE_CHAIN ||
