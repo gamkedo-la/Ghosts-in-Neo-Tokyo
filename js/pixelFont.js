@@ -47,7 +47,7 @@ function pixelfont_measure(str)
         if (str[c]=="\n") w = 0; // new line
         if (max<w) max = w;
     }
-    return w;
+    return max;
 }
 
 // warning, gets called every frame that a npc chat text has an emote code in it

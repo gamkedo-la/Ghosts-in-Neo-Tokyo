@@ -17,11 +17,12 @@ var healthBarFlashing = false;
 var barColorRed = true;
 
 // temp vars for testing NPC text pixelFont animation in drawAll() function
-var npcTextAnimationExample = "Animated NPC text\nfinally $blue works! Cool.";
+var npcTextAnimationExample = ["I think the kitchen\nis haunted!","Yikes! These ghosts\nare dangerous!","That's it,\nI'm getting out of here!"];
+var npcTextAnimationPage = 0; // multipage NPC dialog with skip/continue button
 var npcTextAnimationStart = 0; // timestamp in ms like performance.now() would return
 var npcTextAnimationEnd = 0; // how long the text should animate for in ms (1000=1sec)
 // strings can be measured in pixels for centering etc
-var npcTextXOffset = -1 * Math.round(pixelfont_measure(npcTextAnimationExample)/2) + 10;
+var npcTextXOffset = -1 * Math.round(pixelfont_measure(npcTextAnimationExample[0])/2) + 10;
 var npcTextYOffset = -36; // pixels above npc
 
 window.onload = function() {
@@ -178,23 +179,33 @@ function drawAll() {
 	currentRoom.drawDynamic();
 	drawHealth();
 	drawParticles();
-	
 	drawPanelWithButtons(debugPanel);	
+	drawPlayerChat();
+	canvasContext.restore();
+}
 
-	// pixelart spritesheet text rendering using img/UI/pixelFont.png woo hoo
-	pixelfont_draw("pixelFont.js is finally working! Yay!",75,34)
+function drawPlayerChat() { // NPC dialog by the player
+	
+	// pixelart spritesheet text rendering anywhere in the world using img/UI/pixelFont.png woo hoo
+	// can be used for door labels, wall grafitti, street signs, etc.
+	pixelfont_draw("<-- Trap Door",355,128);
+	pixelfont_draw("Do Not\nPress!",108,128);
+	pixelfont_draw("Edge of the world -->",508,167);
 
 	// test NPC dialog animation every three seconds
 	if (npcTextAnimationEnd + 3000 < performance.now()) {
 		npcTextAnimationStart = performance.now();
 		npcTextAnimationEnd = npcTextAnimationStart + 3000;
+		npcTextAnimationPage++;
+		if (npcTextAnimationPage > npcTextAnimationExample.length-1) npcTextAnimationPage = 0; // loop?
 	}
 	
-	npc_text(npcTextAnimationExample, // animate this string
+	npcTextXOffset = -1 * Math.round(pixelfont_measure(npcTextAnimationExample[npcTextAnimationPage])/2) + 10;
+
+	npc_text(npcTextAnimationExample[npcTextAnimationPage], // animate this string
 		player.x+npcTextXOffset,player.y+npcTextYOffset, // here
 		npcTextAnimationStart,npcTextAnimationEnd); // over this timespan
 
-	canvasContext.restore();
 }
 
 function drawHealth() {
