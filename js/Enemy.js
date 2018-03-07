@@ -25,6 +25,9 @@ function enemyClass(newEnemy, states){
 	this.enemyData = newEnemy;
 	this.enemyData.monsterRef = this ///NOoooooooooooooooo TT_TT
 
+	// random NPC chat
+	this.thingsToSay = ["Booooo!","Muahahahaha!","I'm hungry!","Who you gonna call?","I love fried chicken!","Hey, get back here!","I only want to\ngive you a kiss!","Stay still!","Prepare to die!","A human!","So hungry...","Welcome to Neo Tokyo!","We won't hurt you!","We just want\nto be friends!"];
+
 	this.tileCollider = new boxColliderClass(this.x, this.y,
 		newEnemy.tileColliderWidth, newEnemy.tileColliderHeight,
 		newEnemy.tileColliderOffsetX, newEnemy.tileColliderOffsetY);
@@ -76,6 +79,16 @@ function enemyClass(newEnemy, states){
 	this.setState = function(newState){
 		if(this.isDying){
 			return;
+		}
+
+		if (this.currentState!=newState) { // changed?
+			// report AI state? handy for debugging!
+			// this.chat = "I think I'll\n"+newState+"."; 
+			var randy = Math.random();
+			if (randy>0.9) { // 10% of the time
+				this.chat = this.thingsToSay[Math.floor(Math.random()*this.thingsToSay.length)];
+				this.chatTime = performance.now();
+			}
 		}
 
 		//TODO:forgive myself for the string comparison
@@ -281,8 +294,24 @@ function enemyClass(newEnemy, states){
 	} // end of this.die function
 
 
+	this.drawChat = function() { // animate NPC text (if any)
+
+		if (!this.chat) return; // undefined or blank string
+
+		// only draw for a while
+		if (performance.now() < this.chatTime+4000)	{
+			npcTextCentered(this.chat,this.x,this.y-40,this.chatTime,this.chatTime+1500);
+		}
+		else {
+			this.chat = '';
+		}
+
+	}
+	
 	this.draw = function() {
 		if (!this.isAlive) return;
+
+		this.drawChat();
 
 		this.sprite.draw(this.x, this.y);
 		if(_DEBUG_DRAW_TILE_COLLIDERS) {
