@@ -122,8 +122,8 @@ function drawInventory() {
 
   canvasContext.restore();
 
-  pixelfont_draw("ITEMS", 150, 25);
-  pixelfont_draw(inventoryItems[currentInventoryIndex].displayName, 135, 150);
+  drawPixelfont("ITEMS", 150, 25);
+  drawPixelfont(inventoryItems[currentInventoryIndex].displayName, 135, 150);
 };
 
 function drawInventoryItems() {
@@ -131,7 +131,8 @@ function drawInventoryItems() {
     var itemX = menuX + itemCellMarginX + ((itemCellWidth + itemCellBetweenX) * (i % numCols));
     var itemY = menuY + itemCellMarginY + ((itemCellHeight + itemCellBetweenY) * Math.floor(i / numCols));
     if (inventoryItems[i].itemObtained) {
-      colorRect(itemX + itemCellWidth/6, itemY + itemCellHeight/6, 20,20, 'green');
+      // TODO: select image based on item
+      canvasContext.drawImage(worldPics[TILE_AVOCADO], itemX + 5, itemY + 5);
     }
   };
 };
