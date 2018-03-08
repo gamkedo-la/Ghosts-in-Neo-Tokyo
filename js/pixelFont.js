@@ -55,6 +55,10 @@ function handleEmote(emoteCode) {
     //console.log("handleEmote: "+emoteCode); // FIXME implement!
 }
 
+function drawPixelfontCentered(str,x,y) {
+    drawPixelfont(str,x-Math.round(measurePixelfont(str)/2),y);
+}
+
 function drawPixelfont(str,x,y)
 {
     // sanity checks for globals init by the game engine
@@ -205,6 +209,8 @@ function npcText(message,x,y,starttime,endtime) {
     // now render however many chars we want
     message = message.substring(0, count); // FIXME: we need to SKIP (include all the) $emote chars
     
+    canvasContext.globalAlpha=0.25;
+    
     // draw the word bubble left side
     canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
         0, // sx
@@ -226,6 +232,8 @@ function npcText(message,x,y,starttime,endtime) {
         y-6, // dy
         4, // dw
         32); // dh
+
+    canvasContext.globalAlpha=1.0;
 
     //console.log("npc_text:["+message+"] pos:"+x+","+y+" "+~~starttime+" to "+~~endtime+" now="+~~now+" percent:"+~~percent*100);
     drawPixelfont(message,x,y);

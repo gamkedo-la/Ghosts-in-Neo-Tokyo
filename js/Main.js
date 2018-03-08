@@ -38,7 +38,6 @@ function imageLoadingDoneSoStartGame() {
 }
 
 function runThatGame(){
-	setInterval(updateAll, 1000/FRAMES_PER_SECOND);
 	
 	if (MUSIC_VOLUME>0) // should we loop some music quietly?
 		//Sound.stop("mage_hook_chiptune_menu_melody");
@@ -50,6 +49,9 @@ function runThatGame(){
 	loadLevel();
 	resetAllRooms();
 	createTileArray();
+	
+	// placed last just in case the above takes < 1/60 sec
+	setInterval(updateAll, 1000/FRAMES_PER_SECOND); 
 }
 
 //this should prob be in Room.js
@@ -172,6 +174,15 @@ function drawAll() {
 	drawPanelWithButtons(debugPanel);	
 	drawPlayerChat();
 	canvasContext.restore();
+	drawHeader();
+}
+
+function drawHeader() {	// fun little gui header logo bar
+	canvasContext.drawImage(sprites.UI.logoKanji, Math.round(canvas.width/2)-34,-2);
+	canvasContext.globalAlpha=0.5;
+	drawPixelfontCentered("Ghosts in",Math.round(canvas.width/2),1); 
+	drawPixelfontCentered("Neo Tokyo",Math.round(canvas.width/2),12); 
+	canvasContext.globalAlpha=1.0;
 }
 
 function drawPlayerChat() { // NPC dialog by the player
@@ -198,8 +209,8 @@ function drawPlayerChat() { // NPC dialog by the player
 
 function drawHealth() {
 	var healthBarFlashTimer = 0;
-	var posX = 10;
-	var posY = canvas.height - posX;
+	var posX = 18;
+	var posY = canvas.height - 7;
 	var cornerX = posX - cameraOffsetX;
 	var cornerY = posY - cameraOffsetY;
     var playerMaxHealth = player.maxHealth;
@@ -216,14 +227,20 @@ function drawHealth() {
 				barColorRed = true;
 			}
 		}
-    canvasContext.drawImage(sprites.UI.healthBarEmpty, cornerX,cornerY);
+	
+	canvasContext.globalAlpha=0.333;
+	canvasContext.drawImage(sprites.UI.healthBarEmpty, cornerX,cornerY);
     if (barColorRed) {
     	barColor = 'red';
     } else {
     	barColor = 'white';
     }
     colorRect(cornerX,cornerY,healthBarWidth,
-    		  sprites.UI.healthBarEmpty.height, barColor);
+			  sprites.UI.healthBarEmpty.height, barColor);
+  
+	drawPixelfont("HP:",cornerX-17,cornerY-1); 
+	canvasContext.globalAlpha=1.0;
+
 }
 
 function raycastingForPlayer() {
