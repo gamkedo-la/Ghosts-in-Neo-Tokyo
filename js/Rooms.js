@@ -337,6 +337,7 @@ function restoreRoomDataBackup() {
 	resetAllRooms();
 	console.log("room reset");
 }
+
 function initRoomData(){
 	for (var c = 0; c<roomCols; c++) {
 		for ( var r =0; r<roomRows; r++) {

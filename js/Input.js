@@ -138,32 +138,13 @@ function keyPressed(evt) {
 			_DEBUG_CHEAT_CONSOLE = !_DEBUG_CHEAT_CONSOLE;
 			break;
 		case KEY_0:
-			gameFile = {
-		        playerPositionX: player.x,
-		        playerPositionY: player.y,
-		        cameraOffsetX: cameraOffsetX,
-			    cameraOffsetY: cameraOffsetY,
-		        playerCurrentHealth: player.currentHealth,
-		        itemsInInventory: [],
-    		};
-
-   			for (var i = 0; i < inventoryItems.length; i++) {
-            	gameFile.itemsInInventory.push(inventoryItems[i].itemObtained);
-        	};
-
+			updateGameFile();
 			saveGame(gameFile);
 			break;			
 		case KEY_9:
 			loadGame();
-			player.x = gameFile.playerPositionX;
-			player.y = gameFile.playerPositionY;
-			cameraOffsetX = gameFile.cameraOffsetX;
-			cameraOffsetY = gameFile.cameraOffsetY;
-			player.currentHealth = gameFile.playerCurrentHealth;
-
-			for (var i = 0; i < gameFile.itemsInInventory.length; i++) {
-            	inventoryItems[i].itemObtained = gameFile.itemsInInventory[i];
-        	};
+			updateStateWithGameFile();
+			restoreRoomDataBackup();
         	loadLevel();
 			break;
 		case KEY_PLUS:

@@ -19,6 +19,34 @@ function loadGame() {
     console.log("gameFile loaded")
 };
 
+function updateGameFile() {
+    gameFile = {
+        playerPositionX: player.x,
+        playerPositionY: player.y,
+        cameraOffsetX: cameraOffsetX,
+        cameraOffsetY: cameraOffsetY,
+        playerCurrentHealth: player.currentHealth,
+        itemsInInventory: [],
+    };
+
+    for (var i = 0; i < inventoryItems.length; i++) {
+        gameFile.itemsInInventory.push(inventoryItems[i].itemObtained);
+    };
+}
+
+function updateStateWithGameFile() {
+    player.x = gameFile.playerPositionX;
+    player.y = gameFile.playerPositionY;
+    cameraOffsetX = gameFile.cameraOffsetX;
+    cameraOffsetY = gameFile.cameraOffsetY;
+    player.currentHealth = gameFile.playerCurrentHealth;
+
+    for (var i = 0; i < gameFile.itemsInInventory.length; i++) {
+        inventoryItems[i].itemObtained = gameFile.itemsInInventory[i];
+    };
+}
+
+
 /*var state = load();
 state.score += 10;
 save(state);
