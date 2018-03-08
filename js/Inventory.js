@@ -76,6 +76,10 @@ var itemCellMarginY = 15;
 var itemCellBetweenX = 25;
 var itemCellBetweenY = 10;
 
+function imageLoadingDoneSoAssignInventoryImages() {
+  inventoryItems[ITEM_AVOCADO].image = worldPics[TILE_AVOCADO];
+}
+
 function moveInventory(keyName) {
   if (keyName === 'right') {
     currentInventoryIndex++;
@@ -131,8 +135,8 @@ function drawInventoryItems() {
     var itemX = menuX + itemCellMarginX + ((itemCellWidth + itemCellBetweenX) * (i % numCols));
     var itemY = menuY + itemCellMarginY + ((itemCellHeight + itemCellBetweenY) * Math.floor(i / numCols));
     if (inventoryItems[i].itemObtained) {
-      // TODO: select image based on item
-      canvasContext.drawImage(worldPics[TILE_AVOCADO], itemX + 5, itemY + 5);
+      image = inventoryItems[i].image;
+      canvasContext.drawImage(image, itemX + 5, itemY + 5);
     }
   };
 };

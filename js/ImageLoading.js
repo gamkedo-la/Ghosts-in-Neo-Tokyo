@@ -8,6 +8,7 @@ function countLoadedImagesAndLaunchIfReady() {
 	//console.log(picsToLoad);
 	if(picsToLoad == 0) {
 		imageLoadingDoneSoStartGame();
+		imageLoadingDoneSoAssignInventoryImages();
 	}
 }
 
