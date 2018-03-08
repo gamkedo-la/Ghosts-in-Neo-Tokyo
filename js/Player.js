@@ -496,6 +496,19 @@ function playerClass() {
 			console.log("Player fell out of the world. this.y="+this.y);
 			this.die(); // FIXME: buggy routine
 		}
+		
+		//Do not go above the world
+		if (this.y < 0) {
+			this.y = 0;
+		}
+		
+		//Do not allow the player to pass beyond left or right edges of the world
+		//If this is activated, the player experiences an "invisible wall"
+		if (this.x > (WORLD_W * WORLD_COLS) - hitboxWidth) {
+			this.x = (WORLD_W * WORLD_COLS) - hitboxWidth;
+		} else if (this.x < 0) {
+			this.x = 0;
+		}
 
 
 		isMoving = false;
