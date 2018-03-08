@@ -13,10 +13,10 @@ function floorButton(x, y) {
 	this.tileColliderOffsetX = 2;
 	this.tileColliderOffsetY = 11;
 
-	this.hitboxWidth = 18;
-	this.hitboxHeight = 14;
-	this.hitboxOffsetX = 2;
-	this.hitboxOffsetY = 6;
+	this.hitboxWidth = 17;
+	this.hitboxHeight = 9;
+	this.hitboxOffsetX = 0;
+	this.hitboxOffsetY = 10;
 
 	this.spriteSheet = sprites.FloorButton.idle;
 	this.spriteWidth = 32;

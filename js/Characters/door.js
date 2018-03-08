@@ -13,10 +13,10 @@ function door(x, y) {
 	this.tileColliderOffsetX = 2;
 	this.tileColliderOffsetY = 11;
 
-	this.hitboxWidth = 18;
-	this.hitboxHeight = 14;
-	this.hitboxOffsetX = 2;
-	this.hitboxOffsetY = 6;
+	this.hitboxWidth = 30;
+	this.hitboxHeight = 40;
+	this.hitboxOffsetX = -1;
+	this.hitboxOffsetY = 1;
 
 	this.spriteSheet = sprites.Door.idle;
 	this.spriteWidth = 44;

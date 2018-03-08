@@ -13,10 +13,10 @@ function ghast(x, y) {
 	this.tileColliderOffsetX = 2;
 	this.tileColliderOffsetY = 11;
 
-	this.hitboxWidth = 18;
+	this.hitboxWidth = 14;
 	this.hitboxHeight = 14;
-	this.hitboxOffsetX = 2;
-	this.hitboxOffsetY = 6;
+	this.hitboxOffsetX = -2;
+	this.hitboxOffsetY = 0;
 
 	this.spriteSheet = sprites.Ghast.move;
 	this.spriteWidth = 32;
