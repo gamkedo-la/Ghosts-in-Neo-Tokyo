@@ -143,8 +143,6 @@ function keyPressed(evt) {
 		        playerPositionY: player.y,
 		        cameraOffsetX: cameraOffsetX,
 			    cameraOffsetY: cameraOffsetY,
-			    totalXTranslation: totalXTranslation,
-			    totalYTranslation: totalYTranslation,
 		        playerCurrentHealth: player.currentHealth,
 		        itemsInInventory: [],
     		};
@@ -159,8 +157,6 @@ function keyPressed(evt) {
 			loadGame();
 			player.x = gameFile.playerPositionX;
 			player.y = gameFile.playerPositionY;
-			totalXTranslation = gameFile.totalXTranslation;
-			totalYTranslation = gameFile.totalYTranslation;
 			cameraOffsetX = gameFile.cameraOffsetX;
 			cameraOffsetY = gameFile.cameraOffsetY;
 			player.currentHealth = gameFile.playerCurrentHealth;

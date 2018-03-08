@@ -122,43 +122,35 @@ function moveAll() {
 	//console.log(player.y);
 }
 
-var totalXTranslation = 0;
 const deadXZone = 25;
-var totalYTranslation = 0;
 //const deadYZone = 50;
 
 function drawAll() {
 	
-	if(player.x > ((2 * deadXZone) + totalXTranslation + (canvas.width / 2))) {
-		totalXTranslation += 3;
+	if(player.x > ((2 * deadXZone) - cameraOffsetX + (canvas.width / 2))) {
 		cameraOffsetX -= 3;
-	} else if(player.x > (deadXZone + totalXTranslation + (canvas.width / 2))) {
-		totalXTranslation++;
+	} else if(player.x > (deadXZone - cameraOffsetX + (canvas.width / 2))) {
 		cameraOffsetX -= 1;
-	} else if(player.x < ((-2 * deadXZone) + totalXTranslation + (canvas.width / 2))) {
-		totalXTranslation  -= 3;		
+	} else if(player.x < ((-2 * deadXZone) - cameraOffsetX + (canvas.width / 2))) {		
 		cameraOffsetX += 3;
-	} else if(player.x < (-deadXZone + totalXTranslation + (canvas.width / 2))) {
-		totalXTranslation--;		
+	} else if(player.x < (-deadXZone - cameraOffsetX + (canvas.width / 2))) {	
 		cameraOffsetX += 1;
 	}
 	
-	if (totalXTranslation < 0) {
+	if (cameraOffsetX > 0) {
 		cameraOffsetX = 0;
-	} else if (totalXTranslation > ((WORLD_COLS * WORLD_W) - canvas.width)) {
+	} else if (cameraOffsetX < -((WORLD_COLS * WORLD_W) - canvas.width)) {
 		cameraOffsetX = -((WORLD_COLS * WORLD_W) - canvas.width);
 	}
 	
-	if(player.y > (totalYTranslation + canvas.height - 32)) {
-		totalYTranslation++;
+	if(player.y > (canvas.height - 32 - cameraOffsetY)) {
 		cameraOffsetY -= 1;
-	} else if(player.y < (totalYTranslation + 32)) {
-		totalYTranslation--;
+	} else if(player.y < (32 - cameraOffsetY)) {
 		cameraOffsetY += 1;
 	}
-	if (totalYTranslation < 0) {
+	if (cameraOffsetY > 0) {
 		cameraOffsetY = 0;
-	} else if (totalYTranslation > ((WORLD_ROWS * WORLD_H) - canvas.height)) {
+	} else if (-cameraOffsetY > ((WORLD_ROWS * WORLD_H) - canvas.height)) {
 		cameraOffsetY = -((WORLD_ROWS * WORLD_H) - canvas.height);
 	}
 

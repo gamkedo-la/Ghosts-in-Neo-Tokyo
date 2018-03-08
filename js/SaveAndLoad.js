@@ -5,8 +5,6 @@ var gameFile = {
     playerPositionY: null,
     cameraOffsetX: null,
     cameraOffsetY: null,
-    totalXTranslation: null,
-    totalYTranslation: null,
     playerCurrentHealth: null,
     itemsInInventory: [],
     };

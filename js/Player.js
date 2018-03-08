@@ -199,7 +199,7 @@ function playerClass() {
 			this.vy = 0;
 			playerAtStartingPosition = true;
 			// instantly snap the camera which may be extremely far away from the respawn area
-			cameraOffsetX = cameraOffsetY = totalXTranslation = totalYTranslation = 0; // these globals are from Main.js
+			cameraOffsetX = cameraOffsetY = 0; // these globals are from Main.js
 		}
 
 
