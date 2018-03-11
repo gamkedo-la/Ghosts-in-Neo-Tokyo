@@ -153,7 +153,7 @@ function canWalk(tileType){
 		case TILE_SKULL:
 		case TILE_AVOCADO:
 			returnValue = 0;
-			break
+			break;
 		default: 
     		// Default case
     		returnValue = tileType;
