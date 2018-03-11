@@ -20,5 +20,6 @@ var imgPayload = [
 		{worldType: TILE_TRANSPARENT, theFile: "Tiles/world_transparent.png"},
 		{worldType: TILE_EMPTY, theFile: "Tiles/world_nothingness.png"},
 		{worldType: TILE_WALL, theFile: "Tiles/world_ground.png"},
-		{worldType: TILE_AVOCADO, theFile: "Tiles/world_avocado.png"}	
+		{worldType: TILE_AVOCADO, theFile: "Tiles/world_avocado.png"},
+        {worldType: TILE_DOOR_COMMON, theFile: "Tiles/tile_door_common.png"}
 	];
