@@ -1,0 +1,22 @@
+var dialog = function dialog(){
+	ctrl = {}
+	ctrl.nodes{}
+	ctrl.runNode = function(name){
+
+	}
+	ctrl.loadNodes = function(){
+		for(var i in dialogTranscripts){
+			
+		}
+	}
+	ctrl.continue = function(){
+
+	}
+
+	ctrl.displayText = function (){ //stub for other stuff to override
+		throw "displayText has not be overridden"
+	}
+	ctrl.displayAvatar = function (){ //stub for other stuff to override
+		throw "displayAvatar has not be overridden"
+	}
+}()

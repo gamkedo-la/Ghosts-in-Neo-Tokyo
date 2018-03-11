@@ -1,1 +1,9 @@
-$setAvatar(mainchar) words and such
+if(!conversations){
+	var conversations = []
+}
+conversations.push([
+	'$setAvatar(mainchar)', 
+	'words and such',
+	'more words and things', 
+	'$setAvatar(other)'
+])
