@@ -46,7 +46,7 @@ function setMute(TorF) {
 	MusicVolumeManager.updateVolume();
 }
 
-function getMute() {
+function getMute(TorF) {
 	return isMuted;
 	SFXVolumeManager.updateVolume();
 	MusicVolumeManager.updateVolume();
@@ -102,10 +102,11 @@ function audioEventManager() {
 		}
 	}
 
-	this.addTimerEvent = function(track, callSign = "none") {
+	this.addTimerEvent = function(track, duration, callSign = "none") {
 		var thisTrack = track;
 		var check = checkListFor(TIMER, thisTrack, callSign);
-		var endTime = (thisTrack.getDuration() - thisTrack.getTime()) * 1000 + now;
+		var endTime = (duration * 1000) + now;
+		//var endTime = (thisTrack.getDuration() - thisTrack.getTime()) * 1000 + now;
 
 		if (check == "none") {
 			//console.log("Adding Timer Event for " + track.getTrackName());
@@ -115,10 +116,11 @@ function audioEventManager() {
 		}
 	}
 
-	this.addStopEvent = function(track) {
+	this.addStopEvent = function(track, duration) {
 		var thisTrack = track;
 		var check = checkListFor(STOP, thisTrack);
-		var endTime = (thisTrack.getDuration() - thisTrack.getTime()) * 1000 + now;
+		var endTime = (duration * 1000) + now;
+		//var endTime = (thisTrack.getDuration() - thisTrack.getTime()) * 1000 + now;
 
 		if (check == "none") {
 			//console.log("Adding Stop Event for " + track.getTrackName());
