@@ -9,6 +9,8 @@ var gameFile = {
     itemsInInventory: [],
     };
 
+var saveMenuOpen = false;
+
 function saveGame(state) {
     localStorage.setItem(SAVE_FILE, JSON.stringify(state));
     console.log("gameFile saved");
@@ -46,6 +48,25 @@ function updateStateWithGameFile() {
     };
 }
 
+function drawSaveMenu() {
+    var fileBoxX = 80;
+    var fileBoxY = 17.5;
+    var fileBoxWidth = 235;
+    var fileBoxHeight = 50;
+    var fileBoxSpacing = 5;
+    var headerWidth = 310;
+    var headerHeight = 11;
+    var saveFileAmount = 3;
+    canvasContext.save();
+    colorRect(0, 0, canvas.width,canvas.height, 'black');
+    colorRect(fileBoxSpacing, fileBoxSpacing/2, headerWidth,headerHeight, 'blue');
+    for (var j = 0; j < saveFileAmount; j++) {
+        colorRect(fileBoxX, fileBoxY, fileBoxWidth, fileBoxHeight, 'blue');
+        fileBoxY += fileBoxHeight + fileBoxSpacing;
+    }
+    canvasContext.restore();
+    drawPixelfont("Please select save file", fileBoxSpacing + 5, fileBoxSpacing/2 + 1);
+};
 
 /*var state = load();
 state.score += 10;

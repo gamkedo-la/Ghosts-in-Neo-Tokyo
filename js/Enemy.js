@@ -26,7 +26,7 @@ function enemyClass(newEnemy, states){
 	this.enemyData.monsterRef = this ///NOoooooooooooooooo TT_TT
 
 	// random NPC chat
-	this.thingsToSay = ["Booooo!","Muahahahaha!","I'm hungry!","Who you gonna call?","I love fried chicken!","Hey, get back here!","I only want to\ngive you a kiss!","Stay still!","Prepare to die!","A human!","So hungry...","Welcome to Neo Tokyo!","We won't hurt you!","We just want\nto be friends!"];
+	this.thingsToSay = ["Booooo!","Muahahahaha!","I'm hungry!","Who you gonna call?","I love fried chicken!","Hey, get back here!","I only want to\ngive you a kiss!","Stay still!","Prepare to die!","Welcome...to die!","A human!","So hungry...","Welcome to Neo Tokyo!","We won't hurt you!","We just want\nto be friends!"];
 
 	this.tileCollider = new boxColliderClass(this.x, this.y,
 		newEnemy.tileColliderWidth, newEnemy.tileColliderHeight,

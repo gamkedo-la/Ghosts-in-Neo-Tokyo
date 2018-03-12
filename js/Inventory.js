@@ -124,7 +124,7 @@ function drawInventory() {
     canvasContext.restore();
   }; 
 
-  canvasContext.restore();
+  //canvasContext.restore();
 
   drawPixelfont("ITEMS", 150, 25);
   drawPixelfont(inventoryItems[currentInventoryIndex].displayName, 135, 150);

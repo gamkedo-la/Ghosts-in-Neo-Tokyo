@@ -179,7 +179,10 @@ function keyPressed(evt) {
 			loadLevel(roomCoordToVar);
 			break;
 		case KEY_M:
-			console.log("arrayIndex: " + raycastingForPlayer() + " tileType: " + worldGrid[raycastingForPlayer()]);
+			if (!paused) {
+				saveMenuOpen = !saveMenuOpen;
+			}
+			//console.log("arrayIndex: " + raycastingForPlayer() + " tileType: " + worldGrid[raycastingForPlayer()]);
 			break;
 		case KEY_S:
 			if(!_DEBUG_MODE)
@@ -211,8 +214,10 @@ function keyPressed(evt) {
 			currentFloor--;
 			loadLevel(roomCoordToVar);
 			break;
-		case KEY_P: 
-			paused = !paused;
+		case KEY_P:
+			if (!saveMenuOpen) {
+				paused = !paused;
+			}
 			break;
 		case KEY_LEFT_ARROW:
 			if (paused) {

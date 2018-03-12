@@ -97,9 +97,14 @@ function updateAll() {
 	if (_TEST_AI_PATHFINDING)
 		currentRoom.updatePathfindingData()
 	
-	if(paused){
+	if(paused) {
 		drawInventory();
 		drawInventoryItems();
+		return;
+	}
+
+	if (saveMenuOpen) {
+		drawSaveMenu();
 		return;
 	}
 
