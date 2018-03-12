@@ -227,6 +227,8 @@ function keyPressed(evt) {
 		case KEY_UP_ARROW:
 			if (paused) {
 				moveInventory('up');
+			} else if (saveMenuOpen) {
+				moveSaveMenu('up');
 			}
 			break;
 		case KEY_RIGHT_ARROW:
@@ -237,6 +239,8 @@ function keyPressed(evt) {
 		case KEY_DOWN_ARROW:
 			if (paused) {
 				moveInventory('down');
+			} else if (saveMenuOpen) {
+				moveSaveMenu('down');
 			}
 			break;
 		case KEY_N: // TEMPORARY: play test Background music - TODO: REMOVE ME

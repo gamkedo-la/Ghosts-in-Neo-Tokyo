@@ -169,7 +169,7 @@ function drawAll() {
 	
 	//TODO: remove
 	
-	canvasContext.drawImage(sprites.Concept.background1, 0,0);
+	canvasContext.drawImage(sprites.Background.skyscrapers, 0,20);
 	drawWorld();
 	currentRoom.drawTraps();
 	drawItems();

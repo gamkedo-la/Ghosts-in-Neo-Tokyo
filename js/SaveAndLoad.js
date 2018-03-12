@@ -9,7 +9,10 @@ var gameFile = {
     itemsInInventory: [],
     };
 
+const SAVE_FILE_AMOUNT = 3;
+
 var saveMenuOpen = false;
+var currentFileIndex = 0;
 
 function saveGame(state) {
     localStorage.setItem(SAVE_FILE, JSON.stringify(state));
@@ -56,16 +59,40 @@ function drawSaveMenu() {
     var fileBoxSpacing = 5;
     var headerWidth = 310;
     var headerHeight = 11;
-    var saveFileAmount = 3;
     canvasContext.save();
     colorRect(0, 0, canvas.width,canvas.height, 'black');
     colorRect(fileBoxSpacing, fileBoxSpacing/2, headerWidth,headerHeight, 'blue');
-    for (var j = 0; j < saveFileAmount; j++) {
+    for (var j = 0; j < SAVE_FILE_AMOUNT; j++) {
         colorRect(fileBoxX, fileBoxY, fileBoxWidth, fileBoxHeight, 'blue');
+
+        drawPixelfontCentered("EMPTY FILE", fileBoxX + fileBoxWidth/2 + fileBoxSpacing, 
+                              fileBoxY + fileBoxHeight/2 - fileBoxSpacing/2);
+
         fileBoxY += fileBoxHeight + fileBoxSpacing;
+
+
     }
     canvasContext.restore();
     drawPixelfont("Please select save file", fileBoxSpacing + 5, fileBoxSpacing/2 + 1);
+
+    canvasContext.drawImage(worldPics[TILE_AVOCADO], 30,
+                            32.5 + ((currentFileIndex) * (fileBoxHeight + fileBoxSpacing)));
+};
+
+function moveSaveMenu(keyName) {
+    if (keyName === 'up') {
+        currentFileIndex--;
+    }
+    else if (keyName === 'down') {
+        currentFileIndex++;
+    }
+
+    if (currentFileIndex >= SAVE_FILE_AMOUNT) {
+        currentFileIndex = 0;
+    }
+    else if (currentFileIndex < 0) {
+        currentFileIndex = SAVE_FILE_AMOUNT - 1;
+    }
 };
 
 /*var state = load();
