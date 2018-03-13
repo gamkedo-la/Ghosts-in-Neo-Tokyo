@@ -211,7 +211,7 @@ function playerClass() {
 			sprite.setSprite(sprites.Player.stand, 32, 32, 1, 0, true);
 			playerAtStartingPosition = false;
 		}
-		this.updateKeyReadout();
+		/*this.updateKeyReadout();*/
 
 		/*for(var eachRow=0;eachRow<WORLD_ROWS;eachRow++) {
 			for(var eachCol=0;eachCol<WORLD_COLS;eachCol++) {
@@ -226,9 +226,9 @@ function playerClass() {
 		} // end of row for*/
 	} // end of playerReset func
 
-	this.updateKeyReadout = function() {
+	/*this.updateKeyReadout = function() {
 		document.getElementById("debugText").innerHTML = "Keys: " + player.inventory.keysCommon;
-	}
+	}*/
 
 	this.startJump = function(){
 		if(this.motionState == "Grounded" ||this.motionState == "Walking" ){
