@@ -5,12 +5,11 @@
 // an object you can stick in your player or enemy class
 
 // for example
-// player.chat = new npcChatSystem();
-// player.chat.say("Hello World");
+// this.chat = new npcChatSystem();
+// this.chat.say("Hello World");
 
 // run this every frame:
-// player.chat.update();
-// player.chat.draw();
+// this.chat.draw(this.x,this.y);
 
 function npcChatSystem() {
 
@@ -30,7 +29,7 @@ function npcChatSystem() {
         chat = str;
         chatTime = performance.now();
 
-        console.log('npcChatSystem: '+chat);
+        // console.log('npcChatSystem: '+chat);
 
     }
 
