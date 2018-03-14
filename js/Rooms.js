@@ -20,6 +20,7 @@ function Room(roomLayout) {
 	this.originalLayout = JSON.parse(JSON.stringify(roomLayout))
 	this.layout = JSON.parse(JSON.stringify(this.originalLayout))
 	this.enemyList = [];
+	this.objectList = [];
 	this.magic = [];
 	this.itemOnGround = [];
 	this.floorTraps = [];
@@ -29,6 +30,7 @@ function Room(roomLayout) {
 	this.reset = function(){
 		this.layout = JSON.parse(JSON.stringify(this.originalLayout))
 		this.enemyList = [];
+		this.objectList = [];
 		this.itemOnGround = [];
 		this.pathfindingdata = []; // a-star pathfinding grid
 		this.tempPathFindingData = []; //a-star pathfinding grid with dynamic things like the player
@@ -53,11 +55,17 @@ function Room(roomLayout) {
 						if(!objectDictionary[item.gid].entityType){
 							throw "Entity type for object " + item.gid + " not set!!"
 						}
-						var enemyConstructor = enemyDictionary[objectDictionary[item.gid].entityType]
+						const aType = objectDictionary[item.gid].entityType;
+						var enemyConstructor = enemyDictionary[aType];
 						if(!enemyConstructor){
 							throw "Entity constructor for object " + objectDictionary[item.gid].entityType + " not set!!"
 						}
-						this.enemyList.push(new enemyConstructor(item.x, item.y));
+						
+						if((aType == "fButton") || (aType == "Door")) {
+							this.objectList.push(new enemyConstructor(item.x, item.y));
+						} else {
+							this.enemyList.push(new enemyConstructor(item.x, item.y));
+						}
 					} else {
 						throw "could not find object in tileset: " + item.gid
 					}
@@ -222,9 +230,15 @@ function Room(roomLayout) {
 			}
 		} while (enemyWasFound)
 	}
-	this.drawMyEnemies = function(){
+/*	this.drawMyEnemies = function(){//Not used.  Enemies are drawn using this.drawDynamic()
 		for(var i = 0; i<this.enemyList.length; i++){
 			this.enemyList[i].draw();
+		}
+	}*/
+	
+	this.drawMyObjects = function(){
+		for(var i = 0; i<this.objectList.length; i++){
+			this.objectList[i].draw();
 		}
 	}
 

@@ -448,6 +448,8 @@ function playerClass() {
 				return;
 			}
 		}
+		
+		this.isCollidingWithObject();
 
 		choosePlayerAnimation();
 		wasMoving = isMoving;
@@ -631,11 +633,28 @@ function playerClass() {
 				screenShake(5);
 				knockbackAngle = calculateAngleFrom(enemy.hitbox, this.hitbox);
 				knockbackSpeed = INITIAL_KNOCKBACK_SPEED;
-				enemy.setState("recoil")
+				enemy.setState("recoil");
 				hitByEnemy = true;
 			}
 		}
 		return hitByEnemy;
+	}
+	this.isCollidingWithObject = function() {
+		let colliding = false;
+
+		if (!currentRoom) { console.log("ERROR: currentRoom is null."); return false; }
+
+		for (var i = 0; i < currentRoom.objectList.length; i++) {
+			var anObject = currentRoom.objectList[i];
+			if (this.hitbox.isCollidingWith(anObject.hitbox)) {
+				screenShake(5);
+				knockbackAngle = calculateAngleFrom(anObject.hitbox, this.hitbox);
+				knockbackSpeed = INITIAL_KNOCKBACK_SPEED;
+				anObject.setState("recoil")
+				colliding = true;
+			}
+		}
+		return colliding;
 	}
 
 	this.updateColliders = function () {

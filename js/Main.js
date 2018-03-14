@@ -173,6 +173,7 @@ function drawAll() {
 	currentRoom.drawTraps();
 	drawItems();
 	currentRoom.drawDynamic();
+	currentRoom.drawMyObjects();
 	drawHealth();
 	drawParticles();
 	drawPanelWithButtons(debugPanel);	
