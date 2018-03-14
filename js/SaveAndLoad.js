@@ -1,4 +1,4 @@
-const SAVE_FILE = 'save';
+const SAVES = 'saves';
 
 var gameFile = {
     playerPositionX: null,
@@ -10,18 +10,22 @@ var gameFile = {
     };
 
 const SAVE_FILE_AMOUNT = 3;
+var saveFileTextContext = "";
 
 var saveMenuOpen = false;
-var currentFileIndex = 0;
+var gameSaveSlots = [null,null,null];
+var gameSaveSlotsIndex = 0;
+var gameFile1;
+var gameFile2;
+var gameFile3;
 
-function saveGame(state) {
-    localStorage.setItem(SAVE_FILE, JSON.stringify(state));
+function saveGame(saveArray) {
+    localStorage.setItem(SAVES, JSON.stringify(saveArray));
     console.log("gameFile saved");
 };
 
-function loadGame() {
-    return JSON.parse(localStorage.getItem(SAVE_FILE));
-    console.log("gameFile loaded")
+function loadGame(stateFromArray) {
+    return JSON.parse(localStorage.getItem(stateFromArray));
 };
 
 function updateGameFile() {
@@ -39,7 +43,7 @@ function updateGameFile() {
     };
 }
 
-function updateStateWithGameFile() {
+function updateStateWithGameFile(gameFile) {
     player.x = gameFile.playerPositionX;
     player.y = gameFile.playerPositionY;
     cameraOffsetX = gameFile.cameraOffsetX;
@@ -62,7 +66,8 @@ function drawSaveMenu() {
     colorRect(0, 0, canvas.width,canvas.height, 'black');
     colorRect(fileBoxSpacing, fileBoxSpacing/2, headerWidth,headerHeight, 'blue');
     for (var j = 0; j < SAVE_FILE_AMOUNT; j++) {
-        if (j == currentFileIndex) {
+        if (j == gameSaveSlotsIndex) {
+            gameSaveSlotsIndex = j;
             colorRect(fileBoxX, fileBoxY, fileBoxWidth, fileBoxHeight, 'yellow');
         } else {
             colorRect(fileBoxX, fileBoxY, fileBoxWidth, fileBoxHeight, 'blue');
@@ -75,29 +80,38 @@ function drawSaveMenu() {
 
 
     }
-    drawPixelfont("Please select save file", fileBoxSpacing + 5, fileBoxSpacing/2 + 1);
+    drawPixelfont("Please select file to " + saveFileTextContext, fileBoxSpacing + 5, fileBoxSpacing/2 + 1);
 
     canvasContext.drawImage(worldPics[TILE_AVOCADO], 30,
-                            32.5 + ((currentFileIndex) * (fileBoxHeight + fileBoxSpacing)));
+                            32.5 + ((gameSaveSlotsIndex) * (fileBoxHeight + fileBoxSpacing)));
 };
+
+function saveMenuContext(saving, loading) {
+    var savingGame = saving;
+    var loadingGame = loading;
+    if (savingGame) {
+        saveFileTextContext = "save";
+    } else if (loadingGame) {
+        saveFileTextContext = "load";
+    }
+}
 
 function moveSaveMenu(keyName) {
     if (keyName === 'up') {
-        currentFileIndex--;
+        gameSaveSlotsIndex--;
     }
     else if (keyName === 'down') {
-        currentFileIndex++;
+        gameSaveSlotsIndex++;
     }
 
-    if (currentFileIndex >= SAVE_FILE_AMOUNT) {
-        currentFileIndex = 0;
+    if (gameSaveSlotsIndex >= SAVE_FILE_AMOUNT) {
+        gameSaveSlotsIndex = 0;
     }
-    else if (currentFileIndex < 0) {
-        currentFileIndex = SAVE_FILE_AMOUNT - 1;
+    else if (gameSaveSlotsIndex < 0) {
+        gameSaveSlotsIndex = SAVE_FILE_AMOUNT - 1;
     }
 };
 
 /*var state = load();
 state.score += 10;
-save(state);
-*/
+save(state);*/

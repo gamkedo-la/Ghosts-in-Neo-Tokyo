@@ -138,14 +138,43 @@ function keyPressed(evt) {
 			_DEBUG_CHEAT_CONSOLE = !_DEBUG_CHEAT_CONSOLE;
 			break;
 		case KEY_0:
-			updateGameFile();
-			saveGame(gameFile);
+			saveMenuContext(false, true)
+			if (!paused) {
+				saveMenuOpen = !saveMenuOpen;
+			}
+
 			break;			
 		case KEY_9:
-			loadGame();
-			updateStateWithGameFile();
-			restoreRoomDataBackup();
-        	loadLevel();
+			saveMenuContext(true, false);
+			if (!paused) {
+				saveMenuOpen = !saveMenuOpen;
+			}
+			break;
+		case KEY_ENTER:
+			if (saveMenuOpen) {
+				if (saveFileTextContext == "save") {
+					updateGameFile();
+					if (gameSaveSlotsIndex == 0) {
+						gameFile1 = Object.assign({}, gameFile);
+						gameSaveSlots.splice(gameSaveSlotsIndex, 1, gameFile1)
+						saveGame(gameSaveSlots);
+					} else if (gameSaveSlotsIndex == 1) {
+						gameFile2 = Object.assign({}, gameFile);
+						gameSaveSlots.splice(gameSaveSlotsIndex, 1, gameFile2)
+						saveGame(gameSaveSlots);
+					} else if (gameSaveSlotsIndex == 2) {
+						gameFile3 = Object.assign({}, gameFile);
+						gameSaveSlots.splice(gameSaveSlotsIndex, 1, gameFile3)
+						saveGame(gameSaveSlots);
+					}
+					//saveGame(gameSaveSlots[gameSaveSlotsIndex]);
+				} else if (saveFileTextContext == "load") {
+					loadGame(gameSaveSlots[gameSaveSlotsIndex]);
+					updateStateWithGameFile(gameSaveSlots[gameSaveSlotsIndex]);
+					restoreRoomDataBackup();
+        			loadLevel();
+				}
+			}
 			break;
 		case KEY_PLUS:
 			break
@@ -179,9 +208,6 @@ function keyPressed(evt) {
 			loadLevel(roomCoordToVar);
 			break;
 		case KEY_M:
-			if (!paused) {
-				saveMenuOpen = !saveMenuOpen;
-			}
 			//console.log("arrayIndex: " + raycastingForPlayer() + " tileType: " + worldGrid[raycastingForPlayer()]);
 			break;
 		case KEY_S:

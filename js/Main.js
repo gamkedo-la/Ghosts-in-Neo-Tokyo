@@ -50,7 +50,7 @@ function runThatGame(){
 	setInterval(updateAll, 1000/FRAMES_PER_SECOND); 
 
 	// test only - trigger
-	testNPCFooterStartTime = perforance.now();
+	testNPCFooterStartTime = performance.now();
 }
 
 //this should prob be in Room.js
