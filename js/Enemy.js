@@ -90,7 +90,7 @@ function enemyClass(newEnemy, states){
 			var randy = Math.random();
 			if (randy>0.9) { // 10% of the time
 				// trigger a new word bubble animation from npcChatSystem.js
-				this.chat.say(this.thingsToSay[Math.floor(Math.random()*this.thingsToSay.length)]);
+				this.chat.sayBubble(this.thingsToSay[Math.floor(Math.random()*this.thingsToSay.length)]);
 			}
 		}
 
@@ -300,7 +300,7 @@ function enemyClass(newEnemy, states){
 	this.draw = function() {
 		if (!this.isAlive) return;
 
-		this.chat.draw(this.x,this.y);
+		this.chat.drawBubble(this.x,this.y);
 		this.sprite.draw(this.x, this.y);
 
 		if(_DEBUG_DRAW_TILE_COLLIDERS) {

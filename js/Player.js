@@ -14,7 +14,7 @@ var poisonTick = 250;
 var poisonDuration = 500;
 var isPoisoned = false;
 var poisonTime = 0;
-var noDamageForFloor = [false,true,true];
+var noDamageForFloor = [false, true, true];
 
 const FRICTION = 0.80;
 var _WEB_FRICTION = 0.50;
@@ -100,28 +100,31 @@ function playerClass() {
 	var tileColliderOffsetX = -0.5;
 	var tileColliderOffsetY = 10.5;
 	this.tileCollider = new boxColliderClass(this.x, this.y,
-											 tileColliderWidth, tileColliderHeight,
-											 tileColliderOffsetX, tileColliderOffsetY);
+		tileColliderWidth, tileColliderHeight,
+		tileColliderOffsetX, tileColliderOffsetY);
 	var hitboxWidth = 8;
 	var hitboxHeight = 10;
 	var hitboxOffsetX = -0.5;
 	var hitboxOffsetY = 6.5;
 	this.hitbox = new boxColliderClass(this.x, this.y,
-									   hitboxWidth, hitboxHeight,
-								       hitboxOffsetX, hitboxOffsetY);
+		hitboxWidth, hitboxHeight,
+		hitboxOffsetX, hitboxOffsetY);
 
-   var sprite = new spriteClass();
+	var sprite = new spriteClass();
 
-    this.facingDirection = function() {
-    	return isFacing;
-    }
+	// handles word bubble / footer chat
+	this.chat = new npcChatSystem();
 
-	this.setupInput = function(upKey, rightKey, downKey, leftKey, attackKey, dashKey, rangedAttackKey, jumpKey) {
+	this.facingDirection = function () {
+		return isFacing;
+	}
+
+	this.setupInput = function (upKey, rightKey, downKey, leftKey, attackKey, dashKey, rangedAttackKey, jumpKey) {
 		this.controlKeyUp = upKey;
 		this.controlKeyRight = rightKey;
 		this.controlKeyDown = downKey;
 		this.controlKeyLeft = leftKey;
-		
+
 		this.controlKeyUpALT = KEY_W;
 		this.controlKeyRightALT = KEY_D;
 		this.controlKeyDownALT = KEY_S;
@@ -133,15 +136,15 @@ function playerClass() {
 		this.controlKeyRangeAttack = rangedAttackKey;
 	}
 
-	this.die = function() { // called immediately if we die
+	this.die = function () { // called immediately if we die
 		//this.reset();
 		if (this.currentlyDying) return; // debounce multiple frames
 		this.currentlyDying = true;
 		ga('send', {
-		  hitType: 'event',
-		  eventCategory: 'Player',
-		  eventAction: 'Death',
-		  eventLabel: 'Unknown',
+			hitType: 'event',
+			eventCategory: 'Player',
+			eventAction: 'Death',
+			eventLabel: 'Unknown',
 		});
 		//Sound.stop("boss_bgm");
 		//Sound.stop("MageHookThemeSong");
@@ -150,22 +153,22 @@ function playerClass() {
 		sprite.setSprite(sprites.Player.deathAnimation, 32, 32, 16, 8, false);
 		//setTimeout(player.respawn,DEATH_RESPAWN_DELAY_MS); // bug: thrashes "this"
 		this.pendingRespawnTimestamp = performance.now() + DEATH_RESPAWN_DELAY_MS;
-		console.log("pendingRespawnTimestamp="+this.pendingRespawnTimestamp);
+		console.log("pendingRespawnTimestamp=" + this.pendingRespawnTimestamp);
 		isPoisoned = false;
 		this.isInvincible = false;
 		poisonTime = 0;
 	}
 
-	this.respawn = function() { // called after a delay when you die
+	this.respawn = function () { // called after a delay when you die
 		console.log("Death animation complete. Respawning...");
 		resetAllRooms();
 		// TODO: save the high score?
-		this.enemyHitCount = 0; 
+		this.enemyHitCount = 0;
 		this.currentlyDying = false
 		// FIXME: "this" seems to be a problem here, use .apply() or .call()??
 		// reason: function calls during a setTimeout lose the this reference
 		//player.enemyHitCount = 0; 
-		this.enemyHitCount = 0; 
+		this.enemyHitCount = 0;
 		fireballLvl1Upgrade = true;
 		fireballLvl2Upgrade = fireballLvl3Upgrade = false;
 		//player.currentlyDying = false;
@@ -174,13 +177,16 @@ function playerClass() {
 		this.currentHealth = -999; // FIXME: hack to force player respawn back at starting position - is this wrong? can we respawn NOT after dying but for another reason?
 		this.reset("Untitled Player");
 		//Sound.play("MageHookThemeSong",true,MUSIC_VOLUME);
+		this.chat.sayBubble("I just respawned!",sprites.Player.defaultFaceImage);
 	}
 
-	this.reset = function(playerName) {
+	this.reset = function (playerName) {
 		console.log("Player reset: " + playerName);
+
+		this.chat.sayFooter("This is an example of the NPC\ndialogue footer! Lovely!",);
+
 		this.name = playerName;
-		if (this.currentHealth <= 0)
-		{
+		if (this.currentHealth <= 0) {
 			this.inventory.keysCommon = 0;
 			this.inventory.keysRare = 0;
 			this.inventory.keysEpic = 0;
@@ -206,8 +212,7 @@ function playerClass() {
 		this.isFacing = SOUTH; // FIXME possible bug? this.?
 		this.isMoving = false;
 
-		if (playerAtStartingPosition)
-		{
+		if (playerAtStartingPosition) {
 			sprite.setSprite(sprites.Player.stand, 32, 32, 1, 0, true);
 			playerAtStartingPosition = false;
 		}
@@ -230,8 +235,8 @@ function playerClass() {
 		document.getElementById("debugText").innerHTML = "Keys: " + player.inventory.keysCommon;
 	}*/
 
-	this.startJump = function(){
-		if(this.motionState == "Grounded" ||this.motionState == "Walking" ){
+	this.startJump = function () {
+		if (this.motionState == "Grounded" || this.motionState == "Walking") {
 			this.motionState = "Jumping"
 			//this.jumpTime = JUMP_TIME
 			this.vy = JUMP_POWER;
@@ -241,41 +246,40 @@ function playerClass() {
 	}
 
 
-	this.applyGravity = function(target){
+	this.applyGravity = function (target) {
 		this.vy -= GRAVITY;
 		target.y += this.vy;
 
 		return target;
 	}
-    
-    this.wallJumpTime = 0;
-    this.wallJumped = false;
-    
-    
-  this.handleWallJump = function () {
-        if(this.wallJumpTime > 0) {
-            if(this.keyHeld_East || this.keyHeld_West) { // still holding on
-                this.wallJumpTime--; // but losing grip
-            } else { // released the wall
-                this.wallJumpTime = 0;
-            }
-            if(this.keyHeld_Jump && (this.motionState == "Falling" || this.keyHeld_Jump && this.motionState == "Jumping")) { // jumps off wall
-                this.wallJumpTime = 0;
-                this.motionState = "Jumping";
-                this.vy = JUMP_POWER;
-                this.wallJumped = true;
-            }
-        }
-        if(this.motionState == "Grounded" || this.motionState == "Walking") {
-                this.wallJumped = false;
-     }
-}
 
-    
-	this.move = function() {
-		
-		if (this.pendingRespawnTimestamp && this.pendingRespawnTimestamp <= performance.now())
-		{
+	this.wallJumpTime = 0;
+	this.wallJumped = false;
+
+
+	this.handleWallJump = function () {
+		if (this.wallJumpTime > 0) {
+			if (this.keyHeld_East || this.keyHeld_West) { // still holding on
+				this.wallJumpTime--; // but losing grip
+			} else { // released the wall
+				this.wallJumpTime = 0;
+			}
+			if (this.keyHeld_Jump && (this.motionState == "Falling" || this.keyHeld_Jump && this.motionState == "Jumping")) { // jumps off wall
+				this.wallJumpTime = 0;
+				this.motionState = "Jumping";
+				this.vy = JUMP_POWER;
+				this.wallJumped = true;
+			}
+		}
+		if (this.motionState == "Grounded" || this.motionState == "Walking") {
+			this.wallJumped = false;
+		}
+	}
+
+
+	this.move = function () {
+
+		if (this.pendingRespawnTimestamp && this.pendingRespawnTimestamp <= performance.now()) {
 			console.log("Pending respawn timestamp reached!");
 			this.pendingRespawnTimestamp = 0;
 			this.respawn();
@@ -283,10 +287,9 @@ function playerClass() {
 		}
 
 		// don't do anything during the death anim
-		if (this.currentlyDying) 
-		{
+		if (this.currentlyDying) {
 			sprite.update();
-			return; 
+			return;
 		}
 
 		// Movement optimizations based on feedback from Christer
@@ -295,12 +298,12 @@ function playerClass() {
 		if (this.keyHeld_West) {
 			isFacing = WEST;
 			target.x -= _PLAYER_MOVE_SPEED;
-            this.handleWallJump();
+			this.handleWallJump();
 		}
 		if (this.keyHeld_East) {
 			isFacing = EAST;
 			target.x += _PLAYER_MOVE_SPEED;
-            this.handleWallJump();
+			this.handleWallJump();
 		}
 		if (this.keyHeld_North) {
 			isFacing = NORTH;
@@ -312,16 +315,15 @@ function playerClass() {
 		}
 		if (this.keyHeld_Jump) {
 			this.startJump();
-            this.handleWallJump();
+			this.handleWallJump();
 		}
 
 		//apply gravity to modify
 		target = this.applyGravity(target);
 
 		if ((target.x != this.x || target.y != this.y)
-		&& this.motionState != "Grounded"
-		)
-		{
+			&& this.motionState != "Grounded"
+		) {
 			isMoving = true;
 		}
 
@@ -331,21 +333,18 @@ function playerClass() {
 
 		if (isMoving) {
 			// "footsteps" = very faint dust particles while we are walking
-			particleFX(this.x, this.y+10, 2, 'rgba(200,200,200,0.2)', 0.01, 0.02, 1.0, 0.0, 0.2);
+			particleFX(this.x, this.y + 10, 2, 'rgba(200,200,200,0.2)', 0.01, 0.02, 1.0, 0.0, 0.2);
 
-			if (this.keyHeld_Dash)
-			{
+			if (this.keyHeld_Dash) {
 				//console.log("keyHeld_Dash while moving!");
-				if ((performance.now() - this.lastDashTime) > _MS_BETWEEN_DASHES)
-				{
+				if ((performance.now() - this.lastDashTime) > _MS_BETWEEN_DASHES) {
 					console.log("DASH STARTING!");
 					this.lastDashTime = performance.now();
 				}
 			}
 
 			// we may dash for several frames
-			if (this.lastDashTime + DASH_TIMESPAN_MS > performance.now())
-			{
+			if (this.lastDashTime + DASH_TIMESPAN_MS > performance.now()) {
 				//anchorMagic(this.x, this.y, isFacing);
 				//console.log('still dashing!');
 				velX *= _PLAYER_DASH_SPEED_SCALE;
@@ -357,62 +356,61 @@ function playerClass() {
 		var collisionY = this.tileCollider.moveOnAxis(this, this.vy, Y_AXIS);
 		// State maching switch: so that we know when to change from a state to another:
 		// (also avoids confusions dues to switching state all the time)
-		switch(this.motionState){
+		switch (this.motionState) {
 			case "Falling":
-			{
-				if (collisionY) { // We hit the ground
+				{
+					if (collisionY) { // We hit the ground
 
-					player_hit_ground_SFX.play();
+						player_hit_ground_SFX.play();
 
-					if(velX != 0) {
-						this.motionState = "Walking";
-					} else {
-						this.motionState = "Grounded";
+						if (velX != 0) {
+							this.motionState = "Walking";
+						} else {
+							this.motionState = "Grounded";
+						}
+
 					}
-
+					break;
 				}
-				break;
-			}
 			case "Walking":
-			{
-				this.vy = 0.5;
-				if(collisionY) {
-					if(velX == 0) {
-						this.motionState = "Grounded";
+				{
+					this.vy = 0.5;
+					if (collisionY) {
+						if (velX == 0) {
+							this.motionState = "Grounded";
+						}
 					}
+					else {
+						this.motionState = "Falling";
+						this.vy = 0;
+					}
+					break;
 				}
-				else {
-					this.motionState = "Falling";
-					this.vy = 0;
-				}
-				break;
-			}
 			case "Grounded":
-			{
-				this.vy = 0.5;
-				if(collisionY) {
-					if(velX != 0)
-					{
-						this.motionState = "Walking";
+				{
+					this.vy = 0.5;
+					if (collisionY) {
+						if (velX != 0) {
+							this.motionState = "Walking";
+						}
 					}
-				}
-				else {
-					this.motionState = "Falling";
-				}
+					else {
+						this.motionState = "Falling";
+					}
 
-				break;
-			}
-			case "Jumping":
-			{
-				if (this.vy > 0) {
-					this.motionState = "Falling";
+					break;
 				}
-				break;
-			}
+			case "Jumping":
+				{
+					if (this.vy > 0) {
+						this.motionState = "Falling";
+					}
+					break;
+				}
 			default:
-			{
-				console.log("UNKNOWN STATE! " + this.motionState);
-			}
+				{
+					console.log("UNKNOWN STATE! " + this.motionState);
+				}
 		}
 
 		// Useful to debug the state switching.
@@ -424,14 +422,14 @@ function playerClass() {
 
 		isAttacking = this.keyHeld_Attack;
 
-		if(this.lastAnchorAttack + ANCHOR_ATTACK_COOLDOWN < performance.now() && isAttacking && !wasAttacking) // only trigger once
+		if (this.lastAnchorAttack + ANCHOR_ATTACK_COOLDOWN < performance.now() && isAttacking && !wasAttacking) // only trigger once
 		{
 			this.lastAnchorAttack = performance.now()
 			anchorMagic(this.x, this.y, isFacing);
 		}
 
 		isUsingRangedAttack = this.keyHeld_Ranged_Attack;
-		if(this.lastFireAttack + FIRE_ATTACK_COOLDOWN < performance.now() && isUsingRangedAttack && !wasAttacking)	//either melee attack or ranged attack
+		if (this.lastFireAttack + FIRE_ATTACK_COOLDOWN < performance.now() && isUsingRangedAttack && !wasAttacking)	//either melee attack or ranged attack
 		{
 			this.lastFireAttack = performance.now()
 			bulletMagic(this.x, this.y, isFacing);
@@ -491,17 +489,16 @@ function playerClass() {
 		this.tileBehaviorHandler();
 
 		// have we fallen outside the world?
-		if (!this.currentlyDying && this.y > WORLD_MAX_Y)
-		{
-			console.log("Player fell out of the world. this.y="+this.y);
+		if (!this.currentlyDying && this.y > WORLD_MAX_Y) {
+			console.log("Player fell out of the world. this.y=" + this.y);
 			this.die(); // FIXME: buggy routine
 		}
-		
+
 		//Do not go above the world
 		if (this.y < 0) {
 			this.y = 0;
 		}
-		
+
 		//Do not allow the player to pass beyond left or right edges of the world
 		//If this is activated, the player experiences an "invisible wall"
 		if (this.x > (WORLD_W * WORLD_COLS) - hitboxWidth) {
@@ -514,24 +511,23 @@ function playerClass() {
 		isMoving = false;
 	}  // end of this.update()
 
-	this.draw = function() {
+	this.draw = function () {
 		if (drawPlayer) {
 			sprite.draw(this.x, this.y);
 		}
-		if(_DEBUG_DRAW_TILE_COLLIDERS) {
+		if (_DEBUG_DRAW_TILE_COLLIDERS) {
 			this.tileCollider.draw('lime');
 		}
-		if(_DEBUG_DRAW_HITBOX_COLLIDERS) {
+		if (_DEBUG_DRAW_HITBOX_COLLIDERS) {
 			this.hitbox.draw('red');
 		}
 	}
 
 	function choosePlayerAnimation() {
 		if (wasMoving != isMoving ||
-			wasFacing != isFacing)
-		{
+			wasFacing != isFacing) {
 			var playerPic;
-			
+
 			if (isMoving) {
 				if (isFacing == SOUTH) {
 					playerPic = sprites.Player.walkSouth;
@@ -555,10 +551,10 @@ function playerClass() {
 		}
 	}
 
-	this.poisoned = function() {
-		if(isPoisoned) {
+	this.poisoned = function () {
+		if (isPoisoned) {
 			poisonTime++;
-			sprite.tintPlayer(0,90,0,0);
+			sprite.tintPlayer(0, 90, 0, 0);
 			console.log("posionTime");
 			if (poisonTime % poisonTick == 0 && poisonTime > 0) {
 				this.currentHealth--;
@@ -568,7 +564,7 @@ function playerClass() {
 				invincibleTimer = INVINCIBLE_DURATION;
 				player_hit_SFX.play();
 				console.log("Health lost to poison");
-			} else if(poisonTime > poisonDuration) {
+			} else if (poisonTime > poisonDuration) {
 				poisonTime = 0;
 				isPoisoned = false;
 				this.isInvincible = false;
@@ -579,33 +575,33 @@ function playerClass() {
 			if (this.currentHealth <= 0) {
 				this.die();
 			}
-			
+
 		}
 	}
 
 
-	this.canHitEnemy = function(collider) { // used for attacks, returns the enemy
+	this.canHitEnemy = function (collider) { // used for attacks, returns the enemy
 
 		//console.log('Detecting attacking collisions near ' + this.attackhitbox.x+','+this.attackhitbox.y);
 		if (!currentRoom) { console.log("ERROR: currentRoom is null."); return false; }
 
 		var hitAnEnemy = null;
 
-	    for (var i = 0; i < currentRoom.enemyList.length; i++) {
+		for (var i = 0; i < currentRoom.enemyList.length; i++) {
 			var enemy = currentRoom.enemyList[i];
-	        if (collider.isCollidingWith(enemy.hitbox)) {				
+			if (collider.isCollidingWith(enemy.hitbox)) {
 				enemy.recoil = true;
 				hitAnEnemy = enemy; //TODO: make this a list so we can hit more than one enemy
 				for (var i = 0; i < PARTICLES_PER_ATTACK; i++) {
 					var tempParticle = new particleClass(enemy.hitbox.x, enemy.hitbox.y, 'red');
 					particle.push(tempParticle);
 				}
-	        }
-	    }
+			}
+		}
 		return hitAnEnemy;
 	}
-	this.getHit = function getHit(amount){
-		if(this.isInvincible){
+	this.getHit = function getHit(amount) {
+		if (this.isInvincible) {
 			return;
 		}
 		this.isInvincible = true;
@@ -616,45 +612,45 @@ function playerClass() {
 
 		screenShake(5);
 		player_hit_SFX.play();
-		if(this.currentHealth < 1 ){
+		if (this.currentHealth < 1) {
 			this.die()
 		}
 	}
-	this.isCollidingWithEnemy = function() {
+	this.isCollidingWithEnemy = function () {
 		var hitByEnemy = false;
 
 		if (!currentRoom) { console.log("ERROR: currentRoom is null."); return false; }
 
 		for (var i = 0; i < currentRoom.enemyList.length; i++) {
 			var enemy = currentRoom.enemyList[i];
-	        if (this.hitbox.isCollidingWith(enemy.hitbox)) {
+			if (this.hitbox.isCollidingWith(enemy.hitbox)) {
 				if (!this.isInvincible) {
 					this.currentHealth--;
 					noDamageForFloor[currentFloor] = false;
 				}
 				screenShake(5);
 				knockbackAngle = calculateAngleFrom(enemy.hitbox, this.hitbox);
-				knockbackSpeed = INITIAL_KNOCKBACK_SPEED;				
+				knockbackSpeed = INITIAL_KNOCKBACK_SPEED;
 				enemy.setState("recoil")
 				hitByEnemy = true;
-	        }
-	    }
+			}
+		}
 		return hitByEnemy;
 	}
 
-	this.updateColliders = function() {
+	this.updateColliders = function () {
 		this.hitbox.update(this.x, this.y);
 		this.tileCollider.update(this.x, this.y);
 	}
 
-	this.tileBehaviorHandler = function() {
+	this.tileBehaviorHandler = function () {
 		// default behaviors go here
 		playerFriction = FRICTION;
 		sprite.setSpeed(12);
 
 		var types = this.tileCollider.checkTileTypes();
-	    for (var i = 0; i < types.length; i++) {
-		    switch (types[i]) {
+		for (var i = 0; i < types.length; i++) {
+			switch (types[i]) {
 				case TILE_OOZE:
 
 					//Sound.playUnlessAlreadyPlaying('hit_poison',false,0.5);
@@ -697,30 +693,30 @@ function playerClass() {
 						}
 					}
 					break;
-	            default:
-	                break;
-	        } // end of cases
-	    } // end of for tiles loop
+				default:
+					break;
+			} // end of cases
+		} // end of for tiles loop
 	} // end of tile behavior
 
-	this.doorParticles = function(thistileIndex) {
+	this.doorParticles = function (thistileIndex) {
 		// "dust" from a door opening - for more juice / player feedback
 		// a straight line of upward moving fog...
 		var pos = calculateCenterCoordOfTileIndex(thistileIndex);
-		particleFX(pos.x-6, pos.y+12, 3, 'rgba(155,155,155,0.6)', 0.001, -0.1, 3.0, 0.0, 0.1);
-		particleFX(pos.x-3, pos.y+12, 3, 'rgba(155,155,155,0.6)', 0.001, -0.1, 3.0, 0.0, 0.1);
-		particleFX(pos.x, pos.y+12, 3, 'rgba(155,155,155,0.6)', 0.001, -0.1, 3.0, 0.0, 0.1);
-		particleFX(pos.x+3, pos.y+12, 3, 'rgba(155,155,155,0.6)', 0.001, -0.1, 3.0, 0.0, 0.1);
-		particleFX(pos.x+6, pos.y+12, 3, 'rgba(155,155,155,0.6)', 0.001, -0.1, 3.0, 0.0, 0.1);
+		particleFX(pos.x - 6, pos.y + 12, 3, 'rgba(155,155,155,0.6)', 0.001, -0.1, 3.0, 0.0, 0.1);
+		particleFX(pos.x - 3, pos.y + 12, 3, 'rgba(155,155,155,0.6)', 0.001, -0.1, 3.0, 0.0, 0.1);
+		particleFX(pos.x, pos.y + 12, 3, 'rgba(155,155,155,0.6)', 0.001, -0.1, 3.0, 0.0, 0.1);
+		particleFX(pos.x + 3, pos.y + 12, 3, 'rgba(155,155,155,0.6)', 0.001, -0.1, 3.0, 0.0, 0.1);
+		particleFX(pos.x + 6, pos.y + 12, 3, 'rgba(155,155,155,0.6)', 0.001, -0.1, 3.0, 0.0, 0.1);
 	}
 
-	this.collisionHandler = function(tileIndex) {
+	this.collisionHandler = function (tileIndex) {
 		var collisionDetected = true;
 		var tileType = worldGrid[tileIndex];
 
-		switch(tileType) {
+		switch (tileType) {
 			case TILE_BOX:
-				if(this.inventory.keysEpic > 0 && !this.isStunned) {
+				if (this.inventory.keysEpic > 0 && !this.isStunned) {
 					this.inventory.keysEpic--; // one less key
 					//Sound.play("enemy_die");
 					this.updateKeyReadout();
@@ -762,7 +758,7 @@ function playerClass() {
 				}
 				break;
 			case TILE_DOOR_COMMON:
-				if(this.inventory.keysCommon > 0 && !this.isStunned) {
+				if (this.inventory.keysCommon > 0 && !this.isStunned) {
 					//Sound.play("door_open");
 					this.inventory.keysCommon--; // one less key
 					this.updateKeyReadout();
@@ -771,7 +767,7 @@ function playerClass() {
 				}
 				break;
 			case TILE_DOOR_RARE:
-				if(this.inventory.keysRare > 0 && !this.isStunned) {
+				if (this.inventory.keysRare > 0 && !this.isStunned) {
 					//Sound.play("door_open");
 					this.inventory.keysRare--; // one less key
 					this.updateKeyReadout();
@@ -780,7 +776,7 @@ function playerClass() {
 				}
 				break;
 			case TILE_DOOR_EPIC:
-				if(this.inventory.keysEpic > 0 && !this.isStunned) {
+				if (this.inventory.keysEpic > 0 && !this.isStunned) {
 					//Sound.play("door_open");
 					this.inventory.keysEpic--; // one less key
 					this.updateKeyReadout();
@@ -789,12 +785,12 @@ function playerClass() {
 				}
 				break;
 			case TILE_STAIRS_UP:
-				if(!this.isStunned && isFacing==EAST) { // possible other conditions to do before stairs can be used?
+				if (!this.isStunned && isFacing == EAST) { // possible other conditions to do before stairs can be used?
 					currentFloor++;
 				}
 				break;
 			case TILE_STAIRS_DOWN:
-				if(!this.isStunned && isFacing==WEST) { // possible other conditions to do before stairs can be used?
+				if (!this.isStunned && isFacing == WEST) { // possible other conditions to do before stairs can be used?
 					currentFloor--;
 				}
 				break;
@@ -812,12 +808,12 @@ function playerClass() {
 			case TILE_WALL_SOUTH:
 			case TILE_WALL_WEST:
 			case TILE_WALL_EAST:
-                 if((this.motionState == "Jumping" ||
-                    this.motionState == "Falling") && this.wallJumped == false) {
-                        this.wallJumpTime = WALL_JUMP_MAX_TIME;
-                        this.wallJumped = true;
-                } 
-                break;
+				if ((this.motionState == "Jumping" ||
+					this.motionState == "Falling") && this.wallJumped == false) {
+					this.wallJumpTime = WALL_JUMP_MAX_TIME;
+					this.wallJumped = true;
+				}
+				break;
 			case TILE_WALL_CORNER_NE:
 			case TILE_WALL_CORNER_NW:
 			case TILE_WALL_CORNER_SE:

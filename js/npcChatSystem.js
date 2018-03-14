@@ -11,7 +11,7 @@
 // run this every frame:
 // this.chat.draw(this.x,this.y);
 
-function npcChatSystem() {
+function npcChatSystem(defaultFaceImage) {
 
     // public vars you can tweak per object in realtime
     this.timespan = 4000; // bubble disappears after this many MS
@@ -22,30 +22,47 @@ function npcChatSystem() {
     // private vars for internal use
     var chatTime = 0; // timestamp of last message
     var chat = ""; // current full string
+    var wordBubbleMode = true; // if false, use "footer" instead
+    var faceImage = defaultFaceImage; // used in footer
 
     // start a fresh animated word bubble
-    this.say = function (str) {
-
+    this.sayBubble = function (str) {
         chat = str;
+        wordBubbleMode = true;
         chatTime = performance.now();
+    }
 
-        // console.log('npcChatSystem: '+chat);
-
+    this.sayFooter = function (str, newFaceImage) {
+        chat = str;
+        wordBubbleMode = false;
+        chatTime = performance.now();
+        if (newFaceImage)
+            this.faceImage = newFaceImage;
     }
 
     // render a word bubble if required
-    this.draw = function (x, y) {
-
-        if (chat=='') return;
-
+    this.drawBubble = function (x, y) {
+        if (chat == '') return;
+        if (!wordBubbleMode) return;
         // only draw for a while
         if (performance.now() < chatTime + this.timespan) {
-            npcTextCentered(chat, x + this.offsetX, y + this.offsetY, chatTime, chatTime + this.animLength);
+            npcWordBubble(chat, x + this.offsetX, y + this.offsetY, chatTime, chatTime + this.animLength);
         }
         else {
             chat = '';
         }
-
     }
 
+    // render a footer if required
+    this.drawFooter = function (x, y) {
+        if (chat == '') return;
+        if (wordBubbleMode) return;
+        // only draw for a while
+        if (performance.now() < chatTime + this.timespan) {
+            npcTextFooter(chat, this.faceImage, chatTime, chatTime + this.animLength);
+        }
+        else {
+            chat = '';
+        }
+    }
 }

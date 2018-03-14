@@ -16,6 +16,9 @@ var cameraOffsetY = 0;
 var healthBarFlashing = false;
 var barColorRed = true;
 
+// test only: the NPC dialogue fottoer bar at bottom of screen:
+var testNPCFooterStartTime = 0;
+
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
@@ -45,6 +48,9 @@ function runThatGame(){
 	
 	// placed last just in case the above takes < 1/60 sec
 	setInterval(updateAll, 1000/FRAMES_PER_SECOND); 
+
+	// test only - trigger
+	testNPCFooterStartTime = perforance.now();
 }
 
 //this should prob be in Room.js
@@ -173,6 +179,7 @@ function drawAll() {
 	drawWorldLabels();
 	canvasContext.restore();
 	drawHeader();
+	
 }
 
 function drawHeader() {	// fun little gui header logo bar

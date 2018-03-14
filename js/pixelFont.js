@@ -16,22 +16,21 @@ var pixelfont_line_height = 8; // pixels
 // specific to the /img/UI/pixelFont.png image
 var pixelfont_h = 8; // sprite heights
 var pixelfont_w = [ // sprite widths
-4,7,9,7,10,9,4,5,5,6,8,5,6,4,6,7,4,7,7,7,7,7,7,7,7,4,4,6,6,6,8,8,
-7,7,7,7,7,8,7,7,4,7,7,7,9,8,7,7,8,7,7,8,7,7,9,7,8,7,5,6,5,8,6,0,
-7,7,6,7,7,6,7,7,5,6,7,5,9,7,7,7,7,7,7,6,7,7,9,7,7,7,5,5,4,5,9];
+    4, 7, 9, 7, 10, 9, 4, 5, 5, 6, 8, 5, 6, 4, 6, 7, 4, 7, 7, 7, 7, 7, 7, 7, 7, 4, 4, 6, 6, 6, 8, 8,
+    7, 7, 7, 7, 7, 8, 7, 7, 4, 7, 7, 7, 9, 8, 7, 7, 8, 7, 7, 8, 7, 7, 9, 7, 8, 7, 5, 6, 5, 8, 6, 0,
+    7, 7, 6, 7, 7, 6, 7, 7, 5, 6, 7, 5, 9, 7, 7, 7, 7, 7, 7, 6, 7, 7, 9, 7, 7, 7, 5, 5, 4, 5, 9];
 var pixelfont_dx = [ // sprite coordinates for each letter sprite in the font map image
-0,5,13,23,31,42,52,57,63,69,76,85,91,98,103,110,118,123,131,139,147,155,163,171,179,187,192,197,204,211,218,227,
-0,8,16,24,32,40,48,56,64,69,77,85,93,103,112,120,128,137,145,153,162,170,178,188,196,205,213,219,226,232,241,-1,
-0,8,16,23,31,39,46,54,62,68,75,83,89,99,107,115,123,131,139,147,154,162,170,180,188,196,204,210,216,221,227];
+    0, 5, 13, 23, 31, 42, 52, 57, 63, 69, 76, 85, 91, 98, 103, 110, 118, 123, 131, 139, 147, 155, 163, 171, 179, 187, 192, 197, 204, 211, 218, 227,
+    0, 8, 16, 24, 32, 40, 48, 56, 64, 69, 77, 85, 93, 103, 112, 120, 128, 137, 145, 153, 162, 170, 178, 188, 196, 205, 213, 219, 226, 232, 241, -1,
+    0, 8, 16, 23, 31, 39, 46, 54, 62, 68, 75, 83, 89, 99, 107, 115, 123, 131, 139, 147, 154, 162, 170, 180, 188, 196, 204, 210, 216, 221, 227];
 var pixelfont_dy = [
-32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,
-40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,
-48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48];
+    32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32,
+    40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+    48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48];
 // TODO: sprite coords could be calculated using pixelfont_h and w
 // see untested commented-out code at bottom of file, TODO
 
-function measurePixelfont(str)
-{
+function measurePixelfont(str) {
     var w = 0;
     var index = 0;
     var max = 0; // multiple lines count from 0
@@ -39,13 +38,12 @@ function measurePixelfont(str)
     // delete any "$emotes "
     str = stringWithoutEmotes(str);
 
-    for (var c=0,len=str.length; c<len; c++)
-    {
-        index = str.charCodeAt(c)-32-1;
-        if (pixelfont_w[index]==undefined) index = 0;
+    for (var c = 0, len = str.length; c < len; c++) {
+        index = str.charCodeAt(c) - 32 - 1;
+        if (pixelfont_w[index] == undefined) index = 0;
         w += pixelfont_w[index];
-        if (str[c]=="\n") w = 0; // new line
-        if (max<w) max = w;
+        if (str[c] == "\n") w = 0; // new line
+        if (max < w) max = w;
     }
     return max;
 }
@@ -55,12 +53,11 @@ function handleEmote(emoteCode) {
     //console.log("handleEmote: "+emoteCode); // FIXME implement!
 }
 
-function drawPixelfontCentered(str,x,y) {
-    drawPixelfont(str,x-Math.round(measurePixelfont(str)/2),y);
+function drawPixelfontCentered(str, x, y) {
+    drawPixelfont(str, x - Math.round(measurePixelfont(str) / 2), y);
 }
 
-function drawPixelfont(str,x,y)
-{
+function drawPixelfont(str, x, y) {
     // sanity checks for globals init by the game engine
     if (!window.canvasContext) {
         console.log("pixelfont_draw: missing canvasContext");
@@ -83,13 +80,12 @@ function drawPixelfont(str,x,y)
     var skipThisChar = false;
     var emoteCode = "";
 
-    for (var c=0,len=str.length; c<len; c++)
-    {
-        index = str.charCodeAt(c)-32-1; 
+    for (var c = 0, len = str.length; c < len; c++) {
+        index = str.charCodeAt(c) - 32 - 1;
 
         skipThisChar = false;
         if (insideEmote) {
-            if (str[c]==" ") {
+            if (str[c] == " ") {
                 insideEmote = false;
                 skipThisChar = true; // avoid double space from where we delete the $code
                 handleEmote(emoteCode);
@@ -97,8 +93,7 @@ function drawPixelfont(str,x,y)
                 emoteCode = emoteCode + str[c];
             }
         }
-        else if (str[c]=="$")
-        {
+        else if (str[c] == "$") {
             insideEmote = true;
             emoteCode = "";
         }
@@ -106,15 +101,13 @@ function drawPixelfont(str,x,y)
         if (!insideEmote && !skipThisChar) {
 
             // linefeed?
-            if (str[c]=="\n")
-            {
+            if (str[c] == "\n") {
                 //console.log('TXT newline!');
                 pixelfont_x = pixelfont_x_margin;
                 pixelfont_y += pixelfont_line_height;
             }
             // missing character or space
-            else if (pixelfont_w[index]==undefined)
-            {
+            else if (pixelfont_w[index] == undefined) {
                 pixelfont_x += pixelfont_space_width; // space
             }
             else // normal letter
@@ -136,7 +129,7 @@ function drawPixelfont(str,x,y)
                     pixelfont_y,
                     sw,
                     pixelfont_h);
-                    
+
                 // move to next position
                 pixelfont_x = pixelfont_x + sw + pixelfont_overlap_x;
             } // draw
@@ -158,23 +151,21 @@ function stringWithoutEmotes(str) {
     var skipThisChar = false;
     var emoteCode = "";
 
-    for (var c=0; c<str.length; c++) {
+    for (var c = 0; c < str.length; c++) {
 
         skipThisChar = false;
         if (insideEmote) {
-            if ((str[c]==" ")) {
+            if ((str[c] == " ")) {
                 insideEmote = false;
                 skipThisChar = true;
             }
         }
-        else if (str[c]=="$")
-        {
+        else if (str[c] == "$") {
             insideEmote = true;
             emoteCode = "";
         }
-        
-        if (!insideEmote && !skipThisChar) 
-        {
+
+        if (!insideEmote && !skipThisChar) {
             output = output + str[c];
         }
     }
@@ -184,7 +175,7 @@ function stringWithoutEmotes(str) {
 }
 
 // animate the letters of a string if now is within range
-function npcText(message,x,y,starttime,endtime) {
+function npcText(message, x, y, starttime, endtime, faceImage) {
 
     if (!message || !message.length) return; // sanity
     x = Math.round(x);
@@ -193,86 +184,99 @@ function npcText(message,x,y,starttime,endtime) {
     var count = 0; // how many characters to draw this frame
     var percent = 1; // where are we in the animation
     var bubbleWidth = measurePixelfont(message);
-    
-    if (now<starttime) {
+
+    if (now < starttime) {
         count = 0; // draw nothing and wait to start
-    } 
-    else if (now>endtime) {
+    }
+    else if (now > endtime) {
         count = message.length; // done animating, draw it all
     }
-    else if (now>=starttime && now<=endtime) // partway done
+    else if (now >= starttime && now <= endtime) // partway done
     {
-        percent = (now-starttime) / (endtime-starttime);
-        count = Math.floor(message.length * percent); 
+        percent = (now - starttime) / (endtime - starttime);
+        count = Math.floor(message.length * percent);
     }
-    
+
     // now render however many chars we want
     message = message.substring(0, count); // FIXME: we need to SKIP (include all the) $emote chars
-    
-    canvasContext.globalAlpha=0.25;
-    
-    // draw the word bubble left side
-    canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
-        0, // sx
-        0, // sy
-        bubbleWidth, // sw
-        32, // sh
-        x-6, // dx
-        y-6, // dy
-        bubbleWidth, // dw
-        32); // dh
-    
-    // draw the word bubble right side (for liquid layout to fit text)
-    canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
-        252, // sx
-        0, // sy
-        4, // sw
-        32, // sh
-        x-6+bubbleWidth, // dx
-        y-6, // dy
-        4, // dw
-        32); // dh
 
-    canvasContext.globalAlpha=1.0;
+
+    if (faceImage) // if specified, draw on bottom of the screen as a FOOTER
+    {
+        canvasContext.globalAlpha = 0.25;
+        // draw the word bubble left side
+        canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
+            0, // sx
+            0, // sy
+            bubbleWidth, // sw
+            32, // sh
+            x - 6, // dx
+            y - 6, // dy
+            bubbleWidth, // dw
+            32); // dh
+
+        // draw the word bubble right side (for liquid layout to fit text)
+        canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
+            252, // sx
+            0, // sy
+            4, // sw
+            32, // sh
+            x - 6 + bubbleWidth, // dx
+            y - 6, // dy
+            4, // dw
+            32); // dh
+
+        canvasContext.globalAlpha = 1.0;
+
+    }
+    else // word bubble mode
+    {
+        canvasContext.globalAlpha = 0.25;
+        // draw the word bubble left side
+        canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
+            0, // sx
+            0, // sy
+            bubbleWidth, // sw
+            32, // sh
+            x - 6, // dx
+            y - 6, // dy
+            bubbleWidth, // dw
+            32); // dh
+
+        // draw the word bubble right side (for liquid layout to fit text)
+        canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
+            252, // sx
+            0, // sy
+            4, // sw
+            32, // sh
+            x - 6 + bubbleWidth, // dx
+            y - 6, // dy
+            4, // dw
+            32); // dh
+
+        canvasContext.globalAlpha = 1.0;
+    }
 
     //console.log("npc_text:["+message+"] pos:"+x+","+y+" "+~~starttime+" to "+~~endtime+" now="+~~now+" percent:"+~~percent*100);
-    drawPixelfont(message,x,y);
+    drawPixelfont(message, x, y);
 }
 
-function npcTextCentered(message,x,y,starttime,endtime) {
-    npcText(message, x + (-1 * Math.round(measurePixelfont(message)/2)),y,starttime,endtime) + 10; // the +10 is for the bubble padding
+// a word bubble
+function npcWordBubble(message, x, y, starttime, endtime) {
+    npcText(message, x + (-1 * Math.round(measurePixelfont(message) / 2)), y, starttime, endtime);
 }
 
+const NPC_FOOTER_TEXT_X = 128; // pixels from the left of the screen
+const NPC_FOOTER_TEXT_Y = 128; // pixels from the *BOTTOM* of the screen
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// a jrpg subtitles footer bar
+function npcTextFooter(message, faceImage, starttime, endtime) {
+    npcText(message, NPC_FOOTER_TEXT_X, canvas.height - NPC_FOOTER_TEXT_Y, starttime, endtime, faceImage);
+}
 
 
 /*
-    // untested WIP code to calculate pixel locations of sprites based on width - buggy a bit maybe +1?
+    // untested WIP code to calculate pixel locations of sprites based on width - buggy a bit, maybe +1?
     console.log('var pixelfont_dx = [');
     var sum = 0;
     for (var x=0; x<32; x++)
