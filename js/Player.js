@@ -651,6 +651,7 @@ function playerClass() {
 				knockbackAngle = calculateAngleFrom(anObject.hitbox, this.hitbox);
 				knockbackSpeed = INITIAL_KNOCKBACK_SPEED;
 				anObject.setState("recoil")
+				console.log("set object state to recoil!!")
 				colliding = true;
 			}
 		}

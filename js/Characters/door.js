@@ -27,6 +27,7 @@ function door(x, y) {
 	//this.deathSpriteSheet = sprites.Slime.deathAnimation;
 	this.deathSpriteFrames = 10;
 	this.deathSpriteSpeed = 4;
+	this.name = "it's a door yo"
 	var directionTimer = 0;
 	var minSpeed = .25;
 	var maxSpeed = .50;
@@ -64,6 +65,10 @@ function door(x, y) {
 			
 			this.sprite.update();
 			this.tileBehaviorHandler();
+		},
+		recoil: function(){
+			console.log("Door recoil!!!!!!!!!!")
+			loadLevel("room1a1")
 		},
 		dying: function(){
 			if(!this.ticksInState){

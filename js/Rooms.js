@@ -281,6 +281,14 @@ function Room(roomLayout) {
 		}
 	}
 
+	this.moveMyObjects = function(){
+		for(var i = 0; i<this.objectList.length; i++){
+			if(currentRoom.objectList[i].update != null){
+				this.objectList[i].update();
+			}
+		}
+	}
+
 	this.moveMagic = function(){
 		for(var i = 0; i<this.magic.length; i++){
 			this.magic[i].update();
@@ -330,9 +338,10 @@ function Room(roomLayout) {
 };
 
 var room0a1 = TileMaps['example'];
-
+var room1a1 = TileMaps['example2'];
+//iff adding new rooms, remember to add to all rooms
 var allRooms = [
-	room0a1, ];
+	room0a1,room1a1 ];
 var roomCols = 4; //maximum col of rooms
 var roomRows = 6; // maximum row of rooms
 var roomFloors = 4; // maximum floor of rooms
@@ -366,6 +375,7 @@ function initRoomData(){
 		}
 	}
 }
+
 function resetAllRooms(){
 	allRoomsData = {};
 	for (var c = 0; c<roomCols; c++) {

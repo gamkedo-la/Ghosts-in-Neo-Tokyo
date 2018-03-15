@@ -55,8 +55,20 @@ function runThatGame(){
 }
 
 //this should prob be in Room.js
-function loadLevel() {
+function loadLevel(DatRoomYO) {
 	console.log("loading level");
+	if(DatRoomYO){
+		currentRoom = allRoomsData[DatRoomYO];
+		worldGrid = currentRoom.layout.layers[0].data
+		for(var i in currentRoom.layout.tilesets){		
+			if(currentRoom.layout.tilesets[i].tileproperties){
+				for(var j in currentRoom.layout.tilesets[i].tileproperties){
+					objectDictionary[parseInt(currentRoom.layout.tilesets[i].firstgid) + parseInt(j)] = currentRoom.layout.tilesets[i].tileproperties[j]
+				}
+			}
+		}
+		return
+	}
 
 	var nextRoom = roomCoordToVar();
 	if(nextRoom==undefined) {
@@ -121,6 +133,7 @@ function moveAll() {
 	player.poisoned();
     player.handleWallJump();
 	currentRoom.moveMyEnemies();
+	currentRoom.moveMyObjects();
 	currentRoom.moveMagic();
 	updateItems();
 	updateParticles();
