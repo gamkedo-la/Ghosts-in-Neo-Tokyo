@@ -69,10 +69,13 @@ function loadLevel(DatRoomYO) {
 		}		
 		WORLD_COLS = currentRoom.layout.width
 		WORLD_ROWS = currentRoom.layout.height
-		return
+
+		var nextRoom = allRoomsData[DatRoomYO];
+	} else {
+		var nextRoom = roomCoordToVar();	
 	}
 
-	var nextRoom = roomCoordToVar();
+	
 	if(nextRoom==undefined) {
 		console.log("NO SUCH ROOM IS DEFINED, undoing room change");
 		currentRoomCol = lastValidCurrentRoomCol;
