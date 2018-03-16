@@ -38,8 +38,8 @@
                  "type":"",
                  "visible":true,
                  "width":44,
-                 "x":1141,
-                 "y":221
+                 "x":1120,
+                 "y":220
                 }, 
                 {
                  "gid":104,
@@ -180,7 +180,7 @@
  "orientation":"orthogonal",
  "properties":
     {
-
+     "toDoor":"front"
     },
  "renderorder":"right-down",
  "tileheight":20,

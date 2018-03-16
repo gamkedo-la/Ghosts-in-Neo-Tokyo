@@ -1,3 +1,4 @@
+var debugFly = true;
 const startHealth = 6;
 var _PLAYER_MOVE_SPEED = 4;
 var _PLAYER_DASH_SPEED_SCALE = 4.0;
@@ -247,8 +248,10 @@ function playerClass() {
 
 
 	this.applyGravity = function (target) {
-		this.vy -= GRAVITY;
-		target.y += this.vy;
+		if(!debugFly){
+			this.vy -= GRAVITY;
+			target.y += this.vy;
+		}
 
 		return target;
 	}
@@ -307,11 +310,13 @@ function playerClass() {
 		}
 		if (this.keyHeld_North) {
 			isFacing = NORTH;
-			//target.y -= _PLAYER_MOVE_SPEED;
+			if(debugFly)
+				target.y -= _PLAYER_MOVE_SPEED;
 		}
 		if (this.keyHeld_South) {
 			isFacing = SOUTH;
-			//target.y += _PLAYER_MOVE_SPEED;
+			if(debugFly)
+				target.y += _PLAYER_MOVE_SPEED;
 		}
 		if (this.keyHeld_Jump) {
 			this.startJump();
@@ -330,6 +335,11 @@ function playerClass() {
 
 		var xDir = Math.sign(target.x - this.x);
 		var velX = xDir * _PLAYER_MOVE_SPEED * playerFriction;
+
+		if(debugFly){
+			var yDir = Math.sign(target.y - this.y);
+			var velY = yDir * _PLAYER_MOVE_SPEED * playerFriction;
+		}
 
 		if (isMoving) {
 			// "footsteps" = very faint dust particles while we are walking
@@ -353,7 +363,14 @@ function playerClass() {
 		}
 
 		this.tileCollider.moveOnAxis(this, velX, X_AXIS);
-		var collisionY = this.tileCollider.moveOnAxis(this, this.vy, Y_AXIS);
+		
+		if(debugFly){
+			this.tileCollider.moveOnAxis(this, velY, Y_AXIS);
+			//var collisionY = this.tileCollider.moveOnAxis(this, velY, Y_AXIS);	
+		} else {
+			var collisionY = this.tileCollider.moveOnAxis(this, this.vy, Y_AXIS);	
+		}
+		
 		// State maching switch: so that we know when to change from a state to another:
 		// (also avoids confusions dues to switching state all the time)
 		switch (this.motionState) {

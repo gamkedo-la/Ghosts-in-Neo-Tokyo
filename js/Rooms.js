@@ -62,7 +62,9 @@ function Room(roomLayout) {
 						}
 						
 						if((aType == "fButton") || (aType == "Door")) {
-							this.objectList.push(new enemyConstructor(item.x, item.y));
+							var newEnemy = new enemyConstructor(item.x, item.y)
+							newEnemy.mapData = item.properties
+							this.objectList.push(newEnemy);
 						} else {
 							this.enemyList.push(new enemyConstructor(item.x, item.y));
 						}
@@ -282,9 +284,9 @@ function Room(roomLayout) {
 	}
 
 	this.moveMyObjects = function(){
-		for(var i = 0; i<this.objectList.length; i++){
+		for(var i = 0; i<currentRoom.objectList.length; i++){
 			if(currentRoom.objectList[i].update != null){
-				this.objectList[i].update();
+				currentRoom.objectList[i].update();
 			}
 		}
 	}
@@ -337,8 +339,11 @@ function Room(roomLayout) {
 	}
 };
 
+//TODO: get initRoomData to work off TiledMaps[] instead of allRooms[]
 var room0a1 = TileMaps['example'];
 var room1a1 = TileMaps['example2'];
+var room3a1 = TileMaps['Level2'];
+
 //iff adding new rooms, remember to add to all rooms
 var allRooms = [
 	room0a1,room1a1 ];
@@ -374,6 +379,14 @@ function initRoomData(){
 			}
 		}
 	}
+
+	for(var i in TileMaps){
+		if (TileMaps[i] != undefined) {
+			console.log("TileMaps room found");
+			var tempRoom = new Room (TileMaps[i]);					
+			allRoomsData[i] = tempRoom;			
+		}
+	}
 }
 
 function resetAllRooms(){
@@ -389,6 +402,14 @@ function resetAllRooms(){
 					allRoomsData[eachRoom] = tempRoom;
 				}
 			}
+		}
+	}
+	for(var i in TileMaps){
+		if (TileMaps[i] != undefined) {
+			console.log("TileMaps room found");
+			var tempRoom = new Room (TileMaps[i]);		
+			tempRoom.reset();			
+			allRoomsData[i] = tempRoom;		
 		}
 	}
 	loadLevel();

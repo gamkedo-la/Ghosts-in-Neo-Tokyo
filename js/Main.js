@@ -66,7 +66,9 @@ function loadLevel(DatRoomYO) {
 					objectDictionary[parseInt(currentRoom.layout.tilesets[i].firstgid) + parseInt(j)] = currentRoom.layout.tilesets[i].tileproperties[j]
 				}
 			}
-		}
+		}		
+		WORLD_COLS = currentRoom.layout.width
+		WORLD_ROWS = currentRoom.layout.height
 		return
 	}
 

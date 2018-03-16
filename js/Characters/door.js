@@ -67,8 +67,36 @@ function door(x, y) {
 			this.tileBehaviorHandler();
 		},
 		recoil: function(){
+			if(!this.mapData){
+				throw "yo, you need to set properties in the tmx file for this level"
+			}
+			if(!this.mapData.toDoor ){
+				throw "yo, you need to set properties in the tmx file for this level \n Set custom property toDoor to a door in the next level so the character knows where to spawn"
+			}
+			if(!this.mapData.toLevel ){
+				throw "yo, you need to set properties in the tmx file for this level\n Set custom property toName to a door so the game knows which level to load"
+			}
+			if(!this.mapData.name){
+				throw "yo, you need to set properties in the tmx file for this level\n Set custom property name to a door so other doors can spawn the player here."
+			}
+
 			console.log("Door recoil!!!!!!!!!!")
-			loadLevel("room1a1")
+			var hasRoom = allRoomsData[this.mapData.toLevel];
+			if(!hasRoom){
+				throw "yo, the property toLevel in this door is not matching up with a loaded level!"
+			}
+			loadLevel(this.mapData.toLevel)
+
+			for(var i in currentRoom.layout.layers[1].objects){
+				if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].properties.name == this.mapData.toDoor ){
+					console.log("Found dooor!!, moving player")
+					player.x = currentRoom.layout.layers[1].objects[i].x + 60;
+					player.y = currentRoom.layout.layers[1].objects[i].y - 16;
+				}
+			}
+
+
+
 		},
 		dying: function(){
 			if(!this.ticksInState){

@@ -30,7 +30,9 @@
                  "name":"",
                  "properties":
                     {
-
+                     "name":"level2start",
+                     "toDoor":"end",
+                     "toLevel":"example"
                     },
                  "rotation":0,
                  "type":"",
