@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="60" height="34" tilewidth="20" tileheight="20" infinite="0" nextobjectid="24">
- <tileset firstgid="1" name="tileset" tilewidth="20" tileheight="20" tilecount="100" columns="10">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="34" tilewidth="20" tileheight="20" nextobjectid="24">
+ <tileset firstgid="1" name="tileset" tilewidth="20" tileheight="20">
   <image source="tileset.png" width="200" height="200"/>
  </tileset>
- <tileset firstgid="101" name="Char" tilewidth="44" tileheight="44" tilecount="4" columns="0">
+ <tileset firstgid="101" name="Char" tilewidth="44" tileheight="44">
   <tile id="0">
    <image width="32" height="32" source="../img/mainChar/Char_0.png"/>
   </tile>
@@ -65,8 +65,13 @@
 </data>
  </layer>
  <objectgroup name="Characters">
-  <object id="12" gid="103" x="309" y="160" width="44" height="44"/>
-  <object id="13" gid="103" x="602" y="160" width="44" height="44"/>
+  <object id="12" gid="103" x="1141" y="221" width="44" height="44">
+   <properties>
+    <property name="name" value="end"/>
+    <property name="toDoor" value="level2start"/>
+    <property name="toLevel" value="Level2"/>
+   </properties>
+  </object>
   <object id="16" gid="104" x="396" y="162" width="32" height="32"/>
   <object id="17" gid="104" x="121" y="162" width="32" height="32"/>
   <object id="18" gid="102" x="461" y="157" width="32" height="32"/>
