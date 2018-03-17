@@ -33,7 +33,11 @@ function npcChatSystem(defaultFaceImage) {
     }
 
     this.sayFooter = function (str, newFaceImage) {
+        if (str == chat) return; // don't fire again if called repeatedly
         chat = str;
+        // we may need extra time for long texts
+        this.animLength = 50 * str.length;
+        this.timespan = 5000 + this.animLength;
         wordBubbleMode = false;
         chatTime = performance.now();
         if (newFaceImage)
@@ -54,7 +58,7 @@ function npcChatSystem(defaultFaceImage) {
     }
 
     // render a footer if required
-    this.drawFooter = function (x, y) {
+    this.drawFooter = function () {
         if (chat == '') return;
         if (wordBubbleMode) return;
         // only draw for a while
@@ -66,3 +70,8 @@ function npcChatSystem(defaultFaceImage) {
         }
     }
 }
+
+// the NPC dialogue "footer bar" cannot be rendered
+// during enemy.draw (due to camera offset)
+// and we only want a single chat GUI at a time
+var npcGUI = new npcChatSystem(); // not used for word bubbles

@@ -199,6 +199,7 @@ function drawAll() {
 	drawWorldLabels();
 	canvasContext.restore();
 	drawHeader();
+	npcGUI.drawFooter();
 	
 }
 

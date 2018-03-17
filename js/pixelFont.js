@@ -201,35 +201,7 @@ function npcText(message, x, y, starttime, endtime, faceImage) {
     message = message.substring(0, count); // FIXME: we need to SKIP (include all the) $emote chars
 
 
-    if (faceImage) // if specified, draw on bottom of the screen as a FOOTER
-    {
-        canvasContext.globalAlpha = 0.25;
-        // draw the word bubble left side
-        canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
-            0, // sx
-            0, // sy
-            bubbleWidth, // sw
-            32, // sh
-            x - 6, // dx
-            y - 6, // dy
-            bubbleWidth, // dw
-            32); // dh
-
-        // draw the word bubble right side (for liquid layout to fit text)
-        canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
-            252, // sx
-            0, // sy
-            4, // sw
-            32, // sh
-            x - 6 + bubbleWidth, // dx
-            y - 6, // dy
-            4, // dw
-            32); // dh
-
-        canvasContext.globalAlpha = 1.0;
-
-    }
-    else // word bubble mode
+    if (!faceImage) // word bubble mode
     {
         canvasContext.globalAlpha = 0.25;
         // draw the word bubble left side
@@ -266,11 +238,61 @@ function npcWordBubble(message, x, y, starttime, endtime) {
     npcText(message, x + (-1 * Math.round(measurePixelfont(message) / 2)), y, starttime, endtime);
 }
 
-const NPC_FOOTER_TEXT_X = 128; // pixels from the left of the screen
-const NPC_FOOTER_TEXT_Y = 128; // pixels from the *BOTTOM* of the screen
+const NPC_FOOTER_TEXT_X = 52; // pixels from the left of the screen
+const NPC_FOOTER_TEXT_Y = 48; // pixels from the *BOTTOM* of the screen
+const NPC_FOOTER_HEIGHT = 56; // height of entire footer bg image
+const NPC_FOOTER_FACEX = 8;
+const NPC_FOOTER_FACEY = 52; // from bottom
 
 // a jrpg subtitles footer bar
 function npcTextFooter(message, faceImage, starttime, endtime) {
+    //console.log('npcTextFooter!');
+
+    //canvasContext.globalAlpha = 0.25;
+
+    // draw the footer bar left side
+    canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
+        0, // sx
+        56, // sy of source pixels
+        8, // sw
+        NPC_FOOTER_HEIGHT, // sh
+        0, // dx
+        canvas.height - NPC_FOOTER_HEIGHT, // dy
+        8, // dw
+        NPC_FOOTER_HEIGHT); // dh
+
+    // stretch the footer bar middle
+    canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
+        8, // sx
+        56, // sy of source pixels
+        240, // sw
+        NPC_FOOTER_HEIGHT, // sh
+        8, // dx
+        canvas.height - NPC_FOOTER_HEIGHT, // dy
+        canvas.width - 8 - 8, // dw
+        NPC_FOOTER_HEIGHT); // dh
+
+    // draw the footer bar right side
+    canvasContext.drawImage(sprites.UI.pixelFont, // see imgPayload.js
+        248, // sx
+        56, // sy of source pixels
+        8, // sw
+        NPC_FOOTER_HEIGHT, // sh
+        canvas.width - 8, // dx
+        canvas.height - NPC_FOOTER_HEIGHT, // dy
+        8, // dw
+        NPC_FOOTER_HEIGHT); // dh
+
+    //canvasContext.globalAlpha = 1.0;
+
+    // draw the face portrait
+    if (faceImage) {
+        canvasContext.drawImage(faceImage,NPC_FOOTER_FACEX,canvas.height - NPC_FOOTER_FACEY);
+    }
+    else {
+        console.log("Warning: missing faceImage in npcGUI")
+    }
+
     npcText(message, NPC_FOOTER_TEXT_X, canvas.height - NPC_FOOTER_TEXT_Y, starttime, endtime, faceImage);
 }
 

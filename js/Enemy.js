@@ -3,6 +3,8 @@ var _TEST_AI_PATHFINDING = false;  // a-star pathfinding at all times
 var _DEBUG_DRAW_AI_PATHS = false; // so handy
 var enemyDictionary = {}
 
+const RANDOM_CHAT_CHANCE = 0.1; // chance of a random word bubble for each state change
+
 function enemyClass(newEnemy, states){
 	//states is just an object of fuuuunctions
 
@@ -25,11 +27,12 @@ function enemyClass(newEnemy, states){
 	this.enemyData = newEnemy;
 	this.enemyData.monsterRef = this ///NOoooooooooooooooo TT_TT
 
-	// random NPC chat for this particular enemy
-	this.thingsToSay = ["Booooo!","Muahahahaha!","I'm hungry!","Who you gonna call?","I love fried chicken!","Hey, get back here!","I only want to\ngive you a kiss!","Stay still!","Prepare to die!","Welcome...to die!","A human!","So hungry...","Welcome to Neo Tokyo!","We won't hurt you!","We just want\nto be friends!"];
-
 	// the dialogue system which handles all word bubbles and their timers
 	this.chat = new npcChatSystem();
+	// random NPC chat for this particular enemy (word bubble)
+	this.thingsToSay = ["Booooo!","Muahahahaha!","I'm hungry!","Who you gonna call?","I love fried chicken!","Hey, get back here!","I only want to\ngive you a kiss!","Stay still!","Prepare to die!","Welcome...to die!","A human!","So hungry...","Welcome to Neo Tokyo!","We won't hurt you!","We just want\nto be friends!"];
+	// how close the player needs to be to trigger footer quest talk
+	this.closeEnoughToTalkTo = 32; // pixels
 
 	this.tileCollider = new boxColliderClass(this.x, this.y,
 		newEnemy.tileColliderWidth, newEnemy.tileColliderHeight,
@@ -88,7 +91,7 @@ function enemyClass(newEnemy, states){
 			// report AI state? handy for debugging!
 			// this.chat = "I think I'll\n"+newState+"."; 
 			var randy = Math.random();
-			if (randy>0.9) { // 10% of the time
+			if (randy<RANDOM_CHAT_CHANCE) { // 10% of the time
 				// trigger a new word bubble animation from npcChatSystem.js
 				this.chat.sayBubble(this.thingsToSay[Math.floor(Math.random()*this.thingsToSay.length)]);
 			}
@@ -296,12 +299,21 @@ function enemyClass(newEnemy, states){
 		return;
 	} // end of this.die function
 
+	this.maybeTriggerNPCDialogue = function() {
+		if(mDist(this.x, this.y, player.x, player.y) < this.closeEnoughToTalkTo) {
+			//console.log("player is close enough to talk to me!");
+			npcGUI.sayFooter("You think you can just touch a ghost\nand not suffer the consequences?\n\nPrepare to join us for a ghastly eternal\nexistence without form that never ends!", sprites.Player.defaultFaceImage);
+		}
+	}
+
+
 
 	this.draw = function() {
 		if (!this.isAlive) return;
 
 		this.chat.drawBubble(this.x,this.y);
 		this.sprite.draw(this.x, this.y);
+		this.maybeTriggerNPCDialogue();
 
 		if(_DEBUG_DRAW_TILE_COLLIDERS) {
             this.tileCollider.draw('lime');
