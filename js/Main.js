@@ -148,7 +148,7 @@ function moveAll() {
 }
 
 const deadXZone = 25;
-//const deadYZone = 50;
+const deadYZone = 75;
 
 function drawAll() {
 	
@@ -172,9 +172,9 @@ function drawAll() {
 		cameraOffsetX = -((WORLD_COLS * WORLD_W) - canvas.width);
 	}
 	
-	if(player.y > (canvas.height - 32 - cameraOffsetY)) {
+	if(player.y > (canvas.height - deadYZone - cameraOffsetY)) {
 		cameraOffsetY -= 1;
-	} else if(player.y < (32 - cameraOffsetY)) {
+	} else if(player.y < (deadYZone - cameraOffsetY)) {
 		cameraOffsetY += 1;
 	}
 	
