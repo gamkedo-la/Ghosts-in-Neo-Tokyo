@@ -152,10 +152,14 @@ const deadXZone = 25;
 
 function drawAll() {
 	
-	if(player.x > ((2 * deadXZone) - cameraOffsetX + (canvas.width / 2))) {
+	if(player.x > ((10 * deadXZone) - cameraOffsetX + (canvas.width / 2))) {
+		cameraOffsetX = -(player.x + (1.5 * canvas.width));
+	} else if(player.x > ((2 * deadXZone) - cameraOffsetX + (canvas.width / 2))) {
 		cameraOffsetX -= 3;
 	} else if(player.x > (deadXZone - cameraOffsetX + (canvas.width / 2))) {
 		cameraOffsetX -= 1;
+	} else if(player.x < ((-10 * deadXZone) - cameraOffsetX + (canvas.width / 2))) {
+		cameraOffsetX = player.x - (1.5 * canvas.width);//no idea why it is 1.5 * width
 	} else if(player.x < ((-2 * deadXZone) - cameraOffsetX + (canvas.width / 2))) {		
 		cameraOffsetX += 3;
 	} else if(player.x < (-deadXZone - cameraOffsetX + (canvas.width / 2))) {	
@@ -173,6 +177,7 @@ function drawAll() {
 	} else if(player.y < (32 - cameraOffsetY)) {
 		cameraOffsetY += 1;
 	}
+	
 	if (cameraOffsetY > 0) {
 		cameraOffsetY = 0;
 	} else if (-cameraOffsetY > ((WORLD_ROWS * WORLD_H) - canvas.height)) {
