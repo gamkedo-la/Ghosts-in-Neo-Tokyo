@@ -152,6 +152,27 @@ const deadYZone = 25;
 
 function drawAll() {
 	
+	updateCameraPosition();
+	
+	//TODO: remove
+	
+	canvasContext.drawImage(sprites.Background.skyscrapers, 0,20);
+	drawWorld();
+	currentRoom.drawTraps();
+	drawItems();
+	currentRoom.drawDynamic();
+	currentRoom.drawMyObjects();
+	drawHealth();
+	drawParticles();
+	drawPanelWithButtons(debugPanel);	
+	drawWorldLabels();
+	canvasContext.restore();
+	drawHeader();
+	npcGUI.drawFooter();
+	
+}
+
+function updateCameraPosition() {
 	if(player.x > ((canvas.width) - cameraOffsetX + (canvas.width / 2))) {
 		cameraOffsetX = -(player.x + (1.5 * canvas.width));
 	} else if(player.x > ((1.5 * deadXZone) - cameraOffsetX + (canvas.width / 2))) {
@@ -194,24 +215,6 @@ function drawAll() {
 	clearCanvas();
 
 	canvasContext.translate(cameraOffsetX, cameraOffsetY);
-	
-	
-	//TODO: remove
-	
-	canvasContext.drawImage(sprites.Background.skyscrapers, 0,20);
-	drawWorld();
-	currentRoom.drawTraps();
-	drawItems();
-	currentRoom.drawDynamic();
-	currentRoom.drawMyObjects();
-	drawHealth();
-	drawParticles();
-	drawPanelWithButtons(debugPanel);	
-	drawWorldLabels();
-	canvasContext.restore();
-	drawHeader();
-	npcGUI.drawFooter();
-	
 }
 
 function drawHeader() {	// fun little gui header logo bar
