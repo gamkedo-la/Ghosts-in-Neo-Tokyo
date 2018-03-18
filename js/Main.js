@@ -148,7 +148,7 @@ function moveAll() {
 }
 
 const deadXZone = 15;
-const deadYZone = 75;
+const deadYZone = 25;
 
 function drawAll() {
 	
@@ -175,11 +175,13 @@ function drawAll() {
 	if(player.y > (canvas.height - cameraOffsetY)) {
 		cameraOffsetY -= 10;
 	} else if(player.y > (canvas.height - deadYZone - cameraOffsetY)) {
-		cameraOffsetY -= 1;
+		cameraOffsetY -= 5;
+	} else if(player.y > (canvas.height - 3 * deadYZone - cameraOffsetY)) {
+		cameraOffsetY -= 2;
 	} else if(player.y < -cameraOffsetY) {
 		cameraOffsetY += 10;
-	} else if(player.y < (deadYZone - cameraOffsetY)) {
-		cameraOffsetY += 1;
+	} else if(player.y < (2 * deadYZone - cameraOffsetY)) {
+		cameraOffsetY += 2;
 	}
 	
 	if (cameraOffsetY > 0) {
