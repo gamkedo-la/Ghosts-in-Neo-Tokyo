@@ -3,6 +3,8 @@ var levelOneRun = false;
 const FRAMES_PER_SECOND = 30;
 const TIME_PER_TICK = 1/FRAMES_PER_SECOND;
 const MUSIC_VOLUME = 0.17; // 0=none 1=loud
+const deadXZone = 15;//horizontal area where camera does not move
+const deadYZone = 25;//vertical area where camera does not move
 
 var player = new playerClass();
 
@@ -147,9 +149,6 @@ function moveAll() {
 	//console.log(player.y);
 }
 
-const deadXZone = 15;
-const deadYZone = 25;
-
 function drawAll() {
 	
 	updateCameraPosition();
@@ -173,38 +172,42 @@ function drawAll() {
 }
 
 function updateCameraPosition() {
-	if(player.x > ((canvas.width) - cameraOffsetX + (canvas.width / 2))) {
+	//Position the camera horizontally, leaving a dead zone in the center of the screen
+	if(player.x > canvas.width - cameraOffsetX + canvas.width / 2) {//teleport right to the player's position
 		cameraOffsetX = -(player.x + (1.5 * canvas.width));
-	} else if(player.x > ((1.5 * deadXZone) - cameraOffsetX + (canvas.width / 2))) {
+	} else if(player.x > 1.5 * deadXZone - cameraOffsetX + canvas.width / 2) {//player is far right of center -> move quickly
 		cameraOffsetX -= 3;
-	} else if(player.x > (deadXZone - cameraOffsetX + (canvas.width / 2))) {
+	} else if(player.x > deadXZone - cameraOffsetX + canvas.width / 2) {//player is slightly right of center -> move slowly
 		cameraOffsetX -= 1;
-	} else if(player.x < ((-canvas.width) - cameraOffsetX + (canvas.width / 2))) {
+	} else if(player.x < -canvas.width - cameraOffsetX + canvas.width / 2) {//teleport left to the player's position
 		cameraOffsetX = player.x - (1.5 * canvas.width);//no idea why it is 1.5 * width
-	} else if(player.x < ((-1.5 * deadXZone) - cameraOffsetX + (canvas.width / 2))) {		
+	} else if(player.x < -1.5 * deadXZone - cameraOffsetX + canvas.width / 2) {//player is far left of center -> move quickly	
 		cameraOffsetX += 3;
-	} else if(player.x < (-deadXZone - cameraOffsetX + (canvas.width / 2))) {	
+	} else if(player.x < -deadXZone - cameraOffsetX + canvas.width / 2) {//player is far left of center -> move slowly
 		cameraOffsetX += 1;
 	}
 	
+	//Do not move the camera so far right or left that areas outside of the world are visible
 	if (cameraOffsetX > 0) {
 		cameraOffsetX = 0;
 	} else if (cameraOffsetX < -((WORLD_COLS * WORLD_W) - canvas.width)) {
 		cameraOffsetX = -((WORLD_COLS * WORLD_W) - canvas.width);
 	}
 	
-	if(player.y > (canvas.height - cameraOffsetY)) {
+	//Position the camera vertically, leaving a dead zone in the center of the screen
+	if(player.y > (canvas.height - cameraOffsetY)) {//player has fallen below the visible area -> move very quickly
 		cameraOffsetY -= 10;
-	} else if(player.y > (canvas.height - deadYZone - cameraOffsetY)) {
+	} else if(player.y > (canvas.height - deadYZone - cameraOffsetY)) {//player is approaching the bottom of the visible area -> move quickly
 		cameraOffsetY -= 5;
-	} else if(player.y > (canvas.height - 3 * deadYZone - cameraOffsetY)) {
+	} else if(player.y > (canvas.height - 3 * deadYZone - cameraOffsetY)) {//player is below the dead zone -> move slowly
 		cameraOffsetY -= 2;
-	} else if(player.y < -cameraOffsetY) {
+	} else if(player.y < -cameraOffsetY) {//player has exited visible area upward -> move very quickly
 		cameraOffsetY += 10;
-	} else if(player.y < (2 * deadYZone - cameraOffsetY)) {
+	} else if(player.y < (2 * deadYZone - cameraOffsetY)) {//player is above the dead zone -> move slowly
 		cameraOffsetY += 2;
 	}
 	
+	//Do not move the camera so far up or down that the areas outside of the world are visible
 	if (cameraOffsetY > 0) {
 		cameraOffsetY = 0;
 	} else if (-cameraOffsetY > ((WORLD_ROWS * WORLD_H) - canvas.height)) {
