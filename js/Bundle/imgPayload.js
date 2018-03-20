@@ -7,6 +7,10 @@ var imgPayload = [
 		{set: "Player", name: "attack", fileName: "MainChar/TempAttack.png"},
 		{set: "Player", name: "defaultFaceImage", fileName: "portaits/portrait-test.png"},
 
+		{set: "Boss1", name: "idle", fileName: "Bosses/Boss1/Boss1.png"},
+		{set: "Boss2", name: "idle", fileName: "Bosses/Boss2/Boss2.png"},
+		{set: "Boss3", name: "idle", fileName: "Bosses/Boss3/Boss3.png"},
+
 		{set: "Background", name: "background1", fileName: "Concept.png"},
 		{set: "Background", name: "skyscrapers", fileName: "Backgrounds/skyscrapers.png"},
 		{set: "Ghast", name: "move", fileName: "Ghast/Ghast.png"},

@@ -168,6 +168,54 @@
                  "width":32,
                  "x":495,
                  "y":164
+                }, 
+                {
+                 "gid":105,
+                 "height":90,
+                 "id":24,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":79,
+                 "x":333,
+                 "y":136
+                }, 
+                {
+                 "gid":107,
+                 "height":70,
+                 "id":25,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":70,
+                 "x":283,
+                 "y":130
+                }, 
+                {
+                 "gid":106,
+                 "height":50,
+                 "id":26,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":166,
+                 "y":90
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -176,7 +224,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":24,
+ "nextobjectid":28,
  "orientation":"orthogonal",
  "properties":
     {
@@ -209,7 +257,7 @@
 
             },
          "spacing":0,
-         "tileheight":44,
+         "tileheight":90,
          "tileproperties":
             {
              "1":
@@ -223,6 +271,18 @@
              "3":
                 {
                  "entityType":"fButton"
+                },
+             "4":
+                {
+                 "entityType":"boss3"
+                },
+             "5":
+                {
+                 "entityType":"boss1"
+                },
+             "6":
+                {
+                 "entityType":"boss2"
                 }
             },
          "tiles":
@@ -242,9 +302,21 @@
              "3":
                 {
                  "image":"..\/..\/img\/Switches\/floor switch_Animation 5_0.png"
+                },
+             "4":
+                {
+                 "image":"..\/..\/img\/bosses\/boss3\/Boss3Thumb.png"
+                },
+             "5":
+                {
+                 "image":"..\/..\/img\/bosses\/boss1\/Boss1Thumb.png"
+                },
+             "6":
+                {
+                 "image":"..\/..\/img\/bosses\/boss2\/BossConceptThumb.png"
                 }
             },
-         "tilewidth":44
+         "tilewidth":79
         }],
  "tilewidth":20,
  "version":1,
