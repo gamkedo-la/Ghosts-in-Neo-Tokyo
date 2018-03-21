@@ -14,6 +14,10 @@ var imgPayload = [
 		{set: "Background", name: "background1", fileName: "Concept.png"},
 		{set: "Background", name: "skyscrapers", fileName: "Backgrounds/skyscrapers.png"},
 		{set: "Ghast", name: "move", fileName: "Ghast/Ghast.png"},
+
+		{set: "pew", name: "pewpew", fileName: "pewpew.png"},
+		{set: "pooter", name: "move", fileName: "pooter.png"},
+
 		{set: "Door", name: "idle", fileName: "Doors/world_door.png"},
 		{set: "Item", name: "avocado", fileName: "Items/Avocado.png"},
 		{set: "FloorButton", name: "idle", fileName: "Switches/floor switch_Animation 1.png"},

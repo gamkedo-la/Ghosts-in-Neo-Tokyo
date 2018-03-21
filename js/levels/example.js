@@ -216,6 +216,22 @@
                  "width":32,
                  "x":166,
                  "y":90
+                }, 
+                {
+                 "gid":108,
+                 "height":32,
+                 "id":30,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":267,
+                 "y":74
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -224,7 +240,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":28,
+ "nextobjectid":31,
  "orientation":"orthogonal",
  "properties":
     {
@@ -283,6 +299,10 @@
              "6":
                 {
                  "entityType":"boss2"
+                },
+             "7":
+                {
+                 "entityType":"kapooter"
                 }
             },
          "tiles":
@@ -314,6 +334,10 @@
              "6":
                 {
                  "image":"..\/..\/img\/bosses\/boss2\/BossConceptThumb.png"
+                },
+             "7":
+                {
+                 "image":"..\/..\/img\/pooterTILE.png"
                 }
             },
          "tilewidth":79

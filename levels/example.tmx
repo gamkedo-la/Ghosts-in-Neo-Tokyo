@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="34" tilewidth="20" tileheight="20" nextobjectid="28">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="34" tilewidth="20" tileheight="20" nextobjectid="31">
  <properties>
   <property name="toDoor" value="front"/>
  </properties>
@@ -45,6 +45,12 @@
     <property name="entityType" value="boss2"/>
    </properties>
    <image width="70" height="70" source="../img/bosses/boss2/BossConceptThumb.png"/>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="entityType" value="kapooter"/>
+   </properties>
+   <image width="32" height="32" source="../img/pooterTILE.png"/>
   </tile>
  </tileset>
  <layer name="Tile Layer 1" width="60" height="34">
@@ -104,5 +110,6 @@
   <object id="24" gid="105" x="333" y="136" width="79" height="90"/>
   <object id="25" gid="107" x="283" y="130" width="70" height="70"/>
   <object id="26" gid="106" x="166" y="90" width="32" height="50"/>
+  <object id="30" gid="108" x="267" y="74" width="32" height="32"/>
  </objectgroup>
 </map>
