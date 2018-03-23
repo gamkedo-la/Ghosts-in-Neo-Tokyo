@@ -671,10 +671,8 @@ function playerClass() {
 		for (var i = 0; i < currentRoom.objectList.length; i++) {
 			var anObject = currentRoom.objectList[i];
 			if (this.hitbox.isCollidingWith(anObject.hitbox)) {
-				console.log(Object.keys(anObject));
-				screenShake(5);
 				knockbackAngle = calculateAngleFrom(anObject.hitbox, this.hitbox);
-				knockbackSpeed = INITIAL_KNOCKBACK_SPEED / 2;
+				knockbackSpeed = INITIAL_KNOCKBACK_SPEED;
 				if(anObject.type == "Door") {
 					knockbackSpeed = 0;
 					anObject.setState("recoil");
