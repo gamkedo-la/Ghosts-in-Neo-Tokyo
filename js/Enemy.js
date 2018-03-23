@@ -224,6 +224,9 @@ function enemyClass(newEnemy, states){
 	this.die = function(attackedBy) { //TODO: make die a state? 
 		console.log('An enemy died!');
 
+		var dyingX = this.x;
+		var dyingY = this.y;
+
 		this.enemyData.deadEvent();
 		if(!this.stateMachine.dying){
 			this.isAlive = false;
@@ -233,69 +236,8 @@ function enemyClass(newEnemy, states){
 		
 		
 		// drop items
-		var totalItems = rollItemQuantity(10, 99, this.lootModifier);
-		console.log(totalItems + " Items Dropped");
-		var tileIndex = getTileIndexAtPixelCoord(this.tileCollider.x, this.tileCollider.y);
-		var coord = calculateCenterCoordOfTileIndex(tileIndex); // to prevent items from spawning in walls
-		var itemAngle = undefined; // TODO this is WIP code
-		for (var i = 0; i < totalItems; i++) {
-			if (attackedBy != undefined)
-			{
-				itemAngle = Math.atan2(coord.y-attackedBy.y,coord.x-attackedBy.x);
-				//console.log("Item dropping in this direction: " + itemAngle);
-			}
-			// TODO: pass attack to this function so we know angle of the HIT, then pass itemAngle to dropItem
-			var dropType = Math.random() * 100;
-			//in order of most common to least common
-			/*if (dropType <= ITEM_CRYSTAL_DROP_PERCENT)
-				dropItem(coord.x, coord.y, ITEM_CRYSTAL,itemAngle);
-			else*/
-				dropType -= ITEM_CRYSTAL_DROP_PERCENT;
-
-			if (dropType <= ITEM_POTION_DROP_PERCENT)
-				dropItem(coord.x, coord.y, ITEM_POTION,itemAngle);
-			else
-				dropType -= ITEM_POTION_DROP_PERCENT;
-
-			/*if (dropType <= ITEM_KEY_COMMON_DROP_PERCENT)
-				dropItem(coord.x, coord.y, ITEM_KEY_COMMON,itemAngle);
-			else
-				dropType -= ITEM_KEY_COMMON_DROP_PERCENT;
-
-			if (dropType <= ITEM_KEY_RARE_DROP_PERCENT)
-				dropItem(coord.x, coord.y, ITEM_KEY_RARE,itemAngle);
-			else
-				dropType -= ITEM_KEY_RARE_DROP_PERCENT;
-
-			if (dropType <= ITEM_KEY_EPIC_DROP_PERCENT)
-				dropItem(coord.x, coord.y, ITEM_KEY_EPIC,itemAngle);
-			else
-				dropType -= ITEM_KEY_EPIC_DROP_PERCENT;*/
-		} // end of total items to drop
-		// drop tile on death
-		if (newEnemy.droppedTile == undefined) {
-			console.log("undefined: no tile dropped");
-			return;
-		} 
-		var tileSouthOfEnemy = worldGrid[tileIndex + WORLD_COLS];
-		var tileNorthOfEnemy = worldGrid[tileIndex - WORLD_COLS];
-		var tileWestOfEnemy = worldGrid[tileIndex - 1];
-		var tileEastOfEnemy = worldGrid[tileIndex + 1];
-		var interactiveTiles = [TILE_ROOM_DOOR_NORTH,TILE_ROOM_DOOR_SOUTH,TILE_ROOM_DOOR_EAST,TILE_ROOM_DOOR_WEST,
-								TILE_STAIRS_UP,TILE_STAIRS_DOWN,TILE_DOOR_COMMON,TILE_DOOR_RARE,TILE_DOOR_EPIC];
-		if ((interactiveTiles.indexOf(tileSouthOfEnemy) > -1) ||
-			(interactiveTiles.indexOf(tileNorthOfEnemy) > -1) ||	
-			(interactiveTiles.indexOf(tileEastOfEnemy) > -1)  ||
-			(interactiveTiles.indexOf(tileWestOfEnemy) > -1)){
-			console.log("infront of door/stairs: no tile dropped");
-			return;
-		}
-		if (newEnemy.droppedTile != undefined && worldGrid[tileIndex] == 0) {	
-			worldGrid[tileIndex] = this.droppedTile;
-			console.log("dropped tile = " + this.droppedTile);
-			} else {
-			console.log("tile detected: no tile dropped");	
-			}
+		// TODO: redo this functionality
+		placeItem(dyingX, dyingY, currentRoom, ITEM_AVOCADO);
 		return;
 	} // end of this.die function
 
