@@ -466,7 +466,14 @@ function playerClass() {
 			}
 		}
 		
-		this.isCollidingWithObject();
+		if(this.isCollidingWithObject() && !this.isInvincible) {
+			this.isStunned = true;
+			this.isInvincible = true;
+			stunTimer = _STUN_DURATION;
+			invincibleTimer = INVINCIBLE_DURATION;
+	
+			return;
+		}
 
 		choosePlayerAnimation();
 		wasMoving = isMoving;
@@ -657,18 +664,23 @@ function playerClass() {
 		return hitByEnemy;
 	}
 	this.isCollidingWithObject = function() {
-		let colliding = false;
+		var colliding = false;
 
 		if (!currentRoom) { console.log("ERROR: currentRoom is null."); return false; }
 
 		for (var i = 0; i < currentRoom.objectList.length; i++) {
 			var anObject = currentRoom.objectList[i];
 			if (this.hitbox.isCollidingWith(anObject.hitbox)) {
+				console.log(Object.keys(anObject));
 				screenShake(5);
 				knockbackAngle = calculateAngleFrom(anObject.hitbox, this.hitbox);
-				knockbackSpeed = INITIAL_KNOCKBACK_SPEED;
-				anObject.setState("recoil")
-				console.log("set object state to recoil!!")
+				knockbackSpeed = INITIAL_KNOCKBACK_SPEED / 2;
+				if(anObject.type == "Door") {
+					knockbackSpeed = 0;
+					anObject.setState("recoil");
+				} else if((knockbackAngle < -0.5) && (knockbackAngle > -2)) {
+					anObject.setState("recoil");
+				}
 				colliding = true;
 			}
 		}

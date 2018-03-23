@@ -82,6 +82,10 @@ function floorButton(x, y) {
 				
 			// }
 			this.sprite.update();
+		},
+		recoil: function() {
+			console.log("touched a button");
+			this.setState("normal");
 		}
 	}
 

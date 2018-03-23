@@ -64,6 +64,7 @@ function Room(roomLayout) {
 						if((aType == "fButton") || (aType == "Door")) {
 							var newEnemy = new enemyConstructor(item.x, item.y)
 							newEnemy.mapData = item.properties
+							newEnemy.type = aType;
 							this.objectList.push(newEnemy);
 						} else {
 							this.enemyList.push(new enemyConstructor(item.x, item.y));
