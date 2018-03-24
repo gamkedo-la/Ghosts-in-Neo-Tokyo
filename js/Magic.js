@@ -49,7 +49,7 @@ function magicClass(magic, enemyList) {
 			var index = currentRoom.magic.indexOf(this);
 			if(index !== -1) {
 				currentRoom.magic.splice(index, 1);
-				console.log("attack removed")
+//				console.log("attack removed")
 				return;
 			}
 		}
@@ -83,28 +83,28 @@ function magicClass(magic, enemyList) {
 			if (this.attackDir[0] < 0) { // WEST
 //				console.log(Math.floor(this.pastX));
 				if (this.pastX <= magic.obstacle.x) {
-					console.log("spell X <= obstacle X");
+//					console.log("spell X <= obstacle X");
 					this.remove = true;
 					this.tileHit();
 				}
 			} else if (this.attackDir[0] > 0) { // EAST
 				console.log(Math.floor(this.pastX));
 				if (this.pastX >= magic.obstacle.x) {
-					console.log("spell X >= obstacle X");
+//					console.log("spell X >= obstacle X");
 					this.remove = true;
 					this.tileHit();
 				}
 			} else if (this.attackDir[1] < 0) { // NORTH
 				console.log(Math.floor(this.pastX));
 				if (this.pastY <= magic.obstacle.y) {
-					console.log("spell Y <= obstacle Y");
+//					console.log("spell Y <= obstacle Y");
 					this.remove = true;
 					this.tileHit();
 				}
 			} else if (this.attackDir[1] > 0) { // SOUTH
 				console.log(Math.floor(this.pastX));
 				if (this.pastY >= magic.obstacle.y) {
-					console.log("spell Y >= obstacle Y");
+//					console.log("spell Y >= obstacle Y");
 					this.remove = true;
 					this.tileHit();
 				}

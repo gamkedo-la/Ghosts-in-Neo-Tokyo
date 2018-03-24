@@ -413,5 +413,6 @@ function resetAllRooms(){
 			allRoomsData[i] = tempRoom;		
 		}
 	}
+	console.log("Rooms is reloading the level");
 	loadLevel();
 }

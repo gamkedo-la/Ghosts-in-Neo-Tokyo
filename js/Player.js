@@ -180,6 +180,17 @@ function playerClass() {
 		//Sound.play("MageHookThemeSong",true,MUSIC_VOLUME);
 		this.chat.sayBubble("I just respawned!",sprites.Player.defaultFaceImage);
 	}
+	
+	this.resetKeys = function() {
+		this.keyHeld_North = false;
+		this.keyHeld_South = false;
+		this.keyHeld_West = false;
+		this.keyHeld_East = false;
+		this.keyHeld_Jump = false;
+		this.keyHeld_Attack = false;
+		this.keyHeld_Dash = false;
+		this.keyHeld_Ranged_Attack = false;
+	}
 
 	this.reset = function (playerName) {
 		console.log("Player reset: " + playerName);
@@ -212,6 +223,7 @@ function playerClass() {
 
 		this.isFacing = SOUTH; // FIXME possible bug? this.?
 		this.isMoving = false;
+		this.resetKeys();
 
 		if (playerAtStartingPosition) {
 			sprite.setSprite(sprites.Player.stand, 32, 32, 1, 0, true);
@@ -668,6 +680,7 @@ function playerClass() {
 				colliding = true;
 				
 				if(anObject.type == "Door") {
+					console.log("Player is setting recoil on the door");
 					anObject.setState("recoil");
 				} else if (anObject.type == "fButton") {
 					var thisColliderBottom = this.tileCollider.y + this.tileCollider.height + 1;

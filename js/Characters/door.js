@@ -55,7 +55,7 @@ function door(x, y) {
 
 			this.sprite.update();
 			if(this.ticksInState > 100){
-				this.setState("normal")
+				this.setState("normal");
 			}
 
 		},
@@ -68,30 +68,31 @@ function door(x, y) {
 		},
 		recoil: function(){
 			if(!this.mapData){
-				throw "yo, you need to set properties in the tmx file for this level"
+				throw "yo, you need to set properties in the tmx file for this level";
 			}
 			if(!this.mapData.toDoor ){
-				throw "yo, you need to set properties in the tmx file for this level \n Set custom property toDoor to a door in the next level so the character knows where to spawn"
+				throw "yo, you need to set properties in the tmx file for this level \n Set custom property toDoor to a door in the next level so the character knows where to spawn";
 			}
 			if(!this.mapData.toLevel ){
-				throw "yo, you need to set properties in the tmx file for this level\n Set custom property toName to a door so the game knows which level to load"
+				throw "yo, you need to set properties in the tmx file for this level\n Set custom property toName to a door so the game knows which level to load";
 			}
 			if(!this.mapData.name){
-				throw "yo, you need to set properties in the tmx file for this level\n Set custom property name to a door so other doors can spawn the player here."
+				throw "yo, you need to set properties in the tmx file for this level\n Set custom property name to a door so other doors can spawn the player here.";
 			}
 
-			console.log("Door recoil!!!!!!!!!!")
+			console.log("Door recoil!!!!!!!!!!");
 			var hasRoom = allRoomsData[this.mapData.toLevel];
 			if(!hasRoom){
-				throw "yo, the property toLevel in this door is not matching up with a loaded level!"
+				throw "yo, the property toLevel in this door is not matching up with a loaded level!";
 			}
-			loadLevel(this.mapData.toLevel)
+			loadLevel(this.mapData.toLevel);
 
 			for(var i in currentRoom.layout.layers[1].objects){
 				if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].properties.name == this.mapData.toDoor ){
 					console.log("Found dooor!!, moving player")
 					player.x = currentRoom.layout.layers[1].objects[i].x + 60;
 					player.y = currentRoom.layout.layers[1].objects[i].y - 16;
+					this.setState("normal");
 				}
 			}
 

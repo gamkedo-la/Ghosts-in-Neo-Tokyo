@@ -124,7 +124,7 @@ function desecrate(x, y, isFacing) {
 			var index = currentRoom.magic.indexOf(this);
 			if(index !== -1) {
 				currentRoom.magic.splice(index, 1);
-				console.log("attack removed")
+//				console.log("attack removed")
 				return;
 			}
 		}
