@@ -139,6 +139,28 @@ function boxColliderClass(x, y, width, height, offsetX, offsetY) {
         objectToMove[axis] = snapPoint;
         objectToMove.updateColliders();
     }
+    
+    this.snapObjectToColliderEdge = function(objectToMove, velocity, axis, collider) {
+	    var colliderEdge = {x: collider.x, y: collider.y};
+	    var snapPoint;
+	    
+	    if (axis == X_AXIS) {
+		    if (velocity > 0) {
+                snapPoint = colliderEdge.x - objectToMove.tileCollider.width - collider.width/2 - 1;
+            } else if (velocity < 0) {
+                snapPoint = colliderEdge.x + objectToMove.tileCollider.width + collider.width/2 + 1;
+            }
+	    } else if (axis == Y_AXIS) {
+		    if (velocity > 0) {
+                snapPoint = colliderEdge.y - collider.height/2 - this.offsetY - 1;
+            } else if (velocity < 0) {
+                snapPoint = colliderEdge.y + collider.height/2 - this.offsetY;
+            }
+	    }
+	    
+	    objectToMove[axis] = snapPoint;
+        objectToMove.updateColliders();
+    }
 }
 
 function calculateAngleFrom(object1, object2) {

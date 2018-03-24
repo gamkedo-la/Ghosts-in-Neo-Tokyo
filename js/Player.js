@@ -466,14 +466,7 @@ function playerClass() {
 			}
 		}
 		
-		if(this.isCollidingWithObject() && !this.isInvincible) {
-			this.isStunned = true;
-			this.isInvincible = true;
-			stunTimer = _STUN_DURATION;
-			invincibleTimer = INVINCIBLE_DURATION;
-	
-			return;
-		}
+		this.isCollidingWithObject();
 
 		choosePlayerAnimation();
 		wasMoving = isMoving;
@@ -671,15 +664,33 @@ function playerClass() {
 		for (var i = 0; i < currentRoom.objectList.length; i++) {
 			var anObject = currentRoom.objectList[i];
 			if (this.hitbox.isCollidingWith(anObject.hitbox)) {
-				knockbackAngle = calculateAngleFrom(anObject.hitbox, this.hitbox);
-				knockbackSpeed = INITIAL_KNOCKBACK_SPEED;
-				if(anObject.type == "Door") {
-					knockbackSpeed = 0;
-					anObject.setState("recoil");
-				} else if((knockbackAngle < -0.5) && (knockbackAngle > -2)) {
-					anObject.setState("recoil");
-				}
+				knockbackSpeed = 0;
 				colliding = true;
+				
+				if(anObject.type == "Door") {
+					anObject.setState("recoil");
+				} else if (anObject.type == "fButton") {
+					var thisColliderBottom = this.tileCollider.y + this.tileCollider.height + 1;
+					var anObjectColliderMiddle = anObject.hitbox.y + anObject.hitbox.height / 2;
+//					console.log("Player Bottom: " + thisColliderBottom + ", Button Bottom: " + anObjectColliderMiddle);
+					if (thisColliderBottom < anObjectColliderMiddle) {
+						anObject.setState("recoil");
+	
+					if ((this.keyHeld_West) || (this.keyHeld_East)) {
+							this.motionState = "Walking";
+						} else {
+							this.motionState = "Grounded";
+						}
+						
+						this.tileCollider.snapObjectToColliderEdge(this, 5, Y_AXIS, anObject.hitbox);
+					} else {
+						var vel = _PLAYER_MOVE_SPEED;
+						if (this.keyHeld_West) {
+							vel = -vel;
+						}
+						this.hitbox.snapObjectToColliderEdge(this, vel, X_AXIS, anObject.hitbox);
+					} 
+				}
 			}
 		}
 		return colliding;

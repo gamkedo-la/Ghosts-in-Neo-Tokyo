@@ -8,9 +8,9 @@ function floorButton(x, y) {
 	this.lootModifier = 1.0;
 	this.droppedTile = undefined;
 
-	this.tileColliderWidth = 18;
+	this.tileColliderWidth = 17;
 	this.tileColliderHeight = 4;
-	this.tileColliderOffsetX = 2;
+	this.tileColliderOffsetX = 0;
 	this.tileColliderOffsetY = 11;
 
 	this.hitboxWidth = 17;
