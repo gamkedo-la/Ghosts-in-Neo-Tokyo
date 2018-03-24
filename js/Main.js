@@ -241,7 +241,7 @@ function drawWorldLabels() { // street signs, etc
 function drawHealth() {
 	var healthBarFlashTimer = 0;
 	var posX = 18;
-	var posY = canvas.height - 7;
+	var posY = canvas.height - 87;
 	var cornerX = posX - cameraOffsetX;
 	var cornerY = posY - cameraOffsetY;
     var playerMaxHealth = player.maxHealth;
