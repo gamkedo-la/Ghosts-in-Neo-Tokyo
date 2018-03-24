@@ -20,9 +20,9 @@ var imgPayload = [
 
 		{set: "Door", name: "idle", fileName: "Doors/world_door.png"},
 		{set: "Item", name: "avocado", fileName: "Items/Avocado.png"},
-		{set: "FloorButton", name: "idle", fileName: "Switches/floor switch_Animation 1.png"},
-		{set: "FloorButton", name: "pressing", fileName: "Switches/floor switch_Animation 1.png"},
-		{set: "FloorButton", name: "pressed", fileName: "Switches/floor switch_Animation 1.png"},
+		{set: "FloorButton", name: "idle", fileName: "Switches/FloorSwitchAnimation.png"},
+		{set: "FloorButton", name: "pressing", fileName: "Switches/FloorSwitchAnimation.png"},
+		{set: "FloorButton", name: "pressed", fileName: "Switches/FloorSwitchAnimation.png"},
 
 		{set: "UI", name: "pixelFont", fileName: "UI/pixelFont.png"},
 		{set: "UI", name: "healthBarEmpty", fileName: "UI/Health_Bar_Empty.png"},

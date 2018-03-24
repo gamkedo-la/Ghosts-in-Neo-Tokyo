@@ -86,6 +86,7 @@ function floorButton(x, y) {
 		recoil: function() {
 			console.log("touched a button");
 			this.setState("normal");
+			this.sprite.setFrame(2);
 		}
 	}
 
