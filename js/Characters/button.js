@@ -84,9 +84,15 @@ function floorButton(x, y) {
 			this.sprite.update();
 		},
 		recoil: function() {
-			console.log("touched a button");
-			this.setState("normal");
-			this.sprite.setFrame(2);
+			console.log("Frame: " + this.sprite.getFrame());
+			if(this.sprite.getFrame() != 2) {
+			this.sprite.setFrame(1);				
+			}
+			
+			if(this.ticksInState > 10) {
+				this.setState("normal");
+				this.sprite.setFrame(2);
+			}
 		}
 	}
 

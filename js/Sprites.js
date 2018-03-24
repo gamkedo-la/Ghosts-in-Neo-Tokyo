@@ -52,7 +52,8 @@ function spriteClass() {
 		result = calculateFrameIndex(index);
 		frameX = result.x;
 		frameY = result.y;
-		frameIndex = index % frameTotal;
+//		frameIndex = index % frameTotal;
+		frameIndex = index;
 		timePerFrame = 0;
 		drawFrame = true;
 	}

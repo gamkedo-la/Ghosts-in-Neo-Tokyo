@@ -81,7 +81,7 @@ function magicClass(magic, enemyList) {
 	this.doesSpellHitTile = function() {
 		if (this.canRaycast) {
 			if (this.attackDir[0] < 0) { // WEST
-				console.log(Math.floor(this.pastX));
+//				console.log(Math.floor(this.pastX));
 				if (this.pastX <= magic.obstacle.x) {
 					console.log("spell X <= obstacle X");
 					this.remove = true;
