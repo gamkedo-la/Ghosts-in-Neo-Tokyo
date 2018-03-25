@@ -241,7 +241,7 @@ function drawWorldLabels() { // street signs, etc
 function drawHealth() {
 	var healthBarFlashTimer = 0;
 	var posX = 18;
-	var posY = canvas.height - 87;
+	var posY = canvas.height - NPC_FOOTER_HEIGHT - 7;
 	var cornerX = posX - cameraOffsetX;
 	var cornerY = posY - cameraOffsetY;
     var playerMaxHealth = player.maxHealth;
@@ -259,13 +259,16 @@ function drawHealth() {
 			}
 		}
 	
-	canvasContext.globalAlpha=0.333;
+	canvasContext.globalAlpha=0.5
 	canvasContext.drawImage(sprites.UI.healthBarEmpty, cornerX,cornerY);
     if (barColorRed) {
     	barColor = 'red';
     } else {
     	barColor = 'white';
     }
+    colorRect(cornerX,cornerY,
+    		  sprites.UI.healthBarEmpty.width,
+			  sprites.UI.healthBarEmpty.height, 'grey');
     colorRect(cornerX,cornerY,healthBarWidth,
 			  sprites.UI.healthBarEmpty.height, barColor);
   
