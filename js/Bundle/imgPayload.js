@@ -13,7 +13,9 @@ var imgPayload = [
 
 		{set: "Background", name: "background1", fileName: "Concept.png"},
 		{set: "Background", name: "skyscrapers", fileName: "Backgrounds/skyscrapers.png"},
+
 		{set: "Ghast", name: "move", fileName: "Ghast/Ghast.png"},
+		{set: "TenGhost", name: "move", fileName: "Tenghost/tenghost.png"},
 
 		{set: "pew", name: "pewpew", fileName: "pewpew.png"},
 		{set: "pooter", name: "move", fileName: "pooter.png"},

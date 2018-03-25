@@ -156,6 +156,7 @@ function drawAll() {
 	//TODO: remove
 	
 	canvasContext.drawImage(sprites.Background.skyscrapers, 0,20);
+	canvasContext.drawImage(sprites.TenGhost.move, 25,50);
 	drawWorld();
 	currentRoom.drawTraps();
 	drawItems();
