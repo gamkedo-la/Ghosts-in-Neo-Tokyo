@@ -32,11 +32,12 @@
                     {
                      "name":"end",
                      "toDoor":"level2start",
-                     "toLevel":"Level2"
+                     "toLevel":"Level2",
+                     "isLocked":true
                     },
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":44,
                  "x":1120,
                  "y":220
@@ -48,7 +49,7 @@
                  "name":"",
                  "properties":
                     {
-
+					"targetName":"end"
                     },
                  "rotation":0,
                  "type":"",

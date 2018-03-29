@@ -85,10 +85,23 @@ function floorButton(x, y) {
 		},
 		recoil: function() {
 			if(this.sprite.getFrame() != 2) {
-			this.sprite.setFrame(1);				
+				this.sprite.setFrame(1);				
 			}
 			
 			if(this.ticksInState > 10) {
+				if(!this.mapData){
+					throw "yo, you need to set properties in the tmx file for this level";
+				}
+				if(!this.mapData.targetName ){
+					throw "yo, you need to set properties in the tmx file for this level \n Set custom property toDoor to a door in the next level so the character knows where to spawn";
+				}
+				
+				for(var i in currentRoom.layout.layers[1].objects){
+					if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].properties.name == this.mapData.targetName ){
+						console.log("Found the button's target!!, unlocking")
+						currentRoom.layout.layers[1].objects[i].properties.isLocked = false;
+					}
+				}
 				this.setState("normal");
 				this.sprite.setFrame(2);
 			}

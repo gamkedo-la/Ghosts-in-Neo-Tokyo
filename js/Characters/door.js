@@ -79,6 +79,11 @@ function door(x, y) {
 			if(!this.mapData.name){
 				throw "yo, you need to set properties in the tmx file for this level\n Set custom property name to a door so other doors can spawn the player here.";
 			}
+			
+			if(this.mapData.isLocked) {
+				this.setState("normal");
+				return;
+			}
 
 			console.log("Door recoil!!!!!!!!!!");
 			var hasRoom = allRoomsData[this.mapData.toLevel];
@@ -95,9 +100,6 @@ function door(x, y) {
 					this.setState("normal");
 				}
 			}
-
-
-
 		},
 		dying: function(){
 			if(!this.ticksInState){
