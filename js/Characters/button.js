@@ -54,7 +54,7 @@ function floorButton(x, y) {
 
 			this.sprite.update();
 			if(this.ticksInState > 100){
-				this.setState("normal")
+				this.setState("normal");
 			}
 
 		},
@@ -105,6 +105,9 @@ function floorButton(x, y) {
 				this.setState("normal");
 				this.sprite.setFrame(2);
 			}
+		},
+		gotHit: function() {
+			this.setState("recoil");
 		}
 	}
 

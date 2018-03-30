@@ -2,7 +2,7 @@ const RANGED_ATTACK_SPEED = 2;
 const BLOOD_SPLATTER_SPEED = 1;
 const PARTICLES_PER_ENEMY_HIT = 16;
 
-function magicClass(magic, enemyList) {
+function magicClass(magic, enemyList, objectList) {
 	this.x = magic.x;
 	this.y = magic.y;
 	this.pastX = this.x;
@@ -33,6 +33,11 @@ function magicClass(magic, enemyList) {
 		this.enemyList = currentRoom.enemyList;
 	} else {
 		this.enemyList = enemyList;
+	}
+	if(!objectList){
+		this.objectList = currentRoom.objectList;
+	} else {
+		this.objectList = objectList;
 	}
 	this.draw = function() {
 		this.sprite.draw(this.x,this.y);
@@ -117,6 +122,13 @@ function magicClass(magic, enemyList) {
 			var enemy = this.enemyList[i];
 			if (this.collider.isCollidingWith(enemy.hitbox))
 				this.onHitEnemy(enemy);
+		}
+		
+		for (var i = 0; i < this.objectList.length; i++) {
+			const gameObject = this.objectList[i];
+			if (this.collider.isCollidingWith(gameObject.hitbox)) {
+				this.onHitEnemy(gameObject);
+			}
 		}
 	}
 

@@ -611,8 +611,10 @@ function playerClass() {
 	}
 
 
-	this.canHitEnemy = function (collider) { // used for attacks, returns the enemy
-
+//Commented this out because it isn't used - recommend deletion
+/*	this.canHitEnemy = function (collider) { // used for attacks, returns the enemy
+		
+		console.log("Can Hit Enemy?");
 		//console.log('Detecting attacking collisions near ' + this.attackhitbox.x+','+this.attackhitbox.y);
 		if (!currentRoom) { console.log("ERROR: currentRoom is null."); return false; }
 
@@ -630,7 +632,7 @@ function playerClass() {
 			}
 		}
 		return hitAnEnemy;
-	}
+	}*/
 	this.getHit = function getHit(amount) {
 		if (this.isInvincible) {
 			return;
