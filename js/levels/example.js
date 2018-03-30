@@ -27,7 +27,7 @@
                  "gid":103,
                  "height":44,
                  "id":12,
-                 "name":"",
+                 "name":"end",
                  "properties":
                     {
                      "name":"end",
@@ -36,7 +36,7 @@
                      "isLocked":true
                     },
                  "rotation":0,
-                 "type":"",
+                 "type":"Door",
                  "visible":false,
                  "width":44,
                  "x":1120,
@@ -46,13 +46,14 @@
                  "gid":104,
                  "height":32,
                  "id":16,
-                 "name":"",
+                 "name":"rSwitch",
                  "properties":
                     {
-					"targetName":"end"
+					"targetName":["end", "lSwitch"],
+					"state": "released"
                     },
                  "rotation":0,
-                 "type":"",
+                 "type":"fButton",
                  "visible":true,
                  "width":32,
                  "x":396,
@@ -62,13 +63,14 @@
                  "gid":104,
                  "height":32,
                  "id":17,
-                 "name":"",
+                 "name":"lSwitch",
                  "properties":
                     {
-
+					"targetName":["rSwitch"],
+					"state": "set"
                     },
                  "rotation":0,
-                 "type":"",
+                 "type":"fButton",
                  "visible":true,
                  "width":32,
                  "x":121,

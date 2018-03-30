@@ -45,10 +45,11 @@
                  "gid":104,
                  "height":32,
                  "id":17,
-                 "name":"",
+                 "name":"Level2Switch",
                  "properties":
                     {
-
+					"targetName": ["level2start"],
+					"state": "released"
                     },
                  "rotation":0,
                  "type":"",

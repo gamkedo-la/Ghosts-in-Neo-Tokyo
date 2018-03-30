@@ -687,9 +687,8 @@ function playerClass() {
 				} else if (anObject.type == "fButton") {
 					var thisColliderBottom = this.tileCollider.y + this.tileCollider.height + 1;
 					var anObjectColliderMiddle = anObject.hitbox.y + anObject.hitbox.height / 2;
-//					console.log("Player Bottom: " + thisColliderBottom + ", Button Bottom: " + anObjectColliderMiddle);
 					if (thisColliderBottom < anObjectColliderMiddle) {
-						anObject.setState("recoil");
+						anObject.setState("set");
 	
 					if ((this.keyHeld_West) || (this.keyHeld_East)) {
 							this.motionState = "Walking";

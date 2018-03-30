@@ -2,7 +2,7 @@ function floorButton(x, y) {
 
 	this.x = x;
 	this.y = y - 16; //y offset
-	this.initialState = "normalDoorLikeBehavior";
+	this.initialState = "normal";
 	this.maxHealth = 3; // how many hits till it dies
 	this.currentHealth = this.maxHealth;
 	this.lootModifier = 1.0;
@@ -62,8 +62,15 @@ function floorButton(x, y) {
 		},
 		normal : function(){
 			
-			this.sprite.update();
-			this.tileBehaviorHandler();
+			if(((this.mapData.state == "set") && ((this.sprite.getFrame == 1) || (this.sprite.getFrame == 2))) || 
+			   ((this.mapData.state == "released") && (this.sprite.getFrame == 0))) {
+				this.sprite.update();
+				this.tileBehaviorHandler();
+			} else if(this.mapData.state == "set") {
+				this.setState("set");
+			} else if(this.mapData.state == "released") {
+				this.setState("released");
+			}
 		},
 		dying: function(){
 			if(!this.ticksInState){
@@ -83,6 +90,64 @@ function floorButton(x, y) {
 			// }
 			this.sprite.update();
 		},
+		set: function() {
+			if(this.sprite.getFrame() != 2) {
+				this.sprite.setFrame(1);				
+			}
+			
+			if(!this.mapData){
+				throw "yo, you need to set properties in the tmx file for this level";
+			}
+			if(!this.mapData.targetName ){
+				throw "yo, you need to set properties in the tmx file for this level \n Set custom property targetName to a door name in this level so the door knows to unlock \n ";
+			}
+			
+			this.mapData.state = "set";
+			
+			for(var j in this.mapData.targetName ) {
+				for(var i in currentRoom.layout.layers[1].objects){
+					if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].name == this.mapData.targetName[j] ){
+						const targetType = currentRoom.layout.layers[1].objects[i].type;
+						if (targetType == "Door") {
+							currentRoom.layout.layers[1].objects[i].properties.isLocked = false;						
+						} else if (targetType == "fButton") {
+							currentRoom.layout.layers[1].objects[i].properties.state = "released";
+						}
+					}
+				}
+			}
+			
+			if(this.ticksInState > 5) {
+				this.setState("normal");
+				this.sprite.setFrame(2);
+			}
+		},
+		released: function() {
+			if(!this.mapData){
+				throw "yo, you need to set properties in the tmx file for this level";
+			}
+			if(!this.mapData.targetName ){
+				throw "yo, you need to set properties in the tmx file for this level \n Set custom property targetName to a door name in this level so the door knows to unlock";
+			}
+			
+			this.mapData.state = "released";
+			
+			for(var j in this.mapData.targetName ) {
+				for(var i in currentRoom.layout.layers[1].objects){
+					if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].name == this.mapData.targetName[j] ){
+						const targetType = currentRoom.layout.layers[1].objects[i].type;
+						if (targetType == "Door") {
+							currentRoom.layout.layers[1].objects[i].properties.isLocked = true;						
+						} else if (targetType == "fButton") {
+							currentRoom.layout.layers[1].objects[i].properties.state = "set";
+						}
+					}
+				}		
+			}
+			
+			this.setState("normal");
+			this.sprite.setFrame(0);		
+		},
 		recoil: function() {
 			if(this.sprite.getFrame() != 2) {
 				this.sprite.setFrame(1);				
@@ -93,12 +158,12 @@ function floorButton(x, y) {
 					throw "yo, you need to set properties in the tmx file for this level";
 				}
 				if(!this.mapData.targetName ){
-					throw "yo, you need to set properties in the tmx file for this level \n Set custom property toDoor to a door in the next level so the character knows where to spawn";
+					throw "yo, you need to set properties in the tmx file for this level \n Set custom property targetName to a door name in this level so the door knows to unlock";
 				}
 				
 				for(var i in currentRoom.layout.layers[1].objects){
-					if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].properties.name == this.mapData.targetName ){
-						console.log("Found the button's target!!, unlocking")
+					if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].name == this.mapData.targetName ){
+						console.log("Found the button's target!!, it's type is: " + currentRoom.layout.layers[1].objects[i].type);
 						currentRoom.layout.layers[1].objects[i].properties.isLocked = false;
 					}
 				}
