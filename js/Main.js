@@ -157,6 +157,7 @@ function drawAll() {
 	
 	canvasContext.drawImage(sprites.Background.skyscrapers, 0,20);
 	canvasContext.drawImage(sprites.TenGhost.move, 25,50);
+	drawRain();
 	drawWorld();
 	currentRoom.drawTraps();
 	drawItems();
@@ -166,7 +167,6 @@ function drawAll() {
 	drawParticles();
 	drawPanelWithButtons(debugPanel);	
 	drawWorldLabels();
-	drawRain();
 	canvasContext.restore();
 	drawHeader();
 	npcGUI.drawFooter();

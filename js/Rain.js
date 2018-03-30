@@ -3,6 +3,7 @@
 var rainDrops = [];
 const RAIN_COUNT = 200;
 const RAIN_SPRITE_SIZE = 32;
+const WORLD_COLS_VISIBLE = 9; // FIXME hardcoded
 
 function drawRain() {
     
@@ -12,10 +13,10 @@ function drawRain() {
         if (!rainDrops[loop]) //lazy init once only
             rainDrops[loop] = { x:0,y:999999,sx:-1,sy:2};
         // respawn when past bottom
-        if (rainDrops[loop].y > canvas.height+RAIN_SPRITE_SIZE) {
+        if (rainDrops[loop].y > WORLD_COLS_VISIBLE * WORLD_H - cameraOffsetY) { //canvas.height+RAIN_SPRITE_SIZE) {
             spdy = 1+Math.random()*4;
-            rainDrops[loop] = { x: (Math.random()*canvas.width*2)-cameraOffsetX, y:Math.random()*canvas.height*-1-RAIN_SPRITE_SIZE, sx:-spdy/2, sy:spdy };
-            console.log('cameraOffsetX'+cameraOffsetX);
+            rainDrops[loop] = { x: (Math.random()*canvas.width*2)-cameraOffsetX, y:Math.random()*canvas.height*-1-RAIN_SPRITE_SIZE+cameraOffsetY, sx:-spdy/2, sy:spdy };
+            //console.log('cameraOffsetX'+cameraOffsetX);
         }
 
         rainDrops[loop].x += rainDrops[loop].sx;
