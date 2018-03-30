@@ -30,6 +30,8 @@ var imgPayload = [
 		{set: "UI", name: "healthBarEmpty", fileName: "UI/Health_Bar_Empty.png"},
 		{set: "UI", name: "logoKanji", fileName: "UI/logoKanji.png"},
 
+		{set: "FX", name: "raindrops", fileName: "FX/raindrops.png"},
+
 		{worldType: TILE_TRANSPARENT, theFile: "Tiles/world_transparent.png"},
 		{worldType: TILE_EMPTY, theFile: "Tiles/world_nothingness.png"},
 		{worldType: TILE_WALL, theFile: "Tiles/world_ground.png"},

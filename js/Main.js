@@ -166,6 +166,7 @@ function drawAll() {
 	drawParticles();
 	drawPanelWithButtons(debugPanel);	
 	drawWorldLabels();
+	drawRain();
 	canvasContext.restore();
 	drawHeader();
 	npcGUI.drawFooter();
