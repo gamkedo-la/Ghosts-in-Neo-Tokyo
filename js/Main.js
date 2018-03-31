@@ -111,8 +111,63 @@ function loadLevel(DatRoomYO) {
 	
 }
 
+//Splash Screen
+//Main Menu
+
+
+/* 
+	**** GAME STATES *****
+	and helper functions
+	TODO(keenan): this likely needs to go into another file
+*/
+const SPLASH   = 0;
+const MAINMENU = 1; 
+const PLAYING  = 2; 
+const PAUSED   = 3; 
+
+var transitionCounter = 0;
+var transitionDuration = 3;
+var GameState_ = SPLASH;
+
+//Checks every frame if condition is true
+//If it is, set new transition
+function ChangeGameStateOnCondition( condition, newState){
+	if(condition){
+		GameState_ = newState;
+	}
+}
+
+// Draws Gamkedo Logo
+// Image variables can be found in imgPayload.js
+// NOTE(keenan): Uncertain how the scaling is working at the moment
+function DrawSplashLogo(){
+	canvasContext.drawImage(sprites.UI.splashLogo,  Math.round(canvas.width/2) - 566/4 , 50, 566/2, 104/2);
+}
+
+/*
+end of splash and game state
+*/
+
+
+// Helper function for clearing things to black
+function ClearToBlack(){
+	colorRect(0,0, canvas.width, canvas.height, 'black');
+}
+
 function updateAll() {
 	
+	if(GameState_ == SPLASH){
+		ClearToBlack();
+
+		//Show a little of black screen before and after we show the splash logo
+		if(transitionCounter  < (transitionDuration/2) )
+			DrawSplashLogo(); 
+
+		transitionCounter += TIME_PER_TICK;
+		ChangeGameStateOnCondition( transitionCounter >= transitionDuration, MAINMENU);
+				return;
+	}
+
 	if (_TEST_AI_PATHFINDING)
 		currentRoom.updatePathfindingData()
 	
