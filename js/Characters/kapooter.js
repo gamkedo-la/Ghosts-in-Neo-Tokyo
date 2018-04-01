@@ -8,15 +8,15 @@ function kapooter(x, y) {
 	this.lootModifier = 1.0;
 	this.droppedTile = undefined;
 	this.initialState = "normal";
-	this.tileColliderWidth = 18;
-	this.tileColliderHeight = 4;
-	this.tileColliderOffsetX = 2;
-	this.tileColliderOffsetY = 11;
+	this.tileColliderWidth = 10;
+	this.tileColliderHeight = 17;
+	this.tileColliderOffsetX = 0;
+	this.tileColliderOffsetY = -3;
 
-	this.hitboxWidth = 14;
-	this.hitboxHeight = 14;
-	this.hitboxOffsetX = -2;
-	this.hitboxOffsetY = 0;
+	this.hitboxWidth = 10;
+	this.hitboxHeight = 17;
+	this.hitboxOffsetX = 0;
+	this.hitboxOffsetY = -3;
 
 	this.spriteSheet = sprites.pooter.move;
 	this.spriteWidth = 32;

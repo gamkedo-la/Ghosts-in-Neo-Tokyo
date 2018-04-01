@@ -65,6 +65,7 @@ function Room(roomLayout) {
 							var newEnemy = new enemyConstructor(item.x, item.y)
 							newEnemy.mapData = item.properties
 							newEnemy.type = aType;
+							newEnemy.name = item.name;
 							this.objectList.push(newEnemy);
 						} else {
 							this.enemyList.push(new enemyConstructor(item.x, item.y));

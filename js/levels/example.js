@@ -50,7 +50,8 @@
                  "properties":
                     {
 					"targetName":["end", "lSwitch"],
-					"state": "released"
+					"state": "released",
+					"setTime": 100
                     },
                  "rotation":0,
                  "type":"fButton",

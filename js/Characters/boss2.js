@@ -8,14 +8,14 @@ function boss2(x, y) {
 	this.lootModifier = 1.0;
 	this.droppedTile = undefined;
 
-	this.tileColliderWidth = 18;
-	this.tileColliderHeight = 4;
-	this.tileColliderOffsetX = 2;
-	this.tileColliderOffsetY = 11;
+	this.tileColliderWidth = 14;
+	this.tileColliderHeight = 40;
+	this.tileColliderOffsetX = 0;
+	this.tileColliderOffsetY = 0;
 
 	this.hitboxWidth = 14;
-	this.hitboxHeight = 14;
-	this.hitboxOffsetX = -2;
+	this.hitboxHeight = 40;
+	this.hitboxOffsetX = 0;
 	this.hitboxOffsetY = 0;
 
 	this.spriteSheet = sprites.Boss2.idle;
