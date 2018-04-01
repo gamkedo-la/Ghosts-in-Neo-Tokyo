@@ -29,6 +29,7 @@ var imgPayload = [
 		{set: "UI", name: "pixelFont", fileName: "UI/pixelFont.png"},
 		{set: "UI", name: "healthBarEmpty", fileName: "UI/Health_Bar_Empty.png"},
 		{set: "UI", name: "logoKanji", fileName: "UI/logoKanji.png"},
+		{set: "UI", name: "splashLogo", fileName: "UI/gk-logo-page-top.png"},
 
 		{set: "FX", name: "raindrops", fileName: "FX/raindrops.png"},
 

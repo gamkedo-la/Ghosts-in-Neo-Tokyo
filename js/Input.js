@@ -173,7 +173,10 @@ function keyPressed(evt) {
 					updateStateWithGameFile(gameSaveSlots[gameSaveSlotsIndex]);
 					restoreRoomDataBackup();
         			loadLevel();
-				}
+
+				} 
+			}else if( GameState_ == MAINMENU){
+					mainMenu_OnEnter();
 			}
 			break;
 		case KEY_PLUS:
@@ -251,6 +254,9 @@ function keyPressed(evt) {
 			}
 			break;
 		case KEY_UP_ARROW:
+			if(GameState_ == MAINMENU){
+				moveMainMenu('up');
+			}
 			if (paused) {
 				moveInventory('up');
 			} else if (saveMenuOpen) {
@@ -263,6 +269,9 @@ function keyPressed(evt) {
 			}
 			break;
 		case KEY_DOWN_ARROW:
+			if(GameState_ == MAINMENU){
+				moveMainMenu('down');
+			}
 			if (paused) {
 				moveInventory('down');
 			} else if (saveMenuOpen) {

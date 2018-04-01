@@ -111,8 +111,133 @@ function loadLevel(DatRoomYO) {
 	
 }
 
+//Splash Screen
+//Main Menu
+
+
+/* 
+	**** GAME STATES *****
+	and helper functions
+	TODO(keenan): this likely needs to go into another file
+*/
+const SPLASH   = 0;
+const MAINMENU = 1; 
+const PLAYING  = 2; 
+const PAUSED   = 3; 
+
+var transitionCounter = 0;
+var transitionDuration = 3;
+var GameState_ = SPLASH;
+
+//Checks every frame if condition is true
+//If it is, set new transition
+function ChangeGameStateOnCondition( condition, newState){
+	if(condition){
+		GameState_ = newState;
+	}
+}
+
+// Draws Gamkedo Logo
+// Image variables can be found in imgPayload.js
+// NOTE(keenan): Uncertain how the scaling is working at the moment
+function DrawSplashLogo(){
+	canvasContext.drawImage(sprites.UI.splashLogo,  Math.round(canvas.width/2) - 566/4 , 50, 566/2, 104/2);
+}
+
+var mainMenuCurrentSelection = 0;
+const MAIN_MENU_BUTTON_COUNT = 3;
+
+function moveMainMenu (keyName) {
+    if (keyName === 'up') {
+        mainMenuCurrentSelection--;
+    }
+    else if (keyName === 'down') {
+        mainMenuCurrentSelection++;
+    }
+
+    if (mainMenuCurrentSelection >= MAIN_MENU_BUTTON_COUNT) {
+        mainMenuCurrentSelection = 0;
+    }
+    else if (mainMenuCurrentSelection < 0) {
+        mainMenuCurrentSelection = MAIN_MENU_BUTTON_COUNT - 1;
+    }
+};
+
+const MAINMENU_OPTION_NEWGAME  = 0;
+const MAINMENU_OPTION_CONTINUE = 1;
+const MAINMENU_OPTION_CREDITS  = 2;
+function mainMenu_OnEnter(){
+
+	console.log("MainMenu On Enter");
+	if(mainMenuCurrentSelection == MAINMENU_OPTION_NEWGAME)
+		GameState_ = PLAYING;
+	else if(mainMenuCurrentSelection == MAINMENU_OPTION_CONTINUE)
+		console.log("Continue game");
+	else if(mainMenuCurrentSelection == MAINMENU_OPTION_CREDITS)
+		console.log("Credits menu");
+}
+
+const DEG2RAD = 0.0174533;
+var logoScaleMin = 1.0;
+var logoScaleMax = 2.0;
+var logoScale    = 1.0;
+var timeAccum = 0.0;
+function DrawMainMenu(){
+
+		//trying to do some cool effects 
+		canvasContext.save();
+		//timeAccum += TIME_PER_TICK * .5;
+		//logoScale = logoScaleMin + Math.abs(Math.cos(timeAccum) * logoScaleMax);
+		// canvasContext.translate(-,-2);
+		canvasContext.scale(2, 2);
+		canvasContext.drawImage(sprites.UI.logoKanji, Math.round(canvas.width/2)-112, 10);
+
+		canvasContext.restore();
+
+	    var startY = 60;
+		ShowButton("New Game",  canvas.width/2-50, startY+30,  100, 25 , mainMenuCurrentSelection == 0); 
+		ShowButton("Continue",  canvas.width/2-50, startY+60,  100, 25 , mainMenuCurrentSelection == 1);
+		ShowButton("Credits",   canvas.width/2-50, startY+90,  100, 25 , mainMenuCurrentSelection == 2);
+}
+
+
+// Button Helper - can add parameter for custom graphics
+function ShowButton(message, x, y, width, height, active){
+	var magicValue = 3;
+	var color = active ? 'red' : 'blue';
+	colorRect(x, y, width, height, color);
+	var w = Math.round(width/2) - Math.round( measurePixelfont(message) / 2  );
+	drawPixelfont(message,  Math.round(x + w)+magicValue, Math.round( y + height/2)-3 ) ;
+}
+
+/*
+end of splash and game state
+*/
+
+
+// Helper function for clearing things to black
+function ClearToBlack(){
+	colorRect(0,0, canvas.width, canvas.height, 'black');
+}
+
 function updateAll() {
 	
+	if(GameState_ == SPLASH){
+		ClearToBlack();
+
+		//Show a little of black screen before and after we show the splash logo
+		if(transitionCounter  < (transitionDuration - transitionDuration / 3) )
+			DrawSplashLogo(); 
+
+		transitionCounter += TIME_PER_TICK;
+		ChangeGameStateOnCondition( transitionCounter >= transitionDuration, MAINMENU);
+				return;
+	}
+	else if( GameState_ == MAINMENU){
+		DrawMainMenu();
+		return;
+	}
+
 	if (_TEST_AI_PATHFINDING)
 		currentRoom.updatePathfindingData()
 	
