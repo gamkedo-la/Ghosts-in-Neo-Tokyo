@@ -51,7 +51,7 @@
                     {
 					"targetName":["end", "lSwitch"],
 					"state": "released",
-					"setTime": 100
+					"setTime": 250
                     },
                  "rotation":0,
                  "type":"fButton",
