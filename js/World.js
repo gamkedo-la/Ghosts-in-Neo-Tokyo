@@ -246,3 +246,34 @@ function drawWorld() {
 		drawTileX = 0;
 	} // end of for each row
 } // end of drawWorld func
+
+function drawWorldRestricted(){
+	var pos = getTileIndexAtPixelCoord(player.x, player.y);
+
+	var test = ArrayIndexToColRow(pos)
+	//tile sanity test
+	//TODO:remove
+	canvasContext.drawImage(worldPics[3], test[0]* WORLD_W, test[1]* WORLD_W);
+	
+
+	
+	var startHeight = pos - WORLD_COLS*4
+	var startPos = startHeight - 10 
+	if(startPos < 0){
+		startPos = 0;
+	}
+	var stopPos = startHeight + 10
+	var totalHeight = 20
+	var tileKindHere = null;
+
+	var useImg = null;
+	for(var row = 0; row < totalHeight; row++){
+		for(var index = startPos; index < stopPos; index++){
+
+			tileKindHere = worldGrid[index + row*WORLD_COLS];
+			useImg = worldPics[tileKindHere];
+			canvasContext.drawImage(useImg, (index+ row*WORLD_COLS) % WORLD_COLS * WORLD_H , Math.floor((index+ row*WORLD_COLS) / WORLD_COLS) * WORLD_H );
+		}
+	}
+
+}
