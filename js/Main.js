@@ -45,8 +45,8 @@ function runThatGame(){
 	setupInput();
 	backupRoomData(); // should do before any numbers are replaced and load level etc.
 	initRoomData()
-	loadLevel("example");
-	resetAllRooms(); //this spawns in enemies
+	loadLevel();
+	resetAllRooms();
 	createTileArray();
 	
 	// placed last just in case the above takes < 1/60 sec
@@ -57,12 +57,8 @@ function runThatGame(){
 }
 
 //this should prob be in Room.js
-var currentRoomName = null
 function loadLevel(DatRoomYO) {
 	console.log("loading level");
-	if(!DatRoomYO && currentRoomName){
-		DatRoomYO = currentRoomName
-	}
 	if(DatRoomYO){
 		currentRoom = allRoomsData[DatRoomYO];
 		worldGrid = currentRoom.layout.layers[0].data
@@ -77,10 +73,8 @@ function loadLevel(DatRoomYO) {
 		WORLD_ROWS = currentRoom.layout.height
 
 		var nextRoom = allRoomsData[DatRoomYO];
-		currentRoomName = DatRoomYO;
 	} else {
 		var nextRoom = roomCoordToVar();	
-		currentRoomName = null
 	}
 
 	
@@ -289,8 +283,7 @@ function drawAll() {
 	canvasContext.drawImage(sprites.Background.skyscrapers, 0,20);
 	canvasContext.drawImage(sprites.TenGhost.move, 25,50);
 	drawRain();
-	//drawWorld();
-	drawWorldRestricted()
+	drawWorld();
 	currentRoom.drawTraps();
 	drawItems();
 	currentRoom.drawDynamic();
