@@ -246,6 +246,15 @@ function enemyClass(newEnemy, states){
 	} // end of this.die function
 
 	this.maybeTriggerNPCDialogue = function() {
+		if(this.thingsToSay.length <= 0) {return;}
+			//this.thingsToSay is autopopulated for
+			//all objects and enemies and 
+			//then emptied only for those objects
+			//which do not talk (doors & switches).
+			//if we want doors and/or switches to use,
+			//the npcDialog system, we'll need a different
+			//way to prevent some (but not all) of
+			//them from doing so.
 		if(mDist(this.x, this.y, player.x, player.y) < this.closeEnoughToTalkTo) {
 			//console.log("player is close enough to talk to me!");
 			npcGUI.sayFooter("You think you can just touch a ghost\nand not suffer the consequences?\n\nPrepare to join us for a ghastly eternal\nexistence without form that never ends!", sprites.Player.defaultFaceImage);
