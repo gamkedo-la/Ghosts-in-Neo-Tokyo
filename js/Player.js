@@ -682,7 +682,6 @@ function playerClass() {
 				colliding = true;
 				
 				if(anObject.type == "Door") {
-					console.log("Player is setting recoil on the door");
 					anObject.setState("recoil");
 				} else if (anObject.type == "fButton") {
 					var thisColliderBottom = this.tileCollider.y + this.tileCollider.height + 1;

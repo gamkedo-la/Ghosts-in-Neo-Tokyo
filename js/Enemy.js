@@ -95,7 +95,7 @@ function enemyClass(newEnemy, states){
 			// report AI state? handy for debugging!
 			// this.chat = "I think I'll\n"+newState+"."; 
 			var randy = Math.random();
-			if (randy<RANDOM_CHAT_CHANCE) { // 10% of the time
+			if ((randy<RANDOM_CHAT_CHANCE) && (this.thingsToSay.length > 0)) { // 10% of the time
 				// trigger a new word bubble animation from npcChatSystem.js
 				this.chat.sayBubble(this.thingsToSay[Math.floor(Math.random()*this.thingsToSay.length)]);
 			}
