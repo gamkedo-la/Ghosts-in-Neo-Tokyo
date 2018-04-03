@@ -211,16 +211,29 @@ function playerClass() {
 			lastValidCurrentRoomRow = 1;
 			lastValidCurrentFloor = 1;
 			loadLevel();
-			this.x = STARTING_POSITION_X;
-			this.y = STARTING_POSITION_Y;
+			//TODO: make this not so hard coded D: 
+			//Todo: remove a lot of these magic numbers
+			
 			this.vx = 0;
 			this.vy = 0;
 			playerAtStartingPosition = true;
 			// instantly snap the camera which may be extremely far away from the respawn area
 			cameraOffsetX = cameraOffsetY = 0; // these globals are from Main.js
 		}
-
-
+		var foundRespawnPoint = false
+		for(var i in currentRoom.layout.layers[1].objects){
+			if(currentRoom.layout.layers[1].objects[i].gid == 101){
+				foundRespawnPoint = currentRoom.layout.layers[1].objects[i]
+			}
+		}
+		if(foundRespawnPoint){
+			this.x = foundRespawnPoint.x
+			this.y = foundRespawnPoint.y
+		} else {
+			this.x = STARTING_POSITION_X;
+			this.y = STARTING_POSITION_Y;
+		}
+		cameraOffsetY = -(player.y + (1.5 * canvas.height)) //TODO: yooooooo camera logic should not be in player.js
 		this.isFacing = SOUTH; // FIXME possible bug? this.?
 		this.isMoving = false;
 		this.resetKeys();

@@ -3,7 +3,7 @@ const WORLD_H = 20;
 const WORLD_GAP = 0;
 var WORLD_COLS = 60;
 var WORLD_ROWS = 34;
-const WORLD_MAX_Y = WORLD_ROWS * WORLD_H; // player.die if we fall too far
+var WORLD_MAX_Y = WORLD_ROWS * WORLD_H; // player.die if we fall too far
 
 //rooms are defined now in rooms.js
 var worldGrid = [];
@@ -269,10 +269,11 @@ function drawWorldRestricted(){
 	var useImg = null;
 	for(var row = 0; row < totalHeight; row++){
 		for(var index = startPos; index < stopPos; index++){
-
-			tileKindHere = worldGrid[index + row*WORLD_COLS];
-			useImg = worldPics[tileKindHere];
-			canvasContext.drawImage(useImg, (index+ row*WORLD_COLS) % WORLD_COLS * WORLD_H , Math.floor((index+ row*WORLD_COLS) / WORLD_COLS) * WORLD_H );
+			if(index + row*WORLD_COLS < worldGrid.length - 1){
+				tileKindHere = worldGrid[index + row*WORLD_COLS];
+				useImg = worldPics[tileKindHere];
+				canvasContext.drawImage(useImg, (index+ row*WORLD_COLS) % WORLD_COLS * WORLD_H , Math.floor((index+ row*WORLD_COLS) / WORLD_COLS) * WORLD_H );
+			}
 		}
 	}
 

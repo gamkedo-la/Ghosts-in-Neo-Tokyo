@@ -70,6 +70,8 @@ function Room(roomLayout) {
 						} else {
 							this.enemyList.push(new enemyConstructor(item.x, item.y));
 						}
+					} else if(item.gid == 101) {
+						//yo this is just a placement object for the player
 					} else {
 						throw "could not find object in tileset: " + item.gid
 					}

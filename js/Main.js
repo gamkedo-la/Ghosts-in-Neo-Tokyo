@@ -75,6 +75,7 @@ function loadLevel(DatRoomYO) {
 		}		
 		WORLD_COLS = currentRoom.layout.width
 		WORLD_ROWS = currentRoom.layout.height
+		WORLD_MAX_Y = WORLD_ROWS * WORLD_H
 
 		var nextRoom = allRoomsData[DatRoomYO];
 		currentRoomName = DatRoomYO;
@@ -339,7 +340,7 @@ function updateCameraPosition() {
 		cameraOffsetY += 10;
 	} else if(player.y < (2 * deadYZone - cameraOffsetY)) {//player is above the dead zone -> move slowly
 		cameraOffsetY += 2;
-	}
+	} 
 	
 	//Do not move the camera so far up or down that the areas outside of the world are visible
 	if (cameraOffsetY > 0) {
