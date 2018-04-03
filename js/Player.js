@@ -103,10 +103,10 @@ function playerClass() {
 	this.tileCollider = new boxColliderClass(this.x, this.y,
 		tileColliderWidth, tileColliderHeight,
 		tileColliderOffsetX, tileColliderOffsetY);
-	var hitboxWidth = 8;
-	var hitboxHeight = 10;
+	var hitboxWidth = 9;
+	var hitboxHeight = 22;
 	var hitboxOffsetX = -0.5;
-	var hitboxOffsetY = 6.5;
+	var hitboxOffsetY = 0.5;
 	this.hitbox = new boxColliderClass(this.x, this.y,
 		hitboxWidth, hitboxHeight,
 		hitboxOffsetX, hitboxOffsetY);
@@ -682,7 +682,6 @@ function playerClass() {
 				colliding = true;
 				
 				if(anObject.type == "Door") {
-					console.log("Player is setting recoil on the door");
 					anObject.setState("recoil");
 				} else if (anObject.type == "fButton") {
 					var thisColliderBottom = this.tileCollider.y + this.tileCollider.height + 1;

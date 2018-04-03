@@ -9,10 +9,10 @@ function pew(x, y, isFacing) {
 	this.canRaycast = true;
 	
 	this.attackFrames = {
-		0: {x1: 0, y1: 0, x2: 20, y2:20 },
-		1: {x1: 0, y1: 0, x2: 20, y2:20 },
-		2: {x1: 0, y1: 0, x2: 20, y2:20 },
-		3: {x1: 0, y1: 0, x2: 20, y2:20 }};
+		0: {x1: 1, y1: -1, x2: 10, y2:14 },
+		1: {x1: 1, y1: -1, x2: 12, y2:12 },
+		2: {x1: 1, y1: -1, x2: 14, y2:10 },
+		3: {x1: 1, y1: -1, x2: 11, y2:12 }};
 		
 	this.spriteSheet = sprites.pew.pewpew
 	this.spriteWidth = 20;
@@ -95,7 +95,7 @@ function pew(x, y, isFacing) {
 	}
 
 	this.onHitEnemy = function (enemy) {
-		console.log('WE HIT AN ENEMY!!!!');
+		console.log('WE HIT AN ENEMY!!!! Is that for real?');
 		this.remove = true;
 		enemy.getHit(1);
 		//Sound.play("enemy_hit"); // TODO: after a delay?

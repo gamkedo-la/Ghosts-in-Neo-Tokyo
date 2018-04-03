@@ -6,9 +6,9 @@ function anchorMagic(x, y, isFacing) {
 	this.isFacing = isFacing;
 	
 	this.attackFrames = {
-		1: {x1: 5, y1: 8, x2: 20, y2:10 },
-		2: {x1: 5, y1: 8, x2: 20, y2:10 },
-		3: {x1: 5, y1: 8, x2: 20, y2:10 }};
+		1: {x1: 5, y1: 0, x2: 32, y2:28 },
+		2: {x1: 5, y1: 0, x2: 32, y2:28 },
+		3: {x1: 5, y1: 0, x2: 32, y2:28 }};
 		
 	this.spriteSheet = sprites.Player.attack;
 	this.spriteWidth = 32;
@@ -61,6 +61,11 @@ function anchorMagic(x, y, isFacing) {
 		var vy = Math.sin(angle) * BLOOD_SPLATTER_SPEED;
 						
 		particleFX(enemy.x,enemy.y,PARTICLES_PER_ENEMY_HIT,'#660000',vx,vy,0.5,0,1);
+	}
+	
+	this.onHitObject = function(object) {
+		console.log("WE HIT AN OBJECT!!!!");
+		object.getHit(0);
 	}
 	
 	return new magicClass(this);

@@ -34,36 +34,14 @@ function floorButton(x, y) {
 	var maxMoveTime = 2.5;
 
 	var staates = {
-		munch : function(){
-			if(!this.ticksInState){
-				this.sprite.setSprite(sprites.Slime.munch, //TODO: maybe derp emote? 
-					this.enemyData.spriteWidth, this.enemyData.spriteHeight,
-					4, this.enemyData.spriteSpeed, false);
-				
-			}
-
-			if(this.ticksInState == 9){
-				muunch(this.x, this.y);
-			}
-
-			if(this.sprite.isDone() && this.sprite.getSpriteSheet() != sprites.Slime.idleAnimation){
-				this.sprite.setSprite(sprites.Slime.idleAnimation, //TODO: maybe derp emote? 
-					this.enemyData.spriteWidth, this.enemyData.spriteHeight,
-					4, this.enemyData.spriteSpeed, true);
-			}
-
-			this.sprite.update();
-			if(this.ticksInState > 100){
-				this.setState("normal");
-			}
-
-		},
-		normalDoorLikeBehavior : function(){
-		},
 		normal : function(){
+			if(this.thingsToSay.length > 0) {this.thingsToSay = [];}
 			
-			if(((this.mapData.state == "set") && ((this.sprite.getFrame == 1) || (this.sprite.getFrame == 2))) || 
-			   ((this.mapData.state == "released") && (this.sprite.getFrame == 0))) {
+			if((this.mapData.state == "set") && ((this.sprite.getFrame() == 1) || (this.sprite.getFrame() == 2))) {
+				if(this.mapData.setTime != undefined && this.ticksInState >= this.mapData.setTime) {
+				   this.setState("released");
+				}
+			} else if(((this.mapData.state == "released") && (this.sprite.getFrame() == 0)) || (this.mapData.state == "normal")) {
 				this.sprite.update();
 				this.tileBehaviorHandler();
 			} else if(this.mapData.state == "set") {
@@ -71,24 +49,6 @@ function floorButton(x, y) {
 			} else if(this.mapData.state == "released") {
 				this.setState("released");
 			}
-		},
-		dying: function(){
-			if(!this.ticksInState){
-				// this.sprite.setSprite(sprites.Slime.death,
-				// 	this.enemyData.spriteWidth, this.enemyData.spriteHeight,
-				// 	10, 15, false);	
-			}
-			
-			// if(this.sprite.isDone()){
-				
-				// remove from enemy list
-				var foundHere = currentRoom.enemyList.indexOf(this);
-				if (foundHere > -1) {
-					currentRoom.enemyList.splice(foundHere, 1);
-				}
-				
-			// }
-			this.sprite.update();
 		},
 		set: function() {
 			if(this.sprite.getFrame() != 2) {
@@ -148,31 +108,8 @@ function floorButton(x, y) {
 			this.setState("normal");
 			this.sprite.setFrame(0);		
 		},
-		recoil: function() {
-			if(this.sprite.getFrame() != 2) {
-				this.sprite.setFrame(1);				
-			}
-			
-			if(this.ticksInState > 10) {
-				if(!this.mapData){
-					throw "yo, you need to set properties in the tmx file for this level";
-				}
-				if(!this.mapData.targetName ){
-					throw "yo, you need to set properties in the tmx file for this level \n Set custom property targetName to a door name in this level so the door knows to unlock";
-				}
-				
-				for(var i in currentRoom.layout.layers[1].objects){
-					if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].name == this.mapData.targetName ){
-						console.log("Found the button's target!!, it's type is: " + currentRoom.layout.layers[1].objects[i].type);
-						currentRoom.layout.layers[1].objects[i].properties.isLocked = false;
-					}
-				}
-				this.setState("normal");
-				this.sprite.setFrame(2);
-			}
-		},
 		gotHit: function() {
-			this.setState("recoil");
+			this.setState("set");
 		}
 	}
 

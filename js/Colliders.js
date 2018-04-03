@@ -1,8 +1,8 @@
 const X_AXIS = "x";
 const Y_AXIS = "y";
 const COLLISION_CHECKS_PER_TICK = 5;
-var _DEBUG_DRAW_TILE_COLLIDERS = false;
-var _DEBUG_DRAW_HITBOX_COLLIDERS = false;
+var _DEBUG_DRAW_TILE_COLLIDERS = true;
+var _DEBUG_DRAW_HITBOX_COLLIDERS = true;
 
 function boxColliderClass(x, y, width, height, offsetX, offsetY) {
     this.offsetX = offsetX;
@@ -148,11 +148,11 @@ function boxColliderClass(x, y, width, height, offsetX, offsetY) {
 		    if (velocity > 0) {
                 snapPoint = colliderEdge.x - objectToMove.tileCollider.width - collider.width/2 - 1;
             } else if (velocity < 0) {
-                snapPoint = colliderEdge.x + objectToMove.tileCollider.width + collider.width/2 + 1;
+                snapPoint = colliderEdge.x + objectToMove.tileCollider.width + collider.width/2 + 2;
             }
 	    } else if (axis == Y_AXIS) {
 		    if (velocity > 0) {
-                snapPoint = colliderEdge.y - collider.height/2 - this.offsetY - 1;
+                snapPoint = colliderEdge.y - collider.height/2 - this.offsetY - 2;
             } else if (velocity < 0) {
                 snapPoint = colliderEdge.y + collider.height/2 - this.offsetY;
             }

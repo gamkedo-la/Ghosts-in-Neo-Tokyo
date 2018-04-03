@@ -9,14 +9,14 @@ function boss3(x, y) {
 	this.droppedTile = undefined;
 
 	this.tileColliderWidth = 18;
-	this.tileColliderHeight = 4;
-	this.tileColliderOffsetX = 2;
-	this.tileColliderOffsetY = 11;
+	this.tileColliderHeight = 65;
+	this.tileColliderOffsetX = 0;
+	this.tileColliderOffsetY = -10;
 
-	this.hitboxWidth = 14;
-	this.hitboxHeight = 14;
-	this.hitboxOffsetX = -2;
-	this.hitboxOffsetY = 0;
+	this.hitboxWidth = 18;
+	this.hitboxHeight = 65;
+	this.hitboxOffsetX = 0;
+	this.hitboxOffsetY = -10;
 
 	this.spriteSheet = sprites.Boss3.idle;
 	this.spriteWidth = 79;

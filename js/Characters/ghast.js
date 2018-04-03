@@ -8,15 +8,15 @@ function ghast(x, y) {
 	this.lootModifier = 1.0;
 	this.droppedTile = undefined;
 
-	this.tileColliderWidth = 18;
-	this.tileColliderHeight = 4;
-	this.tileColliderOffsetX = 2;
-	this.tileColliderOffsetY = 11;
+	this.tileColliderWidth = 16;
+	this.tileColliderHeight = 18;
+	this.tileColliderOffsetX = -2;
+	this.tileColliderOffsetY = -2;
 
-	this.hitboxWidth = 14;
-	this.hitboxHeight = 14;
+	this.hitboxWidth = 16;
+	this.hitboxHeight = 18;
 	this.hitboxOffsetX = -2;
-	this.hitboxOffsetY = 0;
+	this.hitboxOffsetY = -2;
 
 	this.spriteSheet = sprites.Ghast.move;
 	this.spriteWidth = 32;

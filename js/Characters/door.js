@@ -27,7 +27,7 @@ function door(x, y) {
 	//this.deathSpriteSheet = sprites.Slime.deathAnimation;
 	this.deathSpriteFrames = 10;
 	this.deathSpriteSpeed = 4;
-	this.name = "it's a door yo"
+	this.name = "it's a door yo";
 	var directionTimer = 0;
 	var minSpeed = .25;
 	var maxSpeed = .50;
@@ -35,7 +35,7 @@ function door(x, y) {
 	var maxMoveTime = 2.5;
 
 	var staates = {
-		munch : function(){
+/*		munch : function(){
 			if(!this.ticksInState){
 				this.sprite.setSprite(sprites.Slime.munch, //TODO: maybe derp emote? 
 					this.enemyData.spriteWidth, this.enemyData.spriteHeight,
@@ -58,8 +58,9 @@ function door(x, y) {
 				this.setState("normal");
 			}
 
-		},
+		},*/
 		normalDoorLikeBehavior : function(){
+			this.thingsToSay = [];
 		},
 		normal : function(){
 			
@@ -100,7 +101,7 @@ function door(x, y) {
 					this.setState("normal");
 				}
 			}
-		},
+		}/*,
 		dying: function(){
 			if(!this.ticksInState){
 				// this.sprite.setSprite(sprites.Slime.death,
@@ -118,7 +119,7 @@ function door(x, y) {
 				
 			// }
 			this.sprite.update();
-		}
+		}*/
 	}
 
 	this.deadEvent = function() {

@@ -23,6 +23,7 @@ function magicClass(magic, enemyList, objectList) {
 							magic.spriteFrames, magic.spriteSpeed, true);
 	this.remove = false;
 	this.onHitEnemy = magic.onHitEnemy;
+	this.onHitObject = magic.onHitObject;
 	this.tileHit = magic.tileHit;
 	if(magic.speed == undefined){
 		this.speed = RANGED_ATTACK_SPEED;
@@ -127,7 +128,7 @@ function magicClass(magic, enemyList, objectList) {
 		for (var i = 0; i < this.objectList.length; i++) {
 			const gameObject = this.objectList[i];
 			if (this.collider.isCollidingWith(gameObject.hitbox)) {
-				this.onHitEnemy(gameObject);
+				this.onHitObject(gameObject);
 			}
 		}
 	}
