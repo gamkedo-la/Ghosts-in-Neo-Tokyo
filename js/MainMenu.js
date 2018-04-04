@@ -1,4 +1,3 @@
-
 const SPLASH   = 0;
 const MAINMENU = 1; 
 const PLAYING  = 2; 
@@ -23,14 +22,23 @@ var logoScaleMax = 2.0;
 var logoScale    = 1.0;
 var timeAccum = 0.0;
 
+var mouseWasHeld = false;
+
 
 // Button Helper - can add parameter for custom graphics
-function ShowButton(message, x, y, width, height, active){
+function ShowButton(message, x, y, width, height, selection, buttonID){
+    var active = selection == buttonID;
     var magicValue = 3;
     var color = active ? 'red' : 'blue';
     colorRect(x, y, width, height, color);
     var w = Math.round(width/2) - Math.round( measurePixelfont(message) / 2  );
     drawPixelfont(message,  Math.round(x + w)+magicValue, Math.round( y + height/2)-3 ) ;
+
+
+    //Mouse Bound Check 
+    if( mouseCanvasY < (y + height) && mouseCanvasY > y && mouseCanvasX < (x+width) && mouseCanvasX > x) {
+        mainMenuCurrentSelection = buttonID; //note(keenan): HACK BLAH!!!
+    }
 }
 
 function DrawLabel(message, x, y, width, height){
@@ -55,6 +63,8 @@ function moveMainMenu (keyName) {
     else if (mainMenuCurrentSelection < 0) {
         mainMenuCurrentSelection = MAIN_MENU_BUTTON_COUNT - 1;
     }
+
+  //  console.log(mouseCanvasY);
 };
 
 
@@ -65,7 +75,6 @@ function ChangeGameStateOnCondition( condition, newState){
         GameState_ = newState;
     }
 }
-
 
 var creditNames = ["Project Lead: ClayTaeto ", 
                    "RainMaker: McFunkyPants",
@@ -103,15 +112,27 @@ function DrawMainMenu(){
 
         canvasContext.restore();
 
+        DrawLabel(mouseCanvasY,  canvas.width/2-50, 60+30,  100, 25 ); 
+
         if(!shldDrawCredits) {
             var startY = 60;
-            ShowButton("New Game",  canvas.width/2-50, startY+30,  100, 25 , mainMenuCurrentSelection == 0); 
-            ShowButton("Continue",  canvas.width/2-50, startY+60,  100, 25 , mainMenuCurrentSelection == 1);
-            ShowButton("Credits",   canvas.width/2-50, startY+90,  100, 25 , mainMenuCurrentSelection == 2);
+            ShowButton("New Game",  canvas.width/2-50, startY+30,  100, 25 , mainMenuCurrentSelection, 0); 
+            ShowButton("Continue",  canvas.width/2-50, startY+60,  100, 25 , mainMenuCurrentSelection, 1);
+            ShowButton("Credits",   canvas.width/2-50, startY+90,  100, 25 , mainMenuCurrentSelection, 2);
         }
         else
         {
             drawCredits();
+        }
+
+        //Handle Mouse Events
+        if(mouseHeld && mouseWasHeld == false){
+            mainMenu_OnEnter();
+            mouseWasHeld = true;
+        }
+        else
+        {
+            mouseWasHeld = mouseHeld;
         }
 }
 
@@ -130,7 +151,7 @@ function mainMenu_OnEnter(){
         return;
     }
 
-    console.log("MainMenu On Enter");
+  //  console.log("MainMenu On Enter");
     if(mainMenuCurrentSelection == MAINMENU_OPTION_NEWGAME)
         GameState_ = PLAYING;
     else if(mainMenuCurrentSelection == MAINMENU_OPTION_CONTINUE)

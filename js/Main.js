@@ -127,7 +127,7 @@ function updateAll() {
 	if(GameState_ == SPLASH)
 	{
 		ClearToBlack();
-		drawRain(); //notes(kc): mcfunkypants is so cool!!! Altho this could break something
+		drawRain(); 
 
 		//Show a little of black screen before and after we show the splash logo
 		if(transitionCounter  < (transitionDuration - transitionDuration / 3) )
@@ -139,7 +139,7 @@ function updateAll() {
 	}
 	else if( GameState_ == MAINMENU){
 		ClearToBlack();
-		drawRain(); //notes(kc): mcfunkypants is so cool!!! Altho this could break something; makes for an emo splash and main menu
+		drawRain(); 
 		DrawMainMenu();
 		return;
 	}
