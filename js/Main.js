@@ -45,7 +45,7 @@ function runThatGame(){
 	setupInput();
 	backupRoomData(); // should do before any numbers are replaced and load level etc.
 	initRoomData()
-	loadLevel();
+	loadLevel("example");
 	resetAllRooms();
 	createTileArray();
 	
@@ -59,6 +59,9 @@ function runThatGame(){
 //this should prob be in Room.js
 function loadLevel(DatRoomYO) {
 	console.log("loading level");
+	if(!DatRoomYO && currentRoomName){
+		DatRoomYO = currentRoomName
+	}
 	if(DatRoomYO){
 		currentRoom = allRoomsData[DatRoomYO];
 		worldGrid = currentRoom.layout.layers[0].data
@@ -73,8 +76,10 @@ function loadLevel(DatRoomYO) {
 		WORLD_ROWS = currentRoom.layout.height
 
 		var nextRoom = allRoomsData[DatRoomYO];
+		currentRoomName = DatRoomYO;
 	} else {
 		var nextRoom = roomCoordToVar();	
+		currentRoomName = null
 	}
 
 	
@@ -189,7 +194,7 @@ function drawAll() {
 	canvasContext.drawImage(sprites.Background.skyscrapers, 0,20);
 	canvasContext.drawImage(sprites.TenGhost.move, 25,50);
 	drawRain();
-	drawWorld();
+	drawWorldRestricted();
 	currentRoom.drawTraps();
 	drawItems();
 	currentRoom.drawDynamic();
@@ -238,7 +243,7 @@ function updateCameraPosition() {
 		cameraOffsetY += 10;
 	} else if(player.y < (2 * deadYZone - cameraOffsetY)) {//player is above the dead zone -> move slowly
 		cameraOffsetY += 2;
-	}
+	} 
 	
 	//Do not move the camera so far up or down that the areas outside of the world are visible
 	if (cameraOffsetY > 0) {

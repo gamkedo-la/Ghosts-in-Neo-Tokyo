@@ -3,7 +3,7 @@ const WORLD_H = 20;
 const WORLD_GAP = 0;
 var WORLD_COLS = 60;
 var WORLD_ROWS = 34;
-const WORLD_MAX_Y = WORLD_ROWS * WORLD_H; // player.die if we fall too far
+var WORLD_MAX_Y = WORLD_ROWS * WORLD_H; // player.die if we fall too far
 
 //rooms are defined now in rooms.js
 var worldGrid = [];
@@ -246,3 +246,35 @@ function drawWorld() {
 		drawTileX = 0;
 	} // end of for each row
 } // end of drawWorld func
+
+function drawWorldRestricted(){
+	var pos = getTileIndexAtPixelCoord(-cameraOffsetX, -cameraOffsetY);
+
+	var test = ArrayIndexToColRow(pos)
+	//tile sanity test
+	//TODO:remove
+	canvasContext.drawImage(worldPics[3], test[0]* WORLD_W, test[1]* WORLD_W);
+	
+
+	
+	var startHeight = pos 
+	var startPos = startHeight
+	if(startPos < 0){
+		startPos = 0;
+	}
+	var stopPos = startHeight + 20
+	var totalHeight = 20
+	var tileKindHere = null;
+
+	var useImg = null;
+	for(var row = 0; row < totalHeight; row++){
+		for(var index = startPos; index < stopPos; index++){
+			if(index + row*WORLD_COLS < worldGrid.length - 1){
+				tileKindHere = worldGrid[index + row*WORLD_COLS];
+				useImg = worldPics[tileKindHere];
+				canvasContext.drawImage(useImg, (index+ row*WORLD_COLS) % WORLD_COLS * WORLD_H , Math.floor((index+ row*WORLD_COLS) / WORLD_COLS) * WORLD_H );
+			}
+		}
+	}
+
+}
