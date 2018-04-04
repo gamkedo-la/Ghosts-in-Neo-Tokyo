@@ -248,7 +248,7 @@ function drawWorld() {
 } // end of drawWorld func
 
 function drawWorldRestricted(){
-	var pos = getTileIndexAtPixelCoord(player.x, player.y);
+	var pos = getTileIndexAtPixelCoord(-cameraOffsetX, -cameraOffsetY);
 
 	var test = ArrayIndexToColRow(pos)
 	//tile sanity test
@@ -257,12 +257,12 @@ function drawWorldRestricted(){
 	
 
 	
-	var startHeight = pos - WORLD_COLS*4
-	var startPos = startHeight - 10 
+	var startHeight = pos 
+	var startPos = startHeight
 	if(startPos < 0){
 		startPos = 0;
 	}
-	var stopPos = startHeight + 10
+	var stopPos = startHeight + 20
 	var totalHeight = 20
 	var tileKindHere = null;
 
