@@ -18,7 +18,6 @@ var healthBarFlashing = false;
 var barColorRed = true;
 var cameraOffsetY = 0;
 
-
 // test only: the NPC dialogue fottoer bar at bottom of screen:
 var testNPCFooterStartTime = 0;
 
@@ -41,7 +40,7 @@ function runThatGame(){
 	if (MUSIC_VOLUME>0) // should we loop some music quietly?
 		//Sound.stop("mage_hook_chiptune_menu_melody");
 		//Sound.play("MageHookThemeSong",true,MUSIC_VOLUME);
-
+	saveInit()
 	setupInput();
 	backupRoomData(); // should do before any numbers are replaced and load level etc.
 	initRoomData()

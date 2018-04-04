@@ -152,13 +152,17 @@ function mainMenu_OnEnter(){
     }
 
   //  console.log("MainMenu On Enter");
-    if(mainMenuCurrentSelection == MAINMENU_OPTION_NEWGAME)
+    if(mainMenuCurrentSelection == MAINMENU_OPTION_NEWGAME) {
         GameState_ = PLAYING;
-    else if(mainMenuCurrentSelection == MAINMENU_OPTION_CONTINUE)
-        console.log("Continue game");
-    else if(mainMenuCurrentSelection == MAINMENU_OPTION_CREDITS)
+    }
+    else if(mainMenuCurrentSelection == MAINMENU_OPTION_CONTINUE) {
+        saveMenuContext(false, true);
+        GameState_ = PLAYING;
+        saveMenuOpen = !saveMenuOpen;
+        //console.log("Continue game");
+        }
+    else if(mainMenuCurrentSelection == MAINMENU_OPTION_CREDITS){
         shldDrawCredits = true;
-
-
+    }
 }
 

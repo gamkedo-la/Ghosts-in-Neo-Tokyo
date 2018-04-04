@@ -7,6 +7,8 @@ var gameFile = {
     cameraOffsetY: null,
     playerCurrentHealth: null,
     itemsInInventory: [],
+    fileName: "",
+    currentArea: null,
     };
 
 const SAVE_FILE_AMOUNT = 3;
@@ -19,6 +21,16 @@ var gameFile1;
 var gameFile2;
 var gameFile3;
 
+function saveInit() {
+    for (saveSlot = 0; saveSlot < SAVE_FILE_AMOUNT; saveSlot++) {
+        if (gameSaveSlots[saveSlot] !=  null) {
+            return;
+        } else {
+            gameSaveSlots[saveSlot] = Object.assign({}, gameFile);
+        }
+    }
+};
+
 function saveGame(saveArray) {
     localStorage.setItem(SAVES, JSON.stringify(saveArray));
     console.log("gameFile saved");
@@ -29,6 +41,15 @@ function loadGame(stateFromArray) {
 };
 
 function updateGameFile() {
+    var saveFileNameEntry = prompt("Please name save file", gameSaveSlots[gameSaveSlotsIndex].fileName);
+
+    if (saveFileNameEntry == null || saveFileNameEntry == "") {
+        window.alert("cancelled saving");
+        gameSaveSlots[gameSaveSlotsIndex].fileName = ""; 
+    } else {
+        // do nothing
+    }
+
     gameFile = {
         playerPositionX: player.x,
         playerPositionY: player.y,
@@ -36,6 +57,8 @@ function updateGameFile() {
         cameraOffsetY: cameraOffsetY,
         playerCurrentHealth: player.currentHealth,
         itemsInInventory: [],
+        fileName: saveFileNameEntry,
+        currentArea: currentRoomName,
     };
 
     for (var i = 0; i < inventoryItems.length; i++) {
@@ -49,6 +72,7 @@ function updateStateWithGameFile(gameFile) {
     cameraOffsetX = gameFile.cameraOffsetX;
     cameraOffsetY = gameFile.cameraOffsetY;
     player.currentHealth = gameFile.playerCurrentHealth;
+    currentRoomName = gameFile.currentArea;
 
     for (var i = 0; i < gameFile.itemsInInventory.length; i++) {
         inventoryItems[i].itemObtained = gameFile.itemsInInventory[i];
@@ -67,17 +91,23 @@ function drawSaveMenu() {
     colorRect(fileBoxSpacing, fileBoxSpacing/2, headerWidth,headerHeight, 'blue');
     for (var j = 0; j < SAVE_FILE_AMOUNT; j++) {
         if (j == gameSaveSlotsIndex) {
-            gameSaveSlotsIndex = j;
+            //gameSaveSlotsIndex = j;
             colorRect(fileBoxX, fileBoxY, fileBoxWidth, fileBoxHeight, 'yellow');
         } else {
             colorRect(fileBoxX, fileBoxY, fileBoxWidth, fileBoxHeight, 'blue');
         }
 
-        drawPixelfontCentered("EMPTY FILE", fileBoxX + fileBoxWidth/2 + fileBoxSpacing, 
-                              fileBoxY + fileBoxHeight/2 - fileBoxSpacing/2);
+        if (gameSaveSlots[j].fileName != "") {
+            drawPixelfontCentered(gameSaveSlots[j].fileName, 
+                                  fileBoxX + fileBoxWidth/2 + fileBoxSpacing, 
+                                  fileBoxY + fileBoxHeight/2 - fileBoxSpacing/2);
+        } else {
+            drawPixelfontCentered("EMPTY FILE", fileBoxX + fileBoxWidth/2 + fileBoxSpacing, 
+                                  fileBoxY + fileBoxHeight/2 - fileBoxSpacing/2);
+        }
+        
 
         fileBoxY += fileBoxHeight + fileBoxSpacing;
-
 
     }
     drawPixelfont("Please select file to " + saveFileTextContext, fileBoxSpacing + 5, fileBoxSpacing/2 + 1);

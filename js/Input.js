@@ -138,11 +138,10 @@ function keyPressed(evt) {
 			_DEBUG_CHEAT_CONSOLE = !_DEBUG_CHEAT_CONSOLE;
 			break;
 		case KEY_0:
-			saveMenuContext(false, true)
+			saveMenuContext(false, true);
 			if (!paused) {
 				saveMenuOpen = !saveMenuOpen;
 			}
-
 			break;			
 		case KEY_9:
 			saveMenuContext(true, false);
@@ -153,6 +152,7 @@ function keyPressed(evt) {
 		case KEY_ENTER:
 			if (saveMenuOpen) {
 				if (saveFileTextContext == "save") {
+					backupRoomData();
 					updateGameFile();
 					if (gameSaveSlotsIndex == 0) {
 						gameFile1 = Object.assign({}, gameFile);
@@ -167,13 +167,17 @@ function keyPressed(evt) {
 						gameSaveSlots.splice(gameSaveSlotsIndex, 1, gameFile3)
 						saveGame(gameSaveSlots);
 					}
-					//saveGame(gameSaveSlots[gameSaveSlotsIndex]);
 				} else if (saveFileTextContext == "load") {
-					loadGame(gameSaveSlots[gameSaveSlotsIndex]);
-					updateStateWithGameFile(gameSaveSlots[gameSaveSlotsIndex]);
-					restoreRoomDataBackup();
-        			loadLevel();
-
+					if (gameSaveSlots[gameSaveSlotsIndex].playerPositionX == null) {
+						window.alert("Empty file. Please select another file.");
+					} else {
+						loadGame(gameSaveSlots[gameSaveSlotsIndex]);
+						restoreRoomDataBackup();
+						loadLevel(gameSaveSlots[gameSaveSlotsIndex].currentArea);
+						updateStateWithGameFile(gameSaveSlots[gameSaveSlotsIndex]);
+        				saveMenuOpen = !saveMenuOpen;
+						GameState_ == PLAYING;
+					}
 				} 
 			}else if( GameState_ == MAINMENU){
 					mainMenu_OnEnter();
