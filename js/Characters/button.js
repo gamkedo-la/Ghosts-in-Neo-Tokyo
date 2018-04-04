@@ -35,6 +35,8 @@ function floorButton(x, y) {
 
 	var staates = {
 		normal : function(){
+			if(this.thingsToSay.length > 0) {this.thingsToSay = [];}
+			
 			if((this.mapData.state == "set") && ((this.sprite.getFrame() == 1) || (this.sprite.getFrame() == 2))) {
 				if(this.mapData.setTime != undefined && this.ticksInState >= this.mapData.setTime) {
 				   this.setState("released");

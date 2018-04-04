@@ -48,8 +48,6 @@ function setMute(TorF) {
 
 function getMute(TorF) {
 	return isMuted;
-	SFXVolumeManager.updateVolume();
-	MusicVolumeManager.updateVolume();
 }
 
 
