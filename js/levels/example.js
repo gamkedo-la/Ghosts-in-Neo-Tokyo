@@ -114,7 +114,8 @@
                     {
                      "name":"end",
                      "toDoor":"level2start",
-                     "toLevel":"Level2"
+                     "toLevel":"Level2",
+                     "isLocked":true
                     },
                  "rotation":0,
                  "type":"Door",
