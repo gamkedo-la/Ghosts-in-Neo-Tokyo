@@ -64,9 +64,10 @@ function floorButton(x, y) {
 			
 			this.mapData.state = "set";
 			
-			for(var j in this.mapData.targetName ) {
+			var targets = this.mapData.targetName.split(",");
+			for(var j in targets) {
 				for(var i in currentRoom.layout.layers[1].objects){
-					if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].name == this.mapData.targetName[j] ){
+					if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].name == targets[j]){
 						const targetType = currentRoom.layout.layers[1].objects[i].type;
 						if (targetType == "Door") {
 							currentRoom.layout.layers[1].objects[i].properties.isLocked = false;						
@@ -92,9 +93,10 @@ function floorButton(x, y) {
 			
 			this.mapData.state = "released";
 			
-			for(var j in this.mapData.targetName ) {
+			const targets = this.mapData.targetName.split(",");
+			for(var j in targets) {
 				for(var i in currentRoom.layout.layers[1].objects){
-					if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].name == this.mapData.targetName[j] ){
+					if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].name == targets[j] ){
 						const targetType = currentRoom.layout.layers[1].objects[i].type;
 						if (targetType == "Door") {
 							currentRoom.layout.layers[1].objects[i].properties.isLocked = true;						
