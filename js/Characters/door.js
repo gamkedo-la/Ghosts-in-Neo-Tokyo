@@ -98,6 +98,7 @@ function door(x, y) {
 					console.log("Found dooor!!, moving player")
 					player.x = currentRoom.layout.layers[1].objects[i].x + 60;
 					player.y = currentRoom.layout.layers[1].objects[i].y - 16;
+					resetCameraPosition(player.x, player.y);
 					this.setState("normal");
 				}
 			}

@@ -233,7 +233,7 @@ function playerClass() {
 			this.x = STARTING_POSITION_X;
 			this.y = STARTING_POSITION_Y;
 		}
-		cameraOffsetY = -(player.y + (1.5 * canvas.height)) //TODO: yooooooo camera logic should not be in player.js
+		resetCameraPosition(player.x, player.y);
 		this.isFacing = SOUTH; // FIXME possible bug? this.?
 		this.isMoving = false;
 		this.resetKeys();
