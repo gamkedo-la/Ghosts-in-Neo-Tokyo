@@ -343,8 +343,7 @@ function Room(roomLayout) {
 
 //TODO: get initRoomData to work off TiledMaps[] instead of allRooms[]
 var room0a1 = TileMaps['Level1'];
-var room1a1 = TileMaps['example2'];
-var room3a1 = TileMaps['Level2'];
+var room1a1 = TileMaps['example'];
 
 //iff adding new rooms, remember to add to all rooms
 var allRooms = [
