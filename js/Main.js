@@ -111,6 +111,7 @@ function loadLevel(DatRoomYO) {
 		removeAllItemsOfTypeInRoom(ITEM_ARTIFACT); 
 	}*/
 	
+
 	player.reset("Untitled Player");
 	
 }
@@ -128,6 +129,12 @@ function ClearToBlack(){
 
 function updateAll() {
 	
+	//for Debugging Purposes!
+	if(isLevelSelectorOpen){
+		drawLevelSelector();
+		return;
+	}
+
 	if(GameState_ == SPLASH)
 	{
 		ClearToBlack();
@@ -151,6 +158,8 @@ function updateAll() {
 	if (_TEST_AI_PATHFINDING)
 		currentRoom.updatePathfindingData()
 	
+
+
 	if(paused) {
 		drawInventory();
 		drawInventoryItems();

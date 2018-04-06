@@ -27,6 +27,76 @@
          "name":"Characters",
          "objects":[
                 {
+                 "gid":104,
+                 "height":32,
+                 "id":31,
+                 "name":"lSwitch",
+                 "properties":
+                    {
+                     "state":"set",
+                     "targetName":"rSwitch"
+                    },
+                 "propertytypes":
+                    {
+                     "state":"string",
+                     "targetName":"string"
+                    },
+                 "rotation":0,
+                 "type":"fButton",
+                 "visible":true,
+                 "width":32,
+                 "x":661.334,
+                 "y":1201.67
+                }, 
+                {
+                 "gid":104,
+                 "height":32,
+                 "id":33,
+                 "name":"rSwitch",
+                 "properties":
+                    {
+                     "state":"released",
+                     "targetName":"lSwitch,end"
+                    },
+                 "propertytypes":
+                    {
+                     "state":"string",
+                     "targetName":"string"
+                    },
+                 "rotation":0,
+                 "type":"fButton",
+                 "visible":true,
+                 "width":32,
+                 "x":1821.42,
+                 "y":422.583
+                }, 
+                {
+                 "gid":103,
+                 "height":44,
+                 "id":36,
+                 "name":"end",
+                 "properties":
+                    {
+                     "isLocked":true,
+                     "name":"end",
+                     "toDoor":"level3start",
+                     "toLevel":"Level3"
+                    },
+                 "propertytypes":
+                    {
+                     "isLocked":"bool",
+                     "name":"string",
+                     "toDoor":"string",
+                     "toLevel":"string"
+                    },
+                 "rotation":0,
+                 "type":"Door",
+                 "visible":true,
+                 "width":44,
+                 "x":1938.25,
+                 "y":579.417
+                }, 
+                {
                  "gid":101,
                  "height":32,
                  "id":44,
@@ -35,8 +105,416 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":78.8333666666667,
-                 "y":539.583666666667
+                 "x":78.8334,
+                 "y":539.584
+                }, 
+                {
+                 "gid":103,
+                 "height":44,
+                 "id":54,
+                 "name":"",
+                 "properties":
+                    {
+                     "name":"level2start",
+                     "toDoor":"end",
+                     "toLevel":"example"
+                    },
+                 "propertytypes":
+                    {
+                     "name":"string",
+                     "toDoor":"string",
+                     "toLevel":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":44,
+                 "x":13.75,
+                 "y":540.25
+                }, 
+                {
+                 "gid":105,
+                 "height":90,
+                 "id":58,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":79,
+                 "x":763.5,
+                 "y":1199.5
+                }, 
+                {
+                 "gid":104,
+                 "height":32,
+                 "id":59,
+                 "name":"lSwitch",
+                 "properties":
+                    {
+                     "state":"set",
+                     "targetName":"rSwitch"
+                    },
+                 "propertytypes":
+                    {
+                     "state":"string",
+                     "targetName":"string"
+                    },
+                 "rotation":0,
+                 "type":"fButton",
+                 "visible":true,
+                 "width":32,
+                 "x":659.75,
+                 "y":1121.5
+                }, 
+                {
+                 "gid":104,
+                 "height":32,
+                 "id":60,
+                 "name":"lSwitch",
+                 "properties":
+                    {
+                     "state":"set",
+                     "targetName":"rSwitch"
+                    },
+                 "propertytypes":
+                    {
+                     "state":"string",
+                     "targetName":"string"
+                    },
+                 "rotation":0,
+                 "type":"fButton",
+                 "visible":true,
+                 "width":32,
+                 "x":909.5,
+                 "y":1122
+                }, 
+                {
+                 "gid":104,
+                 "height":32,
+                 "id":61,
+                 "name":"lSwitch",
+                 "properties":
+                    {
+                     "state":"set",
+                     "targetName":"rSwitch"
+                    },
+                 "propertytypes":
+                    {
+                     "state":"string",
+                     "targetName":"string"
+                    },
+                 "rotation":0,
+                 "type":"fButton",
+                 "visible":true,
+                 "width":32,
+                 "x":910.25,
+                 "y":1262.25
+                }, 
+                {
+                 "gid":104,
+                 "height":32,
+                 "id":62,
+                 "name":"lSwitch",
+                 "properties":
+                    {
+                     "state":"set",
+                     "targetName":"rSwitch"
+                    },
+                 "propertytypes":
+                    {
+                     "state":"string",
+                     "targetName":"string"
+                    },
+                 "rotation":0,
+                 "type":"fButton",
+                 "visible":true,
+                 "width":32,
+                 "x":657.75,
+                 "y":1262
+                }, 
+                {
+                 "gid":104,
+                 "height":32,
+                 "id":64,
+                 "name":"lSwitch",
+                 "properties":
+                    {
+                     "state":"set",
+                     "targetName":"rSwitch"
+                    },
+                 "propertytypes":
+                    {
+                     "state":"string",
+                     "targetName":"string"
+                    },
+                 "rotation":0,
+                 "type":"fButton",
+                 "visible":true,
+                 "width":32,
+                 "x":724.25,
+                 "y":1161.5
+                }, 
+                {
+                 "gid":104,
+                 "height":32,
+                 "id":65,
+                 "name":"lSwitch",
+                 "properties":
+                    {
+                     "state":"set",
+                     "targetName":"rSwitch"
+                    },
+                 "propertytypes":
+                    {
+                     "state":"string",
+                     "targetName":"string"
+                    },
+                 "rotation":0,
+                 "type":"fButton",
+                 "visible":true,
+                 "width":32,
+                 "x":845.25,
+                 "y":1162.25
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":66,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":270.5,
+                 "y":496
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":68,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":685.5,
+                 "y":475.5
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":69,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":695.5,
+                 "y":554.5
+                }, 
+                {
+                 "gid":108,
+                 "height":32,
+                 "id":70,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1044,
+                 "y":534.5
+                }, 
+                {
+                 "gid":108,
+                 "height":32,
+                 "id":71,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1076,
+                 "y":365
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":72,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1179,
+                 "y":352.5
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":73,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1067,
+                 "y":415.5
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":74,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1181,
+                 "y":417.5
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":75,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1584,
+                 "y":612
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":76,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1307,
+                 "y":613.5
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":77,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1217,
+                 "y":610.5
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":78,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1139.5,
+                 "y":613
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":79,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1381.5,
+                 "y":217.5
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":80,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1145.5,
+                 "y":216
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":81,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":907,
+                 "y":59
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":82,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1027,
+                 "y":60.5
+                }, 
+                {
+                 "gid":108,
+                 "height":32,
+                 "id":83,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":792.5,
+                 "y":103
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":84,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1472.5,
+                 "y":44
+                }, 
+                {
+                 "gid":102,
+                 "height":32,
+                 "id":85,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1532.5,
+                 "y":48
+                }, 
+                {
+                 "gid":107,
+                 "height":70,
+                 "id":88,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":70,
+                 "x":1868,
+                 "y":408
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -61,7 +539,7 @@
         {
          "columns":10,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/levels\/tileset.png",
+         "image":"..\/..\/levels\/tileset.png",
          "imageheight":200,
          "imagewidth":200,
          "margin":0,
@@ -145,49 +623,49 @@
             {
              "0":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/mainChar\/Char_0.png",
+                 "image":"..\/..\/img\/mainChar\/Char_0.png",
                  "imageheight":32,
                  "imagewidth":32
                 },
              "1":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/Ghast\/Ghast_0.png",
+                 "image":"..\/..\/img\/Ghast\/Ghast_0.png",
                  "imageheight":32,
                  "imagewidth":32
                 },
              "2":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/Doors\/world_door.png",
+                 "image":"..\/..\/img\/Doors\/world_door.png",
                  "imageheight":44,
                  "imagewidth":44
                 },
              "3":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/Switches\/floor switch_Animation 5_0.png",
+                 "image":"..\/..\/img\/Switches\/floor switch_Animation 5_0.png",
                  "imageheight":32,
                  "imagewidth":32
                 },
              "4":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/bosses\/boss3\/Boss3Thumb.png",
+                 "image":"..\/..\/img\/bosses\/boss3\/Boss3Thumb.png",
                  "imageheight":90,
                  "imagewidth":79
                 },
              "5":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/bosses\/boss1\/Boss1Thumb.png",
+                 "image":"..\/..\/img\/bosses\/boss1\/Boss1Thumb.png",
                  "imageheight":50,
                  "imagewidth":32
                 },
              "6":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/bosses\/boss2\/BossConceptThumb.png",
+                 "image":"..\/..\/img\/bosses\/boss2\/BossConceptThumb.png",
                  "imageheight":70,
                  "imagewidth":70
                 },
              "7":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/pooterTILE.png",
+                 "image":"..\/..\/img\/pooterTILE.png",
                  "imageheight":32,
                  "imagewidth":32
                 }
@@ -268,49 +746,49 @@
             {
              "0":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/mainChar\/Char_0.png",
+                 "image":"..\/..\/img\/mainChar\/Char_0.png",
                  "imageheight":32,
                  "imagewidth":32
                 },
              "1":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/Ghast\/Ghast_0.png",
+                 "image":"..\/..\/img\/Ghast\/Ghast_0.png",
                  "imageheight":32,
                  "imagewidth":32
                 },
              "2":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/Doors\/world_door.png",
+                 "image":"..\/..\/img\/Doors\/world_door.png",
                  "imageheight":44,
                  "imagewidth":44
                 },
              "3":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/Switches\/floor switch_Animation 5_0.png",
+                 "image":"..\/..\/img\/Switches\/floor switch_Animation 5_0.png",
                  "imageheight":32,
                  "imagewidth":32
                 },
              "4":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/bosses\/boss3\/Boss3Thumb.png",
+                 "image":"..\/..\/img\/bosses\/boss3\/Boss3Thumb.png",
                  "imageheight":90,
                  "imagewidth":79
                 },
              "5":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/bosses\/boss1\/Boss1Thumb.png",
+                 "image":"..\/..\/img\/bosses\/boss1\/Boss1Thumb.png",
                  "imageheight":50,
                  "imagewidth":32
                 },
              "6":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/bosses\/boss2\/BossConceptThumb.png",
+                 "image":"..\/..\/img\/bosses\/boss2\/BossConceptThumb.png",
                  "imageheight":70,
                  "imagewidth":70
                 },
              "7":
                 {
-                 "image":"..\/..\/..\/..\/Ghosts-in-Neo-Tokyo-master\/Ghosts-in-Neo-Tokyo\/img\/pooterTILE.png",
+                 "image":"..\/..\/img\/pooterTILE.png",
                  "imageheight":32,
                  "imagewidth":32
                 }

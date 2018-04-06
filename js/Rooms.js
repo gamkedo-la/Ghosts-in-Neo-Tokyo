@@ -258,11 +258,13 @@ function Room(roomLayout) {
 //TODO: get initRoomData to work off TiledMaps[] instead of allRooms[]
 var room0a1 = TileMaps['Level1'];
 var room1a1 = TileMaps['Level2'];
+var room2a1 = TileMaps['level3'];
 
 //iff adding new rooms, remember to add to all rooms
 const allRooms = [
 	room0a1,
   room1a1,
+  room2a1
 ];
 var roomCols = 4; //maximum col of rooms
 var roomRows = 6; // maximum row of rooms
