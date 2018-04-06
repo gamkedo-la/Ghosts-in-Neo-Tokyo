@@ -214,7 +214,9 @@ function Room(roomLayout) {
 			return a.y-b.y;
 		});
 
-    objects.forEach(o => o.draw());
+    	for(var i = 0; i<objects.length; i++){
+			objects[i].object.draw();
+		}
 	}
 
 	this.moveMyEnemies = function() {
@@ -255,7 +257,7 @@ function Room(roomLayout) {
 
 //TODO: get initRoomData to work off TiledMaps[] instead of allRooms[]
 var room0a1 = TileMaps['Level1'];
-var room1a1 = TileMaps['example'];
+var room1a1 = TileMaps['example2'];
 
 //iff adding new rooms, remember to add to all rooms
 const allRooms = [
@@ -265,8 +267,8 @@ const allRooms = [
 var roomCols = 4; //maximum col of rooms
 var roomRows = 6; // maximum row of rooms
 var roomFloors = 4; // maximum floor of rooms
-const allRoomsData = {};
-const allRoomsBackup = [];
+var allRoomsData = {};
+var allRoomsBackup = [];
 var currentRoom = null;
 
 function backupRoomData () {
