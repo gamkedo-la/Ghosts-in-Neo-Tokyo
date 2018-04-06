@@ -7,6 +7,11 @@ var imgPayload = [
 		{set: "Player", name: "attack", fileName: "mainChar/TempAttack.png"},
 		{set: "Player", name: "defaultFaceImage", fileName: "portaits/portrait-test.png"},
 
+		{set: "Kirt", name: "idleRight", fileName: "Kirt/Kirt_idle_right.png"},
+		{set: "Kirt", name: "idleLeft", fileName: "Kirt/Kirt_idle_left.png"},
+		{set: "Kirt", name: "walkLeft", fileName: "Kirt/Kirt_walk_left.png"},
+		{set: "Kirt", name: "walkRight", fileName: "Kirt/Kirt_walk_right.png"},
+
 		{set: "Boss1", name: "idle", fileName: "bosses/boss1/Boss1.png"},
 		{set: "Boss2", name: "idle", fileName: "bosses/boss2/Boss2.png"},
 		{set: "Boss3", name: "idle", fileName: "bosses/boss3/Boss3.png"},

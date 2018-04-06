@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.3" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="20" tileheight="20" infinite="0" nextobjectid="45">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="20" tileheight="20" nextobjectid="48">
  <properties>
   <property name="toDoor" value="front"/>
  </properties>
- <tileset firstgid="1" name="tileset" tilewidth="20" tileheight="20" tilecount="100" columns="10">
+ <tileset firstgid="1" name="tileset" tilewidth="20" tileheight="20">
   <image source="tileset.png" width="200" height="200"/>
  </tileset>
- <tileset firstgid="101" name="Char" tilewidth="79" tileheight="90" tilecount="8" columns="0">
+ <tileset firstgid="101" name="Char" tilewidth="79" tileheight="90">
   <tile id="0">
    <image width="32" height="32" source="../img/mainChar/Char_0.png"/>
   </tile>
@@ -51,6 +51,12 @@
     <property name="entityType" value="kapooter"/>
    </properties>
    <image width="32" height="32" source="../img/pooterTILE.png"/>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="entityType" value="Kirt"/>
+   </properties>
+   <image width="32" height="32" source="../img/Kirt/KirtTile.png"/>
   </tile>
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
@@ -175,7 +181,7 @@
   <object id="35" gid="102" x="696.5" y="544" width="32" height="32"/>
   <object id="36" name="end" type="Door" gid="103" x="1321.5" y="600" width="44" height="44">
    <properties>
-    <property name="isLocked" type="bool" value="true"/>
+    <property name="isLocked" value="true"/>
     <property name="name" value="end"/>
     <property name="toDoor" value="level2start"/>
     <property name="toLevel" value="Level2"/>
@@ -189,5 +195,6 @@
   <object id="42" gid="108" x="468.5" y="454" width="32" height="32"/>
   <object id="43" gid="107" x="484.5" y="510" width="70" height="70"/>
   <object id="44" gid="101" x="277" y="474" width="32" height="32"/>
+  <object id="47" gid="109" x="240" y="540" width="32" height="32"/>
  </objectgroup>
 </map>
