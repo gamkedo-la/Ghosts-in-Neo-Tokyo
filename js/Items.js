@@ -2,7 +2,7 @@ const MIN_ITEM_SPEED = 2;
 const MAX_ITEM_SPEED = 4;
 const UNTANGLE_SPEED = .5;
 const WALL_PUSH_SPEED = 5;
-const UNTANGLE_TIME_LIMIT = 1.5;
+const UNTANGLE_TIME_LIMIT = 0;
 const ITEM_FRICTION = .94;
 const ITEM_WEB_FRICTION = .40;
 
