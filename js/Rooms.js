@@ -1,8 +1,6 @@
 var currentRoomCol = 0,currentRoomRow = 0, currentFloor = 1;
 var lastValidCurrentRoomCol = 0,lastValidCurrentRoomRow = 0, lastValidCurrentFloor = 1;
-var objectDictionary = {
-
-}
+const objectDictionary = {};
 
 function roomCoordToVar()
 {
@@ -16,7 +14,7 @@ function roomCoordToString(c, r,f) {
 }
 
 function Room(roomLayout) {
-	
+
 	this.originalLayout = JSON.parse(JSON.stringify(roomLayout))
 	this.layout = JSON.parse(JSON.stringify(this.originalLayout))
 	this.enemyList = [];
@@ -25,9 +23,9 @@ function Room(roomLayout) {
 	this.itemOnGround = [];
 	this.floorTraps = [];
 	this.pathfindingdata = []; // 2d array of ints
-	this.tempPathFindingData = []; // copy of 2d array of ints. 
-	
-	this.reset = function(){
+	this.tempPathFindingData = []; // copy of 2d array of ints.
+
+	this.reset = function() {
 		this.layout = JSON.parse(JSON.stringify(this.originalLayout))
 		this.enemyList = [];
 		this.objectList = [];
@@ -164,13 +162,13 @@ function Room(roomLayout) {
 				this.tempPathFindingData[eachRow][eachCol] = this.pathfindingdata[eachRow][eachCol]
 			}
 		}
-		//Todo: add enemies to path data? 
-		//TODO: should room.js know about player.js? 
+		//Todo: add enemies to path data?
+		//TODO: should room.js know about player.js?
 		var playertile = getTileIndexAtPixelCoord(player.x, player.y);
 		var playerrowcol = ArrayIndexToRowCol(playertile);
 		this.tempPathFindingData[playerrowcol[0]][playerrowcol[1]] = 89
 	}
-	
+
 
 	this.spawnTraps = function() {
 		return;
