@@ -36,29 +36,29 @@ function Room(roomLayout) {
 		this.spawnTraps();
 		this.spawnCharacters();
 		this.spawnMyEnemies();
-			
+
 		if (_TEST_AI_PATHFINDING)
 			this.generatePathfindingData();
-				
+
 	}
 
-	this.spawnCharacters = function(){
+	this.spawnCharacters = function() {
 		var item;
 
-		for(var i in this.layout.layers){
-			if(this.layout.layers[i].type == "objectgroup" && this.layout.layers[i].visible){
-				for(var j in this.layout.layers[i].objects){
+		for(let i in this.layout.layers) {
+			if(this.layout.layers[i].type == "objectgroup" && this.layout.layers[i].visible) {
+				for(let j in this.layout.layers[i].objects) {
 					item = this.layout.layers[i].objects[j]
-					if(objectDictionary[item.gid]){
-						if(!objectDictionary[item.gid].entityType){
+					if(objectDictionary[item.gid]) {
+						if(!objectDictionary[item.gid].entityType) {
 							throw "Entity type for object " + item.gid + " not set!!"
 						}
 						const aType = objectDictionary[item.gid].entityType;
 						var enemyConstructor = enemyDictionary[aType];
-						if(!enemyConstructor){
+						if(!enemyConstructor) {
 							throw "Entity constructor for object " + objectDictionary[item.gid].entityType + " not set!!"
 						}
-						
+
 						if((aType == "fButton") || (aType == "Door")) {
 							var newEnemy = new enemyConstructor(item.x, item.y)
 							newEnemy.mapData = item.properties
@@ -79,63 +79,23 @@ function Room(roomLayout) {
 	}
 
 	this.spawnItems = function() {
-
-		for(var eachRow=0;eachRow<WORLD_ROWS;eachRow++) {
-			for(var eachCol=0;eachCol<WORLD_COLS;eachCol++) {
+		for(let eachRow=0;eachRow<WORLD_ROWS;eachRow++) {
+			for(let eachCol=0;eachCol<WORLD_COLS;eachCol++) {
 				var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 				var anItem = this.layout.layers[0].data[arrayIndex];//layer[0] has the data element in it
-				if(anItem == TILE_AVOCADO && !inventoryItems[ITEM_AVOCADO].itemObtained) {
+
+				if (anItem == TILE_AVOCADO && !inventoryItems[ITEM_AVOCADO].itemObtained) {
 					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
 					var x = eachCol * WORLD_W + WORLD_W/2;
 					var y = eachRow * WORLD_H + WORLD_H/2;
 					placeItem(x, y, this, ITEM_AVOCADO);
+
 				} else if (anItem == TILE_AVOCADO && inventoryItems[ITEM_AVOCADO].itemObtained) {
 					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
-				} /*else if(anItem == TILE_KEY_RARE) {
-					this.layout[arrayIndex] = TILE_GROUND;
-					var x = eachCol * WORLD_W + WORLD_W/2;
-					var y = eachRow * WORLD_H + WORLD_H/2;
-					placeItem(x, y, this, ITEM_KEY_RARE);
-				} else if(anItem == TILE_KEY_EPIC) {
-					this.layout[arrayIndex] = TILE_GROUND;
-					var x = eachCol * WORLD_W + WORLD_W/2;
-					var y = eachRow * WORLD_H + WORLD_H/2;
-					placeItem(x, y, this, ITEM_KEY_EPIC);
-				} else if(anItem == TILE_CRYSTAL) {
-					this.layout[arrayIndex] = TILE_GROUND;
-					var x = eachCol * WORLD_W + WORLD_W/2;
-					var y = eachRow * WORLD_H + WORLD_H/2;
-					placeItem(x, y, this, ITEM_CRYSTAL);
-				} else if(anItem == TILE_HEART_CONTAINER) {
-					this.layout[arrayIndex] = TILE_GROUND;
-					var x = eachCol * WORLD_W + WORLD_W/2;
-					var y = eachRow * WORLD_H + WORLD_H/2;
-					placeItem(x, y, this, ITEM_HEART_CONTAINER);
-				} else if(anItem == TILE_ARTIFACT) {
-					console.log("Adding an artifact in room()");
-					this.layout[arrayIndex] = TILE_GROUND;
-					var x = eachCol * WORLD_W + WORLD_W/2;
-					var y = eachRow * WORLD_H + WORLD_H/2;
-					placeItem(x, y, this, ITEM_ARTIFACT);
-				} else if(anItem == TILE_FIREBALL_LVL2) {
-					this.layout[arrayIndex] = TILE_GROUND;
-					var x = eachCol * WORLD_W + WORLD_W/2;
-					var y = eachRow * WORLD_H + WORLD_H/2;
-					placeItem(x, y, this, ITEM_FIREBALL_LVL2);
-				} else if(anItem == TILE_FIREBALL_LVL3) {
-					this.layout[arrayIndex] = TILE_GROUND;
-					var x = eachCol * WORLD_W + WORLD_W/2;
-					var y = eachRow * WORLD_H + WORLD_H/2;
-					placeItem(x, y, this, ITEM_FIREBALL_LVL3);
-				} else if(anItem == TILE_POTION) {
- 					this.layout[arrayIndex] = TILE_GROUND;
- 					var x = eachCol * WORLD_W + WORLD_W/2;
- 					var y = eachRow * WORLD_H + WORLD_H/2;
-					placeItem(x, y, this, ITEM_POTION);
-				} // end of place item on tile*/
-			} // end of col for
-		} // end of row for
-	} //end of spawn items
+				}
+      }
+		}
+	}
 
 	this.generatePathfindingData = function() {
 		console.log("Generating pathfinding data for the current room...");
@@ -143,22 +103,22 @@ function Room(roomLayout) {
 		// world arrays without same width and height?
 		var _rows = Math.max(WORLD_ROWS,WORLD_COLS);
 		var _cols = Math.max(WORLD_ROWS,WORLD_COLS);
-		for(var eachRow=0;eachRow<_rows;eachRow++) {
+		for(let eachRow=0;eachRow<_rows;eachRow++) {
 			this.pathfindingdata[eachRow] = [];
 			this.tempPathFindingData[eachRow] = [];
-			for(var eachCol=0;eachCol<_cols;eachCol++) {
-				var arrayIndex = rowColToArrayIndex(eachCol, eachRow);				
+			for(let eachCol=0;eachCol<_cols;eachCol++) {
+				var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 				this.pathfindingdata[eachRow][eachCol] =canWalk(this.layout[arrayIndex])
 				this.tempPathFindingData[eachRow][eachCol] =canWalk(this.layout[arrayIndex])
 			}
 		}
 	}
 
-	this.updatePathfindingData = function(){
+	this.updatePathfindingData = function() {
 		var _rows = Math.max(WORLD_ROWS,WORLD_COLS);
 		var _cols = Math.max(WORLD_ROWS,WORLD_COLS);
-		for(var eachRow=0;eachRow<_rows;eachRow++) {			
-			for(var eachCol=0;eachCol<_cols;eachCol++) {
+		for(var eachRow=0;eachRow<_rows;eachRow++) {
+			for(let eachCol=0;eachCol<_cols;eachCol++) {
 				this.tempPathFindingData[eachRow][eachCol] = this.pathfindingdata[eachRow][eachCol]
 			}
 		}
@@ -172,24 +132,9 @@ function Room(roomLayout) {
 
 	this.spawnTraps = function() {
 		return;
-	/*	var nextTrap = null;
-		var x, y;
-
-		for(var eachRow=0;eachRow<WORLD_ROWS;eachRow++) {
-			for(var eachCol=0;eachCol<WORLD_COLS;eachCol++) {
-				var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
-				if(this.layout[arrayIndex] == TILE_TRAP) {
-					x = eachCol * WORLD_W + WORLD_W/2;
-					y = eachRow * WORLD_H + WORLD_H/2; //monsters are currently too tall to put next to walls
-					trapWasFound = true;
-					nextTrap = new trap(x, y);
-					this.floorTraps.push(nextTrap);
-				} // end of player start if
-			} // end of col for
-		} // end of row for*/
 	}
 
-	this.spawnMyEnemies = function(){
+	this.spawnMyEnemies = function() {
 		var nextEnemy = null;
 		var x, y;
 		var offsetX = -3
@@ -197,8 +142,8 @@ function Room(roomLayout) {
 		var enemyWasFound = false;
 		do {
 			enemyWasFound = false;
-			for(var eachRow=0;eachRow<WORLD_ROWS;eachRow++) {
-				for(var eachCol=0;eachCol<WORLD_COLS;eachCol++) {
+			for(let eachRow=0;eachRow<WORLD_ROWS;eachRow++) {
+				for(let eachCol=0;eachCol<WORLD_COLS;eachCol++) {
 					var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 					x = eachCol * WORLD_W + WORLD_W/2 + offsetX;
 					y = eachRow * WORLD_H + WORLD_H/2 + offsetY;
@@ -207,11 +152,11 @@ function Room(roomLayout) {
 						this.layout[arrayIndex] = TILE_GROUND;
 						 //monsters are currently too tall to put next to walls
 						var enemyType = Math.random() * 4;
-						if (enemyType > 2 && enemyType < 3){
+						if (enemyType > 2 && enemyType < 3) {
 							nextEnemy = new plantBaby(x, y);
-						}else if (enemyType > 1 && enemyType < 2){
+						} else if (enemyType > 1 && enemyType < 2) {
 							nextEnemy = new slugMonster(x, y);
-						} else if (enemyType > 3 && enemyType < 4){
+						} else if (enemyType > 3 && enemyType < 4) {
 							nextEnemy = new armsBro(x, y)
 						} else {
 							nextEnemy = new slimeMonster(x, y);
@@ -220,7 +165,7 @@ function Room(roomLayout) {
 						enemyWasFound = true;
 						break;
 					} else {
-						switch (this.layout[arrayIndex]){
+						switch (this.layout[arrayIndex]) {
 							case TILE_BOSSHERO:
 								this.layout[arrayIndex] = TILE_GROUND;
 					            nextEnemy = new heroBoss(x, y);
@@ -229,31 +174,26 @@ function Room(roomLayout) {
 					            break;
 						}
 					}
-					
-				} // end of col for
+
+				}
 			}
 		} while (enemyWasFound)
 	}
-/*	this.drawMyEnemies = function(){//Not used.  Enemies are drawn using this.drawDynamic()
-		for(var i = 0; i<this.enemyList.length; i++){
-			this.enemyList[i].draw();
-		}
-	}*/
-	
-	this.drawMyObjects = function(){
-		for(var i = 0; i<this.objectList.length; i++){
+
+	this.drawMyObjects = function() {
+		for(let i = 0; i < this.objectList.length; i++) {
 			this.objectList[i].draw();
 		}
 	}
 
-	this.drawMagic = function(){
-		for(var i = 0; i<this.magic.length; i++){
+	this.drawMagic = function() {
+		for(let i = 0; i < this.magic.length; i++) {
 			this.magic[i].draw();
 		}
 	}
 
 	this.drawTraps = function() {
-		for (var i = 0; i < this.floorTraps.length; i++) {
+		for (let i = 0; i < this.floorTraps.length; i++) {
 			var trap = this.floorTraps[i];
 			trap.update();
 			trap.draw();
@@ -261,78 +201,50 @@ function Room(roomLayout) {
 	}
 
 	this.drawDynamic = function() {
-		var objects = [];
-		for(var i = 0; i<this.enemyList.length; i++){
-			objects.push({"y":this.enemyList[i].y , "object": this.enemyList[i]});
+		const objects = [];
+		for(let i = 0; i < this.enemyList.length; i++) {
+			objects.push({"y": this.enemyList[i].y , "object": this.enemyList[i]});
 		}
-		for(var i = 0; i<this.magic.length; i++){
-			objects.push({"y":this.magic[i].y , "object": this.magic[i]});
+		for(let i = 0; i < this.magic.length; i++) {
+			objects.push({"y": this.magic[i].y , "object": this.magic[i]});
 		}
-		objects.push({"y":player.y, "object": player});
+		objects.push({"y": player.y, "object": player});
 
 		objects.sort(function(a, b) {
 			return a.y-b.y;
 		});
 
-		for(var i = 0; i<objects.length; i++){
-			objects[i].object.draw();
-		}
+    objects.forEach(o => o.draw());
 	}
 
-	this.moveMyEnemies = function(){
-		for(var i = 0; i<this.enemyList.length; i++){
+	this.moveMyEnemies = function() {
+		for(let i = 0; i < this.enemyList.length; i++) {
 			this.enemyList[i].update();
 		}
 	}
 
-	this.moveMyObjects = function(){
-		for(var i = 0; i<currentRoom.objectList.length; i++){
-			if(currentRoom.objectList[i].update != null){
+	this.moveMyObjects = function() {
+		for(let i = 0; i < currentRoom.objectList.length; i++) {
+			if(currentRoom.objectList[i].update != null) {
 				currentRoom.objectList[i].update();
 			}
 		}
 	}
 
-	this.moveMagic = function(){
-		for(var i = 0; i<this.magic.length; i++){
-			this.magic[i].update();
-		}
+	this.moveMagic = function() {
+    this.magic.forEach(m => m.update());
 	}
-	this.considerRoomChange = function () {
 
-		// if (player.x < 8) {
-		// 	currentRoomCol--;
-		// 	//Sound.play("room_change",false,0.05);
-		// 	loadLevel();
-		// 	player.x += (canvas.width-40);
-		// }
-		// else if (player.x > canvas.width - 8){
-		// 	currentRoomCol++;
-		// 	//Sound.play("room_change",false,0.05);
-		// 	loadLevel();
-		// 	player.x -= (canvas.width-40);
-		// }
-		// if (player.y < 8){
-		// 	currentRoomRow--;
-		// 	//Sound.play("room_change",false,0.05);
-		// 	loadLevel();
-		// 	player.y += (canvas.height-40);
-		// }
-		// else if (player.y > canvas.height - 8){
-		// 	currentRoomRow++;
-		// 	//Sound.play("room_change",false,0.05);
-		// 	loadLevel();
-		// 	player.y -= (canvas.height-40);
-		// }
-		
+	this.considerRoomChange = function () {
 		if (lastValidCurrentFloor != currentFloor) {
 			console.log("considerRoomChange just noticed a floor change...")
-			if ((currentFloor-lastValidCurrentFloor) == 1) { //Going up
+
+			if ((currentFloor - lastValidCurrentFloor) == 1) { //Going up
 				player.x += 30; //Offset for stairs
-			} else if 
-				((currentFloor-lastValidCurrentFloor) == -1 &&
-				worldGrid[getTileIndexAtPixelCoord(player.x, player.y) - 1] == TILE_STAIRS_DOWN) 
-				{ //Going down
+			} else if (
+        (currentFloor-lastValidCurrentFloor) == -1 &&
+				worldGrid[getTileIndexAtPixelCoord(player.x, player.y) - 1] == TILE_STAIRS_DOWN) { //Going down
+
 				player.x -= 30; //Offset for stairs
 			}
 			//Sound.play("room_change",false,0.1);
@@ -346,13 +258,15 @@ var room0a1 = TileMaps['Level1'];
 var room1a1 = TileMaps['example'];
 
 //iff adding new rooms, remember to add to all rooms
-var allRooms = [
-	room0a1,room1a1 ];
+const allRooms = [
+	room0a1,
+  room1a1,
+];
 var roomCols = 4; //maximum col of rooms
 var roomRows = 6; // maximum row of rooms
 var roomFloors = 4; // maximum floor of rooms
-var allRoomsData = {};
-var allRoomsBackup = [];
+const allRoomsData = {};
+const allRoomsBackup = [];
 var currentRoom = null;
 
 function backupRoomData () {
@@ -367,34 +281,32 @@ function restoreRoomDataBackup() {
 	console.log("room reset");
 }
 
-function initRoomData(){
-	for (var c = 0; c<roomCols; c++) {
-		for ( var r =0; r<roomRows; r++) {
-			for (var f=0; f<roomFloors; f++) {
+function initRoomData() {
+	for (let c = 0; c < roomCols; c++) {
+		for (let r = 0; r < roomRows; r++) {
+			for (let f = 0; f < roomFloors; f++) {
 				var eachRoom = roomCoordToString(c,r,f);
 				if (window[eachRoom] != undefined) {
 					console.log("room found");
-					var tempRoom = new Room (window[eachRoom]);					
-					allRoomsData[eachRoom] = tempRoom;
+					allRoomsData[eachRoom] = new Room (window[eachRoom]);
 				}
 			}
 		}
 	}
 
-	for(var i in TileMaps){
+	for(let i in TileMaps) {
 		if (TileMaps[i] != undefined) {
 			console.log("TileMaps room found");
-			var tempRoom = new Room (TileMaps[i]);					
-			allRoomsData[i] = tempRoom;			
+			allRoomsData[i] = new Room (TileMaps[i]);
 		}
 	}
 }
 
-function resetAllRooms(){
+function resetAllRooms() {
 	allRoomsData = {};
-	for (var c = 0; c<roomCols; c++) {
-		for ( var r =0; r<roomRows; r++) {
-			for (var f=0; f<roomFloors; f++) {
+	for (let c = 0; c < roomCols; c++) {
+		for (let r = 0; r < roomRows; r++) {
+			for (let f = 0; f < roomFloors; f++) {
 				var eachRoom = roomCoordToString(c,r,f);
 				if (window[eachRoom] != undefined) {
 					console.log("room found");
@@ -405,12 +317,13 @@ function resetAllRooms(){
 			}
 		}
 	}
-	for(var i in TileMaps){
+
+	for(let i in TileMaps) {
 		if (TileMaps[i] != undefined) {
 			console.log("TileMaps room found");
-			var tempRoom = new Room (TileMaps[i]);		
-			tempRoom.reset();			
-			allRoomsData[i] = tempRoom;		
+			var tempRoom = new Room (TileMaps[i]);
+			tempRoom.reset();
+			allRoomsData[i] = tempRoom;
 		}
 	}
 	console.log("Rooms is reloading the level");
