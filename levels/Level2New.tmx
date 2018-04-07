@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="20" tileheight="20" infinite="0" nextobjectid="89">
+<map version="1.0" tiledversion="1.1.3" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="20" tileheight="20" infinite="0" nextobjectid="89">
  <properties>
   <property name="toDoor" value="front"/>
  </properties>
@@ -221,7 +221,7 @@
    <properties>
     <property name="isLocked" type="bool" value="true"/>
     <property name="name" value="end"/>
-    <property name="toDoor" value="level3start"/>
+    <property name="toDoor" value="Level3start"/>
     <property name="toLevel" value="Level3"/>
    </properties>
   </object>

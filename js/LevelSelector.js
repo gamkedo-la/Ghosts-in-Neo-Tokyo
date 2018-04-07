@@ -69,7 +69,7 @@ function moveLevelSelectIndex (keyName) {
 //     // DrawLabel("More To Come", canvas.width/2-50, startY+80 + scrollY ,  100, 25); 
 
 // }
-var levelNames = [ "example", "Level2", "level3"]
+var levelNames = [ "example", "Level2", "Level3"]
 
 function drawLevelSelector(){
     var spaceBetween = 30;

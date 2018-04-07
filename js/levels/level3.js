@@ -7,7 +7,7 @@
  }
  if(typeof module === 'object' && module && module.exports) {
   module.exports = data;
- }})("level3",
+ }})("Level3",
 { "height":100,
  "infinite":false,
  "layers":[
@@ -58,7 +58,7 @@
                  "properties":
                     {
                      "isLocked":"false",
-                     "name":"level3start",
+                     "name":"Level3start",
                      "toDoor":"end",
                      "toLevel":"Level2"
                     },
@@ -153,7 +153,7 @@
      "toDoor":"string"
     },
  "renderorder":"right-down",
- "tiledversion":"1.1.4",
+ "tiledversion":"1.1.3",
  "tileheight":20,
  "tilesets":[
         {

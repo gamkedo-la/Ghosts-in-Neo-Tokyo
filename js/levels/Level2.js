@@ -79,7 +79,7 @@
                     {
                      "isLocked":true,
                      "name":"end",
-                     "toDoor":"level3start",
+                     "toDoor":"Level3start",
                      "toLevel":"Level3"
                     },
                  "propertytypes":
@@ -533,7 +533,7 @@
      "toDoor":"string"
     },
  "renderorder":"right-down",
- "tiledversion":"1.1.4",
+ "tiledversion":"1.1.3",
  "tileheight":20,
  "tilesets":[
         {
