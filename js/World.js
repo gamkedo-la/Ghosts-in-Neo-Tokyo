@@ -12,6 +12,7 @@ const TILE_TRANSPARENT = 0;
 const TILE_EMPTY = 1;
 const TILE_WALL = 2;
 const TILE_AVOCADO = 3;
+const TILE_TOAST = 4;
 /*const TILE_PLAYERSTART = 2;
 const TILE_SKULL = 3;*/
 //const TILE_KEY_COMMON = 4;

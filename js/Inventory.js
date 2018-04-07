@@ -78,6 +78,7 @@ var itemCellBetweenY = 10;
 
 function imageLoadingDoneSoAssignInventoryImages() {
   inventoryItems[ITEM_AVOCADO].image = worldPics[TILE_AVOCADO];
+  inventoryItems[ITEM_TOAST].image = worldPics[TILE_TOAST];
 }
 
 function moveInventory(keyName) {

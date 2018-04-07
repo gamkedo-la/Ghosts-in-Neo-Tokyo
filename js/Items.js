@@ -63,7 +63,13 @@ function itemClass(posX, posY, speed, type, angle) {
             var colliderOffsetX = 0;
             var colliderOffsetY = 0;
 			break;
-		
+        case(ITEM_TOAST):
+		    this.sprite.setSprite(worldPics[TILE_TOAST], 20, 20, 1, 0, true);
+            var colliderWidth = 20;
+            var colliderHeight = 20;
+            var colliderOffsetX = 0;
+            var colliderOffsetY = 0;
+            break;
 	}
 
 	this.collider = new boxColliderClass(this.x, this.y,
@@ -258,6 +264,10 @@ function pickUpItems(collider) {
                     //Sound.play('key_pickup', false, 0.1); // 0.1 means 10% volume
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'green');
 					break;
+                case ITEM_TOAST:
+                    inventoryItems[ITEM_TOAST].itemObtained = true;
+                    particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'yellow');
+                    break;
 				/*case ITEM_KEY_RARE:
                 	player.inventory.keysRare++; // one more key
                     // this.updateKeyReadout();

@@ -93,6 +93,16 @@ function Room(roomLayout) {
 				} else if (anItem == TILE_AVOCADO && inventoryItems[ITEM_AVOCADO].itemObtained) {
 					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
 				}
+				else if (anItem == TILE_TOAST) {
+					
+					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
+					
+					if (!inventoryItems[ITEM_TOAST].itemObtained) {
+						var x = eachCol * WORLD_W + WORLD_W/2;
+						var y = eachRow * WORLD_H + WORLD_H/2;
+						placeItem(x, y, this, ITEM_TOAST);
+					}
+				}
       }
 		}
 	}
