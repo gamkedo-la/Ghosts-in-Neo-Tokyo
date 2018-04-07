@@ -9,7 +9,8 @@ var mouseWasHeld = false;
 
 
 // Button Helper - can add parameter for custom graphics
-function ShowButton(message, x, y, width, height, selection, buttonID){
+function ShowLevelButton(message, x, y, width, height, selection, buttonID){
+//	console.log("Button ID: " + buttonID);
     var active = selection == buttonID;
     var magicValue = 3;
     var color = active ? 'red' : 'blue';
@@ -77,7 +78,7 @@ function drawLevelSelector(){
     var startY = 60;
 
     for (var i = 0; i < levelNames.length; i++) {
-    this.ShowButton(levelNames[i],  canvas.width/2-50, startY+ spaceBetween*i ,  100, 25 , levelSelectedIndex, i); 
+	    ShowLevelButton(levelNames[i],  canvas.width/2-50, startY+ spaceBetween*i ,  100, 25 , levelSelectedIndex, i); 
     }
   
     //Handle Mouse Events
@@ -94,6 +95,7 @@ function drawLevelSelector(){
 
 // When Enter Button is Pressed During Main Menu
 function levelSelector_OnEnter(){
+	console.log("Level Selected Index: " + levelSelectedIndex);
     loadLevel(levelNames[levelSelectedIndex] ); 
     isLevelSelectorOpen = false;
     GameState_ = PLAYING;
