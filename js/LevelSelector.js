@@ -72,38 +72,30 @@ function moveLevelSelectIndex (keyName) {
 var levelNames = [ "example", "Level2", "level3"]
 
 function drawLevelSelector(){
-       var spaceBetween = 30;
-      var scrollSpeed = 10;
-        var startY = 60;
+    var spaceBetween = 30;
+    var scrollSpeed = 10;
+    var startY = 60;
 
-        for (var i = 0; i < levelNames.length; i++) {
-        this.ShowButton(levelNames[i],  canvas.width/2-50, startY+ spaceBetween*i ,  100, 25 , levelSelectedIndex, i); 
-
-        // this.DrawLabel(String(levelNames[i]), canvas.width/2-50, startY+ spaceBetween*i  ,  100, 25); 
-        }
-
-        // this.ShowButton("Level 1",  canvas.width/2-50,  startY+30,  100, 25 , levelSelectedIndex, 0); 
-        // this.ShowButton("Level 2",  canvas.width/2-50,  startY+60,  100, 25 , levelSelectedIndex, 1);
-        // this.ShowButton("Level 3",  canvas.width/2-50,  startY+90,  100, 25 , levelSelectedIndex, 2);
-      
-        //Handle Mouse Events
-        if(mouseHeld && this.mouseWasHeld == false){
-            levelSelector_OnEnter();
-            this.mouseWasHeld = true;
-        }
-        else
-        {
-            this.mouseWasHeld = mouseHeld;
-        }
+    for (var i = 0; i < levelNames.length; i++) {
+    this.ShowButton(levelNames[i],  canvas.width/2-50, startY+ spaceBetween*i ,  100, 25 , levelSelectedIndex, i); 
+    }
+  
+    //Handle Mouse Events
+    if(mouseHeld && this.mouseWasHeld == false){
+        levelSelector_OnEnter();
+        this.mouseWasHeld = true;
+    }
+    else
+    {
+        this.mouseWasHeld = mouseHeld;
+    }
 }
 
 
 // When Enter Button is Pressed During Main Menu
 function levelSelector_OnEnter(){
-
-
-
     loadLevel(levelNames[levelSelectedIndex] ); 
     isLevelSelectorOpen = false;
+    GameState_ = PLAYING;
 }
 
