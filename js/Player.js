@@ -218,6 +218,10 @@ function playerClass() {
 			this.vy = 0;
 			playerAtStartingPosition = true;
 			// instantly snap the camera which may be extremely far away from the respawn area
+
+			//NOTE(KEENAN): Is there a reason why we should NOT reset the camera globals when we reset the player? 
+			//Right now, the camera ONLY resets if the player is dead upon reset. Not even during a level load
+
 			cameraOffsetX = cameraOffsetY = 0; // these globals are from Main.js
 		}
 		var foundRespawnPoint = false

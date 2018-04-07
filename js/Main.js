@@ -111,7 +111,10 @@ function loadLevel(DatRoomYO) {
 		removeAllItemsOfTypeInRoom(ITEM_ARTIFACT); 
 	}*/
 	
-
+	//NOTE(keenan): Right now, player.reset only resets the camera offsets when the player has died. 
+	//When a new load loads, the camera still is not reset. 
+	//This will reset it though
+	cameraOffsetX = cameraOffsetY = 0; // these globals are from Main.js
 	player.reset("Untitled Player");
 	
 }
