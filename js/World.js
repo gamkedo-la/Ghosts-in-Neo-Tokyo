@@ -210,7 +210,7 @@ function tileTypeHasTransparency(checkTileType) {
 					);
 }
 
-function drawWorld() {
+/*function drawWorld() {
 
 	var arrayIndex = 0;
 	var drawTileX = 0;
@@ -245,18 +245,18 @@ function drawWorld() {
 		drawTileY += WORLD_H;
 		drawTileX = 0;
 	} // end of for each row
-} // end of drawWorld func
+} // end of drawWorld func*/
 
 function drawWorldRestricted(){
 	var pos = getTileIndexAtPixelCoord(-cameraOffsetX, -cameraOffsetY);
 
-	var test = ArrayIndexToColRow(pos)
+/*	var test = ArrayIndexToColRow(pos)
 	//tile sanity test
 	//TODO:remove
 	canvasContext.drawImage(worldPics[3], test[0]* WORLD_W, test[1]* WORLD_W);
 	
 
-	
+*/	
 	var startHeight = pos 
 	var startPos = startHeight
 	if(startPos < 0){

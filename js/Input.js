@@ -41,6 +41,7 @@ const KEY_X = 88; // range attack
 const KEY_M = 77; // testing raycasting
 const KEY_N = 78; // testing background music - TODO: REMOVE ME
 const KEY_P = 80; // pause update
+const KEY_L = 76; // pause update
 
 var mouseX = 0;
 var mouseY = 0;
@@ -150,6 +151,11 @@ function keyPressed(evt) {
 			}
 			break;
 		case KEY_ENTER:
+
+			if(isLevelSelectorOpen){
+				levelSelector_OnEnter();
+			}
+
 			if (saveMenuOpen) {
 				if (saveFileTextContext == "save") {
 					backupRoomData();
@@ -247,6 +253,15 @@ function keyPressed(evt) {
 			currentFloor--;
 			loadLevel(roomCoordToVar);
 			break;
+
+		case KEY_L:
+			//if(!_DEBUG_MODE)
+			//	break
+			console.log("Open Level selector");
+			isLevelSelectorOpen = !isLevelSelectorOpen;
+			console.log("Level select is: "+ isLevelSelectorOpen);
+
+			break;
 		case KEY_P:
 			if (!saveMenuOpen) {
 				paused = !paused;
@@ -266,6 +281,9 @@ function keyPressed(evt) {
 			} else if (saveMenuOpen) {
 				moveSaveMenu('up');
 			}
+			else if(isLevelSelectorOpen){
+				moveLevelSelectIndex('up');
+			}
 			break;
 		case KEY_RIGHT_ARROW:
 			if (paused) {
@@ -280,6 +298,9 @@ function keyPressed(evt) {
 				moveInventory('down');
 			} else if (saveMenuOpen) {
 				moveSaveMenu('down');
+			}
+			else if(isLevelSelectorOpen){
+				moveLevelSelectIndex('down');
 			}
 			break;
 		case KEY_N: // TEMPORARY: play test Background music - TODO: REMOVE ME

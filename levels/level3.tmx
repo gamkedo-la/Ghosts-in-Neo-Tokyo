@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="500" height="100" tilewidth="20" tileheight="20" nextobjectid="45">
+<map version="1.0" tiledversion="1.1.3" orientation="orthogonal" renderorder="right-down" width="500" height="100" tilewidth="20" tileheight="20" infinite="0" nextobjectid="45">
  <properties>
   <property name="toDoor" value="front"/>
  </properties>
- <tileset firstgid="1" name="tileset" tilewidth="20" tileheight="20">
+ <tileset firstgid="1" name="tileset" tilewidth="20" tileheight="20" tilecount="100" columns="10">
   <image source="tileset.png" width="200" height="200"/>
  </tileset>
- <tileset firstgid="101" name="Char" tilewidth="79" tileheight="90">
+ <tileset firstgid="101" name="Char" tilewidth="79" tileheight="90" tilecount="8" columns="0">
   <tile id="0">
    <image width="32" height="32" source="../img/mainChar/Char_0.png"/>
   </tile>
@@ -162,9 +162,9 @@
   <object id="35" gid="102" x="550.5" y="496" width="32" height="32"/>
   <object id="36" name="end" type="Door" gid="103" x="217.5" y="540" width="44" height="44">
    <properties>
-    <property name="isLocked" value="true"/>
-    <property name="name" value="end"/>
-    <property name="toDoor" value="level2start"/>
+    <property name="isLocked" value="false"/>
+    <property name="name" value="Level3start"/>
+    <property name="toDoor" value="end"/>
     <property name="toLevel" value="Level2"/>
    </properties>
   </object>

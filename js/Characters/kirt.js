@@ -3,20 +3,20 @@ function kirt(x, y) {
 	this.x = x + 22;
 	this.y = y - 16; //y offset
 	this.initialState = "normal";
-	this.maxHealth = 3; // how many hits till it dies
+	this.maxHealth = 9; // how many hits till it dies
 	this.currentHealth = this.maxHealth;
 	this.lootModifier = 1.0;
 	this.droppedTile = undefined;
 
-	this.tileColliderWidth = 18;
-	this.tileColliderHeight = 4;
-	this.tileColliderOffsetX = 2;
-	this.tileColliderOffsetY = 11;
+	this.tileColliderWidth = 4;
+	this.tileColliderHeight = 2;
+	this.tileColliderOffsetX = -0.5;
+	this.tileColliderOffsetY = 10.5;
 
-	this.hitboxWidth = 0;
-	this.hitboxHeight = 0;
-	this.hitboxOffsetX = -1;
-	this.hitboxOffsetY = 1;
+	this.hitboxWidth = 9;
+	this.hitboxHeight = 22;
+	this.hitboxOffsetX = -0.5;
+	this.hitboxOffsetY = 0.5;
 
 	this.spriteSheet = sprites.Kirt.idleRight;
 	this.spriteWidth = 32;
@@ -67,25 +67,16 @@ function kirt(x, y) {
 		},
 		recoil: function(){
 			//do checks and stuff for dialoge
-		}/*,
+		},
 		dying: function(){
-			if(!this.ticksInState){
-				// this.sprite.setSprite(sprites.Slime.death,
-				// 	this.enemyData.spriteWidth, this.enemyData.spriteHeight,
-				// 	10, 15, false);	
+			// remove from enemy list
+			var foundHere = currentRoom.enemyList.indexOf(this);
+			if (foundHere > -1) {
+				currentRoom.enemyList.splice(foundHere, 1);
 			}
-			
-			// if(this.sprite.isDone()){
 				
-				// remove from enemy list
-				var foundHere = currentRoom.enemyList.indexOf(this);
-				if (foundHere > -1) {
-					currentRoom.enemyList.splice(foundHere, 1);
-				}
-				
-			// }
 			this.sprite.update();
-		}*/
+		}
 	}
 
 	this.deadEvent = function() {

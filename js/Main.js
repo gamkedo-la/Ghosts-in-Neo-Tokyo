@@ -13,10 +13,11 @@ var particleList = [];
 var paused = false;
 
 var cameraOffsetX = 0;
+var cameraOffsetY = 0;
+var cameraSpeed = 0;
 
 var healthBarFlashing = false;
 var barColorRed = true;
-var cameraOffsetY = 0;
 
 // test only: the NPC dialogue fottoer bar at bottom of screen:
 var testNPCFooterStartTime = 0;
@@ -71,8 +72,9 @@ function loadLevel(DatRoomYO) {
 				}
 			}
 		}		
-		WORLD_COLS = currentRoom.layout.width
-		WORLD_ROWS = currentRoom.layout.height
+		WORLD_COLS = currentRoom.layout.width;
+		WORLD_ROWS = currentRoom.layout.height;
+		WORLD_MAX_Y = WORLD_ROWS * WORLD_H;
 
 		var nextRoom = allRoomsData[DatRoomYO];
 		currentRoomName = DatRoomYO;
@@ -111,6 +113,10 @@ function loadLevel(DatRoomYO) {
 		removeAllItemsOfTypeInRoom(ITEM_ARTIFACT); 
 	}*/
 	
+	//NOTE(keenan): Right now, player.reset only resets the camera offsets when the player has died. 
+	//When a new load loads, the camera still is not reset. 
+	//This will reset it though
+	cameraOffsetX = cameraOffsetY = 0; // these globals are from Main.js
 	player.reset("Untitled Player");
 	
 }
@@ -128,6 +134,12 @@ function ClearToBlack(){
 
 function updateAll() {
 	
+	//for Debugging Purposes!
+	if(isLevelSelectorOpen){
+		drawLevelSelector();
+		return;
+	}
+
 	if(GameState_ == SPLASH)
 	{
 		ClearToBlack();
@@ -151,6 +163,8 @@ function updateAll() {
 	if (_TEST_AI_PATHFINDING)
 		currentRoom.updatePathfindingData()
 	
+
+
 	if(paused) {
 		drawInventory();
 		drawInventoryItems();
@@ -209,19 +223,10 @@ function drawAll() {
 }
 
 function updateCameraPosition() {
-	//Position the camera horizontally, leaving a dead zone in the center of the screen
-	if(player.x > canvas.width - cameraOffsetX + canvas.width / 2) {//teleport right to the player's position
-		cameraOffsetX = Math.floor(-(player.x + (1.5 * canvas.width)));
-	} else if(player.x > 1.5 * deadXZone - cameraOffsetX + canvas.width / 2) {//player is far right of center -> move quickly
-		cameraOffsetX -= 3;
-	} else if(player.x > deadXZone - cameraOffsetX + canvas.width / 2) {//player is slightly right of center -> move slowly
-		cameraOffsetX -= 1;
-	} else if(player.x < -canvas.width - cameraOffsetX + canvas.width / 2) {//teleport left to the player's position
-		cameraOffsetX = Math.floor(player.x - (1.5 * canvas.width));//no idea why it is 1.5 * width
-	} else if(player.x < -1.5 * deadXZone - cameraOffsetX + canvas.width / 2) {//player is far left of center -> move quickly	
-		cameraOffsetX += 3;
-	} else if(player.x < -deadXZone - cameraOffsetX + canvas.width / 2) {//player is far left of center -> move slowly
-		cameraOffsetX += 1;
+	if(player.x > deadXZone - cameraOffsetX + canvas.width / 2) {
+		cameraOffsetX = Math.floor(deadXZone - player.x + canvas.width / 2);
+	} else if(player.x < -deadXZone - cameraOffsetX + canvas.width / 2) {
+		cameraOffsetX = Math.floor(-deadXZone - player.x + canvas.width / 2);
 	}
 	
 	//Do not move the camera so far right or left that areas outside of the world are visible
