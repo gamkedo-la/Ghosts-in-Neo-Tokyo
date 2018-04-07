@@ -72,8 +72,9 @@ function loadLevel(DatRoomYO) {
 				}
 			}
 		}		
-		WORLD_COLS = currentRoom.layout.width
-		WORLD_ROWS = currentRoom.layout.height
+		WORLD_COLS = currentRoom.layout.width;
+		WORLD_ROWS = currentRoom.layout.height;
+		WORLD_MAX_Y = WORLD_ROWS * WORLD_H;
 
 		var nextRoom = allRoomsData[DatRoomYO];
 		currentRoomName = DatRoomYO;
