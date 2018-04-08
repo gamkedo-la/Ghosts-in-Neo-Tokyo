@@ -4,7 +4,7 @@
   TileMaps[name] = data;
  } else {
   onTileMapLoaded(name,data);
- }})("example",
+ }})("Level1",
 { "height":100,
  "layers":[
         {
@@ -267,6 +267,22 @@
                  "width":32,
                  "x":240,
                  "y":540
+                }, 
+                {
+                 "gid":110,
+                 "height":55,
+                 "id":48,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":322.5,
+                 "y":532.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -275,7 +291,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":48,
+ "nextobjectid":49,
  "orientation":"orthogonal",
  "properties":
     {
@@ -342,6 +358,10 @@
              "8":
                 {
                  "entityType":"Kirt"
+                },
+             "9":
+                {
+                 "entityType":"GrandpaGhost"
                 }
             },
          "tiles":
@@ -381,6 +401,10 @@
              "8":
                 {
                  "image":"..\/..\/img\/Kirt\/KirtTile.png"
+                },
+             "9":
+                {
+                 "image":"..\/..\/img\/GrampaGhost-Tile.png"
                 }
             },
          "tilewidth":79

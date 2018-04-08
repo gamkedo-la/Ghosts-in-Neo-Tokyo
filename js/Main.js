@@ -45,7 +45,7 @@ function runThatGame(){
 	setupInput();
 	backupRoomData(); // should do before any numbers are replaced and load level etc.
 	initRoomData()
-	loadLevel("example");
+	loadLevel("Level1");
 	resetAllRooms();
 	createTileArray();
 	
