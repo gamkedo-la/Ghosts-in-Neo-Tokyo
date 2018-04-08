@@ -140,7 +140,7 @@ function DrawMainMenu(){
 // Image variables can be found in imgPayload.js
 // NOTE(keenan): Uncertain how the scaling is working at the moment
 function DrawSplashLogo(){
-    canvasContext.drawImage(sprites.UI.splashLogo,  Math.round(canvas.width/2) - 566/4 , 50, 566/2, 104/2);
+    canvasContext.drawImage(sprites.UI.splashLogo,  Math.round(canvas.width/2 - 566/4) , 50, 566/2, 104/2);
 }
 
 // When Enter Button is Pressed During Main Menu
