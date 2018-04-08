@@ -1,61 +1,51 @@
 var inventoryItems = [
   {
-    displayName: 'Karaage 1',
-    image: null,
+    displayName: 'Karaage',
     itemObtained: false
   },
   {
-    displayName: 'Karaage 2',
-    image: null,
+    displayName: 'Karaage',
     itemObtained: false
   },
   {
-    displayName: 'Karaage 3',
-    image: null,
+    displayName: 'Karaage',
     itemObtained: false
   },
   {
-    displayName: 'Karaage 4',
-    image: null,
+    displayName: 'Karaage',
     itemObtained: false
   },
   {
     displayName: 'Avocado',
-    image: null,
     itemObtained: false
   },
   {
     displayName: 'Toast',
-    image: null,
     itemObtained: false
   },
   {
     displayName: 'Soil',
-    image: null,
     itemObtained: false
   },
   {
     displayName: 'Plant Seed',
-    image: null,
     itemObtained: false
   },
   {
     displayName: 'Waterbucket',
+    itemObtained: false
+  },
+  {
+    displayName: 'Egg Sushi',
+    itemObtained: false
+  },
+  {
+    displayName: 'Salmon Sushi',
     image: null,
     itemObtained: false
   },
   {
-    displayName: '[undefined10]',
-    image: null,
-    itemObtained: false
-  },
-  {
-    displayName: '[undefined11]',
-    image: null,
-    itemObtained: false
-  },
-  {
-    displayName: '[undefined12]',
+    displayName: '',
     image: null,
     itemObtained: false
   },
