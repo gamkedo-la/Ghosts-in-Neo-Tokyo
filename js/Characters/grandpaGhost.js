@@ -13,10 +13,10 @@ function grandpaGhost(x, y) {
 	this.tileColliderOffsetX = 2;
 	this.tileColliderOffsetY = 11;
 
-	this.hitboxWidth = 0;
-	this.hitboxHeight = 0;
+	this.hitboxWidth = 2;
+	this.hitboxHeight = 2;
 	this.hitboxOffsetX = -1;
-	this.hitboxOffsetY = 1;
+	this.hitboxOffsetY = -1;
 
 	this.spriteSheet = sprites.GrandpaGhost.idle;
 	this.spriteWidth = 32;
@@ -66,6 +66,8 @@ function grandpaGhost(x, y) {
 		}*/
 	}
 
+
+
 	this.deadEvent = function() {
 		ga('send', {
 		  hitType: 'event',
@@ -76,7 +78,11 @@ function grandpaGhost(x, y) {
 		this.monsterRef.setState("dying")
 		this.monsterRef.isDying = true;		
 	} // end of dead
-	
-	return new enemyClass(this, staates);
+
+	var newGrandpaGhost = new enemyClass(this, staates);
+	//remove hitbox so they don't get damaged
+	newGrandpaGhost.hitbox = null;
+
+	return newGrandpaGhost;
 }
 enemyDictionary["GrandpaGhost"] = grandpaGhost

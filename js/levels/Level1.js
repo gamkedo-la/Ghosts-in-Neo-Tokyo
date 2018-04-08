@@ -24,23 +24,6 @@
          "name":"Characters",
          "objects":[
                 {
-                 "gid":104,
-                 "height":32,
-                 "id":31,
-                 "name":"lSwitch",
-                 "properties":
-                    {
-                     "state":"set",
-                     "targetName":"rSwitch"
-                    },
-                 "rotation":0,
-                 "type":"fButton",
-                 "visible":true,
-                 "width":32,
-                 "x":322.5,
-                 "y":542
-                }, 
-                {
                  "gid":105,
                  "height":90,
                  "id":32,

@@ -121,7 +121,7 @@ function magicClass(magic, enemyList, objectList) {
 	this.hitEnemy = function() {
 		for (var i = 0; i < this.enemyList.length; i++) {
 			var enemy = this.enemyList[i];
-			if (this.collider.isCollidingWith(enemy.hitbox))
+			if (enemy.hitbox && this.collider.isCollidingWith(enemy.hitbox))
 				this.onHitEnemy(enemy);
 		}
 		

@@ -673,7 +673,7 @@ function playerClass() {
 
 		for (var i = 0; i < currentRoom.enemyList.length; i++) {
 			var enemy = currentRoom.enemyList[i];
-			if (this.hitbox.isCollidingWith(enemy.hitbox)) {
+			if (enemy.hitbox && this.hitbox.isCollidingWith(enemy.hitbox)) {
 				if (!this.isInvincible) {
 					this.currentHealth--;
 					noDamageForFloor[currentFloor] = false;

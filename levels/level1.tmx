@@ -170,12 +170,6 @@
 </data>
  </layer>
  <objectgroup name="Characters">
-  <object id="31" name="lSwitch" type="fButton" gid="104" x="322.5" y="542" width="32" height="32">
-   <properties>
-    <property name="state" value="set"/>
-    <property name="targetName" value="rSwitch"/>
-   </properties>
-  </object>
   <object id="32" gid="105" x="534.5" y="516" width="79" height="90"/>
   <object id="33" name="rSwitch" type="fButton" gid="104" x="597.5" y="542" width="32" height="32">
    <properties>

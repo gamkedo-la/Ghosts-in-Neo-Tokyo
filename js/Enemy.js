@@ -273,7 +273,7 @@ function enemyClass(newEnemy, states){
 		if(_DEBUG_DRAW_TILE_COLLIDERS) {
             this.tileCollider.draw('lime');
         }
-        if(_DEBUG_DRAW_HITBOX_COLLIDERS) {
+        if(this.hitbox && _DEBUG_DRAW_HITBOX_COLLIDERS) {
 			this.hitbox.draw('red');
 		}
 		if (_DEBUG_DRAW_AI_PATHS)
