@@ -475,11 +475,11 @@ function playerClass() {
 		}
 
 		isUsingRangedAttack = this.keyHeld_Ranged_Attack;
-		if (this.lastFireAttack + FIRE_ATTACK_COOLDOWN < performance.now() && isUsingRangedAttack && !wasAttacking)	//either melee attack or ranged attack
+/*		if (this.lastFireAttack + FIRE_ATTACK_COOLDOWN < performance.now() && isUsingRangedAttack && !wasAttacking)	//either melee attack or ranged attack
 		{
 			this.lastFireAttack = performance.now()
 			bulletMagic(this.x, this.y, isFacing);
-		}
+		}*/
 
 		if (this.isCollidingWithEnemy() && !this.isInvincible) {
 			if (this.currentHealth <= 0) {
