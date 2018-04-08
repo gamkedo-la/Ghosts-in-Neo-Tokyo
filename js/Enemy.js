@@ -241,7 +241,7 @@ function enemyClass(newEnemy, states){
 		
 		// drop items
 		// TODO: redo this functionality
-		placeItem(dyingX, dyingY, currentRoom, ITEM_AVOCADO);
+		placeItem(dyingX, dyingY, currentRoom, ITEM_KARAAGE_ANY);
 		return;
 	} // end of this.die function
 

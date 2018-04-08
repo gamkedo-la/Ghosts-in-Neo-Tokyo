@@ -90,6 +90,29 @@ function imageLoadingDoneSoAssignInventoryImages() {
   inventoryItems[ITEM_SALMON_SUSHI].image = worldPics[TILE_SALMON_SUSHI];
 }
 
+// Special functionality for picking up karaage
+function pickUpKaraage() {
+  if (!inventoryItems[ITEM_KARAAGE_ONE].itemObtained) {
+    pickUpItemType(ITEM_KARAAGE_ONE);
+  }
+  else if (!inventoryItems[ITEM_KARAAGE_TWO].itemObtained) {
+    pickUpItemType(ITEM_KARAAGE_TWO);
+  }
+  else if (!inventoryItems[ITEM_KARAAGE_THREE].itemObtained) {
+    pickUpItemType(ITEM_KARAAGE_THREE);
+  }
+  else if (!inventoryItems[ITEM_KARAAGE_FOUR].itemObtained) {
+    pickUpItemType(ITEM_KARAAGE_FOUR);
+  }
+  else {
+    console.log("Uh oh, can't pick up any more karaage!");
+  }
+}
+
+function pickUpItemType(itemType) {
+  inventoryItems[itemType].itemObtained = true;
+}
+
 function moveInventory(keyName) {
   if (keyName === 'right') {
     currentInventoryIndex++;

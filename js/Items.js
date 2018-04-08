@@ -298,38 +298,37 @@ function pickUpItems(collider) {
 
             switch(item.type) {
                 case ITEM_KARAAGE_ANY:
-                    // TODO: fill in karaage 1-4
-                    inventoryItems[ITEM_KARAAGE_ANY].itemObtained = true;
+                    pickUpKaraage();
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'brown');
                     break;
                 case ITEM_AVOCADO:
-                	inventoryItems[4].itemObtained = true;
+                    pickUpItemType(item.type);
                     // this.updateKeyReadout();
                     //Sound.play('key_pickup', false, 0.1); // 0.1 means 10% volume
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'green');
 					break;
                 case ITEM_TOAST:
-                    inventoryItems[ITEM_TOAST].itemObtained = true;
+                    pickUpItemType(item.type);
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'yellow');
                     break;
                 case ITEM_SOIL:
-                    inventoryItems[ITEM_SOIL].itemObtained = true;
+                    pickUpItemType(item.type);
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'brown');
                     break;
                 case ITEM_PLANT_SEED:
-                    inventoryItems[ITEM_PLANT_SEED].itemObtained = true;
+                    pickUpItemType(item.type);
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'brown');
                     break;
                 case ITEM_WATERBUCKET:
-                    inventoryItems[ITEM_WATERBUCKET].itemObtained = true;
+                    pickUpItemType(item.type);
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'blue');
                     break;
                 case ITEM_EGG_SUSHI:
-                    inventoryItems[ITEM_EGG_SUSHI].itemObtained = true;
+                    pickUpItemType(item.type);
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'white');
                     break;
                 case ITEM_SALMON_SUSHI:
-                    inventoryItems[ITEM_SALMON_SUSHI].itemObtained = true;
+                    pickUpItemType(item.type);
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'white');
                     break;
 				/*case ITEM_KEY_RARE:
