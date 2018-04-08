@@ -205,19 +205,20 @@
 </data>
  </layer>
  <objectgroup name="Characters">
-  <object id="31" name="lSwitch" type="fButton" gid="104" x="670.584" y="1202.67" width="32" height="32">
+  <object id="31" name="leftMiddle" type="fButton" gid="104" x="670.584" y="1202.67" width="32" height="32">
    <properties>
-    <property name="state" value="set"/>
-    <property name="targetName" value="rSwitch"/>
+    <property name="setTime" type="int" value="600"/>
+    <property name="state" value="released"/>
+    <property name="targetName" value="end"/>
    </properties>
   </object>
-  <object id="33" name="rSwitch" type="fButton" gid="104" x="898.965" y="1202.1" width="32" height="32">
+  <object id="33" name="rightMiddle" type="fButton" gid="104" x="898.965" y="1202.1" width="32" height="32">
    <properties>
     <property name="state" value="released"/>
-    <property name="targetName" value="lSwitch,end"/>
+    <property name="targetName" value="rightTop"/>
    </properties>
   </object>
-  <object id="36" name="end" type="Door" gid="103" x="779.25" y="1260.75" width="44" height="44">
+  <object id="36" name="end" type="Door" gid="103" x="779.25" y="1260.75" width="44" height="44" visible="0">
    <properties>
     <property name="isLocked" type="bool" value="true"/>
     <property name="name" value="end"/>
@@ -233,40 +234,41 @@
     <property name="toLevel" value="example"/>
    </properties>
   </object>
-  <object id="59" name="lSwitch" type="fButton" gid="104" x="667.5" y="1122.5" width="32" height="32">
+  <object id="59" name="leftTop" type="fButton" gid="104" x="667.5" y="1122.5" width="32" height="32">
    <properties>
-    <property name="state" value="set"/>
-    <property name="targetName" value="rSwitch"/>
+    <property name="state" value="released"/>
+    <property name="targetName" value="rightBottom"/>
    </properties>
   </object>
-  <object id="60" name="lSwitch" type="fButton" gid="104" x="899" y="1122.75" width="32" height="32">
+  <object id="60" name="rightTop" type="fButton" gid="104" x="899" y="1122.75" width="32" height="32">
    <properties>
-    <property name="state" value="set"/>
-    <property name="targetName" value="rSwitch"/>
+    <property name="state" value="released"/>
+    <property name="targetName" value="leftTop"/>
    </properties>
   </object>
-  <object id="61" name="lSwitch" type="fButton" gid="104" x="897.75" y="1262" width="32" height="32">
+  <object id="61" name="rightBottom" type="fButton" gid="104" x="897.75" y="1262" width="32" height="32">
    <properties>
-    <property name="state" value="set"/>
-    <property name="targetName" value="rSwitch"/>
+    <property name="setTime" type="int" value="600"/>
+    <property name="state" value="released"/>
+    <property name="targetName" value="end"/>
    </properties>
   </object>
-  <object id="62" name="lSwitch" type="fButton" gid="104" x="677.5" y="1262.25" width="32" height="32">
+  <object id="62" name="leftBottom" type="fButton" gid="104" x="670.5" y="1262.25" width="32" height="32">
    <properties>
-    <property name="state" value="set"/>
-    <property name="targetName" value="rSwitch"/>
+    <property name="state" value="released"/>
+    <property name="targetName" value="leftPlatform"/>
    </properties>
   </object>
-  <object id="64" name="lSwitch" type="fButton" gid="104" x="724.25" y="1162.5" width="32" height="32">
+  <object id="64" name="leftPlatform" type="fButton" gid="104" x="724.25" y="1162.5" width="32" height="32">
    <properties>
-    <property name="state" value="set"/>
-    <property name="targetName" value="rSwitch"/>
+    <property name="state" value="released"/>
+    <property name="targetName" value="rightPlatform"/>
    </properties>
   </object>
-  <object id="65" name="lSwitch" type="fButton" gid="104" x="845.25" y="1162.25" width="32" height="32">
+  <object id="65" name="rightPlatform" type="fButton" gid="104" x="845.25" y="1162.25" width="32" height="32">
    <properties>
-    <property name="state" value="set"/>
-    <property name="targetName" value="rSwitch"/>
+    <property name="state" value="released"/>
+    <property name="targetName" value="leftPlatform"/>
    </properties>
   </object>
   <object id="66" gid="102" x="270.5" y="496" width="32" height="32"/>
