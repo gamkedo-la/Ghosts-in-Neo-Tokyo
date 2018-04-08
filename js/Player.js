@@ -892,6 +892,11 @@ function playerClass() {
 				currentFloor--;
 				break;
 			case TILE_WALL:
+			case TILE_CONCRETE:
+			case TILE_NEON_BRICKS_VAR_1:
+			case TILE_NEON_BRICKS:
+			case TILE_PURPLE_BRICKS_VAR_1:
+			case TILE_PURPLE_BRICKS:
 			case TILE_WALL_NORTH:
 			case TILE_WALL_SOUTH:
 			case TILE_WALL_WEST:

@@ -20,6 +20,11 @@ const TILE_SALMON_SUSHI = 8;
 const TILE_SEED = 9;
 const TILE_SOIL = 10;
 const TILE_CONCRETE = 11;
+const TILE_NEON_BRICKS_VAR_1 = 12;
+const TILE_NEON_BRICKS = 13;
+const TILE_PURPLE_BRICKS_VAR_1 = 14;
+const TILE_PURPLE_BRICKS = 15;
+const TILE_ROAD = 16;
 
 // Below are probably leftovers from Mage Hook or something
 

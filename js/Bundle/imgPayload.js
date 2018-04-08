@@ -85,5 +85,25 @@ var imgPayload = [
 		{
 			worldType: TILE_CONCRETE, 
 			theFile: "Tiles/concrete.png"
+		},
+		{
+			worldType: TILE_NEON_BRICKS_VAR_1, 
+			theFile: "Tiles/neon_bricks_var1.png"
+		},
+		{
+			worldType: TILE_NEON_BRICKS, 
+			theFile: "Tiles/neon_bricks.png"
+		},
+		{
+			worldType: TILE_PURPLE_BRICKS_VAR_1, 
+			theFile: "Tiles/purple_bricks_var1.png"
+		},
+		{
+			worldType: TILE_PURPLE_BRICKS, 
+			theFile: "Tiles/purple_bricks.png"
+		},
+		{
+			worldType: TILE_ROAD, 
+			theFile: "Tiles/road.png"
 		}
 	];
