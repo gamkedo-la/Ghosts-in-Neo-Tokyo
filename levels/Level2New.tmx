@@ -205,13 +205,13 @@
 </data>
  </layer>
  <objectgroup name="Characters">
-  <object id="31" name="lSwitch" type="fButton" gid="104" x="670.584" y="1198.67" width="32" height="32">
+  <object id="31" name="lSwitch" type="fButton" gid="104" x="670.584" y="1202.67" width="32" height="32">
    <properties>
     <property name="state" value="set"/>
     <property name="targetName" value="rSwitch"/>
    </properties>
   </object>
-  <object id="33" name="rSwitch" type="fButton" gid="104" x="898.965" y="1200.1" width="32" height="32">
+  <object id="33" name="rSwitch" type="fButton" gid="104" x="898.965" y="1202.1" width="32" height="32">
    <properties>
     <property name="state" value="released"/>
     <property name="targetName" value="lSwitch,end"/>
@@ -233,31 +233,31 @@
     <property name="toLevel" value="example"/>
    </properties>
   </object>
-  <object id="59" name="lSwitch" type="fButton" gid="104" x="667.5" y="1121.5" width="32" height="32">
+  <object id="59" name="lSwitch" type="fButton" gid="104" x="667.5" y="1122.5" width="32" height="32">
    <properties>
     <property name="state" value="set"/>
     <property name="targetName" value="rSwitch"/>
    </properties>
   </object>
-  <object id="60" name="lSwitch" type="fButton" gid="104" x="899" y="1121.75" width="32" height="32">
+  <object id="60" name="lSwitch" type="fButton" gid="104" x="899" y="1122.75" width="32" height="32">
    <properties>
     <property name="state" value="set"/>
     <property name="targetName" value="rSwitch"/>
    </properties>
   </object>
-  <object id="61" name="lSwitch" type="fButton" gid="104" x="897.75" y="1260" width="32" height="32">
+  <object id="61" name="lSwitch" type="fButton" gid="104" x="897.75" y="1262" width="32" height="32">
    <properties>
     <property name="state" value="set"/>
     <property name="targetName" value="rSwitch"/>
    </properties>
   </object>
-  <object id="62" name="lSwitch" type="fButton" gid="104" x="677.5" y="1260.25" width="32" height="32">
+  <object id="62" name="lSwitch" type="fButton" gid="104" x="677.5" y="1262.25" width="32" height="32">
    <properties>
     <property name="state" value="set"/>
     <property name="targetName" value="rSwitch"/>
    </properties>
   </object>
-  <object id="64" name="lSwitch" type="fButton" gid="104" x="724.25" y="1161.5" width="32" height="32">
+  <object id="64" name="lSwitch" type="fButton" gid="104" x="724.25" y="1162.5" width="32" height="32">
    <properties>
     <property name="state" value="set"/>
     <property name="targetName" value="rSwitch"/>
