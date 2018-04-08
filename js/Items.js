@@ -6,6 +6,7 @@ const UNTANGLE_TIME_LIMIT = 0;
 const ITEM_FRICTION = .94;
 const ITEM_WEB_FRICTION = .40;
 
+const ITEM_KARAAGE_ANY = 0;
 const ITEM_KARAAGE_ONE = 0;
 const ITEM_KARAAGE_TWO = 1;
 const ITEM_KARAAGE_THREE = 2;
@@ -15,14 +16,10 @@ const ITEM_TOAST = 5;
 const ITEM_SOIL = 6;
 const ITEM_PLANT_SEED = 7;
 const ITEM_WATERBUCKET = 8;
-const ITEM_UNDEFINED_10 = 9;
-const ITEM_UNDEFINED_11 = 10;
+const ITEM_EGG_SUSHI = 9;
+const ITEM_SALMON_SUSHI = 10;
 const ITEM_UNDEFINED_12 = 11;
-const ITEM_POTION = 12;
-/*const ITEM_HEART_CONTAINER = 6;
-const ITEM_ARTIFACT = 7;
-const ITEM_FIREBALL_LVL2 = 8;
-const ITEM_FIREBALL_LVL3 = 9;*/
+
 
 const ITEM_SUCCESS_CHANCE = .70; // affects item drop rate
 const ITEM_CRYSTAL_DROP_PERCENT = 80; //all item drop rates should add up to 100
@@ -56,6 +53,13 @@ function itemClass(posX, posY, speed, type, angle) {
 
     this.sprite = new spriteClass();
 	switch (type){
+        case(ITEM_KARAAGE_ANY):
+            this.sprite.setSprite(worldPics[TILE_KARAAGE], 20, 20, 1, 0, true);
+            var colliderWidth = 20;
+            var colliderHeight = 20;
+            var colliderOffsetX = 0;
+            var colliderOffsetY = 0;
+            break;
 		case(ITEM_AVOCADO):
             this.sprite.setSprite(worldPics[TILE_AVOCADO], 20, 20, 1, 0, true);
             var colliderWidth = 20;
@@ -65,6 +69,41 @@ function itemClass(posX, posY, speed, type, angle) {
 			break;
         case(ITEM_TOAST):
 		    this.sprite.setSprite(worldPics[TILE_TOAST], 20, 20, 1, 0, true);
+            var colliderWidth = 20;
+            var colliderHeight = 20;
+            var colliderOffsetX = 0;
+            var colliderOffsetY = 0;
+            break;
+        case(ITEM_SOIL):
+            this.sprite.setSprite(worldPics[TILE_SOIL], 20, 20, 1, 0, true);
+            var colliderWidth = 20;
+            var colliderHeight = 20;
+            var colliderOffsetX = 0;
+            var colliderOffsetY = 0;
+            break;
+        case(ITEM_PLANT_SEED):
+            this.sprite.setSprite(worldPics[TILE_SEED], 20, 20, 1, 0, true);
+            var colliderWidth = 20;
+            var colliderHeight = 20;
+            var colliderOffsetX = 0;
+            var colliderOffsetY = 0;
+            break;
+        case(ITEM_WATERBUCKET):
+            this.sprite.setSprite(worldPics[TILE_BUCKET], 20, 20, 1, 0, true);
+            var colliderWidth = 20;
+            var colliderHeight = 20;
+            var colliderOffsetX = 0;
+            var colliderOffsetY = 0;
+            break;
+        case(ITEM_EGG_SUSHI):
+            this.sprite.setSprite(worldPics[TILE_EGG_SUSHI], 20, 20, 1, 0, true);
+            var colliderWidth = 20;
+            var colliderHeight = 20;
+            var colliderOffsetX = 0;
+            var colliderOffsetY = 0;
+            break;
+        case(ITEM_SALMON_SUSHI):
+            this.sprite.setSprite(worldPics[TILE_SALMON_SUSHI], 20, 20, 1, 0, true);
             var colliderWidth = 20;
             var colliderHeight = 20;
             var colliderOffsetX = 0;
@@ -258,6 +297,11 @@ function pickUpItems(collider) {
             item.remove = true;
 
             switch(item.type) {
+                case ITEM_KARAAGE_ANY:
+                    // TODO: fill in karaage 1-4
+                    inventoryItems[ITEM_KARAAGE_ANY].itemObtained = true;
+                    particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'brown');
+                    break;
                 case ITEM_AVOCADO:
                 	inventoryItems[4].itemObtained = true;
                     // this.updateKeyReadout();
@@ -267,6 +311,26 @@ function pickUpItems(collider) {
                 case ITEM_TOAST:
                     inventoryItems[ITEM_TOAST].itemObtained = true;
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'yellow');
+                    break;
+                case ITEM_SOIL:
+                    inventoryItems[ITEM_SOIL].itemObtained = true;
+                    particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'brown');
+                    break;
+                case ITEM_PLANT_SEED:
+                    inventoryItems[ITEM_PLANT_SEED].itemObtained = true;
+                    particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'brown');
+                    break;
+                case ITEM_WATERBUCKET:
+                    inventoryItems[ITEM_WATERBUCKET].itemObtained = true;
+                    particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'blue');
+                    break;
+                case ITEM_EGG_SUSHI:
+                    inventoryItems[ITEM_EGG_SUSHI].itemObtained = true;
+                    particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'white');
+                    break;
+                case ITEM_SALMON_SUSHI:
+                    inventoryItems[ITEM_SALMON_SUSHI].itemObtained = true;
+                    particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'white');
                     break;
 				/*case ITEM_KEY_RARE:
                 	player.inventory.keysRare++; // one more key

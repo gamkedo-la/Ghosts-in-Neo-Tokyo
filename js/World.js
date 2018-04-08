@@ -23,6 +23,13 @@ const TILE_CONCRETE = 11;
 
 // Below are probably leftovers from Mage Hook or something
 
+const TILE_DOOR_COMMON = 5;
+const TILE_ENEMYSTART = 6;
+const TILE_TRAP = 7;
+const TILE_CHAIN = 8;
+const TILE_OOZE = 9;
+const TILE_WEB = 10;
+const TILE_BOX = 11;
 const TILE_KEY_RARE = 12;
 const TILE_KEY_EPIC = 13;
 const TILE_DOOR_RARE = 14;

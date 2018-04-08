@@ -77,8 +77,17 @@ var itemCellBetweenX = 25;
 var itemCellBetweenY = 10;
 
 function imageLoadingDoneSoAssignInventoryImages() {
+  inventoryItems[ITEM_KARAAGE_ONE].image = worldPics[TILE_KARAAGE];
+  inventoryItems[ITEM_KARAAGE_TWO].image = worldPics[TILE_KARAAGE];
+  inventoryItems[ITEM_KARAAGE_THREE].image = worldPics[TILE_KARAAGE];
+  inventoryItems[ITEM_KARAAGE_FOUR].image = worldPics[TILE_KARAAGE];
   inventoryItems[ITEM_AVOCADO].image = worldPics[TILE_AVOCADO];
   inventoryItems[ITEM_TOAST].image = worldPics[TILE_TOAST];
+  inventoryItems[ITEM_SOIL].image = worldPics[TILE_SOIL];
+  inventoryItems[ITEM_PLANT_SEED].image = worldPics[TILE_SEED];
+  inventoryItems[ITEM_WATERBUCKET].image = worldPics[TILE_BUCKET];
+  inventoryItems[ITEM_EGG_SUSHI].image = worldPics[TILE_EGG_SUSHI];
+  inventoryItems[ITEM_SALMON_SUSHI].image = worldPics[TILE_SALMON_SUSHI];
 }
 
 function moveInventory(keyName) {

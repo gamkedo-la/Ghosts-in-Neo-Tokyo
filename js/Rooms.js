@@ -103,6 +103,67 @@ function Room(roomLayout) {
 						placeItem(x, y, this, ITEM_TOAST);
 					}
 				}
+				else if (anItem == TILE_BUCKET) {
+					
+					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
+					
+					if (!inventoryItems[ITEM_WATERBUCKET].itemObtained) {
+						var x = eachCol * WORLD_W + WORLD_W/2;
+						var y = eachRow * WORLD_H + WORLD_H/2;
+						placeItem(x, y, this, ITEM_WATERBUCKET);
+					}
+				}
+				else if (anItem == TILE_EGG_SUSHI) {
+					
+					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
+					
+					if (!inventoryItems[ITEM_EGG_SUSHI].itemObtained) {
+						var x = eachCol * WORLD_W + WORLD_W/2;
+						var y = eachRow * WORLD_H + WORLD_H/2;
+						placeItem(x, y, this, ITEM_EGG_SUSHI);
+					}
+				}
+				else if (anItem == TILE_KARAAGE) {
+					
+					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
+					
+					// HACK: don't worry about counting how any karaage you have already
+					if (true || !inventoryItems[ITEM_KARAAGE_ANY].itemObtained) {
+						var x = eachCol * WORLD_W + WORLD_W/2;
+						var y = eachRow * WORLD_H + WORLD_H/2;
+						placeItem(x, y, this, ITEM_KARAAGE_ANY);
+					}
+				}
+				else if (anItem == TILE_SALMON_SUSHI) {
+					
+					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
+					
+					if (!inventoryItems[ITEM_SALMON_SUSHI].itemObtained) {
+						var x = eachCol * WORLD_W + WORLD_W/2;
+						var y = eachRow * WORLD_H + WORLD_H/2;
+						placeItem(x, y, this, ITEM_SALMON_SUSHI);
+					}
+				}
+				else if (anItem == TILE_SEED) {
+					
+					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
+					
+					if (!inventoryItems[ITEM_PLANT_SEED].itemObtained) {
+						var x = eachCol * WORLD_W + WORLD_W/2;
+						var y = eachRow * WORLD_H + WORLD_H/2;
+						placeItem(x, y, this, ITEM_PLANT_SEED);
+					}
+				}
+				else if (anItem == TILE_SOIL) {
+					
+					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
+					
+					if (!inventoryItems[ITEM_SOIL].itemObtained) {
+						var x = eachCol * WORLD_W + WORLD_W/2;
+						var y = eachRow * WORLD_H + WORLD_H/2;
+						placeItem(x, y, this, ITEM_SOIL);
+					}
+				}
       }
 		}
 	}

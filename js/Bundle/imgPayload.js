@@ -40,10 +40,50 @@ var imgPayload = [
 
 		{set: "FX", name: "raindrops", fileName: "FX/raindrops.png"},
 
-		{worldType: TILE_TRANSPARENT, theFile: "Tiles/world_transparent.png"},
-		{worldType: TILE_EMPTY, theFile: "Tiles/world_nothingness.png"},
-		{worldType: TILE_WALL, theFile: "Tiles/world_ground.png"},
-		{worldType: TILE_AVOCADO, theFile: "Tiles/world_avocado.png"},
-		{worldType: TILE_TOAST, theFile: "Items/Toast.png"},
-        {worldType: TILE_DOOR_COMMON, theFile: "Tiles/tile_door_common.png"}
+		{
+			worldType: TILE_TRANSPARENT, 
+			theFile: "Tiles/world_transparent.png"
+		},
+		{
+			worldType: TILE_EMPTY, 
+			theFile: "Tiles/world_nothingness.png"
+		},
+		{
+			worldType: TILE_WALL, 
+			theFile: "Tiles/world_ground.png"
+		},
+		{
+			worldType: TILE_AVOCADO, 
+			theFile: "Tiles/world_avocado.png"
+		},
+		{
+			worldType: TILE_TOAST, 
+			theFile: "Items/Toast.png"
+		},
+		{
+			worldType: TILE_BUCKET, 
+			theFile: "Items/Bucket.png"},
+		{
+			worldType: TILE_EGG_SUSHI, 
+			theFile: "Items/EggSushi.png"},
+		{
+			worldType: TILE_KARAAGE, 
+			theFile: "Items/Karaage.png"
+		},
+		{
+			worldType: TILE_SALMON_SUSHI, 
+			theFile: "Items/SalmonSushi.png"
+		},
+		{
+			worldType: TILE_SEED, 
+			theFile: "Items/Seed.png"
+		},
+		{
+			worldType: TILE_SOIL, 
+			theFile: "Items/Soil.png"
+		},
+		{
+			worldType: TILE_CONCRETE, 
+			theFile: "Tiles/concrete.png"
+		}
 	];
