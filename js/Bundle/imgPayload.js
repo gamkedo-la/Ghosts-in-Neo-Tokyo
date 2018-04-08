@@ -12,6 +12,8 @@ var imgPayload = [
 		{set: "Kirt", name: "walkLeft", fileName: "Kirt/Kirt_walk_left.png"},
 		{set: "Kirt", name: "walkRight", fileName: "Kirt/Kirt_walk_right.png"},
 
+		{set: "GrandpaGhost", name: "idle", fileName: "GrampaGhost.png"},
+
 		{set: "Boss1", name: "idle", fileName: "bosses/boss1/Boss1.png"},
 		{set: "Boss2", name: "idle", fileName: "bosses/boss2/Boss2.png"},
 		{set: "Boss3", name: "idle", fileName: "bosses/boss3/Boss3.png"},
