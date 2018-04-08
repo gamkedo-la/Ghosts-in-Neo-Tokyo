@@ -29,7 +29,7 @@ const EAST = 3;
 const WEST = 4;
 const ATTACK = 5; // used in input.js for future double tap logic
 const RANGED_ATTACK = 6;
-const ANCHOR_ATTACK_COOLDOWN = 650
+const ANCHOR_ATTACK_COOLDOWN = 150
 const FIRE_ATTACK_COOLDOWN = 300;
 const STARTING_POSITION_X = 240;
 const STARTING_POSITION_Y = 60;
@@ -673,7 +673,7 @@ function playerClass() {
 
 		for (var i = 0; i < currentRoom.enemyList.length; i++) {
 			var enemy = currentRoom.enemyList[i];
-			if (this.hitbox.isCollidingWith(enemy.hitbox)) {
+			if (enemy.hitbox && this.hitbox.isCollidingWith(enemy.hitbox)) {
 				if (!this.isInvincible) {
 					this.currentHealth--;
 					noDamageForFloor[currentFloor] = false;
