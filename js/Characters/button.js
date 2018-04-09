@@ -51,8 +51,16 @@ function floorButton(x, y) {
 			}
 		},
 		set: function() {
-			if(this.sprite.getFrame() != 2) {
-				this.sprite.setFrame(1);				
+			if(this.sprite.getFrame() == 0) {
+				this.sprite.setFrame(1);
+			} else if(this.sprite.getFrame() == 1) {
+				if(this.ticksInState > 5) {
+					this.setState("normal");
+					this.sprite.setFrame(2);
+				}
+				return;
+			} else {
+				return;//if frame is already = 2, the switch is already set and we don't need to set it again
 			}
 			
 			if(!this.mapData){
@@ -76,11 +84,6 @@ function floorButton(x, y) {
 						}
 					}
 				}
-			}
-			
-			if(this.ticksInState > 5) {
-				this.setState("normal");
-				this.sprite.setFrame(2);
 			}
 		},
 		released: function() {
