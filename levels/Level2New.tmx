@@ -231,7 +231,7 @@
    <properties>
     <property name="name" value="level2start"/>
     <property name="toDoor" value="end"/>
-    <property name="toLevel" value="example"/>
+    <property name="toLevel" value="Level1"/>
    </properties>
   </object>
   <object id="59" name="leftTop" type="fButton" gid="104" x="667.5" y="1122.5" width="32" height="32">
