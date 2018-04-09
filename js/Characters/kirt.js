@@ -89,7 +89,11 @@ function kirt(x, y) {
 		this.monsterRef.setState("dying")
 		this.monsterRef.isDying = true;		
 	} // end of dead
-	
-	return new enemyClass(this, staates);
+		
+	var newKirt = new enemyClass(this, staates);
+	//remove hitbox so they don't get damaged
+	newKirt.hitbox = null;
+
+	return newKirt;
 }
 enemyDictionary["Kirt"] = kirt
