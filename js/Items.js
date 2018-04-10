@@ -288,6 +288,12 @@ function drawItems() {
     }
 }
 
+function itemHealsPlayer() {
+    if (player.currentHealth < player.maxHealth) {
+        player.currentHealth += 1;   
+    }
+}
+
 function pickUpItems(collider) {
     if (!currentRoom) { console.log("ERROR: currentRoom is null."); return false; }
 
@@ -300,9 +306,7 @@ function pickUpItems(collider) {
                 case ITEM_KARAAGE_ANY:
                     pickUpKaraage();
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'brown');
-                    if (player.currentHealth < player.maxHealth) {
-                     player.currentHealth += 1;   
-                    }
+                    itemHealsPlayer();
                     break;
                 case ITEM_AVOCADO:
                     pickUpItemType(item.type);
