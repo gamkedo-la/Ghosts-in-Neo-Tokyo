@@ -105,7 +105,7 @@ function enemyClass(newEnemy, states){
 		if(typeof this.stateMachine[newState] === "function"){
 			this.currentState = this.stateMachine[newState]
 		} else {
-			throw "ayy, so this isn't a state that can be ran"
+			throw "ayy, so this isn't a state that can be ran " + newState
 		}
 		freshState = true;
 		this.ticksInState = 0;

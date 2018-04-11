@@ -107,8 +107,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1569.83,
-                 "y":57.584
+                 "x":110.011818181818,
+                 "y":538.190060606061
                 }, 
                 {
                  "gid":103,
@@ -519,6 +519,26 @@
                  "width":70,
                  "x":837.5,
                  "y":1253.5
+                }, 
+                {
+                 "gid":111,
+                 "height":20,
+                 "id":96,
+                 "name":"",
+                 "properties":
+                    {
+                     "ItemNeeded":"avocado"
+                    },
+                 "propertytypes":
+                    {
+                     "ItemNeeded":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":20,
+                 "x":229,
+                 "y":538
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -526,7 +546,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":92,
+ "nextobjectid":97,
  "orientation":"orthogonal",
  "properties":
     {
@@ -559,13 +579,17 @@
          "margin":0,
          "name":"Char",
          "spacing":0,
-         "tilecount":8,
+         "tilecount":11,
          "tileheight":90,
          "tileproperties":
             {
              "1":
                 {
                  "entityType":"Ghast"
+                },
+             "10":
+                {
+                 "entityType":"trigger"
                 },
              "2":
                 {
@@ -590,11 +614,23 @@
              "7":
                 {
                  "entityType":"kapooter"
+                },
+             "8":
+                {
+                 "entityType":"Kirt"
+                },
+             "9":
+                {
+                 "entityType":"GrandpaGhost"
                 }
             },
          "tilepropertytypes":
             {
              "1":
+                {
+                 "entityType":"string"
+                },
+             "10":
                 {
                  "entityType":"string"
                 },
@@ -621,6 +657,14 @@
              "7":
                 {
                  "entityType":"string"
+                },
+             "8":
+                {
+                 "entityType":"string"
+                },
+             "9":
+                {
+                 "entityType":"string"
                 }
             },
          "tiles":
@@ -636,6 +680,12 @@
                  "image":"..\/..\/img\/Ghast\/Ghast_0.png",
                  "imageheight":32,
                  "imagewidth":32
+                },
+             "10":
+                {
+                 "image":"..\/..\/img\/TriggerTile.png",
+                 "imageheight":20,
+                 "imagewidth":20
                 },
              "2":
                 {
@@ -672,128 +722,17 @@
                  "image":"..\/..\/img\/pooterTILE.png",
                  "imageheight":32,
                  "imagewidth":32
-                }
-            },
-         "tilewidth":79
-        }, 
-        {
-         "columns":0,
-         "firstgid":109,
-         "margin":0,
-         "name":"Char",
-         "spacing":0,
-         "tilecount":8,
-         "tileheight":90,
-         "tileproperties":
-            {
-             "1":
-                {
-                 "entityType":"Ghast"
                 },
-             "2":
+             "8":
                 {
-                 "entityType":"Door"
-                },
-             "3":
-                {
-                 "entityType":"fButton"
-                },
-             "4":
-                {
-                 "entityType":"boss3"
-                },
-             "5":
-                {
-                 "entityType":"boss1"
-                },
-             "6":
-                {
-                 "entityType":"boss2"
-                },
-             "7":
-                {
-                 "entityType":"kapooter"
-                }
-            },
-         "tilepropertytypes":
-            {
-             "1":
-                {
-                 "entityType":"string"
-                },
-             "2":
-                {
-                 "entityType":"string"
-                },
-             "3":
-                {
-                 "entityType":"string"
-                },
-             "4":
-                {
-                 "entityType":"string"
-                },
-             "5":
-                {
-                 "entityType":"string"
-                },
-             "6":
-                {
-                 "entityType":"string"
-                },
-             "7":
-                {
-                 "entityType":"string"
-                }
-            },
-         "tiles":
-            {
-             "0":
-                {
-                 "image":"..\/..\/img\/mainChar\/Char_0.png",
+                 "image":"..\/..\/img\/Kirt\/KirtTile.png",
                  "imageheight":32,
                  "imagewidth":32
                 },
-             "1":
+             "9":
                 {
-                 "image":"..\/..\/img\/Ghast\/Ghast_0.png",
-                 "imageheight":32,
-                 "imagewidth":32
-                },
-             "2":
-                {
-                 "image":"..\/..\/img\/Doors\/world_door.png",
-                 "imageheight":44,
-                 "imagewidth":44
-                },
-             "3":
-                {
-                 "image":"..\/..\/img\/Switches\/floor switch_Animation 5_0.png",
-                 "imageheight":32,
-                 "imagewidth":32
-                },
-             "4":
-                {
-                 "image":"..\/..\/img\/bosses\/boss3\/Boss3Thumb.png",
-                 "imageheight":90,
-                 "imagewidth":79
-                },
-             "5":
-                {
-                 "image":"..\/..\/img\/bosses\/boss1\/Boss1Thumb.png",
-                 "imageheight":50,
-                 "imagewidth":32
-                },
-             "6":
-                {
-                 "image":"..\/..\/img\/bosses\/boss2\/BossConceptThumb.png",
-                 "imageheight":70,
-                 "imagewidth":70
-                },
-             "7":
-                {
-                 "image":"..\/..\/img\/pooterTILE.png",
-                 "imageheight":32,
+                 "image":"..\/..\/img\/GrampaGhost-Tile.png",
+                 "imageheight":55,
                  "imagewidth":32
                 }
             },
