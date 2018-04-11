@@ -1,4 +1,9 @@
-MAGICAL GIRL BOSS
+-- MAGICAL GIRL BOSS --
+
+DESCRIPTION: 
+- 2nd boss
+- defeating ghosts to save the city
+- thinks you're a ghost
 
 Magical girl: You think you can get away? Think again, you stupid ghost!
 
@@ -8,7 +13,8 @@ Player: ... come again?
 
 
 
-Magical girl: Got a watch? 'Cause it's time for YOU to go back where you belong -- in H E L L! 
+Magical girl: No ghost has ever been able to pass me! Not with Muella Padoka Pajica in town!! 
+You got a watch? 'Cause it's time for YOU to go back where you belong -- in H E L L! 
 
 
 
@@ -20,9 +26,60 @@ Magical girl: Super shining rainbow miracle delicious ATTAAAACK!!
 
 Player (you've got to be kidding me)
 
-MISC LINES
+-- MISC LINES FOR OTHER BOSSES? -- 
 
 - stay here and be with me FOREVER!
 - nobody can ever be as BOO-tiful as me! 
 - DIE
+
+-- GRAMPA GHOST --
+
+DESCRIPTION:
+- doesn't know he's a ghost
+- works at karaage stand
+- has player give out samples because business is slow
+
+*player walks past grampa*
+
+Grampa ghost: Hey, you there!
+
+Player: ?
+
+Grandpa ghost: Yes, you. Why dontcha stop a while and try some of ol' grampy's karaage? 
+
+Player: I mean, I have somewhere I need to- 
+
+Grampa ghost: O-oh, I get it. Okay. I won't bother you anymore... 
+I guess no one will ever pay attention to an old geezer like me...
+
+Player: ...
+
+Grampa ghost: *sighs* 
+
+Player: ...Okay, okay, enough with the puppy dog eyes. What exactly do you want, gramps? 
+
+Grampa ghost: Really? Oh thank you! You've made ol' grampa's day. 
+Been running this here stand since I was a young'un such as yourself, better looking though. 
+
+Player: Hey!
+
+Grampa ghost: But no one has paid me a visit in years... And before I knew it, all these glowy buildings n' fancy signs showed up, stealing all my business!
+Ya darn young'uns and your newfangled technology!! 
+
+Player: Uh, grampa, don't you realize you're a-
+
+Grampa: Ah, yes! Where are my manners. Why don't you have some karaage? Real crispy. The crunch'll knock yer socks right off! 
+
+Player: I guess 
+
+Grampa: Hmmm... Maybe I need a new marketing technique...
+
+Oh, I know! Would you please do this old man a favor? 
+Would you hand out these samples? My legs don't seem to work like they used to. 
+
+Player: (... Maybe it's because you don't have any) 
+
+Grampa: And make sure you give out ALL of them!  
+
+
 
