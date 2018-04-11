@@ -49,7 +49,8 @@ function Room(roomLayout) {
 			if(this.layout.layers[i].type == "objectgroup" && this.layout.layers[i].visible) {
 				for(let j in this.layout.layers[i].objects) {
 					item = this.layout.layers[i].objects[j]
-					if(objectDictionary[item.gid]) {
+					if(objectDictionary[item.gid]) 
+					{
 						if(!objectDictionary[item.gid].entityType) {
 							throw "Entity type for object " + item.gid + " not set!!"
 						}
@@ -59,7 +60,7 @@ function Room(roomLayout) {
 							throw "Entity constructor for object " + objectDictionary[item.gid].entityType + " not set!!"
 						}
 
-						if((aType == "fButton") || (aType == "Door")) {
+						if((aType == "fButton") || (aType == "Door")  || ( aType == "trigger")) {
 							var newEnemy = new enemyConstructor(item.x, item.y)
 							newEnemy.mapData = item.properties
 							newEnemy.type = aType;
@@ -101,67 +102,6 @@ function Room(roomLayout) {
 						var x = eachCol * WORLD_W + WORLD_W/2;
 						var y = eachRow * WORLD_H + WORLD_H/2;
 						placeItem(x, y, this, ITEM_TOAST);
-					}
-				}
-				else if (anItem == TILE_BUCKET) {
-					
-					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
-					
-					if (!inventoryItems[ITEM_WATERBUCKET].itemObtained) {
-						var x = eachCol * WORLD_W + WORLD_W/2;
-						var y = eachRow * WORLD_H + WORLD_H/2;
-						placeItem(x, y, this, ITEM_WATERBUCKET);
-					}
-				}
-				else if (anItem == TILE_EGG_SUSHI) {
-					
-					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
-					
-					if (!inventoryItems[ITEM_EGG_SUSHI].itemObtained) {
-						var x = eachCol * WORLD_W + WORLD_W/2;
-						var y = eachRow * WORLD_H + WORLD_H/2;
-						placeItem(x, y, this, ITEM_EGG_SUSHI);
-					}
-				}
-				else if (anItem == TILE_KARAAGE) {
-					
-					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
-					
-					// HACK: don't worry about counting how any karaage you have already
-					if (true || !inventoryItems[ITEM_KARAAGE_ANY].itemObtained) {
-						var x = eachCol * WORLD_W + WORLD_W/2;
-						var y = eachRow * WORLD_H + WORLD_H/2;
-						placeItem(x, y, this, ITEM_KARAAGE_ANY);
-					}
-				}
-				else if (anItem == TILE_SALMON_SUSHI) {
-					
-					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
-					
-					if (!inventoryItems[ITEM_SALMON_SUSHI].itemObtained) {
-						var x = eachCol * WORLD_W + WORLD_W/2;
-						var y = eachRow * WORLD_H + WORLD_H/2;
-						placeItem(x, y, this, ITEM_SALMON_SUSHI);
-					}
-				}
-				else if (anItem == TILE_SEED) {
-					
-					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
-					
-					if (!inventoryItems[ITEM_PLANT_SEED].itemObtained) {
-						var x = eachCol * WORLD_W + WORLD_W/2;
-						var y = eachRow * WORLD_H + WORLD_H/2;
-						placeItem(x, y, this, ITEM_PLANT_SEED);
-					}
-				}
-				else if (anItem == TILE_SOIL) {
-					
-					this.layout.layers[0].data[arrayIndex] = TILE_TRANSPARENT;
-					
-					if (!inventoryItems[ITEM_SOIL].itemObtained) {
-						var x = eachCol * WORLD_W + WORLD_W/2;
-						var y = eachRow * WORLD_H + WORLD_H/2;
-						placeItem(x, y, this, ITEM_SOIL);
 					}
 				}
       }

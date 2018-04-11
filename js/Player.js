@@ -692,14 +692,18 @@ function playerClass() {
 
 		if (!currentRoom) { console.log("ERROR: currentRoom is null."); return false; }
 
+		//Iterate through the Object List of the Current Room
 		for (var i = 0; i < currentRoom.objectList.length; i++) {
 			var anObject = currentRoom.objectList[i];
 			if (this.hitbox.isCollidingWith(anObject.hitbox)) {
 				knockbackSpeed = 0;
 				colliding = true;
 				
+				// Colliding with Door
 				if(anObject.type == "Door") {
 					anObject.setState("recoil");
+
+				// Colliding with Button
 				} else if (anObject.type == "fButton") {
 					var thisColliderBottom = this.tileCollider.y + this.tileCollider.height + 1;
 					var anObjectColliderMiddle = anObject.hitbox.y + anObject.hitbox.height / 2;
@@ -720,6 +724,11 @@ function playerClass() {
 						}
 						this.hitbox.snapObjectToColliderEdge(this, vel, X_AXIS, anObject.hitbox);
 					} 
+				}
+				else if( anObject.type == "trigger"){
+					//Check for conditions 
+					console.log("The trigger is set! Needs: ");
+					anObject.setState("onTriggerEnter");
 				}
 			}
 		}
