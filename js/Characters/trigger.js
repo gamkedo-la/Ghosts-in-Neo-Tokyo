@@ -63,10 +63,14 @@ function trigger(x, y) {
 
 		},
 		onTriggerEnter : function() {
-			if(this.mapData != undefined)
-				if(this.isTriggered == false){
+			if(this.mapData != undefined) {
+				if(this.isTriggered != true)
+				{
+				console.log("The trigger is set! Needs: ");
+
 				console.log( this.mapData.ItemNeeded);
 				this.isTriggered = true;
+				}
 			}
 		},
 		normalTriggerLikeBehavior : function(){

@@ -727,7 +727,6 @@ function playerClass() {
 				}
 				else if( anObject.type == "trigger"){
 					//Check for conditions 
-					console.log("The trigger is set! Needs: ");
 					anObject.setState("onTriggerEnter");
 				}
 			}
