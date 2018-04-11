@@ -897,15 +897,13 @@ function playerClass() {
 			case TILE_NEON_BRICKS:
 			case TILE_PURPLE_BRICKS_VAR_1:
 			case TILE_PURPLE_BRICKS:
-			case TILE_WALL_NORTH:
-			case TILE_WALL_SOUTH:
-			case TILE_WALL_WEST:
-			case TILE_WALL_EAST:
-				if ((this.motionState == "Jumping" ||
+            //case TILE_ROAD:
+			case TILE_WALL_EAST :
+                if ((this.motionState == "Jumping" ||
 					this.motionState == "Falling") && this.wallJumped == false) {
 					this.wallJumpTime = WALL_JUMP_MAX_TIME;
 					this.wallJumped = true;
-				}
+				} 
 				break;
 			case TILE_WALL_CORNER_NE:
 			case TILE_WALL_CORNER_NW:
