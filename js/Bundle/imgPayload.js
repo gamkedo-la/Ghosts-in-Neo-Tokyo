@@ -28,6 +28,8 @@ var imgPayload = [
 		{set: "pooter", name: "move", fileName: "pooter.png"},
 
 		{set: "Door", name: "idle", fileName: "Doors/world_door.png"},
+		{set: "Blocker", name: "idle", fileName: "Tiles/concrete.png"},
+
 		{set: "Trigger", name: "idle", fileName: "TriggerTile.png"},
 		{set: "Item", name: "avocado", fileName: "Items/Avocado.png"},
 		{set: "FloorButton", name: "idle", fileName: "Switches/FloorSwitchAnimation.png"},

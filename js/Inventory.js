@@ -99,6 +99,10 @@ function pickUpKaraage() {
   }
 }
 
+function hasItem(itemType){
+  return inventoryItems[itemType].itemObtained;
+}
+
 function pickUpItemType(itemType) {
   inventoryItems[itemType].itemObtained = true;
 }

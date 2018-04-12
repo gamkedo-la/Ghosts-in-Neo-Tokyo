@@ -59,8 +59,13 @@ function Room(roomLayout) {
 						if(!enemyConstructor) {
 							throw "Entity constructor for object " + objectDictionary[item.gid].entityType + " not set!!"
 						}
+						//@kc, be nice if we could define a object or enemy in Tiled rather than hardcoding it here
+						if((aType == "fButton") || (aType == "Door")  || ( aType == "trigger") || ( aType == "blocker") ) {
 
-						if((aType == "fButton") || (aType == "Door")  || ( aType == "trigger")) {
+							if(aType == "fButton"){
+								console.log( "Name: " + item.name);
+
+							}
 							var newEnemy = new enemyConstructor(item.x, item.y)
 							newEnemy.mapData = item.properties
 							newEnemy.type = aType;

@@ -527,10 +527,12 @@
                  "name":"",
                  "properties":
                     {
-                     "ItemNeeded":"avocado"
+                     "ID_Name":"BL_01",
+                     "ItemNeeded":"4"
                     },
                  "propertytypes":
                     {
+                     "ID_Name":"string",
                      "ItemNeeded":"string"
                     },
                  "rotation":0,
@@ -539,6 +541,26 @@
                  "width":20,
                  "x":229,
                  "y":538
+                }, 
+                {
+                 "gid":112,
+                 "height":20,
+                 "id":97,
+                 "name":"",
+                 "properties":
+                    {
+                     "name":"BL_01"
+                    },
+                 "propertytypes":
+                    {
+                     "name":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":20,
+                 "x":171.333333333333,
+                 "y":532.666666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -546,7 +568,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":97,
+ "nextobjectid":99,
  "orientation":"orthogonal",
  "properties":
     {
@@ -579,7 +601,7 @@
          "margin":0,
          "name":"Char",
          "spacing":0,
-         "tilecount":11,
+         "tilecount":12,
          "tileheight":90,
          "tileproperties":
             {
@@ -590,6 +612,10 @@
              "10":
                 {
                  "entityType":"trigger"
+                },
+             "11":
+                {
+                 "entityType":"blocker"
                 },
              "2":
                 {
@@ -631,6 +657,10 @@
                  "entityType":"string"
                 },
              "10":
+                {
+                 "entityType":"string"
+                },
+             "11":
                 {
                  "entityType":"string"
                 },
@@ -684,6 +714,12 @@
              "10":
                 {
                  "image":"..\/..\/img\/TriggerTile.png",
+                 "imageheight":20,
+                 "imagewidth":20
+                },
+             "11":
+                {
+                 "image":"..\/..\/img\/Tiles\/concrete.png",
                  "imageheight":20,
                  "imagewidth":20
                 },

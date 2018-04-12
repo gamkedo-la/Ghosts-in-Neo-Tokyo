@@ -235,12 +235,42 @@
                  "height":20,
                  "id":49,
                  "name":"",
+                 "properties":
+                    {
+                     "ID_Name":"BL_01",
+                     "ItemNeeded":"4"
+                    },
+                 "propertytypes":
+                    {
+                     "ID_Name":"string",
+                     "ItemNeeded":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":20,
                  "x":439,
                  "y":480
+                }, 
+                {
+                 "gid":112,
+                 "height":20,
+                 "id":50,
+                 "name":"",
+                 "properties":
+                    {
+                     "name":"BL_01"
+                    },
+                 "propertytypes":
+                    {
+                     "name":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":20,
+                 "x":282.666666666667,
+                 "y":536
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -248,7 +278,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":50,
+ "nextobjectid":52,
  "orientation":"orthogonal",
  "properties":
     {
@@ -289,7 +319,7 @@
              "entityType":"string"
             },
          "spacing":0,
-         "tilecount":11,
+         "tilecount":12,
          "tileheight":90,
          "tileproperties":
             {
@@ -300,6 +330,10 @@
              "10":
                 {
                  "entityType":"trigger"
+                },
+             "11":
+                {
+                 "entityType":"blocker"
                 },
              "2":
                 {
@@ -341,6 +375,10 @@
                  "entityType":"string"
                 },
              "10":
+                {
+                 "entityType":"string"
+                },
+             "11":
                 {
                  "entityType":"string"
                 },
@@ -397,168 +435,9 @@
                  "imageheight":20,
                  "imagewidth":20
                 },
-             "2":
+             "11":
                 {
-                 "image":"..\/..\/img\/Doors\/world_door.png",
-                 "imageheight":44,
-                 "imagewidth":44
-                },
-             "3":
-                {
-                 "image":"..\/..\/img\/Switches\/floor switch_Animation 5_0.png",
-                 "imageheight":32,
-                 "imagewidth":32
-                },
-             "4":
-                {
-                 "image":"..\/..\/img\/bosses\/boss3\/Boss3Thumb.png",
-                 "imageheight":90,
-                 "imagewidth":79
-                },
-             "5":
-                {
-                 "image":"..\/..\/img\/bosses\/boss1\/Boss1Thumb.png",
-                 "imageheight":50,
-                 "imagewidth":32
-                },
-             "6":
-                {
-                 "image":"..\/..\/img\/bosses\/boss2\/BossConceptThumb.png",
-                 "imageheight":70,
-                 "imagewidth":70
-                },
-             "7":
-                {
-                 "image":"..\/..\/img\/pooterTILE.png",
-                 "imageheight":32,
-                 "imagewidth":32
-                },
-             "8":
-                {
-                 "image":"..\/..\/img\/Kirt\/KirtTile.png",
-                 "imageheight":32,
-                 "imagewidth":32
-                },
-             "9":
-                {
-                 "image":"..\/..\/img\/GrampaGhost-Tile.png",
-                 "imageheight":55,
-                 "imagewidth":32
-                }
-            },
-         "tilewidth":79
-        }, 
-        {
-         "columns":0,
-         "firstgid":112,
-         "margin":0,
-         "name":"Char",
-         "spacing":0,
-         "tilecount":11,
-         "tileheight":90,
-         "tileproperties":
-            {
-             "1":
-                {
-                 "entityType":"Ghast"
-                },
-             "10":
-                {
-                 "entityType":"trigger"
-                },
-             "2":
-                {
-                 "entityType":"Door"
-                },
-             "3":
-                {
-                 "entityType":"fButton"
-                },
-             "4":
-                {
-                 "entityType":"boss3"
-                },
-             "5":
-                {
-                 "entityType":"boss1"
-                },
-             "6":
-                {
-                 "entityType":"boss2"
-                },
-             "7":
-                {
-                 "entityType":"kapooter"
-                },
-             "8":
-                {
-                 "entityType":"Kirt"
-                },
-             "9":
-                {
-                 "entityType":"GrandpaGhost"
-                }
-            },
-         "tilepropertytypes":
-            {
-             "1":
-                {
-                 "entityType":"string"
-                },
-             "10":
-                {
-                 "entityType":"string"
-                },
-             "2":
-                {
-                 "entityType":"string"
-                },
-             "3":
-                {
-                 "entityType":"string"
-                },
-             "4":
-                {
-                 "entityType":"string"
-                },
-             "5":
-                {
-                 "entityType":"string"
-                },
-             "6":
-                {
-                 "entityType":"string"
-                },
-             "7":
-                {
-                 "entityType":"string"
-                },
-             "8":
-                {
-                 "entityType":"string"
-                },
-             "9":
-                {
-                 "entityType":"string"
-                }
-            },
-         "tiles":
-            {
-             "0":
-                {
-                 "image":"..\/..\/img\/mainChar\/Char_0.png",
-                 "imageheight":32,
-                 "imagewidth":32
-                },
-             "1":
-                {
-                 "image":"..\/..\/img\/Ghast\/Ghast_0.png",
-                 "imageheight":32,
-                 "imagewidth":32
-                },
-             "10":
-                {
-                 "image":"..\/..\/img\/TriggerTile.png",
+                 "image":"..\/..\/img\/Tiles\/concrete.png",
                  "imageheight":20,
                  "imagewidth":20
                 },

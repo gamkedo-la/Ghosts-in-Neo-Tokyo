@@ -99,7 +99,7 @@ function floorButton(x, y) {
 			const targets = this.mapData.targetName.split(",");
 			for(var j in targets) {
 				for(var i in currentRoom.layout.layers[1].objects){
-					if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].name == targets[j] ){
+					if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].properties.name == targets[j] ){
 						const targetType = currentRoom.layout.layers[1].objects[i].type;
 						if (targetType == "Door") {
 							currentRoom.layout.layers[1].objects[i].properties.isLocked = true;						

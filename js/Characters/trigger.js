@@ -8,19 +8,19 @@ function trigger(x, y) {
 	this.lootModifier = 1.0;
 	this.droppedTile = undefined;
 
-	this.tileColliderWidth = 18;
-	this.tileColliderHeight = 4;
-	this.tileColliderOffsetX = 2;
-	this.tileColliderOffsetY = 11;
+	this.tileColliderWidth = 20;
+	this.tileColliderHeight = 20;
+	this.tileColliderOffsetX = 0;
+	this.tileColliderOffsetY = 0 ;
 
-	this.hitboxWidth = 40;
-	this.hitboxHeight = 40;
-	this.hitboxOffsetX = -1;
-	this.hitboxOffsetY = 1;
+	this.hitboxWidth = 20;
+	this.hitboxHeight = 20;
+	this.hitboxOffsetX = 0;
+	this.hitboxOffsetY = 0;
 
 	this.spriteSheet = sprites.Trigger.idle;
-	this.spriteWidth = 44;
-	this.spriteHeight = 44;
+	this.spriteWidth = 20;
+	this.spriteHeight = 20;
 	this.spriteFrames = 1;
 	this.spriteSpeed = 9;
 	
@@ -35,6 +35,28 @@ function trigger(x, y) {
 	var maxSpeed = .50;
 	var minMoveTime = 1.5;
 	var maxMoveTime = 2.5;
+
+	function triggerActivate(mapData){
+		var targets = mapData.ID_Name.split(",");
+		console.log("Trigger Activated");
+			for(var j in targets) {
+				console.log("Target: " + targets[j] );
+				for(var i in currentRoom.layout.layers[1].objects){
+					console.log(currentRoom.layout.layers[1].objects[i].type);
+					if(currentRoom.layout.layers[1].objects[i].properties != undefined && currentRoom.layout.layers[1].objects[i].properties.type == "blocker")
+					{
+						const targetType = currentRoom.layout.layers[1].objects[i].properties.type;
+						console.log(currentRoom.layout.layers[1].objects[i].properties.type);
+						 if (targetType == "blocker")
+						 {
+							console.log("Found blocker");
+							currentRoom.layout.layers[1].objects[i].properties.state = "deadEvent";
+							currentRoom.layout.layers[1].objects[i].isBlocking = false;
+						}
+					}
+				}
+			}
+	}
 
 	var staates = {
 
@@ -66,10 +88,14 @@ function trigger(x, y) {
 			if(this.mapData != undefined) {
 				if(this.isTriggered != true)
 				{
-				console.log("The trigger is set! Needs: ");
+					console.log("The trigger is set! Needs: ");
 
-				console.log( this.mapData.ItemNeeded);
-				this.isTriggered = true;
+					console.log( this.mapData.ItemNeeded);
+					console.log("Does the inventory have it: " + hasItem(this.mapData.ItemNeeded) );
+					if(hasItem(String( this.mapData.ItemNeeded)) ) {
+						this.isTriggered = true;
+						triggerActivate(this.mapData);
+					}
 				}
 			}
 		},

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="20" tileheight="20" infinite="0" nextobjectid="50">
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="20" tileheight="20" infinite="0" nextobjectid="52">
  <properties>
   <property name="toDoor" value="front"/>
  </properties>
  <tileset firstgid="1" name="tileset" tilewidth="20" tileheight="20" tilecount="100" columns="10">
   <image source="tileset.png" width="200" height="200"/>
  </tileset>
- <tileset firstgid="101" name="Char" tilewidth="79" tileheight="90" tilecount="11" columns="0">
+ <tileset firstgid="101" name="Char" tilewidth="79" tileheight="90" tilecount="12" columns="0">
   <properties>
    <property name="entityType" value="trigger"/>
   </properties>
@@ -73,70 +73,11 @@
    </properties>
    <image width="20" height="20" source="../img/TriggerTile.png"/>
   </tile>
- </tileset>
- <tileset firstgid="112" name="Char" tilewidth="79" tileheight="90" tilecount="11" columns="0">
-  <tile id="0">
-   <image width="32" height="32" source="../img/mainChar/Char_0.png"/>
-  </tile>
-  <tile id="1">
+  <tile id="11">
    <properties>
-    <property name="entityType" value="Ghast"/>
+    <property name="entityType" value="blocker"/>
    </properties>
-   <image width="32" height="32" source="../img/Ghast/Ghast_0.png"/>
-  </tile>
-  <tile id="2">
-   <properties>
-    <property name="entityType" value="Door"/>
-   </properties>
-   <image width="44" height="44" source="../img/Doors/world_door.png"/>
-  </tile>
-  <tile id="3">
-   <properties>
-    <property name="entityType" value="fButton"/>
-   </properties>
-   <image width="32" height="32" source="../img/Switches/floor switch_Animation 5_0.png"/>
-  </tile>
-  <tile id="4">
-   <properties>
-    <property name="entityType" value="boss3"/>
-   </properties>
-   <image width="79" height="90" source="../img/bosses/boss3/Boss3Thumb.png"/>
-  </tile>
-  <tile id="5">
-   <properties>
-    <property name="entityType" value="boss1"/>
-   </properties>
-   <image width="32" height="50" source="../img/bosses/boss1/Boss1Thumb.png"/>
-  </tile>
-  <tile id="6">
-   <properties>
-    <property name="entityType" value="boss2"/>
-   </properties>
-   <image width="70" height="70" source="../img/bosses/boss2/BossConceptThumb.png"/>
-  </tile>
-  <tile id="7">
-   <properties>
-    <property name="entityType" value="kapooter"/>
-   </properties>
-   <image width="32" height="32" source="../img/pooterTILE.png"/>
-  </tile>
-  <tile id="8">
-   <properties>
-    <property name="entityType" value="Kirt"/>
-   </properties>
-   <image width="32" height="32" source="../img/Kirt/KirtTile.png"/>
-  </tile>
-  <tile id="9">
-   <properties>
-    <property name="entityType" value="GrandpaGhost"/>
-   </properties>
-   <image width="32" height="55" source="../img/GrampaGhost-Tile.png"/>
-  </tile>
-  <tile id="10">
-   <properties>
-    <property name="entityType" value="trigger"/>
-   </properties>
-   <image width="20" height="20" source="../img/TriggerTile.png"/>
+   <image width="20" height="20" source="../img/Tiles/concrete.png"/>
   </tile>
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
@@ -271,6 +212,16 @@
   <object id="44" gid="101" x="277" y="474" width="32" height="32"/>
   <object id="47" gid="109" x="240" y="540" width="32" height="32"/>
   <object id="48" gid="110" x="322.5" y="532.5" width="32" height="55"/>
-  <object id="49" gid="111" x="439" y="480" width="20" height="20"/>
+  <object id="49" gid="111" x="439" y="480" width="20" height="20">
+   <properties>
+    <property name="ID_Name" value="BL_01"/>
+    <property name="ItemNeeded" value="4"/>
+   </properties>
+  </object>
+  <object id="50" gid="112" x="282.667" y="536" width="20" height="20">
+   <properties>
+    <property name="name" value="BL_01"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
