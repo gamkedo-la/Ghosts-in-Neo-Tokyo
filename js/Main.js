@@ -6,6 +6,8 @@ const MUSIC_VOLUME = 0.17; // 0=none 1=loud
 const deadXZone = 15;//horizontal area where camera does not move
 const deadYZone = 25;//vertical area where camera does not move
 
+/*just a comment for practice. (jaime)*/
+
 var player = new playerClass();
 
 var particleList = [];
