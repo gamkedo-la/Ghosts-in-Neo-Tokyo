@@ -725,7 +725,7 @@ function playerClass() {
 						this.hitbox.snapObjectToColliderEdge(this, vel, X_AXIS, anObject.hitbox);
 					} 
 				}
-				else if( anObject.type == "trigger"){
+				/*else if( anObject.type == "trigger"){
 					//Check for conditions 
 					anObject.setState("onTriggerEnter");
 				}
@@ -743,7 +743,7 @@ function playerClass() {
 						
 					//this.tileCollider.snapObjectToColliderEdge(this, 5, Y_AXIS, anObject.hitbox);
 					
-				}
+				}*/
 			}
 		}
 		return colliding;
