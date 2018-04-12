@@ -25,6 +25,12 @@ const TILE_NEON_BRICKS = 13;
 const TILE_PURPLE_BRICKS_VAR_1 = 14;
 const TILE_PURPLE_BRICKS = 15;
 const TILE_ROAD = 16;
+const TILE_AC_TOP1 = 17;
+const TILE_AC_TOP2 = 18;
+const TILE_AC_TOP3 = 19;
+const TILE_AC_BOT1 = 20;
+const TILE_AC_BOT2 = 21;
+const TILE_AC_BOT3 = 22;
 
 // Below are probably leftovers from Mage Hook or something
 

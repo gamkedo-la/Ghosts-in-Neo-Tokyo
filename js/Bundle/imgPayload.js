@@ -108,5 +108,30 @@ var imgPayload = [
 		{
 			worldType: TILE_ROAD, 
 			theFile: "Tiles/road.png"
+		},
+    
+        {
+			worldType: TILE_AC_TOP1, 
+			theFile: "Tiles/ac1/20PX/top1.png"
+		},
+        {
+			worldType: TILE_AC_TOP2, 
+			theFile: "Tiles/ac1/20PX/top2.png"
+		},
+        {
+			worldType: TILE_AC_TOP3, 
+			theFile: "Tiles/ac1/20PX/top3.png"
+		},
+        {
+			worldType: TILE_AC_BOT1, 
+			theFile: "Tiles/ac1/20PX/bot1.png"
+		},
+        {
+			worldType: TILE_AC_BOT2, 
+			theFile: "Tiles/ac1/20PX/bot2.png"
+		},
+        {
+			worldType: TILE_AC_BOT3, 
+			theFile: "Tiles/ac1/20PX/bot3.png"
 		}
 	];

@@ -921,6 +921,12 @@ function playerClass() {
 			case TILE_PURPLE_BRICKS_VAR_1:
 			case TILE_PURPLE_BRICKS:
             //case TILE_ROAD:
+            case TILE_AC_TOP1: 
+            case TILE_AC_TOP2:
+            case TILE_AC_TOP3: 
+            case TILE_AC_BOT1:
+            case TILE_AC_BOT2:
+            case TILE_AC_BOT3: 
 			case TILE_WALL_EAST :
                 if ((this.motionState == "Jumping" ||
 					this.motionState == "Falling") && this.wallJumped == false) {
