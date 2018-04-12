@@ -735,10 +735,10 @@ function playerClass() {
 					var diffY =  this.y - anObject.y;  
 
 					this.x += diffX; 
-					
+
 					//var colliderEdge 
-					var thisColliderBottom = this.tileCollider.y + this.tileCollider.height + 1;
-					var anObjectColliderMiddle = anObject.hitbox.y + anObject.hitbox.height / 2;
+					//var thisColliderBottom = this.tileCollider.y + this.tileCollider.height + 1;
+					//var anObjectColliderMiddle = anObject.hitbox.y + anObject.hitbox.height / 2;
 					console.log("Blocked!!!");
 						
 					//this.tileCollider.snapObjectToColliderEdge(this, 5, Y_AXIS, anObject.hitbox);

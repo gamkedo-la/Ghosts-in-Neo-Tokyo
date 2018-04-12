@@ -13,8 +13,8 @@ function blocker(x, y) {
 	this.tileColliderOffsetX = 0;
 	this.tileColliderOffsetY = 0;
 
-	this.hitboxWidth = 20;
-	this.hitboxHeight = 20;
+	this.hitboxWidth = 25;
+	this.hitboxHeight = 25;
 	this.hitboxOffsetX = -10;
 	this.hitboxOffsetY = -10;
 
@@ -29,7 +29,7 @@ function blocker(x, y) {
 	this.deathSpriteFrames = 10;
 	this.deathSpriteSpeed = 4;
 	this.isBlocking = true;
-	
+
 	var directionTimer = 0;
 	var minSpeed = .25;
 	var maxSpeed = .50;

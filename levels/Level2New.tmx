@@ -275,7 +275,7 @@
     <property name="ItemNeeded" value="4"/>
    </properties>
   </object>
-  <object id="97" gid="112" x="171.333" y="532.667" width="20" height="20">
+  <object id="97" gid="112" x="159.833" y="542.667" width="20" height="20">
    <properties>
     <property name="name" value="BL_01"/>
    </properties>
