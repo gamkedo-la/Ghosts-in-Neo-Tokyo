@@ -731,8 +731,10 @@ function playerClass() {
 				}
 				else if(anObject.type == "blocker"){
 
-					var diffX =  this.x - anObject.x;  
-					var diffY =  this.y - anObject.y;  
+					if(anObject.enemyData.isBlocking == true)
+					 {
+						var diffX =  this.x - anObject.x +  5;//anObject.enemyData.hitboxWidth/2f;  
+						var diffY =  this.y - anObject.y +  5;//anObject.enemyData.hitboxHeight/2f;  
 
 					this.x += diffX; 
 
@@ -740,6 +742,7 @@ function playerClass() {
 					//var thisColliderBottom = this.tileCollider.y + this.tileCollider.height + 1;
 					//var anObjectColliderMiddle = anObject.hitbox.y + anObject.hitbox.height / 2;
 					console.log("Blocked!!!");
+				}
 						
 					//this.tileCollider.snapObjectToColliderEdge(this, 5, Y_AXIS, anObject.hitbox);
 					

@@ -1,7 +1,7 @@
 function blocker(x, y) {
 
-	this.x = x + 22;
-	this.y = y - 22; //y offset
+	this.x = x + 10;
+	this.y = y - 10; //y offset
 	this.initialState = "normalBlockerLikeBehavior";
 	this.maxHealth = 3; // how many hits till it dies
 	this.currentHealth = this.maxHealth;
@@ -13,15 +13,15 @@ function blocker(x, y) {
 	this.tileColliderOffsetX = 0;
 	this.tileColliderOffsetY = 0;
 
-	this.hitboxWidth = 25;
-	this.hitboxHeight = 25;
-	this.hitboxOffsetX = -10;
-	this.hitboxOffsetY = -10;
+	this.hitboxWidth = 20;
+	this.hitboxHeight = 20;
+	this.hitboxOffsetX = 0;
+	this.hitboxOffsetY = 0;
 
 	this.name = "it's a blocker yo";
 	this.spriteSheet = sprites.Blocker.idle;
-	this.spriteWidth = 32;
-	this.spriteHeight = 32;
+	this.spriteWidth = 20;
+	this.spriteHeight = 20;
 	this.spriteFrames = 1;
 	this.spriteSpeed = 9;
 	
@@ -124,7 +124,11 @@ function blocker(x, y) {
 		// },
 		gotHit: function() {
 			this.setState("set");
+		},
+		dying: function() {
+			
 		}
+
 	}
 
 	this.deadEvent = function() {

@@ -62,7 +62,7 @@ function Room(roomLayout) {
 						//@kc, be nice if we could define a object or enemy in Tiled rather than hardcoding it here
 						if((aType == "fButton") || (aType == "Door")  || ( aType == "trigger") || ( aType == "blocker") ) {
 
-							if(aType == "fButton"){
+							if(aType == "FbUTTON"){
 								console.log( "Name: " + item.name);
 
 							}

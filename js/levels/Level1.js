@@ -234,7 +234,7 @@
                  "gid":111,
                  "height":20,
                  "id":49,
-                 "name":"",
+                 "name":"TR_01",
                  "properties":
                     {
                      "ID_Name":"BL_01",
@@ -246,7 +246,7 @@
                      "ItemNeeded":"string"
                     },
                  "rotation":0,
-                 "type":"",
+                 "type":"blocker",
                  "visible":true,
                  "width":20,
                  "x":439,
@@ -256,7 +256,7 @@
                  "gid":112,
                  "height":20,
                  "id":50,
-                 "name":"",
+                 "name":"BL_01",
                  "properties":
                     {
                      "name":"BL_01"
@@ -266,10 +266,10 @@
                      "name":"string"
                     },
                  "rotation":0,
-                 "type":"",
+                 "type":"blocker",
                  "visible":true,
                  "width":20,
-                 "x":282.666666666667,
+                 "x":282.667,
                  "y":536
                 }],
          "opacity":1,

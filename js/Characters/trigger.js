@@ -1,15 +1,15 @@
 function trigger(x, y) {
 
-	this.x = x + 22;
-	this.y = y - 22; //y offset
+	this.x = x + 10;
+	this.y = y - 10; //y offset
 	this.initialState = "normalTriggerLikeBehavior";
 	this.maxHealth = 3; // how many hits till it dies
 	this.currentHealth = this.maxHealth;
 	this.lootModifier = 1.0;
 	this.droppedTile = undefined;
 
-	this.tileColliderWidth = 20;
-	this.tileColliderHeight = 20;
+	this.tileColliderWidth = 0;
+	this.tileColliderHeight = 0;
 	this.tileColliderOffsetX = 0;
 	this.tileColliderOffsetY = 0 ;
 
@@ -41,17 +41,22 @@ function trigger(x, y) {
 		console.log("Trigger Activated");
 			for(var j in targets) {
 				console.log("Target: " + targets[j] );
-				for(var i in currentRoom.layout.layers[1].objects){
-					console.log(currentRoom.layout.layers[1].objects[i].type);
-					if(currentRoom.layout.layers[1].objects[i].properties != undefined && currentRoom.layout.layers[1].objects[i].properties.type == "blocker")
+				for(var i in currentRoom.objectList){
+					
+					var anObject = currentRoom.objectList[i];
+					//console.log(anObject);
+					if(anObject.mapData != undefined && anObject.mapData.name == targets[j] )
 					{
-						const targetType = currentRoom.layout.layers[1].objects[i].properties.type;
-						console.log(currentRoom.layout.layers[1].objects[i].properties.type);
+						console.log(currentRoom.layout.layers[1].objects[i].type);
+						const targetType = anObject.type;
+						console.log(anObject.mapData.type);
 						 if (targetType == "blocker")
 						 {
 							console.log("Found blocker");
-							currentRoom.layout.layers[1].objects[i].properties.state = "deadEvent";
-							currentRoom.layout.layers[1].objects[i].isBlocking = false;
+							//anObject.die(); //enemyData.deadEvent(); //setState("deadEvent");
+							anObject.isAlive = false;
+							anObject.enemyData.isBlocking = false;
+							
 						}
 					}
 				}
@@ -95,8 +100,11 @@ function trigger(x, y) {
 					if(hasItem(String( this.mapData.ItemNeeded)) ) {
 						this.isTriggered = true;
 						triggerActivate(this.mapData);
+						//this.setState("dying");
+						this.isAlive = false; //deadEvent();
 					}
 				}
+				this.setState("normalTriggerLikeBehavior");
 			}
 		},
 		normalTriggerLikeBehavior : function(){

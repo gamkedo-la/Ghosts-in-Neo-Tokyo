@@ -212,13 +212,13 @@
   <object id="44" gid="101" x="277" y="474" width="32" height="32"/>
   <object id="47" gid="109" x="240" y="540" width="32" height="32"/>
   <object id="48" gid="110" x="322.5" y="532.5" width="32" height="55"/>
-  <object id="49" gid="111" x="439" y="480" width="20" height="20">
+  <object id="49" name="TR_01" type="trigger" gid="111" x="439" y="480" width="20" height="20">
    <properties>
     <property name="ID_Name" value="BL_01"/>
     <property name="ItemNeeded" value="4"/>
    </properties>
   </object>
-  <object id="50" gid="112" x="282.667" y="536" width="20" height="20">
+  <object id="50" name="BL_01" type="blocker" gid="112" x="282.667" y="536" width="20" height="20">
    <properties>
     <property name="name" value="BL_01"/>
    </properties>
