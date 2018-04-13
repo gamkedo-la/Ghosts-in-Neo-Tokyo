@@ -34,6 +34,7 @@ function npcChatSystem(defaultFaceImage) {
 
     this.sayFooter = function (str, newFaceImage) {
         if (str == chat) return; // don't fire again if called repeatedly
+        master_bgm.switchTo(1,1);
         chat = str;
         // we may need extra time for long texts
         this.animLength = 50 * str.length;
@@ -59,7 +60,10 @@ function npcChatSystem(defaultFaceImage) {
 
     // render a footer if required
     this.drawFooter = function () {
-        if (chat == '') return;
+        if (chat == '') {
+            master_bgm.switchTo(0,1);
+            return;
+        }
         if (wordBubbleMode) return;
         // only draw for a while
         if (performance.now() < chatTime + this.timespan) {
