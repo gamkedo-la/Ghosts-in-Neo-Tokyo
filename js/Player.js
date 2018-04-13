@@ -703,12 +703,17 @@ function playerClass() {
 				if(anObject.type == "Door") {
 					anObject.setState("recoil");
 
-				// Colliding with Button
-				} else if (anObject.type == "fButton") {
+				// Colliding with Button or a blocker
+				} else if ((anObject.type == "fButton") || ((anObject.type == "blocker") && (anObject.enemyData.isBlocking))) {
 					var thisColliderBottom = this.tileCollider.y + this.tileCollider.height + 1;
 					var anObjectColliderMiddle = anObject.hitbox.y + anObject.hitbox.height / 2;
 					if (thisColliderBottom < anObjectColliderMiddle) {
-						anObject.setState("set");
+						try {
+							anObject.setState("set");
+						} catch {
+							//Do nothing
+						}
+						
 	
 					if ((this.keyHeld_West) || (this.keyHeld_East)) {
 							this.motionState = "Walking";
@@ -728,24 +733,6 @@ function playerClass() {
 				else if( anObject.type == "trigger"){
 					//Check for conditions 
 					anObject.setState("onTriggerEnter");
-				}
-				else if(anObject.type == "blocker"){
-
-					if(anObject.enemyData.isBlocking == true)
-					 {
-						var diffX =  this.x - anObject.x +  5;//anObject.enemyData.hitboxWidth/2f;  
-						var diffY =  this.y - anObject.y +  5;//anObject.enemyData.hitboxHeight/2f;  
-
-					this.x += diffX; 
-
-					//var colliderEdge 
-					//var thisColliderBottom = this.tileCollider.y + this.tileCollider.height + 1;
-					//var anObjectColliderMiddle = anObject.hitbox.y + anObject.hitbox.height / 2;
-					console.log("Blocked!!!");
-				}
-						
-					//this.tileCollider.snapObjectToColliderEdge(this, 5, Y_AXIS, anObject.hitbox);
-					
 				}
 			}
 		}
