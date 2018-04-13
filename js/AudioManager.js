@@ -11,7 +11,7 @@ var ghast_laugh_clip = new sfxClipSingle("./audio/ghost_laugh");
 var ghast_laugh_SFX = new sfxContainerRandom([ghast_laugh_crackly_clip, ghast_laugh_clip]);
 
 var level1_stage_track = new musicTrackLoopingWTail("./audio/bg_track_witch_level", 115.555);
-var level1_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
+var level1_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 35.555);
 var level1_boss_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_fighting", 97.777);
 var level2_stage_track = new musicTrackLoopingWTail("./audio/Newage3", 102.222);
 var level2_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
@@ -35,10 +35,11 @@ ghast_laugh_clip.setVolume(0.6);
 master_bgm.setVolume(0.8);
 
 //hook ups for GiNT
-function updateCurrentTracks() {
+function updateCurrentTracks(boss = false) {
 	var levelNames = [ "Level1", "Level2", "Level3"]
-	var trackIndex = [[level1_stage_track,level1_dialog_track],[level2_stage_track,level2_dialog_track],
-		[level3_stage_track,level3_dialog_track]];
+	var trackIndex = [[level1_stage_track,level1_dialog_track,level1_boss_track],
+					  [level2_stage_track,level2_dialog_track,level2_boss_track],
+					  [level3_stage_track,level3_dialog_track,level3_boss_track]];
 
 	for (var i in levelNames) {
 		if (currentRoomName == levelNames[i]) {
