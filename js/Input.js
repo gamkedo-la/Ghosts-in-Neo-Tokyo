@@ -303,14 +303,6 @@ function keyPressed(evt) {
 				moveLevelSelectIndex('down');
 			}
 			break;
-		case KEY_N: // TEMPORARY: play test Background music - TODO: REMOVE ME
-		{
-			if(!witchstage_bgm.getPaused())
-				witchstage_bgm.pause();
-			else
-				witchstage_bgm.resume();
-			break;
-		}
 		default:
 			otherKeyPressed=false;
 			break;

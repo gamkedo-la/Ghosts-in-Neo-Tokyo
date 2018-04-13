@@ -10,10 +10,20 @@ var ghast_laugh_crackly_clip = new sfxClipSingle("./audio/ghost_laugh_crackly");
 var ghast_laugh_clip = new sfxClipSingle("./audio/ghost_laugh");
 var ghast_laugh_SFX = new sfxContainerRandom([ghast_laugh_crackly_clip, ghast_laugh_clip]);
 
-var witch_level_track = new musicTrackLoopingWTail("./audio/bg_track_witch_level", 115.555); // Complete loop, feel free to reduce
-var witch_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
-var witch_fight_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_fighting", 97.777);
-var witchstage_bgm = new musicContainerCrossfade([witch_level_track,witch_dialog_track,witch_fight_track]);
+var level1_stage_track = new musicTrackLoopingWTail("./audio/bg_track_witch_level", 115.555);
+var level1_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
+var level1_boss_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_fighting", 97.777);
+var level2_stage_track = new musicTrackLoopingWTail("./audio/Newage3", 102.222);
+var level2_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
+var level2_boss_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_fighting", 97.777);
+var level3_stage_track = new musicTrackLoopingWTail("./audio/bg_track_witch_level", 115.555);
+var level3_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
+var level3_boss_track = new musicTrackLoopingWTail("./audio/ghosts-by-Vignesh", 68.888);
+var menu_track = new musicTrackLoopingWTail("./audio/bg_track_menu", 53.333);
+var gpa_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
+var cat_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
+
+var test_bgm = new musicContainerCrossfade([menu_track,level2_stage_track,level3_boss_track]);
 
 player_jump_SFX.setVolume(0.5);
 player_hit_SFX.setVolume(0.5);
@@ -22,7 +32,7 @@ sword_attack_SFX.setVolume(0.5);
 ghast_laugh_crackly_clip.setVolume(0.6);
 ghast_laugh_clip.setVolume(0.6);
 
-witchstage_bgm.setVolume(0.8);
+test_bgm.setVolume(0.8);
 
 //general audio functions
 function setFormat() {
