@@ -22,7 +22,8 @@ function pew(x, y, isFacing) {
 	this.speed = 2;
 	this.attackDir = [0,0];
 
-	this.raycasting = function() {
+	this.raycasting = function() 
+	{
 	var nextTileX = this.x;
 	var nextTileY = this.y;
 	var isGround = true;
