@@ -839,6 +839,20 @@ function musicContainerCrossfade(trackList) {
 		}
 	}
 
+	this.loadTrackWithCrossfade = function(newTrack, slot, fadeTime = 1) {
+		var timeNow = musicTrack[currentTrack].getTime();
+		if(currentTrack == slot && !musicTrack[currentTrack].getPaused()) {
+			newTrack.playFrom(timeNow);
+			AudioEventManager.addCrossfadeEvent(musicTrack[currentTrack], fadeTime, 0);
+			AudioEventManager.addCrossfadeEvent(newTrack, fadeTime, trackVolume);
+			musicTrack[slot] = newTrack;
+		} else {
+			musicTrack[slot] = newTrack;
+			musicTrack[slot].setVolume(trackVolume);
+			musicTrack[slot].setTime(timeNow);
+		}
+	}
+
 	this.switchTo = function(slot, fadeTime = 1) {
 		var timeNow = musicTrack[currentTrack].getTime();
 		if(currentTrack != slot && !musicTrack[currentTrack].getPaused()) {
