@@ -2,7 +2,6 @@ var canvas, canvasContext;
 var levelOneRun = false;
 const FRAMES_PER_SECOND = 30;
 const TIME_PER_TICK = 1/FRAMES_PER_SECOND;
-const MUSIC_VOLUME = 0.17; // 0=none 1=loud
 const deadXZone = 15;//horizontal area where camera does not move
 const deadYZone = 25;//vertical area where camera does not move
 
@@ -37,11 +36,7 @@ function imageLoadingDoneSoStartGame() {
 }
 
 function runThatGame(){
-	
-	if (MUSIC_VOLUME>0) // should we loop some music quietly?
-		//Sound.stop("mage_hook_chiptune_menu_melody");
-		//Sound.play("MageHookThemeSong",true,MUSIC_VOLUME);
-	saveInit()
+
 	setupInput();
 	backupRoomData(); // should do before any numbers are replaced and load level etc.
 	initRoomData()
@@ -54,6 +49,8 @@ function runThatGame(){
 
 	// test only - trigger
 	testNPCFooterStartTime = performance.now();
+
+	master_bgm.play();
 }
 
 //this should prob be in Room.js
@@ -151,12 +148,13 @@ function updateAll() {
 
 		transitionCounter += TIME_PER_TICK;
 		ChangeGameStateOnCondition( transitionCounter >= transitionDuration, MAINMENU);
-				return;
+		return;
 	}
 	else if( GameState_ == MAINMENU){
 		ClearToBlack();
 		drawRain(); 
 		DrawMainMenu();
+		AudioEventManager.updateEvents();
 		return;
 	}
 

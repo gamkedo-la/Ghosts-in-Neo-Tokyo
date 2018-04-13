@@ -23,7 +23,7 @@ var menu_track = new musicTrackLoopingWTail("./audio/bg_track_menu", 53.333);
 var gpa_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
 var cat_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
 
-var test_bgm = new musicContainerCrossfade([menu_track,level2_stage_track,level3_boss_track]);
+var master_bgm = new musicContainerCrossfade([menu_track,cat_dialog_track]);
 
 player_jump_SFX.setVolume(0.5);
 player_hit_SFX.setVolume(0.5);
@@ -32,7 +32,7 @@ sword_attack_SFX.setVolume(0.5);
 ghast_laugh_crackly_clip.setVolume(0.6);
 ghast_laugh_clip.setVolume(0.6);
 
-test_bgm.setVolume(0.8);
+master_bgm.setVolume(0.8);
 
 //general audio functions
 function setFormat() {
