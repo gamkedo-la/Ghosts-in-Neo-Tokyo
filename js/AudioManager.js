@@ -34,6 +34,21 @@ ghast_laugh_clip.setVolume(0.6);
 
 master_bgm.setVolume(0.8);
 
+//hook ups for GiNT
+function updateCurrentTracks() {
+	var levelNames = [ "Level1", "Level2", "Level3"]
+	var trackIndex = [[level1_stage_track,level1_dialog_track],[level2_stage_track,level2_dialog_track],
+		[level3_stage_track,level3_dialog_track]];
+
+	for (var i in levelNames) {
+		if (currentRoomName == levelNames[i]) {
+			master_bgm.loadTrackWithCrossfade(trackIndex[i][0], 0, 2);
+			master_bgm.loadTrackWithCrossfade(trackIndex[i][1], 1, 2);
+		}
+	}
+
+}
+
 //general audio functions
 function setFormat() {
 	var audio = new Audio();

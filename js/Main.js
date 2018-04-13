@@ -50,6 +50,8 @@ function runThatGame(){
 	// test only - trigger
 	testNPCFooterStartTime = performance.now();
 
+	master_bgm.loadTrack(menu_track,0);
+	master_bgm.switchTo(0,0);
 	master_bgm.play();
 }
 
@@ -115,6 +117,8 @@ function loadLevel(DatRoomYO) {
 	//This will reset it though
 	cameraOffsetX = cameraOffsetY = 0; // these globals are from Main.js
 	player.reset("Untitled Player");
+
+	updateCurrentTracks();
 	
 }
 

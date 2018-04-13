@@ -154,13 +154,15 @@ function mainMenu_OnEnter(){
   //  console.log("MainMenu On Enter");
     if(mainMenuCurrentSelection == MAINMENU_OPTION_NEWGAME) {
         GameState_ = PLAYING;
+        updateCurrentTracks();
     }
     else if(mainMenuCurrentSelection == MAINMENU_OPTION_CONTINUE) {
         saveMenuContext(false, true);
         GameState_ = PLAYING;
         saveMenuOpen = !saveMenuOpen;
+        updateCurrentTracks()
         //console.log("Continue game");
-        }
+    }
     else if(mainMenuCurrentSelection == MAINMENU_OPTION_CREDITS){
         shldDrawCredits = true;
     }
