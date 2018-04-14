@@ -709,14 +709,9 @@ function playerClass() {
 					var anObjectColliderMiddle = anObject.hitbox.y + anObject.hitbox.height / 2;
 					if (thisColliderBottom < anObjectColliderMiddle) {
 
-
-						// FIXME - do we really want a try catch here?
-						try {
+						if(anObject.stateMachine["set"]) {
 							anObject.setState("set");
-						} catch (theError) {
-							//Do nothing
 						}
-
 
 						if ((this.keyHeld_West) || (this.keyHeld_East)) {
 							this.motionState = "Walking";
