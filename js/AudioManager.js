@@ -20,7 +20,7 @@ var level3_stage_track = new musicTrackLoopingWTail("./audio/bg_track_witch_leve
 var level3_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
 var level3_boss_track = new musicTrackLoopingWTail("./audio/ghosts-by-Vignesh", 68.888);
 var menu_track = new musicTrackLoopingWTail("./audio/bg_track_menu", 53.333);
-var gpa_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
+var gpa_dialog_track = new musicTrackLoopingWTail("./audio/dawn_of_the_autumn_leaves_NoRain", 62.222);
 var cat_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
 
 var master_bgm = new musicContainerCrossfade([menu_track, cat_dialog_track]);
@@ -43,8 +43,13 @@ function updateCurrentTracks(boss = false) {
 
 	for (var i in levelNames) {
 		if (currentRoomName == levelNames[i]) {
-			master_bgm.loadTrackWithCrossfade(trackIndex[i][0], 0, 2);
-			master_bgm.loadTrackWithCrossfade(trackIndex[i][1], 1, 2);
+			if (boss) {
+				master_bgm.loadTrackWithCrossfade(trackIndex[i][2], 0, 1);
+			} else {
+				master_bgm.loadTrackWithCrossfade(trackIndex[i][0], 0, 1);
+			}
+
+			master_bgm.loadTrackWithCrossfade(trackIndex[i][1], 1, 1);
 		}
 	}
 
