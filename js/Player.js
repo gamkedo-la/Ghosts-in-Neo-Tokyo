@@ -178,10 +178,10 @@ function playerClass() {
 		this.currentHealth = -999; // FIXME: hack to force player respawn back at starting position - is this wrong? can we respawn NOT after dying but for another reason?
 		this.reset("Untitled Player");
 		//Sound.play("MageHookThemeSong",true,MUSIC_VOLUME);
-		this.chat.sayBubble("I just respawned!",sprites.Player.defaultFaceImage);
+		this.chat.sayBubble("I just respawned!", sprites.Player.defaultFaceImage);
 	}
-	
-	this.resetKeys = function() {
+
+	this.resetKeys = function () {
 		this.keyHeld_North = false;
 		this.keyHeld_South = false;
 		this.keyHeld_West = false;
@@ -195,7 +195,7 @@ function playerClass() {
 	this.reset = function (playerName) {
 		console.log("Player reset: " + playerName);
 
-		this.chat.sayFooter("This is an example of the NPC\ndialogue footer! Lovely!",);
+		this.chat.sayFooter("This is an example of the NPC\ndialogue footer! Lovely!", );
 
 		this.name = playerName;
 		if (this.currentHealth <= 0) {
@@ -213,7 +213,7 @@ function playerClass() {
 			loadLevel();
 			//TODO: make this not so hard coded D: 
 			//Todo: remove a lot of these magic numbers
-			
+
 			this.vx = 0;
 			this.vy = 0;
 			playerAtStartingPosition = true;
@@ -225,12 +225,12 @@ function playerClass() {
 			cameraOffsetX = cameraOffsetY = 0; // these globals are from Main.js
 		}
 		var foundRespawnPoint = false
-		for(var i in currentRoom.layout.layers[1].objects){
-			if(currentRoom.layout.layers[1].objects[i].gid == 101){
+		for (var i in currentRoom.layout.layers[1].objects) {
+			if (currentRoom.layout.layers[1].objects[i].gid == 101) {
 				foundRespawnPoint = currentRoom.layout.layers[1].objects[i]
 			}
 		}
-		if(foundRespawnPoint){
+		if (foundRespawnPoint) {
 			this.x = foundRespawnPoint.x
 			this.y = foundRespawnPoint.y
 		} else {
@@ -277,7 +277,7 @@ function playerClass() {
 
 
 	this.applyGravity = function (target) {
-		if(!debugFly){
+		if (!debugFly) {
 			this.vy -= GRAVITY;
 			target.y += this.vy;
 		}
@@ -339,12 +339,12 @@ function playerClass() {
 		}
 		if (this.keyHeld_North) {
 			isFacing = NORTH;
-			if(debugFly)
+			if (debugFly)
 				target.y -= _PLAYER_MOVE_SPEED;
 		}
 		if (this.keyHeld_South) {
 			isFacing = SOUTH;
-			if(debugFly)
+			if (debugFly)
 				target.y += _PLAYER_MOVE_SPEED;
 		}
 		if (this.keyHeld_Jump) {
@@ -365,7 +365,7 @@ function playerClass() {
 		var xDir = Math.sign(target.x - this.x);
 		var velX = xDir * _PLAYER_MOVE_SPEED * playerFriction;
 
-		if(debugFly){
+		if (debugFly) {
 			var yDir = Math.sign(target.y - this.y);
 			var velY = yDir * _PLAYER_MOVE_SPEED * playerFriction;
 		}
@@ -392,14 +392,14 @@ function playerClass() {
 		}
 
 		this.tileCollider.moveOnAxis(this, velX, X_AXIS);
-		
-		if(debugFly){
+
+		if (debugFly) {
 			this.tileCollider.moveOnAxis(this, velY, Y_AXIS);
 			//var collisionY = this.tileCollider.moveOnAxis(this, velY, Y_AXIS);	
 		} else {
-			var collisionY = this.tileCollider.moveOnAxis(this, this.vy, Y_AXIS);	
+			var collisionY = this.tileCollider.moveOnAxis(this, this.vy, Y_AXIS);
 		}
-		
+
 		// State maching switch: so that we know when to change from a state to another:
 		// (also avoids confusions dues to switching state all the time)
 		switch (this.motionState) {
@@ -475,11 +475,11 @@ function playerClass() {
 		}
 
 		isUsingRangedAttack = this.keyHeld_Ranged_Attack;
-/*		if (this.lastFireAttack + FIRE_ATTACK_COOLDOWN < performance.now() && isUsingRangedAttack && !wasAttacking)	//either melee attack or ranged attack
-		{
-			this.lastFireAttack = performance.now()
-			bulletMagic(this.x, this.y, isFacing);
-		}*/
+		/*		if (this.lastFireAttack + FIRE_ATTACK_COOLDOWN < performance.now() && isUsingRangedAttack && !wasAttacking)	//either melee attack or ranged attack
+				{
+					this.lastFireAttack = performance.now()
+					bulletMagic(this.x, this.y, isFacing);
+				}*/
 
 		if (this.isCollidingWithEnemy() && !this.isInvincible) {
 			if (this.currentHealth <= 0) {
@@ -494,7 +494,7 @@ function playerClass() {
 				return;
 			}
 		}
-		
+
 		this.isCollidingWithObject();
 
 		choosePlayerAnimation();
@@ -628,28 +628,28 @@ function playerClass() {
 	}
 
 
-//Commented this out because it isn't used - recommend deletion
-/*	this.canHitEnemy = function (collider) { // used for attacks, returns the enemy
-		
-		console.log("Can Hit Enemy?");
-		//console.log('Detecting attacking collisions near ' + this.attackhitbox.x+','+this.attackhitbox.y);
-		if (!currentRoom) { console.log("ERROR: currentRoom is null."); return false; }
-
-		var hitAnEnemy = null;
-
-		for (var i = 0; i < currentRoom.enemyList.length; i++) {
-			var enemy = currentRoom.enemyList[i];
-			if (collider.isCollidingWith(enemy.hitbox)) {
-				enemy.recoil = true;
-				hitAnEnemy = enemy; //TODO: make this a list so we can hit more than one enemy
-				for (var i = 0; i < PARTICLES_PER_ATTACK; i++) {
-					var tempParticle = new particleClass(enemy.hitbox.x, enemy.hitbox.y, 'red');
-					particle.push(tempParticle);
+	//Commented this out because it isn't used - recommend deletion
+	/*	this.canHitEnemy = function (collider) { // used for attacks, returns the enemy
+			
+			console.log("Can Hit Enemy?");
+			//console.log('Detecting attacking collisions near ' + this.attackhitbox.x+','+this.attackhitbox.y);
+			if (!currentRoom) { console.log("ERROR: currentRoom is null."); return false; }
+	
+			var hitAnEnemy = null;
+	
+			for (var i = 0; i < currentRoom.enemyList.length; i++) {
+				var enemy = currentRoom.enemyList[i];
+				if (collider.isCollidingWith(enemy.hitbox)) {
+					enemy.recoil = true;
+					hitAnEnemy = enemy; //TODO: make this a list so we can hit more than one enemy
+					for (var i = 0; i < PARTICLES_PER_ATTACK; i++) {
+						var tempParticle = new particleClass(enemy.hitbox.x, enemy.hitbox.y, 'red');
+						particle.push(tempParticle);
+					}
 				}
 			}
-		}
-		return hitAnEnemy;
-	}*/
+			return hitAnEnemy;
+		}*/
 	this.getHit = function getHit(amount) {
 		if (this.isInvincible) {
 			return;
@@ -687,7 +687,7 @@ function playerClass() {
 		}
 		return hitByEnemy;
 	}
-	this.isCollidingWithObject = function() {
+	this.isCollidingWithObject = function () {
 		var colliding = false;
 
 		if (!currentRoom) { console.log("ERROR: currentRoom is null."); return false; }
@@ -698,29 +698,32 @@ function playerClass() {
 			if (this.hitbox.isCollidingWith(anObject.hitbox)) {
 				knockbackSpeed = 0;
 				colliding = true;
-				
+
 				// Colliding with Door
-				if(anObject.type == "Door") {
+				if (anObject.type == "Door") {
 					anObject.setState("recoil");
 
-				// Colliding with Button or a blocker
+					// Colliding with Button or a blocker
 				} else if ((anObject.type == "fButton") || ((anObject.type == "blocker") && (anObject.enemyData.isBlocking))) {
 					var thisColliderBottom = this.tileCollider.y + this.tileCollider.height + 1;
 					var anObjectColliderMiddle = anObject.hitbox.y + anObject.hitbox.height / 2;
 					if (thisColliderBottom < anObjectColliderMiddle) {
+
+
+						// FIXME - do we really want a try catch here?
 						try {
 							anObject.setState("set");
-						} catch {
+						} catch (theError) {
 							//Do nothing
 						}
-						
-	
-					if ((this.keyHeld_West) || (this.keyHeld_East)) {
+
+
+						if ((this.keyHeld_West) || (this.keyHeld_East)) {
 							this.motionState = "Walking";
 						} else {
 							this.motionState = "Grounded";
 						}
-						
+
 						this.tileCollider.snapObjectToColliderEdge(this, 5, Y_AXIS, anObject.hitbox);
 					} else {
 						var vel = _PLAYER_MOVE_SPEED;
@@ -728,9 +731,9 @@ function playerClass() {
 							vel = -vel;
 						}
 						this.hitbox.snapObjectToColliderEdge(this, vel, X_AXIS, anObject.hitbox);
-					} 
+					}
 				}
-				else if( anObject.type == "trigger"){
+				else if (anObject.type == "trigger") {
 					//Check for conditions 
 					anObject.setState("onTriggerEnter");
 				}
@@ -910,19 +913,19 @@ function playerClass() {
 			case TILE_NEON_BRICKS:
 			case TILE_PURPLE_BRICKS_VAR_1:
 			case TILE_PURPLE_BRICKS:
-            //case TILE_ROAD:
-            case TILE_AC_TOP1: 
-            case TILE_AC_TOP2:
-            case TILE_AC_TOP3: 
-            case TILE_AC_BOT1:
-            case TILE_AC_BOT2:
-            case TILE_AC_BOT3: 
-			case TILE_WALL_EAST :
-                if ((this.motionState == "Jumping" ||
+			//case TILE_ROAD:
+			case TILE_AC_TOP1:
+			case TILE_AC_TOP2:
+			case TILE_AC_TOP3:
+			case TILE_AC_BOT1:
+			case TILE_AC_BOT2:
+			case TILE_AC_BOT3:
+			case TILE_WALL_EAST:
+				if ((this.motionState == "Jumping" ||
 					this.motionState == "Falling") && this.wallJumped == false) {
 					this.wallJumpTime = WALL_JUMP_MAX_TIME;
 					this.wallJumped = true;
-				} 
+				}
 				break;
 			case TILE_WALL_CORNER_NE:
 			case TILE_WALL_CORNER_NW:

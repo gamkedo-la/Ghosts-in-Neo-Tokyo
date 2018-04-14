@@ -23,7 +23,7 @@ var menu_track = new musicTrackLoopingWTail("./audio/bg_track_menu", 53.333);
 var gpa_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
 var cat_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);
 
-var master_bgm = new musicContainerCrossfade([menu_track,cat_dialog_track]);
+var master_bgm = new musicContainerCrossfade([menu_track, cat_dialog_track]);
 
 player_jump_SFX.setVolume(0.5);
 player_hit_SFX.setVolume(0.5);
@@ -36,10 +36,10 @@ master_bgm.setVolume(0.8);
 
 //hook ups for GiNT
 function updateCurrentTracks(boss = false) {
-	var levelNames = [ "Level1", "Level2", "Level3"]
-	var trackIndex = [[level1_stage_track,level1_dialog_track,level1_boss_track],
-					  [level2_stage_track,level2_dialog_track,level2_boss_track],
-					  [level3_stage_track,level3_dialog_track,level3_boss_track]];
+	var levelNames = ["Level1", "Level2", "Level3"]
+	var trackIndex = [[level1_stage_track, level1_dialog_track, level1_boss_track],
+	[level2_stage_track, level2_dialog_track, level2_boss_track],
+	[level3_stage_track, level3_dialog_track, level3_boss_track]];
 
 	for (var i in levelNames) {
 		if (currentRoomName == levelNames[i]) {
@@ -90,17 +90,17 @@ function audioEventManager() {
 	var eventList = [];
 	var now = Date.now();
 
-	this.returnEventList = function() {
+	this.returnEventList = function () {
 		return eventList;
 	}
 
-	this.updateEvents = function() {
+	this.updateEvents = function () {
 		now = Date.now();
 		runList();
 		cleanupList();
 	}
 
-	this.addFadeEvent = function(track, duration, endVol) {
+	this.addFadeEvent = function (track, duration, endVol) {
 		var check = checkListFor(FADE, track);
 		var endTime = duration * 1000 + now;
 		var startVolume = track.getVolume();
@@ -113,7 +113,7 @@ function audioEventManager() {
 		}
 	}
 
-	this.addCrossfadeEvent = function(track, duration, endVol) {
+	this.addCrossfadeEvent = function (track, duration, endVol) {
 		var check = checkListFor(FADE, track);
 		var endTime = duration * 1000 + now;
 		var startVolume = track.getVolume();
@@ -126,7 +126,7 @@ function audioEventManager() {
 		}
 	}
 
-	this.addTimerEvent = function(track, duration, callSign = "none") {
+	this.addTimerEvent = function (track, duration, callSign = "none") {
 		var thisTrack = track;
 		var check = checkListFor(TIMER, thisTrack, callSign);
 		var endTime = (duration * 1000) + now;
@@ -140,7 +140,7 @@ function audioEventManager() {
 		}
 	}
 
-	this.addStopEvent = function(track, duration) {
+	this.addStopEvent = function (track, duration) {
 		var thisTrack = track;
 		var check = checkListFor(STOP, thisTrack);
 		var endTime = (duration * 1000) + now;
@@ -154,7 +154,7 @@ function audioEventManager() {
 		}
 	}
 
-	this.removeStopEvent = function(track) {
+	this.removeStopEvent = function (track) {
 		var thisTrack = track;
 		var check = checkListFor(STOP, thisTrack);
 
@@ -166,23 +166,23 @@ function audioEventManager() {
 		}
 	}
 
-	function runList(){
+	function runList() {
 		for (var i = 0; i < eventList.length; i++) {
 			if (eventList[i][0] == FADE) {
 				// Arrayformat [FADE, track, startTime, endTime, startVolume, endVolume, crossfade]
 				thisTrack = eventList[i][1];
 				if (thisTrack.getPaused() == false) {
-						if(eventList[i][6]) {
-							if(eventList[i][4] < eventList[i][5]){
-								thisTrack.setVolume(scaleRange(0, 1, eventList[i][4], eventList[i][5], 
-									Math.pow(interpolateFade(eventList[i][2], eventList[i][3], 0, 1, now), 0.5)));
-							} else {
-								thisTrack.setVolume(scaleRange(1, 0, eventList[i][4], eventList[i][5], 
-									Math.pow(interpolateFade(eventList[i][2], eventList[i][3], 1, 0, now), 0.5)));
-							}
+					if (eventList[i][6]) {
+						if (eventList[i][4] < eventList[i][5]) {
+							thisTrack.setVolume(scaleRange(0, 1, eventList[i][4], eventList[i][5],
+								Math.pow(interpolateFade(eventList[i][2], eventList[i][3], 0, 1, now), 0.5)));
 						} else {
-							thisTrack.setVolume(interpolateFade(eventList[i][2], eventList[i][3], eventList[i][4], eventList[i][5], now));
+							thisTrack.setVolume(scaleRange(1, 0, eventList[i][4], eventList[i][5],
+								Math.pow(interpolateFade(eventList[i][2], eventList[i][3], 1, 0, now), 0.5)));
 						}
+					} else {
+						thisTrack.setVolume(interpolateFade(eventList[i][2], eventList[i][3], eventList[i][4], eventList[i][5], now));
+					}
 					if (eventList[i][3] < now) {
 						//console.log("Ending Fade Event for " + thisTrack.getTrackName());
 						eventList[i] = [REMOVE];
@@ -216,18 +216,18 @@ function audioEventManager() {
 	}
 
 	function cleanupList() {
-		eventList.sort(function(a, b){return b-a});
+		eventList.sort(function (a, b) { return b - a });
 		while (eventList[eventList.length - 1] == REMOVE) {
 			eventList.pop();
 		}
 	}
 
-	function checkListFor(eventType, track, callSign = ""){
+	function checkListFor(eventType, track, callSign = "") {
 		var foundItem = false;
 		for (var i = 0; i < eventList.length; i++) {
 			if (eventList[i][0] == eventType) {
 				if (eventList[i][1] == track) {
-					if(eventType == TIMER && eventList[i][3] == callSign) {
+					if (eventType == TIMER && eventList[i][3] == callSign) {
 						foundItem = true;
 						return i;
 					} else if (eventType != TIMER) {
@@ -255,7 +255,7 @@ function interpolateFade(startTime, endTime, startVolume, endVolume, currentTime
 	y = y1 + (x - x1)((y2 - y1)/(x2 - x1))
     currentVolume = startVolume + (now - startTime) * ((endVolume - startVolume) / (endTime - startTime))
 	*/
-	if (currentTime > endTime) {currentTime = endTime;}
+	if (currentTime > endTime) { currentTime = endTime; }
 	var currentVolume = startVolume + (currentTime - startTime) * ((endVolume - startVolume) / (endTime - startTime));
 
 	return currentVolume;
