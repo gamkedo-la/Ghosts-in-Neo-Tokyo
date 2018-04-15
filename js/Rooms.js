@@ -70,6 +70,7 @@ function Room(roomLayout) {
 							newEnemy.mapData = item.properties
 							newEnemy.type = aType;
 							newEnemy.name = item.name;
+							newEnemy.isVisible = item.visible;
 							this.objectList.push(newEnemy);
 						} else {
 							this.enemyList.push(new enemyConstructor(item.x, item.y));

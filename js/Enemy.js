@@ -261,13 +261,13 @@ function enemyClass(newEnemy, states){
 		}
 	}
 
-
-
 	this.draw = function() {
 		if (!this.isAlive) return;
 
 		this.chat.drawBubble(this.x,this.y);
-		this.sprite.draw(this.x, this.y);
+		if((this.isVisible) || (this.isVisible == undefined) || (this.isVisible == null)) {
+			this.sprite.draw(this.x, this.y);
+		}
 		this.maybeTriggerNPCDialogue();
 
 		if(_DEBUG_DRAW_TILE_COLLIDERS) {
