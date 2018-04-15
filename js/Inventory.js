@@ -1,52 +1,64 @@
+const KARAAGE_TEXT_X = 100;
+
 var inventoryItems = [
   {
-    displayName: 'Karaage',
+    displayName: 'Karaage (space to eat)',
+    displayNameX: KARAAGE_TEXT_X,
     itemObtained: false
   },
   {
-    displayName: 'Karaage',
+    displayName: 'Karaage (space to eat)',
+    displayNameX: KARAAGE_TEXT_X,
     itemObtained: false
   },
   {
-    displayName: 'Karaage',
+    displayName: 'Karaage (space to eat)',
+    displayNameX: KARAAGE_TEXT_X,
     itemObtained: false
   },
   {
-    displayName: 'Karaage',
+    displayName: 'Karaage (space to eat)',
+    displayNameX: KARAAGE_TEXT_X,
     itemObtained: false
   },
   {
     displayName: 'Avocado',
+    displayNameX: 140,
     itemObtained: false
   },
   {
     displayName: 'Toast',
+    displayNameX: 145,
     itemObtained: false
   },
   {
     displayName: 'Soil',
+    displayNameX: 150,
     itemObtained: false
   },
   {
     displayName: 'Plant Seed',
+    displayNameX: 135,
     itemObtained: false
   },
   {
     displayName: 'Waterbucket',
+    displayNameX: 135,
     itemObtained: false
   },
   {
     displayName: 'Egg Sushi',
+    displayNameX: 135,
     itemObtained: false
   },
   {
     displayName: 'Salmon Sushi',
-    image: null,
+    displayNameX: 135,
     itemObtained: false
   },
   {
     displayName: '',
-    image: null,
+    displayNameX: 135,
     itemObtained: false
   },
 ];
@@ -179,7 +191,7 @@ function drawInventory() {
   //canvasContext.restore();
 
   drawPixelfont("ITEMS", 150, 25);
-  drawPixelfont(inventoryItems[currentInventoryIndex].displayName, 135, 150);
+  drawPixelfont(inventoryItems[currentInventoryIndex].displayName, inventoryItems[currentInventoryIndex].displayNameX, 150);
 };
 
 function drawInventoryItems() {
