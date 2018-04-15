@@ -168,6 +168,7 @@ function updateAll() {
 
 
 	if(paused) {
+		drawAll();
 		drawInventory();
 		drawInventoryItems();
 		return;

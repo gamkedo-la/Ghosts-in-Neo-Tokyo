@@ -269,7 +269,7 @@ function keyPressed(evt) {
 			break;
 		case KEY_LEFT_ARROW:
 			if (paused) {
-				moveInventory('left');
+				moveInventory(KEY_LEFT_ARROW);
 			}
 			break;
 		case KEY_UP_ARROW:
@@ -277,7 +277,7 @@ function keyPressed(evt) {
 				moveMainMenu('up');
 			}
 			if (paused) {
-				moveInventory('up');
+				moveInventory(KEY_UP_ARROW);
 			} else if (saveMenuOpen) {
 				moveSaveMenu('up');
 			}
@@ -287,7 +287,7 @@ function keyPressed(evt) {
 			break;
 		case KEY_RIGHT_ARROW:
 			if (paused) {
-				moveInventory('right');
+				moveInventory(KEY_RIGHT_ARROW);
 			}
 			break;
 		case KEY_DOWN_ARROW:
@@ -295,12 +295,20 @@ function keyPressed(evt) {
 				moveMainMenu('down');
 			}
 			if (paused) {
-				moveInventory('down');
+				moveInventory(KEY_DOWN_ARROW);
 			} else if (saveMenuOpen) {
 				moveSaveMenu('down');
 			}
 			else if(isLevelSelectorOpen){
 				moveLevelSelectIndex('down');
+			}
+			break;
+		case KEY_SPACE:
+			if (paused) {
+				moveInventory(KEY_SPACE);
+			} 
+			else {
+				otherKeyPressed=false;
 			}
 			break;
 		default:
