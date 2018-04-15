@@ -265,6 +265,11 @@ function enemyClass(newEnemy, states){
 		if (!this.isAlive) return;
 
 		this.chat.drawBubble(this.x,this.y);
+		
+		if((this.item != undefined) && (this.item.visible != this.isVisible)) {
+			this.isVisible = this.item.visible;
+		}
+	
 		if((this.isVisible) || (this.isVisible == undefined) || (this.isVisible == null)) {
 			this.sprite.draw(this.x, this.y);
 		}

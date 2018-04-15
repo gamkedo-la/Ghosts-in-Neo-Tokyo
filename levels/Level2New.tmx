@@ -195,7 +195,7 @@
     <property name="targetName" value="rightTop"/>
    </properties>
   </object>
-  <object id="36" name="end" type="Door" gid="103" x="779.25" y="1260.75" width="44" height="44">
+  <object id="36" name="end" type="Door" gid="103" x="779.25" y="1260.75" width="44" height="44" visible="0">
    <properties>
     <property name="isLocked" type="bool" value="true"/>
     <property name="name" value="end"/>

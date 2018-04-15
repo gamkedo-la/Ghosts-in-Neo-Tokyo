@@ -66,7 +66,8 @@ function Room(roomLayout) {
 								console.log( "Name: " + item.name);
 
 							}
-							var newEnemy = new enemyConstructor(item.x, item.y)
+							var newEnemy = new enemyConstructor(item.x, item.y);
+							newEnemy.item = item;
 							newEnemy.mapData = item.properties
 							newEnemy.type = aType;
 							newEnemy.name = item.name;
