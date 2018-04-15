@@ -306,7 +306,6 @@ function pickUpItems(collider) {
                 case ITEM_KARAAGE_ANY:
                     pickUpKaraage();
                     particleFX(item.x, item.y, PARTICLES_PER_PICKUP, 'brown');
-                    itemHealsPlayer();
                     break;
                 case ITEM_AVOCADO:
                     pickUpItemType(item.type);
