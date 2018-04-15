@@ -3,7 +3,7 @@ function boss2(x, y) {
 	this.x = x;
 	this.y = y;
 
-	this.maxHealth = 3; // how many hits till it dies
+	this.maxHealth = 12; // how many hits till it dies
 	this.currentHealth = this.maxHealth;
 	this.lootModifier = 1.0;
 	this.droppedTile = undefined;
@@ -60,6 +60,15 @@ function boss2(x, y) {
 			}
 
 		},
+		derpAround : function() {
+			console.log("In Boss 2 Derp Around");
+			var willWander = Math.random() * 100;
+			if(willWander > 20){
+				this.setState("wander")
+			} else if (willWander < 10) {
+				this.setState("normal")
+			}
+		},
 		normal : function(){
 			// if(this.maxHealth != this.currentHealth){
 			// 	if( Math.abs(this.y - player.y) < 20 ){
@@ -73,7 +82,7 @@ function boss2(x, y) {
 			// }
 			
 			const dist = mDist(this.x, this.y, player.x, player.y);
-			if((dist > 20) && (dist < 120)) {
+			if((dist > 40) && (dist < 250)) {
 				this.setState("warp");
 				return;
 			}
@@ -103,8 +112,12 @@ function boss2(x, y) {
 				this.sprite.alpha = (1 - this.ticksInState / 20);
 			} else {
 				if(this.sprite.alpha <= 0) {
-					this.x = player.x + ((player.x - this.x)/3);
-					this.y = player.y + ((player.y - this.y)/3);
+					const deltaX = -25 + Math.random() * 50;
+					const deltaY = -25 + Math.random() * 50;
+					this.x = player.x + deltaX;
+					this.y = player.y + deltaY;
+					this.hitbox.update(this.x, this.y);
+					this.tileCollider.update(this.x, this.y);
 					this.sprite.alpha = 1;
 					this.setState("derpAround");
 				}

@@ -3,7 +3,7 @@ function boss1(x, y) {
 	this.x = x;
 	this.y = y;
 
-	this.maxHealth = 3; // how many hits till it dies
+	this.maxHealth = 9; // how many hits till it dies
 	this.currentHealth = this.maxHealth;
 	this.lootModifier = 1.0;
 	this.droppedTile = undefined;
