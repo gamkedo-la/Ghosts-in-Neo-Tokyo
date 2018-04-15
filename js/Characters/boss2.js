@@ -61,7 +61,6 @@ function boss2(x, y) {
 
 		},
 		derpAround : function() {
-			console.log("In Boss 2 Derp Around");
 			var willWander = Math.random() * 100;
 			if(willWander > 20){
 				this.setState("wander")

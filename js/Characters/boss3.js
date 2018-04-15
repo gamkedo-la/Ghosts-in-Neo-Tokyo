@@ -3,7 +3,7 @@ function boss3(x, y) {
 	this.x = x;
 	this.y = y;
 
-	this.maxHealth = 3; // how many hits till it dies
+	this.maxHealth = 15; // how many hits till it dies
 	this.currentHealth = this.maxHealth;
 	this.lootModifier = 1.0;
 	this.droppedTile = undefined;
@@ -44,7 +44,7 @@ function boss3(x, y) {
 				
 			}
 
-			if(this.ticksInState == 9){
+			if(this.ticksInState == 9) {
 				muunch(this.x, this.y);
 			}
 
@@ -55,10 +55,20 @@ function boss3(x, y) {
 			}
 
 			this.sprite.update();
-			if(this.ticksInState > 100){
-				this.setState("normal")
+			if(this.ticksInState > 100) {
+				this.setState("normal");
 			}
 
+		},
+		derpAround : function() {
+			var willWander = Math.random() * 100;
+			if(willWander > 30){
+				this.setState("wander");
+			} else if (willWander < 10) {
+				this.setState("normal");
+			} else if (willWander < 20) {
+				this.setState("charge");
+			}
 		},
 		normal : function(){
 			// if(this.maxHealth != this.currentHealth){
@@ -71,6 +81,12 @@ function boss3(x, y) {
 			// 		return;
 			// 	}
 			// }
+
+			const dist = mDist(this.x, this.y, player.x, player.y);
+			if((dist > 60) && (dist < 225)) {
+				this.setState("warp");
+				return;
+			}
 
 			if(!this.ticksInState){
 				directionTimer = minMoveTime + Math.random() * maxMoveTime;
@@ -91,6 +107,38 @@ function boss3(x, y) {
 			directionTimer -= TIME_PER_TICK;
 			this.sprite.update();
 			this.tileBehaviorHandler();
+		},
+		charge : function(){
+			if(this.ticksInState > 100 && mDist(this.x, this.y, player.x, player.y) > 10){
+				this.setState("derpAround")
+				return;
+			}
+			var speed = 2 //TODO: make charge speed a variable in newEnemy
+			var angle = Math.atan2(player.y - this.y, player.x - this.x);
+			velX = Math.cos(angle) * speed;
+			velY = Math.sin(angle) * speed;
+
+			this.tileCollider.moveOnAxis(this, velX, X_AXIS);
+			this.tileCollider.moveOnAxis(this, velY, Y_AXIS);
+			directionTimer -= TIME_PER_TICK;
+			this.sprite.update();
+			this.tileBehaviorHandler();
+		},
+		warp: function() {
+			if(this.sprite.alpha > 0) {
+				this.sprite.alpha = (1 - this.ticksInState / 20);
+			} else {
+				if(this.sprite.alpha <= 0) {
+					const deltaX = -35 + Math.random() * 70;
+					const deltaY = -35 + Math.random() * 70;
+					this.x = player.x + deltaX;
+					this.y = player.y + deltaY;
+					this.hitbox.update(this.x, this.y);
+					this.tileCollider.update(this.x, this.y);
+					this.sprite.alpha = 1;
+					this.setState("derpAround");
+				}
+			}
 		},
 		dying: function(){
 			if(!this.ticksInState){
