@@ -32,7 +32,32 @@ sword_attack_SFX.setVolume(0.5);
 ghast_laugh_crackly_clip.setVolume(0.6);
 ghast_laugh_clip.setVolume(0.6);
 
-master_bgm.setVolume(0.8);
+master_bgm.setVolume(1);
+
+level1_stage_track.setMixVolume(1);
+level1_dialog_track.setMixVolume(0.65);
+level1_boss_track.setMixVolume(0.5);
+level2_stage_track.setMixVolume(0.78);
+level2_dialog_track.setMixVolume(0.65);
+level2_boss_track.setMixVolume(0.5);
+level3_stage_track.setMixVolume(1);
+level3_dialog_track.setMixVolume(1);
+level3_boss_track.setMixVolume(0.9);
+menu_track.setMixVolume(0.53);
+gpa_dialog_track.setMixVolume(0.9);
+cat_dialog_track.setMixVolume(0.65);
+
+level1_stage_track.setVolume(0);
+level1_dialog_track.setVolume(0);
+level1_boss_track.setVolume(0);
+level2_stage_track.setVolume(0);
+level2_dialog_track.setVolume(0);
+level2_boss_track.setVolume(0);
+level3_stage_track.setVolume(0);
+level3_dialog_track.setVolume(0);
+level3_boss_track.setVolume(0);
+gpa_dialog_track.setVolume(0);
+cat_dialog_track.setVolume(0);
 
 //hook ups for GiNT
 function updateCurrentTracks(boss = false) {
