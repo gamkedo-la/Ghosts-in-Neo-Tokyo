@@ -71,6 +71,12 @@ function boss2(x, y) {
 			// 		return;
 			// 	}
 			// }
+			
+			const dist = mDist(this.x, this.y, player.x, player.y);
+			if((dist > 20) && (dist < 120)) {
+				this.setState("warp");
+				return;
+			}
 
 			if(!this.ticksInState){
 				directionTimer = minMoveTime + Math.random() * maxMoveTime;
@@ -91,6 +97,18 @@ function boss2(x, y) {
 			directionTimer -= TIME_PER_TICK;
 			this.sprite.update();
 			this.tileBehaviorHandler();
+		},
+		warp: function() {
+			if(this.sprite.alpha > 0) {
+				this.sprite.alpha = (1 - this.ticksInState / 20);
+			} else {
+				if(this.sprite.alpha <= 0) {
+					this.x = player.x + ((player.x - this.x)/3);
+					this.y = player.y + ((player.y - this.y)/3);
+					this.sprite.alpha = 1;
+					this.setState("derpAround");
+				}
+			}
 		},
 		dying: function(){
 			if(!this.ticksInState){

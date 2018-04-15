@@ -19,7 +19,9 @@ function spriteClass() {
 	var playerSpriteHeight = 26;
 	var playerSpriteCanvasX = 9;
 	var playerSpriteCanvasY = 3;
-	var hasFinishedLoop = false
+	var hasFinishedLoop = false;
+	
+	this.alpha = 1;
 
 	// set sprite sheet to draw from and defines animation speed
 	this.setSprite = function(newSpriteSheet,
@@ -90,6 +92,11 @@ function spriteClass() {
 		var leftEdge = Math.floor(x - frameWidth/2);
 		var topEdge = Math.floor(y - frameHeight/2);
 
+		if(this.alpha < 1) {
+			canvasContext.save();
+			canvasContext.globalAlpha = this.alpha;
+		}
+
 		if (drawFrame) {
 			// this version of drawImage is needed to point to different frames in sprite sheet
 			if(getImgData && tintThisFrame) {
@@ -103,6 +110,9 @@ function spriteClass() {
 				leftEdge, topEdge,
 				frameWidth, frameHeight);
 			}
+		}
+		if(this.alpha < 1) {
+			canvasContext.restore();
 		}
 	}
 	//TODO: make it so sprites pool canvas. Rn every sprite gets a canvas
