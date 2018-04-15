@@ -71,6 +71,11 @@ function boss1(x, y) {
 			// 		return;
 			// 	}
 			// }
+			
+			if(mDist(this.x, this.y, player.x, player.y) < 80){
+				this.setState("charge");
+				return;
+			}
 
 			if(!this.ticksInState){
 				directionTimer = minMoveTime + Math.random() * maxMoveTime;
