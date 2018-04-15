@@ -107,6 +107,28 @@ function pickUpItemType(itemType) {
   inventoryItems[itemType].itemObtained = true;
 }
 
+function useItemType(itemType) {
+  switch(itemType) {
+    case ITEM_KARAAGE_ONE:
+    case ITEM_KARAAGE_TWO:
+    case ITEM_KARAAGE_THREE:
+    case ITEM_KARAAGE_FOUR:
+      eatKaraage(itemType);
+      break;
+    default:
+      break;
+  }
+}
+
+function eatKaraage(itemType) {
+  if (inventoryItems[currentInventoryIndex].itemObtained) {
+    if (player.currentHealth < player.maxHealth) {
+      itemHealsPlayer();
+      inventoryItems[currentInventoryIndex].itemObtained = false;
+    }
+  }
+}
+
 function moveInventory(keyCode) {
   if (keyCode === KEY_RIGHT_ARROW) {
     currentInventoryIndex++;
@@ -121,30 +143,7 @@ function moveInventory(keyCode) {
     currentInventoryIndex = currentInventoryIndex + 4;
   }
   else if (keyCode === KEY_SPACE) {
-    if (currentInventoryIndex == ITEM_KARAAGE_ONE) {
-      if (inventoryItems[currentInventoryIndex].itemObtained) {
-        itemHealsPlayer();
-        inventoryItems[currentInventoryIndex].itemObtained = false;
-      }
-    }
-    else if (currentInventoryIndex == ITEM_KARAAGE_TWO) {
-      if (inventoryItems[currentInventoryIndex].itemObtained) {
-        itemHealsPlayer();
-        inventoryItems[currentInventoryIndex].itemObtained = false;
-      }
-    }
-    else if (currentInventoryIndex == ITEM_KARAAGE_THREE) {
-      if (inventoryItems[currentInventoryIndex].itemObtained) {
-        itemHealsPlayer();
-        inventoryItems[currentInventoryIndex].itemObtained = false;
-      }
-    }
-    else if (currentInventoryIndex == ITEM_KARAAGE_FOUR) {
-      if (inventoryItems[currentInventoryIndex].itemObtained) {
-        itemHealsPlayer();
-        inventoryItems[currentInventoryIndex].itemObtained = false;
-      }
-    }
+    useItemType(currentInventoryIndex);
   }
 
   if (currentInventoryIndex >= inventoryItems.length) {
