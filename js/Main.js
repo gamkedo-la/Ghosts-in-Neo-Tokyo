@@ -313,6 +313,15 @@ function drawHealth() {
 				barColorRed = true;
 			}
 		}
+		else if (healFlashTimer > 0) {
+			if (healFlashTimer % 2) {
+				barColorRed = true;
+			}
+			else {
+				barColorRed = false;
+			}
+			healFlashTimer--;
+		}
 	
 	canvasContext.globalAlpha=0.5
 	canvasContext.drawImage(sprites.UI.healthBarEmpty, cornerX,cornerY);

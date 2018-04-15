@@ -34,6 +34,7 @@ var attackBuff = 0;
 var fireballLvl1Upgrade = true;
 var fireballLvl2Upgrade = false;
 var fireballLvl3Upgrade = false;
+var healFlashTimer = 0;
 
 function itemClass(posX, posY, speed, type, angle) {
     this.x = posX;
@@ -292,6 +293,7 @@ function itemHealsPlayer() {
     if (player.currentHealth < player.maxHealth) {
         player.currentHealth += 1;   
     }
+    healFlashTimer = 15;
 }
 
 function pickUpItems(collider) {
