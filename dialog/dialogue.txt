@@ -43,14 +43,14 @@ Grampa ghost: Oh, Ichiro, is that you?
 
 Player: ? Me?
  
-Grampa: Oh, it is you! My, you've grown... Last time I saw you, you were only taking your first steps. How is she? Has she been doing well? 
+Grampa: Oh, it is you! My, you've grown... Last time I saw you, you were only taking your first steps. How is your mother? Has she been doing well? 
 
 Player: ...
 
 Grampa: For me, well...
 To tell you the truth, business hasn't been going too well. I'm just... 
 
-Grampa: ... Ah, I'm sorry, I'm just a little lost for words. I'm... Just so happy to see you. 
+Grampa: ... Ah, I'm sorry, I'm just a little lost for words. I'm... So happy to see you. 
 I thought you were gone... The last thing I remember is a big flash, and buildings crumbling... You were in my arms... I...
 A-anyways, it's been a while since you tried my cooking, yes? Go on, take one. Your mother used to love my karaage. 
 
