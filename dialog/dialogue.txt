@@ -5,32 +5,31 @@ DESCRIPTION:
 - defeating ghosts to save the city
 - thinks you're a ghost
 
-Magical girl: You think you can get away? Think again, you stupid ghost!
+Magical girl: You think you can get away? Think again, you stupid ghost! 
+You won't hurt any more people, not on my watch! 
 
+Player: ... Come again?
 
-
-Player: ... come again?
-
-
-
-Magical girl: No ghost has ever been able to pass me!
-You got a watch? 'Cause it's time for YOU to go back where you belong -- in H E L L! 
-
-
+Magical girl: Hah! You're not even that scary. Y'know, you're not the only one who can send chills down a person's spine! 
+At least I'm cuter! 
 
 Player:  ...
 
-
-
-Magical girl: Super shining rainbow miracle delicious ATTAAAACK!!
+Magical girl: Prepare to die, you dumb ghoul! 
+Suuuuper shining rainbow miracle delicious ATTAAAACK!!
 
 Player (you've got to be kidding me)
+
+
 
 -- MISC LINES FOR OTHER BOSSES? -- 
 
 - stay here and be with me FOREVER!
 - nobody can ever be as BOO-tiful as me! 
+- you better boo-lieve it! (ew)
 - DIE
+
+
 
 -- GRAMPA GHOST --
 
@@ -48,7 +47,8 @@ Grampa: Oh, it is you! My, you've grown... Last time I saw you, you were only ta
 Player: ...
 
 Grampa: For me, well...
-To tell you the truth, business hasn't been going too well. I'm just... 
+To tell you the truth, business hasn't been going too well. No matter how much I call out, it seems nobody notices I'm here. 
+I'm just... 
 
 Grampa: ... Ah, I'm sorry, I'm just a little lost for words. I'm... So happy to see you. 
 I thought you were gone... The last thing I remember was a big flash, and buildings crumbling... You were in my arms... I...
