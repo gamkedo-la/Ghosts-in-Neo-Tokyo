@@ -588,7 +588,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":110,
+ "nextobjectid":113,
  "orientation":"orthogonal",
  "properties":
     {
@@ -789,6 +789,129 @@
                 {
                  "image":"..\/..\/img\/GrampaGhost-Tile.png",
                  "imageheight":55,
+                 "imagewidth":32
+                }
+            },
+         "tilewidth":79
+        }, 
+        {
+         "columns":0,
+         "firstgid":113,
+         "margin":0,
+         "name":"Char",
+         "spacing":0,
+         "tilecount":8,
+         "tileheight":90,
+         "tileproperties":
+            {
+             "1":
+                {
+                 "entityType":"Ghast"
+                },
+             "2":
+                {
+                 "entityType":"Door"
+                },
+             "3":
+                {
+                 "entityType":"fButton"
+                },
+             "4":
+                {
+                 "entityType":"boss3"
+                },
+             "5":
+                {
+                 "entityType":"boss1"
+                },
+             "6":
+                {
+                 "entityType":"boss2"
+                },
+             "7":
+                {
+                 "entityType":"kapooter"
+                }
+            },
+         "tilepropertytypes":
+            {
+             "1":
+                {
+                 "entityType":"string"
+                },
+             "2":
+                {
+                 "entityType":"string"
+                },
+             "3":
+                {
+                 "entityType":"string"
+                },
+             "4":
+                {
+                 "entityType":"string"
+                },
+             "5":
+                {
+                 "entityType":"string"
+                },
+             "6":
+                {
+                 "entityType":"string"
+                },
+             "7":
+                {
+                 "entityType":"string"
+                }
+            },
+         "tiles":
+            {
+             "0":
+                {
+                 "image":"..\/..\/img\/mainChar\/Char_0.png",
+                 "imageheight":32,
+                 "imagewidth":32
+                },
+             "1":
+                {
+                 "image":"..\/..\/img\/Ghast\/Ghast_0.png",
+                 "imageheight":32,
+                 "imagewidth":32
+                },
+             "2":
+                {
+                 "image":"..\/..\/img\/Doors\/world_door.png",
+                 "imageheight":44,
+                 "imagewidth":44
+                },
+             "3":
+                {
+                 "image":"..\/..\/img\/Switches\/floor switch_Animation 5_0.png",
+                 "imageheight":32,
+                 "imagewidth":32
+                },
+             "4":
+                {
+                 "image":"..\/..\/img\/bosses\/boss3\/Boss3Thumb.png",
+                 "imageheight":90,
+                 "imagewidth":79
+                },
+             "5":
+                {
+                 "image":"..\/..\/img\/bosses\/boss1\/Boss1Thumb.png",
+                 "imageheight":50,
+                 "imagewidth":32
+                },
+             "6":
+                {
+                 "image":"..\/..\/img\/bosses\/boss2\/BossConceptThumb.png",
+                 "imageheight":70,
+                 "imagewidth":70
+                },
+             "7":
+                {
+                 "image":"..\/..\/img\/pooterTILE.png",
+                 "imageheight":32,
                  "imagewidth":32
                 }
             },

@@ -97,14 +97,14 @@ function playerClass() {
 	this.controlKeyJump;
 
 	var tileColliderWidth = 4;
-	var tileColliderHeight = 22;    // Old Values2;
+	var tileColliderHeight = 18;    // Old Values2;
 	var tileColliderOffsetX = -0.5;
-	var tileColliderOffsetY = 1;    //  Old Values: 10.5;
+	var tileColliderOffsetY = 3;    //  Old Values: 10.5;
 	this.tileCollider = new boxColliderClass(this.x, this.y,
 		tileColliderWidth, tileColliderHeight,
 		tileColliderOffsetX, tileColliderOffsetY);
 	var hitboxWidth = 9;
-	var hitboxHeight = 22;
+	var hitboxHeight = 20;
 	var hitboxOffsetX = -0.5;
 	var hitboxOffsetY = 0.5;
 	this.hitbox = new boxColliderClass(this.x, this.y,
@@ -705,8 +705,8 @@ function playerClass() {
 
 					// Colliding with Button or a blocker
 				} else if ((anObject.type == "fButton") || ((anObject.type == "blocker") && (anObject.enemyData.isBlocking))) {
-					var thisColliderBottom = this.tileCollider.y + this.tileCollider.height + 1;
-					var anObjectColliderMiddle = anObject.hitbox.y + anObject.hitbox.height / 2;
+					var thisColliderBottom = this.tileCollider.y - this.tileCollider.height  + 1;
+					var anObjectColliderMiddle = anObject.hitbox.y + anObject.hitbox.height / 2 + 1;
 					if (thisColliderBottom < anObjectColliderMiddle) {
 
 						if(anObject.stateMachine["set"]) {
@@ -719,13 +719,16 @@ function playerClass() {
 							this.motionState = "Grounded";
 						}
 
-						this.tileCollider.snapObjectToColliderEdge(this, 5, Y_AXIS, anObject.hitbox);
+						this.tileCollider.snapObjectToColliderEdge(this, 15, Y_AXIS, anObject.hitbox);
 					} else {
-						var vel = _PLAYER_MOVE_SPEED;
-						if (this.keyHeld_West) {
-							vel = -vel;
+
+						if(anObject.type == "blocker")
+						 {
+								var vel = _PLAYER_MOVE_SPEED;
+								if (this.keyHeld_West) {
+									vel = -vel;
 						}
-						this.hitbox.snapObjectToColliderEdge(this, vel, X_AXIS, anObject.hitbox);
+						this.hitbox.snapObjectToColliderEdge(this, vel, X_AXIS, anObject.hitbox); }
 					}
 				}
 				else if (anObject.type == "trigger") {
