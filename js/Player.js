@@ -705,8 +705,8 @@ function playerClass() {
 
 					// Colliding with Button or a blocker
 				} else if ((anObject.type == "fButton") || ((anObject.type == "blocker") && (anObject.enemyData.isBlocking))) {
-					var thisColliderBottom = this.tileCollider.y - this.tileCollider.height  + 1;
-					var anObjectColliderMiddle = anObject.hitbox.y + anObject.hitbox.height / 2 + 1;
+					var thisColliderBottom = this.tileCollider.y + this.tileCollider.height  + 1;
+					var anObjectColliderMiddle = anObject.tileCollider.y + anObject.tileCollider.height / 2 + 1;
 					if (thisColliderBottom < anObjectColliderMiddle) {
 
 						if(anObject.stateMachine["set"]) {
@@ -719,16 +719,13 @@ function playerClass() {
 							this.motionState = "Grounded";
 						}
 
-						this.tileCollider.snapObjectToColliderEdge(this, 15, Y_AXIS, anObject.hitbox);
+						this.tileCollider.snapObjectToColliderEdge(this, 15, Y_AXIS, anObject.tileCollider);
 					} else {
-
-						if(anObject.type == "blocker")
-						 {
 								var vel = _PLAYER_MOVE_SPEED;
 								if (this.keyHeld_West) {
 									vel = -vel;
-						}
-						this.hitbox.snapObjectToColliderEdge(this, vel, X_AXIS, anObject.hitbox); }
+								}
+						this.hitbox.snapObjectToColliderEdge(this, vel, X_AXIS, anObject.tileCollider); 
 					}
 				}
 				else if (anObject.type == "trigger") {

@@ -8,8 +8,8 @@ function blocker(x, y) {
 	this.lootModifier = 1.0;
 	this.droppedTile = undefined;
 
-	this.tileColliderWidth = 0;
-	this.tileColliderHeight = 0;
+	this.tileColliderWidth = 20;
+	this.tileColliderHeight = 20;
 	this.tileColliderOffsetX = 0;
 	this.tileColliderOffsetY = 0;
 
