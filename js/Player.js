@@ -97,9 +97,9 @@ function playerClass() {
 	this.controlKeyJump;
 
 	var tileColliderWidth = 4;
-	var tileColliderHeight = 2;
+	var tileColliderHeight = 22;    // Old Values2;
 	var tileColliderOffsetX = -0.5;
-	var tileColliderOffsetY = 10.5;
+	var tileColliderOffsetY = 1;    //  Old Values: 10.5;
 	this.tileCollider = new boxColliderClass(this.x, this.y,
 		tileColliderWidth, tileColliderHeight,
 		tileColliderOffsetX, tileColliderOffsetY);
