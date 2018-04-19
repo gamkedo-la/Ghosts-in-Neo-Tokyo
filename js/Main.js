@@ -203,12 +203,13 @@ function moveAll() {
 
 function drawAll() {
 	
-	updateCameraPosition();
+	
 	
 	//TODO: remove
 	
+	clearCanvas();
 	canvasContext.drawImage(sprites.Background.skyscrapers, 0,20);
-	canvasContext.drawImage(sprites.TenGhost.move, 25,50);
+	updateCameraPosition();
 	drawRain();
 	drawWorldRestricted();
 	currentRoom.drawTraps();
@@ -260,7 +261,6 @@ function updateCameraPosition() {
 	}
 
 	canvasContext.save();
-	clearCanvas();
 
 	canvasContext.translate(cameraOffsetX, cameraOffsetY);
 }
