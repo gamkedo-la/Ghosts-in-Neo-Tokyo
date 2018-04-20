@@ -35,6 +35,34 @@ function boss1(x, y) {
 
 	this.getRandomNumber;
 
+	function triggerActivate(mapData){
+		console.log(mapData);
+		var targets = mapData.gateName.split(",");
+		console.log("Trigger Activated");
+			for(var j in targets) {
+				console.log("Target: " + targets[j] );
+				for(var i in currentRoom.objectList){
+					
+					var anObject = currentRoom.objectList[i];
+					//console.log(anObject);
+					if(anObject.mapData != undefined && anObject.mapData.name == targets[j] )
+					{
+						//console.log(currentRoom.layout.layers[1].objects[i].type);
+						const targetType = anObject.type;
+						//console.log(anObject.mapData.type);
+						 if (targetType == "blocker")
+						 {
+							console.log("Found blocker");
+							//anObject.die(); //enemyData.deadEvent(); //setState("deadEvent");
+							anObject.isAlive = false;
+							anObject.enemyData.isBlocking = false;
+							
+						}
+					}
+				}
+			}
+	}
+
 	var staates = {
 		munch : function(){
 			if(!this.ticksInState){
@@ -111,6 +139,10 @@ function boss1(x, y) {
 				if (foundHere > -1) {
 					currentRoom.enemyList.splice(foundHere, 1);
 				}
+
+				if(this.mapData != undefined)
+				triggerActivate(this.mapData);
+
 				
 			// }
 			this.sprite.update();
@@ -126,6 +158,7 @@ function boss1(x, y) {
 		});
 		this.monsterRef.setState("dying")
 		this.monsterRef.isDying = true;		
+
 	} // end of dead
 	
 	return new enemyClass(this, staates);

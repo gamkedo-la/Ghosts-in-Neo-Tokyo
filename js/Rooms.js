@@ -74,7 +74,9 @@ function Room(roomLayout) {
 							newEnemy.isVisible = item.visible;
 							this.objectList.push(newEnemy);
 						} else {
-							this.enemyList.push(new enemyConstructor(item.x, item.y));
+							var newEnemy = new enemyConstructor(item.x, item.y) ;
+							newEnemy.mapData = item.properties;
+							this.enemyList.push(newEnemy );
 						}
 					} else if(item.gid == 101) {
 						//yo this is just a placement object for the player

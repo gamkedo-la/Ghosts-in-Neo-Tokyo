@@ -179,7 +179,8 @@ function trigger(x, y) {
 		  eventLabel: 'Door',
 		});
 		this.monsterRef.setState("dying")
-		this.monsterRef.isDying = true;		
+		this.monsterRef.isDying = true;	
+			
 	} // end of dead
 	
 	return new enemyClass(this, staates);
