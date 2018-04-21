@@ -257,7 +257,7 @@ function enemyClass(newEnemy, states){
 			//them from doing so.
 		if(mDist(this.x, this.y, player.x, player.y) < this.closeEnoughToTalkTo) {
 			//console.log("player is close enough to talk to me!");
-			npcGUI.sayFooter("You think you can just touch a ghost\nand not suffer the consequences?\n\nPrepare to join us for a ghastly eternal\nexistence without form that never ends!", sprites.Player.defaultFaceImage);
+			//npcGUI.sayFooter("You think you can just touch a ghost\nand not suffer the consequences?\n\nPrepare to join us for a ghastly eternal\nexistence without form that never ends!", sprites.Player.defaultFaceImage);
 		}
 	}
 

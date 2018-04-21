@@ -32,6 +32,7 @@ function boss1(x, y) {
 	var maxSpeed = .50;
 	var minMoveTime = 1.5;
 	var maxMoveTime = 2.5;
+	var musicSwitched = false; //whether or not it has activated the boss music
 
 	this.getRandomNumber;
 
@@ -100,10 +101,16 @@ function boss1(x, y) {
 			// 	}
 			// }
 			
+			if(mDist(this.x, this.y, player.x, player.y) < 700 && musicSwitched == false){  //Activates boss music
+				updateCurrentTracks(true);
+				musicSwitched = true;
+			}
+
 			if(mDist(this.x, this.y, player.x, player.y) < 80){
 				this.setState("charge");
 				return;
 			}
+			
 
 			if(!this.ticksInState){
 				directionTimer = minMoveTime + Math.random() * maxMoveTime;
@@ -139,6 +146,7 @@ function boss1(x, y) {
 				if (foundHere > -1) {
 					currentRoom.enemyList.splice(foundHere, 1);
 				}
+				updateCurrentTracks(false);
 
 				if(this.mapData != undefined)
 				triggerActivate(this.mapData);
