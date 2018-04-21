@@ -64,7 +64,6 @@ function moveMainMenu (keyName) {
         mainMenuCurrentSelection = MAIN_MENU_BUTTON_COUNT - 1;
     }
 
-  //  console.log(mouseCanvasY);
 };
 
 
@@ -76,42 +75,58 @@ function ChangeGameStateOnCondition( condition, newState){
     }
 }
 
-var creditNames = ["Project Lead, prototype, bosses, logo, world loading, art (ghast, toast, plant), player portrait, room change code, large map optimization, Kirt integration, grampaghost: Marc Silva",
-"Advanced camera code, fixes (player animation, collisions), buttons, enemy/object differentiation, door locks, boss code tweaks: H Trayford",
-"Wall jump code, boss portraits (3), baron portrait, tile art (concrete, brick, rad, AC), dialog writing, music (grandpa 1), beam sprites, addl. signs: Herleen Dualan",
-"NPC dialog code, rain effects, logo kanji, font integration, initial chase camera, neon signs: Christer \"McFunkypants\" Kaitila",
-"Inventory menu and item data integration, avocado drops, karaage sprite, background fix: Dan Dela Rosa",
-"Health bar, sounds (ghost laugh, sword), save file: Terrence McDonnell",
-"Sound system concept and audio code, music transition crossfade: Michael \"Misha\" Fewkes",
-"Gamkedo splash screen, menu screen, level 2, level selector, gating, hitbox fixes: Keenan Cole",
-"Music (witch, boss), Sound (hit, jump), ghost voices, addl. sound integration, refactoring: Klaim (A. Joël Lamotte)",
-"Tenghost sprite sheet, alley background, street background variations: Rémy Lapointe",
-"Initial jump controls: Gerard Moledo",
-"Music (ghosts, new age, dialog), three signs: Vignesh Ramesh",
-"Minor code cleanup: Fernando L. Canizo",
-"Bus stop sign and potted shrub for city background, music (grandpa 2): Ryan Lewis",
-"Sushi and misc. item sprites: Ezovex Dickson Goh",
-"Skyscrapers backgrounds: Eric Lamarca",
-"Kirt art: Nick Fewkes",
-"Visagrab sprite: Asix Jin"];
+var creditNames = [
+" Project Lead, prototype, bosses, logo, world loading, art (ghast - toast - plant), player portrait, room change code, large map optimization, Kirt integration, grampaghost, Marc Silva",
+"Advanced camera code, fixes (player animation, collisions), buttons, enemy/object differentiation, door locks, boss code tweaks, H Trayford",
+"Wall jump code, boss portraits (3), baron portrait, tile art (concrete - brick - rad - AC), dialog writing, music (grandpa 1), beam sprites, addl. signs, Herleen Dualan",
+"NPC dialog code, rain effects, logo kanji, font integration, initial chase camera, neon signs, Christer \"McFunkypants\" Kaitila",
+"Inventory menu and item data integration, avocado drops, karaage sprite, background fix, Dan Dela Rosa",
+"Health bar, sounds (ghost laugh - sword), save file, Terrence McDonnell",
+"Sound system concept and audio code, music transition crossfade, Michael \"Misha\" Fewkes",
+"Gamkedo splash screen, menu screen, level 2, level selector, gating, hitbox fixes, Keenan Cole",
+"Music (witch - boss), Sound (hit - jump), ghost voices, addl. sound integration, refactoring, Klaim (A. Joël Lamotte)",
+"Tenghost sprite sheet, alley background, street background variations, Rémy Lapointe",
+"Initial jump controls, Gerard Moledo",
+"Music (ghosts - new age - dialog), three signs, Vignesh Ramesh",
+"Minor code cleanup, Fernando L. Canizo",
+"Bus stop sign and potted shrub for city background, music (grandpa 2), Ryan Lewis",
+"Sushi and misc. item sprites, Ezovex Dickson Goh",
+"Skyscrapers backgrounds, Eric Lamarca",
+"Kirt art, Nick Fewkes",
+"Visagrab sprite, Asix Jin"
+];
+
 var scrollY = 0;
 function drawCredits(){
-    var startY = 200;// 60;
-    var spaceBetween = 20;
-    var scrollSpeed = 10;
+    var startY = 200;// 60;B
+    var spaceBetween = 12;
+    var spaceBetweenJobs = 9
+
+    var scrollSpeed = 35;
     scrollY -= scrollSpeed * TIME_PER_TICK;
-
+    var textPosition = startY;
     for (var i = 0; i < creditNames.length; i++) {
-        DrawLabel(creditNames[i], canvas.width/2-50, startY+ spaceBetween*i + scrollY ,  100, 25); 
+        var jobEntries = creditNames[i].split(","); //Put each job on its own row
+        
+        for(var j in jobEntries) {
+            textPosition += spaceBetweenJobs;
+
+            //Use a double dash to delinate the person's name
+            var royalChar = "";
+            if(j == jobEntries.length-1) {
+                royalChar = " -- "; 
+            } 
+            DrawLabel(royalChar +   jobEntries[j] + royalChar , canvas.width/2-50,  Math.round(scrollY + textPosition),  100, 25); 
+        } 
+
+        textPosition += spaceBetween;
+
+        // If the last credit is off the screen, reset scrollY and loop again
+        if(i == creditNames.length - 1 && (scrollY + textPosition) < -1  ){
+            scrollY = 50;
+            console.log("Reset Credits");
+        }
     }
-
-    // DrawLabel("Project Lead: ClayTaeto ", canvas.width/2-50, startY+20 + scrollY ,  100, 25); 
-    //    // DrawLabel("ClayTaeto ", canvas.width/2-50, startY+25 + scrollY ,  100, 25); 
-
-    // DrawLabel("RainMaker: McFunkyPants", canvas.width/2-50, startY+40 + scrollY ,  100, 25); 
-    // DrawLabel("Cool Guy : Chris Deleon", canvas.width/2-50, startY+60 + scrollY ,  100, 25); 
-    // DrawLabel("More To Come", canvas.width/2-50, startY+80 + scrollY ,  100, 25); 
-
 }
 
 function DrawMainMenu(){
