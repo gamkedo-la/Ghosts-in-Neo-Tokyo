@@ -76,11 +76,24 @@ function ChangeGameStateOnCondition( condition, newState){
     }
 }
 
-var creditNames = ["Project Lead: ClayTaeto ", 
-                   "RainMaker: McFunkyPants",
-                   "Cool Guy : Chris Deleon",
-                   "More To Come"
-                   ];
+var creditNames = ["Project Lead, prototype, bosses, logo, world loading, art (ghast, toast, plant), player portrait, room change code, large map optimization, Kirt integration, grampaghost: Marc Silva",
+"Advanced camera code, fixes (player animation, collisions), buttons, enemy/object differentiation, door locks, boss code tweaks: H Trayford",
+"Wall jump code, boss portraits (3), baron portrait, tile art (concrete, brick, rad, AC), dialog writing, music (grandpa 1), beam sprites, addl. signs: Herleen Dualan",
+"NPC dialog code, rain effects, logo kanji, font integration, initial chase camera, neon signs: Christer \"McFunkypants\" Kaitila",
+"Inventory menu and item data integration, avocado drops, karaage sprite, background fix: Dan Dela Rosa",
+"Health bar, sounds (ghost laugh, sword), save file: Terrence McDonnell",
+"Sound system concept and audio code, music transition crossfade: Michael \"Misha\" Fewkes",
+"Gamkedo splash screen, menu screen, level 2, level selector, gating, hitbox fixes: Keenan Cole",
+"Music (witch, boss), Sound (hit, jump), ghost voices, addl. sound integration, refactoring: Klaim (A. Joël Lamotte)",
+"Tenghost sprite sheet, alley background, street background variations: Rémy Lapointe",
+"Initial jump controls: Gerard Moledo",
+"Music (ghosts, new age, dialog), three signs: Vignesh Ramesh",
+"Minor code cleanup: Fernando L. Canizo",
+"Bus stop sign and potted shrub for city background, music (grandpa 2): Ryan Lewis",
+"Sushi and misc. item sprites: Ezovex Dickson Goh",
+"Skyscrapers backgrounds: Eric Lamarca",
+"Kirt art: Nick Fewkes",
+"Visagrab sprite: Asix Jin"];
 var scrollY = 0;
 function drawCredits(){
     var startY = 200;// 60;
