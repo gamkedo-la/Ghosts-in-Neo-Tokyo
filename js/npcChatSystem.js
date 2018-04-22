@@ -34,7 +34,7 @@ function npcChatSystem(defaultFaceImage) {
 
     this.sayFooter = function (str, newFaceImage) {
         if (str == chat) return; // don't fire again if called repeatedly
-        master_bgm.switchTo(1,1);
+        master_bgm.switchTo(1,1); // Switch to dialog music
         chat = str;
         // we may need extra time for long texts
         this.animLength = 50 * str.length;
@@ -61,7 +61,6 @@ function npcChatSystem(defaultFaceImage) {
     // render a footer if required
     this.drawFooter = function () {
         if (chat == '') {
-            master_bgm.switchTo(0,1);
             return;
         }
         if (wordBubbleMode) return;
@@ -71,6 +70,7 @@ function npcChatSystem(defaultFaceImage) {
         }
         else {
             chat = '';
+            master_bgm.switchTo(0,1); // Switch back to level music
         }
     }
 }

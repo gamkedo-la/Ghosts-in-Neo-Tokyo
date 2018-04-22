@@ -21,9 +21,9 @@ var level3_dialog_track = new musicTrackLoopingWTail("./audio/Scarydialog", 17.7
 var level3_boss_track = new musicTrackLoopingWTail("./audio/ghosts-by-Vignesh", 68.888);  //By Vignesh
 var menu_track = new musicTrackLoopingWTail("./audio/bg_track_menu", 53.333);  //By RyantheLou
 var gpa_dialog_track = new musicTrackLoopingWTail("./audio/dawn_of_the_autumn_leaves_NoRain", 62.222);  //By Kise
-var cat_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);  //Coming from Kise~~~~~~
+var cat_dialog_track = new musicTrackLoopingWTail("./audio/baron_temp_theme", 12.777);  //By Kise
 
-var master_bgm = new musicContainerCrossfade([menu_track, cat_dialog_track]);
+var master_bgm = new musicContainerCrossfade([menu_track, gpa_dialog_track, cat_dialog_track]);
 
 player_jump_SFX.setVolume(0.5);
 player_hit_SFX.setVolume(0.5);
