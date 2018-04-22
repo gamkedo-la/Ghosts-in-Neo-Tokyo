@@ -206,8 +206,6 @@ function drawAll() {
 	
 	
 	
-	//TODO: remove
-	
 	clearCanvas();
 	canvasContext.drawImage(sprites.Background.skyscrapers, 0,20);
 	updateCameraPosition();
