@@ -9,6 +9,10 @@ var sword_attack_SFX = new sfxClipSingle("./audio/sword_attack");
 var ghast_laugh_crackly_clip = new sfxClipSingle("./audio/ghost_laugh_crackly");
 var ghast_laugh_clip = new sfxClipSingle("./audio/ghost_laugh");
 var ghast_laugh_SFX = new sfxContainerRandom([ghast_laugh_crackly_clip, ghast_laugh_clip]);
+var pooter_laugh_clip1 = new sfxClipSingle("./audio/ghost_scary_12");
+var pooter_laugh_clip2 = new sfxClipSingle("./audio/ghost_scary_14");
+var pooter_laugh_SFX = new sfxContainerRandom([pooter_laugh_clip1, pooter_laugh_clip2]);
+var pooter_poot_SFX = new sfxClipSingle("./audio/ghost_scary_20");
 
 var level1_stage_track = new musicTrackLoopingWTail("./audio/bg_track_witch_level", 115.555);  //By Klaim
 var level1_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 35.555);  //By Klaim
@@ -31,6 +35,9 @@ player_hit_ground_SFX.setVolume(0.5);
 sword_attack_SFX.setVolume(0.5);
 ghast_laugh_crackly_clip.setVolume(0.6);
 ghast_laugh_clip.setVolume(0.6);
+pooter_laugh_clip1.setVolume(0.6);
+pooter_laugh_clip2.setVolume(0.6);
+pooter_poot_SFX.setVolume(0.6);
 
 master_bgm.setVolume(1);
 

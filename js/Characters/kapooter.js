@@ -85,12 +85,13 @@ function kapooter(x, y) {
 
 			if(directionTimer < -2){
 				pew(this.x, this.y, WEST);
+				pooter_poot_SFX.play();
 				directionTimer = 0
 			}
 
 			this.getRandomNumber = Math.ceil(Math.random() * 100);
 			if (this.getRandomNumber > 99 && mDist(this.x, this.y, player.x, player.y) < 200) {
-				ghast_laugh_SFX.play();
+				pooter_laugh_SFX.play();
 			}
 
 			directionTimer -= TIME_PER_TICK;
