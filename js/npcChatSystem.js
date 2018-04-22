@@ -114,14 +114,17 @@ var npcGUI = new npcChatSystem(); // not used for word bubbles
 var grampaIntro = [
     {"GrandpaGhost": "Oh, Ichiro, is that you?"},
     {"Player": "? Me?"},
-    {"GrandpaGhost": "Oh, it is you! My, you've grown... Last time I saw you, you were only taking your first steps. How is your mother? Has she been doing well?"},
+    {"GrandpaGhost": "Oh, it is you! It's been a while hasn't it?"},
     {"Player": "..."},
-    {"GrandpaGhost": "For me, well...\n To tell you the truth, business hasn't been going too well. No matter how much I call out, no one seems to notice I'm here. My voice must not be as loud as it used to be.  \n I'm just..."},
-    {"GrandpaGhost": "... Ah, I'm sorry, I'm just a little lost for words. I'm... So happy to see you.\n I thought you were gone... The last thing I remember was a big flash, and buildings crumbling... You were in my arms... I...\n A-anyways, it's been a while since you tried my cooking, yes? Go on, take one. Your mother used to love my karaage."},
-    {"Player": "I'm sorry, I think you're mis-"},
-    {"GrandpaGhost": "Ah, and looks like there will be some extras. Why don't you share some with your friends?"},
-    {"Player": "... Okay. (I guess the least I could do is hand out some samples)"},
-    {"GrandpaGhost": "Thank you. Oh thank you. I'm so happy to see you again...]"},
+    {"GrandpaGhost": "My boy, why don't you try some of my karaage? \n It's been a while since I've had a happy,\n smiling customer."},
+    {"GrandpaGhost": "Hold on a moment while I get these burners\n running..."},
+    {"GrandpaGhost": "..."},
+    {"GrandpaGhost": "To tell you the truth, business hasn't been \n going too well. \nNo matter how much I call out, no one seems\n to notice I'm here."},
+    {"GrandpaGhost": "My voice must not be as loud as it used to be."}, 
+     {"Player": "Sorry but I -"},
+    {"GrandpaGhost": "Here we go! All done. \nAh, and looks like there'll be extras."},
+    {"GrandpaGhost": "Why don't you share some with your friends?"},
+    {"Player": "... Sure, why not."},
 ]
 var textNodes = {
     "grampaIntro":grampaIntro
