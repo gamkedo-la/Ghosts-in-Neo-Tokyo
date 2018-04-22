@@ -89,7 +89,7 @@ function kapooter(x, y) {
 			}
 
 			this.getRandomNumber = Math.ceil(Math.random() * 100);
-			if (this.getRandomNumber > 99) {
+			if (this.getRandomNumber > 99 && mDist(this.x, this.y, player.x, player.y) < 200) {
 				ghast_laugh_SFX.play();
 			}
 

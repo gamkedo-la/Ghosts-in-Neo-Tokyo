@@ -32,6 +32,7 @@ function boss3(x, y) {
 	var maxSpeed = .50;
 	var minMoveTime = 1.5;
 	var maxMoveTime = 2.5;
+	var musicSwitched = false; //whether or not it has activated the boss music
 
 	this.getRandomNumber;
 
@@ -81,6 +82,11 @@ function boss3(x, y) {
 			// 		return;
 			// 	}
 			// }
+			
+			if(mDist(this.x, this.y, player.x, player.y) < 700 && musicSwitched == false){  //Activates boss music
+				updateCurrentTracks(true);
+				musicSwitched = true;
+			}
 
 			const dist = mDist(this.x, this.y, player.x, player.y);
 			if((dist > 60) && (dist < 225)) {
@@ -154,6 +160,7 @@ function boss3(x, y) {
 				if (foundHere > -1) {
 					currentRoom.enemyList.splice(foundHere, 1);
 				}
+				updateCurrentTracks(false);
 				
 			// }
 			this.sprite.update();
