@@ -10,6 +10,7 @@ var player = new playerClass();
 var particleList = [];
 
 var paused = false;
+var sceneInProgress = false;
 
 var cameraOffsetX = 0;
 var cameraOffsetY = 0;
@@ -188,13 +189,16 @@ function updateAll() {
 }
 
 function moveAll() {
-	
-	player.move();
+	if(!sceneInProgress){
+		player.move();
+	}
 	player.poisoned();
     player.handleWallJump();
-	currentRoom.moveMyEnemies();
-	currentRoom.moveMyObjects();
-	currentRoom.moveMagic();
+    if(!sceneInProgress){
+		currentRoom.moveMyEnemies();
+		currentRoom.moveMyObjects();
+		currentRoom.moveMagic();
+	}
 	updateItems();
 	updateParticles();
 	updatePanel(debugPanel);

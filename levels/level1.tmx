@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="200" height="100" tilewidth="20" tileheight="20" infinite="0" nextobjectid="81">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="100" tilewidth="20" tileheight="20" nextobjectid="81">
  <properties>
   <property name="toDoor" value="front"/>
  </properties>
- <tileset firstgid="1" name="tileset" tilewidth="20" tileheight="20" tilecount="100" columns="10">
+ <tileset firstgid="1" name="tileset" tilewidth="20" tileheight="20">
   <image source="tileset.png" width="200" height="200"/>
  </tileset>
- <tileset firstgid="101" name="Char" tilewidth="79" tileheight="90" tilecount="12" columns="0">
+ <tileset firstgid="101" name="Char" tilewidth="79" tileheight="90">
   <properties>
    <property name="entityType" value="trigger"/>
   </properties>
@@ -221,6 +221,7 @@
  Back in my day, we had 
 to use our hands to play video games. </property>
     <property name="portraitName" value="GrandpaGhost"/>
+    <property name="textNode" value="grampaIntro"/>
    </properties>
   </object>
   <object id="49" name="TR_01" type="trigger" gid="111" x="439" y="480" width="20" height="20">

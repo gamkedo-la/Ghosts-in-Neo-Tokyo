@@ -249,7 +249,7 @@ function enemyClass(newEnemy, states){
 		placeItem(dyingX, dyingY, currentRoom, ITEM_KARAAGE_ANY);
 		return;
 	} // end of this.die function
-
+	this.canTalk = false;
 	this.maybeTriggerNPCDialogue = function() {
 
 
@@ -262,11 +262,18 @@ function enemyClass(newEnemy, states){
 			//the npcDialog system, we'll need a different
 			//way to prevent some (but not all) of
 			//them from doing so.
-		if(mDist(this.x, this.y, player.x, player.y) < this.closeEnoughToTalkTo) {
+		if(mDist(this.x, this.y, player.x, player.y) < this.closeEnoughToTalkTo ) {
 			//console.log("player is close enough to talk to me!");
-
+			if(!this.canTalk){
+				return; 
+			}
+			this.canTalk = false;
 			//console.log("Portrait trying to use: " + this.portraitName);
-			npcGUI.sayFooter(this.thingsToSay, sprites[this.portraitName]["portrait"] ); //"You think you can just touch a ghost\nand not suffer the consequences?\n\nPrepare to join us for a ghastly eternal\nexistence without form that never ends!", sprites["Player"]["defaultFaceImage"] );
+			if(this.currentTextNode){
+				npcGUI.startScene(this.currentTextNode);
+			} else {
+				npcGUI.sayFooter(this.thingsToSay, sprites[this.portraitName]["portrait"] ); //"You think you can just touch a ghost\nand not suffer the consequences?\n\nPrepare to join us for a ghastly eternal\nexistence without form that never ends!", sprites["Player"]["defaultFaceImage"] );
+			}
 			if (this.name == "Grandpa" && master_bgm.getTrackName() != "Gpa") {
 				master_bgm.loadTrackWithCrossfade(gpa_dialog_track, 1, 1);
 			} else if (this.name == "Baron" && master_bgm.getTrackName() != "Cat") {
@@ -277,6 +284,8 @@ function enemyClass(newEnemy, states){
 				this.name == "Boss1" || this.name == "Boss2" || this.name == "Boss3") && master_bgm.getTrackName() != "Boss") {
 				updateCurrentTracks(false);
 			}
+		} else {
+			this.canTalk = true;
 		}
 	}
 
@@ -426,8 +435,6 @@ function enemyClass(newEnemy, states){
 	}
 
 	this.initEnemy = function(){
-	
-	
 		//Initialize Portrait and Dialogue Data if any
 		if(this.mapData              != undefined &&
 		   this.mapData.portraitName != undefined &&
@@ -436,8 +443,12 @@ function enemyClass(newEnemy, states){
 			this.hasPortrait  = true;
 			this.portraitName = this.mapData.portraitName;
 			this.thingsToSay  = this.mapData.npc_dialogue;
+
 			//console.log("Portrait to use: " _ )
 			console.log("Has Things to Say: " + this.thingsToSay);
+		}
+		if(this.mapData && this.mapData.textNode){
+			this.currentTextNode = this.mapData.textNode || false;
 		}
 	}
 }

@@ -195,7 +195,7 @@ function playerClass() {
 	this.reset = function (playerName) {
 		console.log("Player reset: " + playerName);
 
-		this.chat.sayFooter("This is an example of the NPC\ndialogue footer! Lovely!", );
+		//this.chat.sayFooter("This is an example of the NPC\ndialogue footer! Lovely!", );
 
 		this.name = playerName;
 		if (this.currentHealth <= 0) {
