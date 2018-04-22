@@ -106,7 +106,7 @@ function playerClass() {
 	var hitboxWidth = 9;
 	var hitboxHeight = 20;
 	var hitboxOffsetX = -0.5;
-	var hitboxOffsetY = 0.5;
+	var hitboxOffsetY = 3;
 	this.hitbox = new boxColliderClass(this.x, this.y,
 		hitboxWidth, hitboxHeight,
 		hitboxOffsetX, hitboxOffsetY);
@@ -698,16 +698,26 @@ function playerClass() {
 			if (this.hitbox.isCollidingWith(anObject.hitbox)) {
 				knockbackSpeed = 0;
 				colliding = true;
-
+				//console.log("Still colliding?");
 				// Colliding with Door
 				if (anObject.type == "Door") {
 					anObject.setState("recoil");
 
 					// Colliding with Button or a blocker
-				} else if ((anObject.type == "fButton") || ((anObject.type == "blocker") && (anObject.enemyData.isBlocking))) {
-					var thisColliderBottom = this.tileCollider.y + this.tileCollider.height  + 1;
-					var anObjectColliderMiddle = anObject.tileCollider.y + anObject.tileCollider.height / 2 + 1;
+				} else if ((anObject.type == "fButton") || ((anObject.type == "blocker") && (anObject.enemyData.isBlocking))) 
+				{
+					var thisColliderBottom = this.tileCollider.y + this.tileCollider.height  ; //Keep in mind the tileColliders are lime green
+				
+
+					var anObjectColliderMiddle = anObject.tileCollider.y + anObject.tileCollider.height / 2 + 1    ;
+
+					colorCircle(this.x, this.y, 4, "magenta") ;
+					 											console.log( "Player Bottom: " + thisColliderBottom + " : " + "Button Mid: " + anObjectColliderMiddle);
+
+					colorLine( this.x , anObjectColliderMiddle, this.x + 100, anObjectColliderMiddle, "magenta");
+
 					if (thisColliderBottom < anObjectColliderMiddle) {
+						console.log("In the Button!!!!!");
 
 						if(anObject.stateMachine["set"]) {
 							anObject.setState("set");
@@ -719,13 +729,15 @@ function playerClass() {
 							this.motionState = "Grounded";
 						}
 
-						this.tileCollider.snapObjectToColliderEdge(this, 15, Y_AXIS, anObject.tileCollider);
+						//var delta = anObjectColliderMiddle - thisColliderBottom;
+						//this.y = this.tileCollider.y - this.tileCollider.height /2;
+						this.tileCollider.snapObjectToColliderEdge(this, 2, Y_AXIS, anObject.hitbox);
 					} else {
 								var vel = _PLAYER_MOVE_SPEED;
 								if (this.keyHeld_West) {
 									vel = -vel;
 								}
-						this.hitbox.snapObjectToColliderEdge(this, vel, X_AXIS, anObject.tileCollider); 
+						this.tileCollider.snapObjectToColliderEdge(this, vel, X_AXIS, anObject.tileCollider); 
 					}
 				}
 				else if (anObject.type == "trigger") {

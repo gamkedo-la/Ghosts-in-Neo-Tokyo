@@ -250,7 +250,7 @@
     <property name="toLevel" value="Level3"/>
    </properties>
   </object>
-  <object id="44" gid="101" x="110.012" y="538.19" width="32" height="32"/>
+  <object id="44" gid="101" x="829.012" y="924.19" width="32" height="32"/>
   <object id="54" gid="103" x="13.75" y="540.25" width="44" height="44">
    <properties>
     <property name="name" value="level2start"/>

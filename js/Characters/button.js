@@ -8,15 +8,15 @@ function floorButton(x, y) {
 	this.lootModifier = 1.0;
 	this.droppedTile = undefined;
 
-	this.tileColliderWidth = 17;
-	this.tileColliderHeight = 4;
+	this.tileColliderWidth = 20;
+	this.tileColliderHeight = 12;
 	this.tileColliderOffsetX = 0;
 	this.tileColliderOffsetY = 11;
 
 	this.hitboxWidth = 17;
-	this.hitboxHeight = 9;
+	this.hitboxHeight = 30;
 	this.hitboxOffsetX = 0;
-	this.hitboxOffsetY = 10;
+	this.hitboxOffsetY =  10;
 
 	this.spriteSheet = sprites.FloorButton.idle;
 	this.spriteWidth = 32;

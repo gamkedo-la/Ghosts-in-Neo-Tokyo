@@ -211,8 +211,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":285.17,
-                 "y":996.667
+                 "x":274.836666666667,
+                 "y":990.833666666667
                 }, 
                 {
                  "gid":109,
@@ -547,6 +547,28 @@
                  "width":20,
                  "x":47.3333333333333,
                  "y":988.666666666667
+                }, 
+                {
+                 "gid":111,
+                 "height":20,
+                 "id":80,
+                 "name":"",
+                 "properties":
+                    {
+                     "npc_dialogue":"Well hello there!",
+                     "portraitName":"Boss1"
+                    },
+                 "propertytypes":
+                    {
+                     "npc_dialogue":"string",
+                     "portraitName":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":20,
+                 "x":3395.25,
+                 "y":824.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -554,7 +576,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":78,
+ "nextobjectid":81,
  "orientation":"orthogonal",
  "properties":
     {
