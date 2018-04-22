@@ -275,7 +275,7 @@ function enemyClass(newEnemy, states){
 				updateCurrentTracks(true);
 			} else if ( !(this.name == "Grandpa" || this.name == "Baron" || 
 				this.name == "Boss1" || this.name == "Boss2" || this.name == "Boss3") && master_bgm.getTrackName() != "Boss") {
-				updateCurrentTracks();
+				updateCurrentTracks(false);
 			}
 		}
 	}

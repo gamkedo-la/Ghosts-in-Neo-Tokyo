@@ -85,7 +85,9 @@ function kapooter(x, y) {
 
 			if(directionTimer < -2){
 				pew(this.x, this.y, WEST);
-				pooter_poot_SFX.play();
+				if (mDist(this.x, this.y, player.x, player.y) < 200) {
+					pooter_poot_SFX.play();
+				}
 				directionTimer = 0
 			}
 
