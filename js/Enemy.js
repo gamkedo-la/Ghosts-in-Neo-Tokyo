@@ -37,7 +37,7 @@ function enemyClass(newEnemy, states){
 	this.chat = new npcChatSystem();
 	// random NPC chat for this particular enemy (word bubble)
 	// how close the player needs to be to trigger footer quest talk
-	this.closeEnoughToTalkTo = 32; // pixels
+	this.closeEnoughToTalkTo = 30; // pixels
 
 	this.tileCollider = new boxColliderClass(this.x, this.y,
 		newEnemy.tileColliderWidth, newEnemy.tileColliderHeight,
