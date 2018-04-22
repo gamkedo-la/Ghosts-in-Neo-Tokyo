@@ -59,6 +59,9 @@ level3_boss_track.setVolume(0);
 gpa_dialog_track.setVolume(0);
 cat_dialog_track.setVolume(0);
 
+level1_dialog_track.setTrackName("Boss");
+level2_dialog_track.setTrackName("Boss");
+level3_dialog_track.setTrackName("Boss");
 gpa_dialog_track.setTrackName("Gpa");
 cat_dialog_track.setTrackName("Cat");
 

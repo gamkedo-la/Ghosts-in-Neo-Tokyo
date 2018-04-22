@@ -271,6 +271,11 @@ function enemyClass(newEnemy, states){
 				master_bgm.loadTrackWithCrossfade(gpa_dialog_track, 1, 1);
 			} else if (this.name == "Baron" && master_bgm.getTrackName() != "Cat") {
 				master_bgm.loadTrackWithCrossfade(cat_dialog_track, 1, 1);
+			} else if ((this.name == "Boss1" || this.name == "Boss2" || this.name == "Boss3") && master_bgm.getTrackName() != "Boss") {
+				updateCurrentTracks(true);
+			} else if ( !(this.name == "Grandpa" || this.name == "Baron" || 
+				this.name == "Boss1" || this.name == "Boss2" || this.name == "Boss3") && master_bgm.getTrackName() != "Boss") {
+				updateCurrentTracks();
 			}
 		}
 	}
