@@ -19,12 +19,12 @@ var level1_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_bos
 var level1_boss_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_fighting", 97.777);  //By Klaim
 var level2_stage_track = new musicTrackLoopingWTail("./audio/Newage3", 102.222);  //By Vignesh
 var level2_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);  //Coming from Axis~~~
-var level2_boss_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_fighting", 97.777);  //Coming from Klaim~~~
+var level2_boss_track = new musicTrackLoopingWTail("./audio/magical-ghost", 115.486);  //By Klaim
 var level3_stage_track = new musicTrackLoopingWTail("./audio/bg_track_witch_level", 115.555);  //Coming from Klaim~~~~~~~~~
 var level3_dialog_track = new musicTrackLoopingWTail("./audio/Scarydialog", 17.777);  //By Vignesh
 var level3_boss_track = new musicTrackLoopingWTail("./audio/ghosts-by-Vignesh", 68.888);  //By Vignesh
 var menu_track = new musicTrackLoopingWTail("./audio/bg_track_menu", 53.333);  //By RyantheLou
-var gpa_dialog_track = new musicTrackLoopingWTail("./audio/dawn_of_the_autumn_leaves_NoRain", 62.222);  //By Kise
+var gpa_dialog_track = new musicTrackLoopingWTail("./audio/dawn_of_the_autumn_leaves_NoRain", 68.888);  //By Kise
 var cat_dialog_track = new musicTrackLoopingWTail("./audio/baron_temp_theme", 12.777);  //By Kise
 
 var master_bgm = new musicContainerCrossfade([menu_track, gpa_dialog_track]);
