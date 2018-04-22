@@ -5,6 +5,8 @@ var enemyDictionary = {}
 
 const RANDOM_CHAT_CHANCE = 0.1; // chance of a random word bubble for each state change
 
+
+
 function enemyClass(newEnemy, states){
 	//states is just an object of fuuuunctions
 
@@ -15,7 +17,7 @@ function enemyClass(newEnemy, states){
 	var maxSpeed = .50;
 	var minMoveTime = 1.5;
 	var maxMoveTime = 2.5;
-	this.name == newEnemy.name;
+	this.name = newEnemy.name;
 	this.x = newEnemy.x;
 	this.y = newEnemy.y;
 	this.maxHealth = newEnemy.maxHealth; // how many hits till it dies
@@ -26,11 +28,14 @@ function enemyClass(newEnemy, states){
 	this.droppedTile = newEnemy.droppedTile;
 	this.enemyData = newEnemy;
 	this.enemyData.monsterRef = this ///NOoooooooooooooooo TT_TT
+	this.hasPortrait = false;
+	this.portraitName = "";
+	this.thingsToSay = ["Booooo!","Muahahahaha!","I'm hungry!","Who you gonna call?","I love fried chicken!","Hey, get back here!","I only want to\ngive you a kiss!","Stay still!","Prepare to die!","Welcome...to die!","A human!","So hungry...","Welcome to Neo Tokyo!","We won't hurt you!","We just want\nto be friends!"];
+	
 
 	// the dialogue system which handles all word bubbles and their timers
 	this.chat = new npcChatSystem();
 	// random NPC chat for this particular enemy (word bubble)
-	this.thingsToSay = ["Booooo!","Muahahahaha!","I'm hungry!","Who you gonna call?","I love fried chicken!","Hey, get back here!","I only want to\ngive you a kiss!","Stay still!","Prepare to die!","Welcome...to die!","A human!","So hungry...","Welcome to Neo Tokyo!","We won't hurt you!","We just want\nto be friends!"];
 	// how close the player needs to be to trigger footer quest talk
 	this.closeEnoughToTalkTo = 32; // pixels
 
@@ -95,7 +100,7 @@ function enemyClass(newEnemy, states){
 			// report AI state? handy for debugging!
 			// this.chat = "I think I'll\n"+newState+"."; 
 			var randy = Math.random();
-			if ((randy<RANDOM_CHAT_CHANCE) && (this.thingsToSay.length > 0)) { // 10% of the time
+			if ((randy<RANDOM_CHAT_CHANCE) && (this.thingsToSay.length > 0 && !this.hasPortrait)) { // 10% of the time NOTE(keenan): Hack!!!
 				// trigger a new word bubble animation from npcChatSystem.js
 				this.chat.sayBubble(this.thingsToSay[Math.floor(Math.random()*this.thingsToSay.length)]);
 			}
@@ -246,7 +251,9 @@ function enemyClass(newEnemy, states){
 	} // end of this.die function
 
 	this.maybeTriggerNPCDialogue = function() {
-		if(this.thingsToSay.length <= 0) {return;}
+
+
+		if(!this.hasPortrait || this.thingsToSay.length <= 0 ) {return;}
 			//this.thingsToSay is autopopulated for
 			//all objects and enemies and 
 			//then emptied only for those objects
@@ -257,7 +264,10 @@ function enemyClass(newEnemy, states){
 			//them from doing so.
 		if(mDist(this.x, this.y, player.x, player.y) < this.closeEnoughToTalkTo) {
 			//console.log("player is close enough to talk to me!");
-			//npcGUI.sayFooter("You think you can just touch a ghost\nand not suffer the consequences?\n\nPrepare to join us for a ghastly eternal\nexistence without form that never ends!", sprites.Player.defaultFaceImage);
+
+			//console.log("Portrait trying to use: " + this.portraitName);
+			npcGUI.sayFooter(this.thingsToSay, sprites[this.portraitName]["portrait"] ); //"You think you can just touch a ghost\nand not suffer the consequences?\n\nPrepare to join us for a ghastly eternal\nexistence without form that never ends!", sprites["Player"]["defaultFaceImage"] );
+
 		}
 	}
 
@@ -403,6 +413,22 @@ function enemyClass(newEnemy, states){
 				default:
 					break;
 			}
+		}
+	}
+
+	this.initEnemy = function(){
+	
+	
+		//Initialize Portrait and Dialogue Data if any
+		if(this.mapData              != undefined &&
+		   this.mapData.portraitName != undefined &&
+		   this.mapData.npc_dialogue != undefined ){
+			
+			this.hasPortrait  = true;
+			this.portraitName = this.mapData.portraitName;
+			this.thingsToSay  = this.mapData.npc_dialogue;
+			//console.log("Portrait to use: " _ )
+			console.log("Has Things to Say: " + this.thingsToSay);
 		}
 	}
 }

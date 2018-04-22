@@ -90,18 +90,21 @@ function trigger(x, y) {
 
 		},
 		onTriggerEnter : function() {
-			if(this.mapData != undefined) {
+			if(this.mapData != undefined ) {
 				if(this.isTriggered != true)
 				{
-					console.log("The trigger is set! Needs: ");
+					
+					//console.log("Does the inventory have it: " + hasItem(this.mapData.ItemNeeded) );
+					//Does this trigger require something? 
 
-					console.log( this.mapData.ItemNeeded);
-					console.log("Does the inventory have it: " + hasItem(this.mapData.ItemNeeded) );
-					if(hasItem(String( this.mapData.ItemNeeded)) ) {
+					if(this.mapData.ItemNeeded != undefined && hasItem(String( this.mapData.ItemNeeded)) ) {
 						this.isTriggered = true;
 						triggerActivate(this.mapData);
 						//this.setState("dying");
 						this.isAlive = false; //deadEvent();
+					} else if(this.mapData.ItemNeeded == undefined && this.mapData.ID_Name != undefined ){ //It must be a general trigger then
+						this.isTriggered = this.mapData.triggerOnce != undefined;
+						triggerActivate(this.mapData);
 					}
 				}
 				this.setState("normalTriggerLikeBehavior");

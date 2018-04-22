@@ -5,7 +5,7 @@ var imgPayload = [
 	{ set: "Player", name: "walkEast", fileName: "mainChar/Char_Animation 4.png" },
 	{ set: "Player", name: "attackDown", fileName: "mainChar/Char_Animation 5.png" },
 	{ set: "Player", name: "attack", fileName: "mainChar/TempAttack.png" },
-	{ set: "Player", name: "defaultFaceImage", fileName: "portaits/portrait-test.png" },
+	{ set: "Player", name: "portrait", fileName: "portaits/portrait-test.png" },
 
 	{ set: "Kirt", name: "idleRight", fileName: "Kirt/Kirt_idle_right.png" },
 	{ set: "Kirt", name: "idleLeft", fileName: "Kirt/Kirt_idle_left.png" },
@@ -13,10 +13,16 @@ var imgPayload = [
 	{ set: "Kirt", name: "walkRight", fileName: "Kirt/Kirt_walk_right.png" },
 
 	{ set: "GrandpaGhost", name: "idle", fileName: "GrampaGhost.png" },
+	{ set: "GrandpaGhost", name: "portrait", fileName: "portaits/grampaghost_portrait.png" },
 
 	{ set: "Boss1", name: "idle", fileName: "bosses/boss1/Boss1.png" },
+	{ set: "Boss1", name: "portrait", fileName: "portaits/boss1_portrait.png" },
+
 	{ set: "Boss2", name: "idle", fileName: "bosses/boss2/Boss2.png" },
+	{ set: "Boss2", name: "portrait", fileName: "portaits/boss2_portrait.png" },
+
 	{ set: "Boss3", name: "idle", fileName: "bosses/boss3/Boss3.png" },
+	{ set: "Boss3", name: "portrait", fileName: "portaits/boss3_portrait.png" },
 
 	{ set: "Background", name: "background1", fileName: "Concept.png" },
 	{ set: "Background", name: "skyscrapers", fileName: "Backgrounds/skyscrapers.png" },

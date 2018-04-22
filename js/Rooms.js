@@ -72,10 +72,16 @@ function Room(roomLayout) {
 							newEnemy.type = aType;
 							newEnemy.name = item.name;
 							newEnemy.isVisible = item.visible;
+							newEnemy.initEnemy(); // Finalize 
 							this.objectList.push(newEnemy);
 						} else {
 							var newEnemy = new enemyConstructor(item.x, item.y) ;
+							newEnemy.item = item;
 							newEnemy.mapData = item.properties;
+					    	newEnemy.isVisible = item.visible;
+
+							//newEnemy.name = item.name;
+							newEnemy.initEnemy();
 							this.enemyList.push(newEnemy );
 						}
 					} else if(item.gid == 101) {

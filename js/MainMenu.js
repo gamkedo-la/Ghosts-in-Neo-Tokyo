@@ -102,7 +102,7 @@ function drawCredits(){
     var spaceBetween = 12;
     var spaceBetweenJobs = 9
 
-    var scrollSpeed = 35;
+    var scrollSpeed = 25;
     scrollY -= scrollSpeed * TIME_PER_TICK;
     var textPosition = startY;
     for (var i = 0; i < creditNames.length; i++) {

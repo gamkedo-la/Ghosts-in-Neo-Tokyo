@@ -156,8 +156,9 @@ function updateAll() {
 	}
 	else if( GameState_ == MAINMENU){
 		ClearToBlack();
-		drawRain(); 
+		 
 		DrawMainMenu();
+		drawRain();
 		AudioEventManager.updateEvents();
 		return;
 	}
