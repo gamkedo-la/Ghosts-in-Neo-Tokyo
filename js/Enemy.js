@@ -267,7 +267,11 @@ function enemyClass(newEnemy, states){
 
 			//console.log("Portrait trying to use: " + this.portraitName);
 			npcGUI.sayFooter(this.thingsToSay, sprites[this.portraitName]["portrait"] ); //"You think you can just touch a ghost\nand not suffer the consequences?\n\nPrepare to join us for a ghastly eternal\nexistence without form that never ends!", sprites["Player"]["defaultFaceImage"] );
-
+			if (this.name == "Grandpa" && master_bgm.getTrackName() != "Gpa") {
+				master_bgm.loadTrackWithCrossfade(gpa_dialog_track, 1, 1);
+			} else if (this.name == "Baron" && master_bgm.getTrackName() != "Cat") {
+				master_bgm.loadTrackWithCrossfade(cat_dialog_track, 1, 1);
+			}
 		}
 	}
 

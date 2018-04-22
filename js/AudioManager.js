@@ -23,7 +23,7 @@ var menu_track = new musicTrackLoopingWTail("./audio/bg_track_menu", 53.333);  /
 var gpa_dialog_track = new musicTrackLoopingWTail("./audio/dawn_of_the_autumn_leaves_NoRain", 62.222);  //By Kise
 var cat_dialog_track = new musicTrackLoopingWTail("./audio/baron_temp_theme", 12.777);  //By Kise
 
-var master_bgm = new musicContainerCrossfade([menu_track, gpa_dialog_track, cat_dialog_track]);
+var master_bgm = new musicContainerCrossfade([menu_track, gpa_dialog_track]);
 
 player_jump_SFX.setVolume(0.5);
 player_hit_SFX.setVolume(0.5);
@@ -58,6 +58,9 @@ level3_dialog_track.setVolume(0);
 level3_boss_track.setVolume(0);
 gpa_dialog_track.setVolume(0);
 cat_dialog_track.setVolume(0);
+
+gpa_dialog_track.setTrackName("Gpa");
+cat_dialog_track.setTrackName("Cat");
 
 //hook ups for GiNT
 function updateCurrentTracks(boss = false) {
