@@ -88,12 +88,12 @@ var creditNames = [
 "Tenghost sprite sheet, alley background, street background variations, Rémy Lapointe",
 "Initial jump controls, Gerard Moledo",
 "Music (ghosts - new age - dialog), three signs, Vignesh Ramesh",
-"Minor code cleanup, Fernando L. Canizo",
 "Bus stop sign and potted shrub for city background, music (grandpa 2), Ryan Lewis",
 "Sushi and misc. item sprites, Ezovex Dickson Goh",
 "Skyscrapers backgrounds, Eric Lamarca",
 "Kirt art, Nick Fewkes",
-"Visagrab sprite, Asix Jin"
+"Visagrab sprite, Asix Jin",
+"Minor code cleanup, Fernando L. Canizo"
 ];
 
 var scrollY = 0;
