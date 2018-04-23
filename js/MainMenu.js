@@ -85,7 +85,7 @@ var creditNames = [
 "Sound system concept and audio code, music transition crossfade, Michael \"Misha\" Fewkes",
 "Gamkedo splash screen, menu screen, level 2, level selector, gating, hitbox fixes, Keenan Cole",
 "Music (witch - boss), Sound (hit - jump), ghost voices, addl. sound integration, refactoring, Klaim (A. Joel Lamotte)",
-"Tenghost sprite sheet, alley background, street background variations, Rémy Lapointe",
+"Tenghost sprite sheet, alley background, street background variations, Remy Lapointe",
 "Initial jump controls, Gerard Moledo",
 "Music (ghosts - new age - dialog), three signs, Vignesh Ramesh",
 "Bus stop sign and potted shrub for city background, music (grandpa 2), Ryan Lewis",
