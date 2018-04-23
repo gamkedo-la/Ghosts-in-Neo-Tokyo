@@ -18,7 +18,7 @@ var level1_stage_track = new musicTrackLoopingWTail("./audio/bg_track_witch_leve
 var level1_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 35.555);  //By Klaim
 var level1_boss_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_fighting", 97.777);  //By Klaim
 var level2_stage_track = new musicTrackLoopingWTail("./audio/Newage3", 102.222);  //By Vignesh
-var level2_dialog_track = new musicTrackLoopingWTail("./audio/bg_track_witch_boss_talking", 42.222);  //Coming from Axis~~~
+var level2_dialog_track = new musicTrackLoopingWTail("./audio/neo_girl", 37.777);  //By Axis
 var level2_boss_track = new musicTrackLoopingWTail("./audio/magical-ghost", 115.486);  //By Klaim
 var level3_stage_track = new musicTrackLoopingWTail("./audio/bg_track_witch_level", 115.555);  //Coming from Klaim~~~~~~~~~
 var level3_dialog_track = new musicTrackLoopingWTail("./audio/Scarydialog", 17.777);  //By Vignesh
@@ -45,7 +45,7 @@ level1_stage_track.setMixVolume(1);
 level1_dialog_track.setMixVolume(0.65);
 level1_boss_track.setMixVolume(0.5);
 level2_stage_track.setMixVolume(0.78);
-level2_dialog_track.setMixVolume(0.65);
+level2_dialog_track.setMixVolume(0.8);
 level2_boss_track.setMixVolume(0.5);
 level3_stage_track.setMixVolume(1);
 level3_dialog_track.setMixVolume(1);
