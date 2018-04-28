@@ -77,9 +77,14 @@ function floorButton(x, y) {
 				for(var i in currentRoom.layout.layers[1].objects){
 					if(currentRoom.layout.layers[1].objects[i].properties && currentRoom.layout.layers[1].objects[i].name == targets[j]){
 						const targetType = currentRoom.layout.layers[1].objects[i].type;
-						if (targetType == "Door") {
+						if (targetType == "Door") {							
 							if(currentRoom.layout.layers[1].objects[i].visible) {
-								currentRoom.layout.layers[1].objects[i].properties.isLocked = false;
+								for(var i in currentRoom.objectList){
+									if(currentRoom.objectList[i].name == currentRoom.layout.layers[1].objects[i].properties.name){
+										currentRoom.objectList[i].isLocked = false;
+									}
+								}
+								currentRoom.layout.layers[1].objects[i].isLocked = false;
 							} else {
 								currentRoom.layout.layers[1].objects[i].visible = true;
 							}													

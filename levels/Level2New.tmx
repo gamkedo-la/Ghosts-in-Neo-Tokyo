@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="20" tileheight="20" infinite="0" nextobjectid="112">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="20" tileheight="20" nextobjectid="112">
  <properties>
   <property name="toDoor" value="front"/>
  </properties>
- <tileset firstgid="1" name="tileset" tilewidth="20" tileheight="20" tilecount="100" columns="10">
+ <tileset firstgid="1" name="tileset" tilewidth="20" tileheight="20">
   <image source="tileset.png" width="200" height="200"/>
  </tileset>
- <tileset firstgid="101" name="Char" tilewidth="79" tileheight="90" tilecount="12" columns="0">
+ <tileset firstgid="101" name="Char" tilewidth="79" tileheight="90">
   <tile id="0">
    <image width="32" height="32" source="../img/mainChar/Char_0.png"/>
   </tile>
@@ -77,7 +77,7 @@
    <image width="20" height="20" source="../img/Tiles/concrete.png"/>
   </tile>
  </tileset>
- <tileset firstgid="113" name="Char" tilewidth="79" tileheight="90" tilecount="8" columns="0">
+ <tileset firstgid="113" name="Char" tilewidth="79" tileheight="90">
   <tile id="0">
    <image width="32" height="32" source="../img/mainChar/Char_0.png"/>
   </tile>
@@ -231,7 +231,7 @@
  <objectgroup name="Characters">
   <object id="31" name="leftMiddle" type="fButton" gid="104" x="670.584" y="1202.67" width="32" height="32">
    <properties>
-    <property name="setTime" type="int" value="600"/>
+    <property name="setTime" value="600"/>
     <property name="state" value="released"/>
     <property name="targetName" value="end"/>
    </properties>
@@ -244,7 +244,7 @@
   </object>
   <object id="36" name="end" type="Door" gid="103" x="779.25" y="1260.75" width="44" height="44" visible="0">
    <properties>
-    <property name="isLocked" type="bool" value="true"/>
+    <property name="isLocked" value="true"/>
     <property name="name" value="end"/>
     <property name="toDoor" value="Level3start"/>
     <property name="toLevel" value="Level3"/>
@@ -272,7 +272,7 @@
   </object>
   <object id="61" name="rightBottom" type="fButton" gid="104" x="897.75" y="1262" width="32" height="32">
    <properties>
-    <property name="setTime" type="int" value="600"/>
+    <property name="setTime" value="600"/>
     <property name="state" value="released"/>
     <property name="targetName" value="end"/>
    </properties>
@@ -316,18 +316,18 @@
   <object id="85" gid="102" x="1532.5" y="48" width="32" height="32"/>
   <object id="88" gid="107" x="721.5" y="1097" width="70" height="70"/>
   <object id="91" gid="107" x="837.5" y="1253.5" width="70" height="70"/>
-  <object id="96" name="TR_01" type="trigger" gid="111" x="1470.25" y="606.333" width="20" height="20">
+  <object id="96" name="TR_01" type="trigger" gid="111" x="1351.25" y="505.333" width="20" height="20">
    <properties>
     <property name="ID_Name" value="BL_01"/>
     <property name="ItemNeeded" value="4"/>
    </properties>
   </object>
-  <object id="100" name="BL_01" type="blocker" gid="112" x="1500.17" y="619.792" width="20" height="20">
+  <object id="100" name="BL_01" type="blocker" gid="112" x="1381.17" y="518.792" width="20" height="20">
    <properties>
     <property name="name" value="BL_01"/>
    </properties>
   </object>
-  <object id="102" name="BL_01" type="blocker" gid="112" x="1500" y="600.25" width="20" height="20">
+  <object id="102" name="BL_01" type="blocker" gid="112" x="1381" y="499.25" width="20" height="20">
    <properties>
     <property name="name" value="BL_01"/>
    </properties>

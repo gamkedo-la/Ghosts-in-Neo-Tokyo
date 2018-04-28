@@ -28,6 +28,7 @@ function door(x, y) {
 	this.deathSpriteFrames = 10;
 	this.deathSpriteSpeed = 4;
 	this.name = "it's a door yo";
+	this.isLocked = false;
 	var directionTimer = 0;
 	var minSpeed = .25;
 	var maxSpeed = .50;
@@ -81,7 +82,7 @@ function door(x, y) {
 				throw "yo, you need to set properties in the tmx file for this level\n Set custom property name to a door so other doors can spawn the player here.";
 			}
 			
-			if(this.mapData.isLocked) {
+			if(this.isLocked) {
 				this.setState("normal");
 				return;
 			}
@@ -122,7 +123,7 @@ function door(x, y) {
 			this.sprite.update();
 		}*/
 	}
-
+	
 	this.deadEvent = function() {
 		ga('send', {
 		  hitType: 'event',
@@ -133,7 +134,17 @@ function door(x, y) {
 		this.monsterRef.setState("dying")
 		this.monsterRef.isDying = true;		
 	} // end of dead
-	
-	return new enemyClass(this, staates);
+	var tempDoor = new enemyClass(this, staates);
+	tempDoor.initEnemy = function(){
+		//Initialize Portrait and Dialogue Data if any
+		if(this.mapData              != undefined &&
+		   this.mapData.isLocked != undefined ){
+			this.isLocked = false;
+		}
+		if(this.mapData && this.mapData.isLocked){
+			this.isLocked = this.mapData.isLocked ;
+		}
+	}
+	return tempDoor;
 }
 enemyDictionary["Door"] = door
